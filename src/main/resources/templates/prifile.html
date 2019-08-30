@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>bestsort</title>
+    <title th:text="${sectionName}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <script src="js/jquery.min.js"></script>
@@ -18,7 +18,7 @@
 <div class="container-fluid main">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-xs-12 col-sm-12">
-            <h2><span class="glyphicon glyphicon-list" aria-hidden="true">发现</span></h2>
+            <h2><span th:text="${sectionName}">我的问题</span></h2>
             <hr>
             <div class="media" th:each="question:${pagination.questions}">
                 <div class="media-left">
@@ -68,6 +68,15 @@
                     </li>
                 </ul>
             </nav>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <div class="list-group">
+                <a href="#" class="list-group-item" th:class="${section=='questions'}?'active':''">
+                    Cras justo odio
+                </a>
+                <a href="#" class="list-group-item" th:class="${section=='replys'}?'active':''">justo</a>
+                <a href="#" class="list-group-item">justo111</a>
+            </div>
         </div>
     </div>
 </div>
