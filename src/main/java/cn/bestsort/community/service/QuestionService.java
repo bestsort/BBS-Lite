@@ -35,9 +35,30 @@ public class QuestionService {
         page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
         page = Math.max(page,1);
 
-
         Integer offset = size * (page - 1);
         List<Question> questions = questionMapper.list(offset,size);
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        PagInationDTO pagInationDTO = new PagInationDTO();
+        for (Question question : questions) {
+            User user = userMapper.findById(question.getCreator());
+            QuestionDTO questionDTO = new QuestionDTO();
+            BeanUtils.copyProperties(question,questionDTO);
+            questionDTO.setUser(user);
+            questionDTOList.add(questionDTO);
+        }
+        pagInationDTO.setQuestions(questionDTOList);
+        pagInationDTO.setPagination(totalCount,page,size);
+        return pagInationDTO;
+    }
+
+    public PagInationDTO list(Integer userId , Integer page, Integer size) {
+        Integer totalCount = questionMapper.countByUserId(userId);
+        //限制访问合法
+        page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
+        page = Math.max(page,1);
+
+        Integer offset = size * (page - 1);
+        List<Question> questions = questionMapper.listByUserId(userId,offset,size);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         PagInationDTO pagInationDTO = new PagInationDTO();
         for (Question question : questions) {

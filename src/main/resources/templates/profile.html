@@ -4,21 +4,22 @@
     <title th:text="${sectionName}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/community.css">
-
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
 
 </head>
 <body>
 <div th:insert="navgation :: nav"></div>
 
-<div class="container-fluid main">
+<div class="container-fluid main profile">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-xs-12 col-sm-12">
-            <h2><span th:text="${sectionName}">我的问题</span></h2>
+            <h2>
+                <span th:text="${sectionName}"></span>
+            </h2>
             <hr>
             <div class="media" th:each="question:${pagination.questions}">
                 <div class="media-left">
@@ -40,29 +41,29 @@
                 <ul class="pagination">
 
                     <li th:if="${pagination.showFirstPage}">
-                        <a href="/?page=1" aria-label="Previous">
+                        <a th:href="@{'/profile/' + ${section}(page=${1})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
                     <li th:if="${pagination.showPrevious}">
-                        <a th:href="@{/(page=${pagination.focusPage-1})}" aria-label="Previous">
+                        <a th:href="@{'/profile/' + ${section}(page=${pagination.focusPage-1})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
 
                     <li th:each="i:${#numbers.sequence(pagination.startPage,pagination.startPage+pagination.pageLenth)}"
                         th:class="${pagination.focusPage==i?'active':''}">
-                        <a th:href="@{/(page=${i})}" th:text="${i}"></a>
+                        <a th:href="@{'/profile/' + ${section}(page=${i})}" th:text="${i}"></a>
                     </li>
 
                     <li th:if="${pagination.showNext}">
-                        <a th:href="@{/(page=${pagination.focusPage+1})}" aria-label="Next">
+                        <a th:href="@{'/profile/' + ${section}(page=${pagination.focusPage+1})}" aria-label="Next">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
 
                     <li th:if="${pagination.showEndPage}">
-                        <a th:href="@{/(page=${pagination.totalPage})}" aria-label="Next">
+                        <a th:href="@{'/profile' + (page=${pagination.totalPage})}" aria-label="Next">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>
@@ -70,12 +71,12 @@
             </nav>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <div class="list-group">
-                <a href="#" class="list-group-item" th:class="${section=='questions'}?'active':''">
-                    Cras justo odio
+            <div class="list-group section">
+                <a href="/profile/questions" th:class="${section=='questions'}?'active list-group-item':'list-group-item'">我的问题</a>
+                <a href="/profile/replies " th:class="${section=='replies'}?'active list-group-item':'list-group-item'">
+                    最新回复
+                    <span class="badge">15</span>
                 </a>
-                <a href="#" class="list-group-item" th:class="${section=='replys'}?'active':''">justo</a>
-                <a href="#" class="list-group-item">justo111</a>
             </div>
         </div>
     </div>
