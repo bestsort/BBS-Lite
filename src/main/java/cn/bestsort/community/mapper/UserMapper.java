@@ -4,6 +4,7 @@ import cn.bestsort.community.model.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * @author bestsort
@@ -32,4 +33,12 @@ public interface UserMapper {
      */
     @Select("SELECT * FROM user WHERE id=#{id}")
     User findById(Integer id);
+
+    @Select("SELECT * FROM user WHERE account_id=#{accountId}")
+    User findByAccount(String accountId);
+
+    @Update("UPDATE user SET " +
+            "gmt_modified=#{gmtModified} ,name=#{name},token=#{token},avatar_url=#{avatarUrl}" +
+            "WHERE account_id=#{accountId}")
+    void update(User dbUser);
 }

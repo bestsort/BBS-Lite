@@ -4,11 +4,11 @@
     <title>发布</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/community.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
 </head>
 
 <body>
@@ -21,10 +21,11 @@
 <div class="container-fluid main">
 
     <div class="row">
-        <div class="col-lg-9 col-md-12 col-xs-12">
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
             <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
 
             <form action="/publish" method="post">
+                <input type="hidden" name="id" th:value="${id}">
                 <div class="form-group">
                     <label for="title">问题标题(简单扼要)</label>
                     <input name="title" type="text" class="form-control"
@@ -44,7 +45,7 @@
                 <button type="submit" class="btn btn-success btn-publish" value="发布">发布</button>
             </form>
         </div>
-        <div class="col-lg-3 col-md-12 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <h3>无序列表</h3>
             <ul>
                 <li>第一条</li>

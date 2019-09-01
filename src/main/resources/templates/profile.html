@@ -16,7 +16,7 @@
 
 <div class="container-fluid main profile">
     <div class="row">
-        <div class="col-lg-9 col-md-12 col-xs-12 col-sm-12">
+        <div class="col-lg-9 col-md-9 col-xs-9 col-sm-12">
             <h2>
                 <span th:text="${sectionName}"></span>
             </h2>
@@ -70,7 +70,7 @@
                 </ul>
             </nav>
         </div>
-        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <div class="list-group section">
                 <a href="/profile/questions" th:class="${section=='questions'}?'active list-group-item':'list-group-item'">我的问题</a>
                 <a href="/profile/replies " th:class="${section=='replies'}?'active list-group-item':'list-group-item'">

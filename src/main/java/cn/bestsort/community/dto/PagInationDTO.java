@@ -26,12 +26,12 @@ public class PagInationDTO {
     private Integer focusPage;
     private Integer totalPage;
     public void setPagination(Integer totalCount, Integer page, Integer size) {
-        totalPage = totalCount/size + (totalCount%size==0? 0 : 1);
-        Integer pagination = Math.min(3,totalPage-1);
+        totalPage = Math.max(1,totalCount/size + (totalCount%size==0? 0 : 1));
+        Integer pagination = Math.min(3,Math.max(1,totalPage-1));
         //页面跳转按钮起点为 page-3
         startPage = Math.max(page-pagination,1);
         //页面跳转按钮终点为 page+3
-        pageLenth = Math.min(page-startPage+pagination,totalPage-startPage);
+        pageLenth = Math.max(0,Math.min(page-startPage+pagination,totalPage-startPage));
         focusPage = page;
         focusPage = Math.min(totalPage,focusPage);
         focusPage = Math.max(1,focusPage);

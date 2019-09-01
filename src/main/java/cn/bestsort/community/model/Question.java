@@ -21,4 +21,12 @@ public class Question {
     private Integer viewCount;
     private Integer commentCount;
     private Integer likeCount;
+    public Question(){}
+    public Question(String title,String description,String tag,Integer creator,Integer id){
+        this.title = title;
+        this.tag = tag;
+        this.creator = creator;
+        this.id = id;
+        this.description = description;
+    }
 }

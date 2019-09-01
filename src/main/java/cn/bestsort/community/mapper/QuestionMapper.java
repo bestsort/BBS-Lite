@@ -4,6 +4,7 @@ import cn.bestsort.community.model.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 
 import java.util.List;
@@ -33,18 +34,26 @@ public interface QuestionMapper {
      * @param size
      * @return 问题列表
      */
-    @Select("select * from question limit #{offset},#{size}")
+    @Select("SELECT * FROM question ORDER BY gmt_create DESC LIMIT #{offset},#{size} ")
     List<Question> list(Integer offset, Integer size);
 
     /**
      * @return 问题总数
      */
-    @Select("select count(1) from question")
+    @Select("SELECT COUNT(1) FROM question")
     Integer count();
 
-    @Select("select * from question where creator=#{userId} limit #{offset},#{size}")
+    @Select("SELECT * FROM question WHERE creator=#{userId} ORDER BY gmt_create DESC LIMIT #{offset},#{size} ")
     List<Question> listByUserId(Integer userId, Integer offset, Integer size);
 
-    @Select("select count(1) from question where creator=#{userId}")
+    @Select("SELECT count(1) FROM question WHERE creator=#{userId}")
     Integer countByUserId(Integer userId);
+
+    @Select("SELECT * FROM question WHERE id=#{id}")
+    Question getById(Integer id);
+
+    @Update("UPDATE question SET " +
+            "title=#{title},description=#{description},gmt_modified=#{gmtModified},tag=#{tag} " +
+            "WHERE id = #{id}")
+    void update(Question question);
 }
