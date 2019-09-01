@@ -36,3 +36,4 @@ build/
 将删除 pom.xml
 将删除 src/
 /src/main/resources/application.properties
+/src/main/resources/generatorConfig.xml
