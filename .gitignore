@@ -1,4 +1,7 @@
 HELP.md
+
+**/src/main/resources/application.properties
+**/src/main/resources/generatorConfig.xml
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
@@ -35,5 +38,4 @@ build/
 将删除 mvnw.cmd
 将删除 pom.xml
 将删除 src/
-/src/main/resources/application.properties
-/src/main/resources/generatorConfig.xml
+
