@@ -19,14 +19,21 @@
 - 对 Spring Boot, MyBatis, Spring MVC 等常用框架都有应用
 - 方便上手
 
-## 采用技术
+## 采用技术及工具
+- Spring Boot
+    - spring-boot-starter-jdbc
+    - spring-boot-starter-web
+    - spring-boot-starter-mybatis
+    - spring-boot-starter-thymeleaf
+- Fastjson
+- OkHttp
+- Flyway
 
-|名称|官网|官方文档|
-|:-:|:-:|:-:|
-||||
-||||
-||||
-||||
-
+---
+- IntelliJ IDEA
+- Mysql WorkBench
+- Git
+- Chrome
+- Lombook
 ## 作者
 **bestsort**
