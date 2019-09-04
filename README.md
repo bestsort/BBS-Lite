@@ -1,5 +1,4 @@
 <h1 align="center">Welcome to BBS-Lite 👋
-
 <span align="center">
 
 <img src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000"></img>
@@ -28,10 +27,10 @@
 - Fastjson
 - OkHttp
 - Flyway
-
+- Bootstrap
 ---
 - IntelliJ IDEA
-- Mysql WorkBench
+- MySQL Workbench
 - Git
 - Chrome
 - Lombook
