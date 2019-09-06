@@ -6,11 +6,11 @@
  * @Version 1.0
  */
 
-package cn.bestsort.community.provider;
+package cn.bestsort.bbslite.provider;
 
 
-import cn.bestsort.community.dto.AccessTokenDTO;
-import cn.bestsort.community.dto.GithubUser;
+import cn.bestsort.bbslite.dto.AccessTokenDTO;
+import cn.bestsort.bbslite.dto.GithubUser;
 import com.alibaba.fastjson.JSON;
 import okhttp3.*;
 import org.springframework.stereotype.Component;

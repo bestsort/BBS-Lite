@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>cn.bestsort</groupId>
-    <artifactId>community</artifactId>
+    <artifactId>bbslite</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>community</name>
-    <description>community</description>
+    <name>bbslite</name>
+    <description>bbslite</description>
 
     <properties>
         <java.version>1.8</java.version>

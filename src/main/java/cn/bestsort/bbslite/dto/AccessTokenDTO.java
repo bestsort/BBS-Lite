@@ -6,7 +6,7 @@
  * @Version 1.0
  */
 
-package cn.bestsort.community.dto;
+package cn.bestsort.bbslite.dto;
 
 import lombok.Data;
 

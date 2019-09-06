@@ -1,6 +1,6 @@
-package cn.bestsort.community.dto;
+package cn.bestsort.bbslite.dto;
 
-import cn.bestsort.community.model.User;
+import cn.bestsort.bbslite.model.User;
 import lombok.Data;
 
 /**

@@ -1,4 +1,4 @@
-package cn.bestsort.community.model;
+package cn.bestsort.bbslite.model;
 
 import lombok.Data;
 

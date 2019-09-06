@@ -1,7 +1,7 @@
-package cn.bestsort.community.interceptor;
+package cn.bestsort.bbslite.interceptor;
 
-import cn.bestsort.community.mapper.UserMapper;
-import cn.bestsort.community.model.User;
+import cn.bestsort.bbslite.mapper.UserMapper;
+import cn.bestsort.bbslite.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;

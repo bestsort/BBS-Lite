@@ -1,6 +1,6 @@
-package cn.bestsort.community.mapper;
+package cn.bestsort.bbslite.mapper;
 
-import cn.bestsort.community.model.Question;
+import cn.bestsort.bbslite.model.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

@@ -1,8 +1,7 @@
-package cn.bestsort.community.service;
+package cn.bestsort.bbslite.service;
 
-import cn.bestsort.community.mapper.UserMapper;
-import cn.bestsort.community.model.User;
-import org.springframework.beans.BeanUtils;
+import cn.bestsort.bbslite.mapper.UserMapper;
+import cn.bestsort.bbslite.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

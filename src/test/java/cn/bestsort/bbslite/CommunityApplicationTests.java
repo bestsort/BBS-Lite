@@ -1,4 +1,4 @@
-package cn.bestsort.community;
+package cn.bestsort.bbslite;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

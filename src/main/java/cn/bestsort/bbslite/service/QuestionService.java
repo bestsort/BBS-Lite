@@ -1,11 +1,11 @@
-package cn.bestsort.community.service;
+package cn.bestsort.bbslite.service;
 
-import cn.bestsort.community.dto.PagInationDTO;
-import cn.bestsort.community.dto.QuestionDTO;
-import cn.bestsort.community.mapper.QuestionMapper;
-import cn.bestsort.community.mapper.UserMapper;
-import cn.bestsort.community.model.Question;
-import cn.bestsort.community.model.User;
+import cn.bestsort.bbslite.dto.PagInationDTO;
+import cn.bestsort.bbslite.dto.QuestionDTO;
+import cn.bestsort.bbslite.mapper.QuestionMapper;
+import cn.bestsort.bbslite.mapper.UserMapper;
+import cn.bestsort.bbslite.model.Question;
+import cn.bestsort.bbslite.model.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

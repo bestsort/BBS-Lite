@@ -1,4 +1,4 @@
-package cn.bestsort.community;
+package cn.bestsort.bbslite;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

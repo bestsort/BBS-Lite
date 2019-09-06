@@ -1,10 +1,10 @@
-package cn.bestsort.community.controtller;
+package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.community.dto.QuestionDTO;
-import cn.bestsort.community.mapper.QuestionMapper;
-import cn.bestsort.community.model.Question;
-import cn.bestsort.community.model.User;
-import cn.bestsort.community.service.QuestionService;
+import cn.bestsort.bbslite.dto.QuestionDTO;
+import cn.bestsort.bbslite.mapper.QuestionMapper;
+import cn.bestsort.bbslite.model.Question;
+import cn.bestsort.bbslite.model.User;
+import cn.bestsort.bbslite.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

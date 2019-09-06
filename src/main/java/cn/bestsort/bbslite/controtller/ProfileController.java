@@ -1,9 +1,8 @@
-package cn.bestsort.community.controtller;
+package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.community.dto.PagInationDTO;
-import cn.bestsort.community.mapper.UserMapper;
-import cn.bestsort.community.model.User;
-import cn.bestsort.community.service.QuestionService;
+import cn.bestsort.bbslite.dto.PagInationDTO;
+import cn.bestsort.bbslite.model.User;
+import cn.bestsort.bbslite.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

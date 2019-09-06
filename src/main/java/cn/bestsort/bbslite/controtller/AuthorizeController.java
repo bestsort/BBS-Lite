@@ -1,11 +1,11 @@
-package cn.bestsort.community.controtller;
+package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.community.dto.AccessTokenDTO;
-import cn.bestsort.community.dto.GithubUser;
-import cn.bestsort.community.mapper.UserMapper;
-import cn.bestsort.community.model.User;
-import cn.bestsort.community.provider.GithubProvider;
-import cn.bestsort.community.service.UserService;
+import cn.bestsort.bbslite.dto.AccessTokenDTO;
+import cn.bestsort.bbslite.dto.GithubUser;
+import cn.bestsort.bbslite.mapper.UserMapper;
+import cn.bestsort.bbslite.model.User;
+import cn.bestsort.bbslite.provider.GithubProvider;
+import cn.bestsort.bbslite.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

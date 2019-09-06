@@ -1,4 +1,4 @@
-package cn.bestsort.community.interceptor;
+package cn.bestsort.bbslite.interceptor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

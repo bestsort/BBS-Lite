@@ -1,4 +1,4 @@
-package cn.bestsort.community.dto;
+package cn.bestsort.bbslite.dto;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
