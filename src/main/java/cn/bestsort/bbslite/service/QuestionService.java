@@ -40,7 +40,7 @@ public class QuestionService {
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         PagInationDTO pagInationDTO = new PagInationDTO();
         for (Question question : questions) {
-            User user = userMapper.findById(question.getCreator());
+            User user = userMapper.selectByPrimaryKey(question.getCreator());
             QuestionDTO questionDTO = new QuestionDTO();
             BeanUtils.copyProperties(question,questionDTO);
             questionDTO.setUser(user);
@@ -62,7 +62,7 @@ public class QuestionService {
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         PagInationDTO pagInationDTO = new PagInationDTO();
         for (Question question : questions) {
-            User user = userMapper.findById(question.getCreator());
+            User user = userMapper.selectByPrimaryKey(question.getCreator());
             QuestionDTO questionDTO = new QuestionDTO();
             BeanUtils.copyProperties(question,questionDTO);
             questionDTO.setUser(user);
@@ -77,7 +77,7 @@ public class QuestionService {
         Question question = questionMapper.getById(id);
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question,questionDTO);
-        questionDTO.setUser(userMapper.findById(question.getCreator()));
+        questionDTO.setUser(userMapper.selectByPrimaryKey(question.getCreator()));
         return  questionDTO;
     }
 

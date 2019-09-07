@@ -28,6 +28,7 @@
 - OkHttp
 - Flyway
 - Bootstrap
+- Maven
 ---
 - IntelliJ IDEA
 - MySQL Workbench
