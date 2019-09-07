@@ -5,7 +5,10 @@ import cn.bestsort.bbslite.dto.QuestionDTO;
 import cn.bestsort.bbslite.mapper.QuestionMapper;
 import cn.bestsort.bbslite.mapper.UserMapper;
 import cn.bestsort.bbslite.model.Question;
+import cn.bestsort.bbslite.model.QuestionExample;
 import cn.bestsort.bbslite.model.User;
+import cn.bestsort.bbslite.model.UserExample;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,13 +33,17 @@ public class QuestionService {
 
     public PagInationDTO list(Integer page, Integer size) {
 
-        Integer totalCount = questionMapper.count();
+        Integer totalCount = (int)questionMapper.countByExample(new QuestionExample());
         //限制访问合法
         page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
         page = Math.max(page,1);
 
-        Integer offset = size * (page - 1);
-        List<Question> questions = questionMapper.list(offset,size);
+        int offset = size * (page - 1);
+        QuestionExample example = new QuestionExample();
+
+        List<Question> questions = questionMapper.selectByExampleWithRowbounds(
+                new QuestionExample(),
+                new RowBounds(offset,size));
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         PagInationDTO pagInationDTO = new PagInationDTO();
         for (Question question : questions) {
@@ -52,13 +59,23 @@ public class QuestionService {
     }
 
     public PagInationDTO list(Integer userId , Integer page, Integer size) {
-        Integer totalCount = questionMapper.countByUserId(userId);
+        QuestionExample questionExample = new QuestionExample();
+        questionExample.createCriteria()
+                .andCreatorEqualTo(userId);
+        Integer totalCount = (int)questionMapper.countByExample(questionExample);
         //限制访问合法
         page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
         page = Math.max(page,1);
 
-        Integer offset = size * (page - 1);
-        List<Question> questions = questionMapper.listByUserId(userId,offset,size);
+        int offset = size * (page - 1);
+        QuestionExample example = new QuestionExample();
+        example.createCriteria()
+                .andCreatorEqualTo(userId);
+
+        List<Question> questions = questionMapper.selectByExampleWithRowbounds(
+                example,
+                new RowBounds(offset,size));
+
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         PagInationDTO pagInationDTO = new PagInationDTO();
         for (Question question : questions) {
@@ -74,7 +91,7 @@ public class QuestionService {
     }
 
     public QuestionDTO getById(Integer id) {
-        Question question = questionMapper.getById(id);
+        Question question = questionMapper.selectByPrimaryKey(id);
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question,questionDTO);
         questionDTO.setUser(userMapper.selectByPrimaryKey(question.getCreator()));
@@ -83,11 +100,11 @@ public class QuestionService {
 
     public void createOrUpdate(Question question) {
         question.setGmtModified(System.currentTimeMillis());
-        if(questionMapper.getById(question.getId()) == null){
+        if(questionMapper.selectByPrimaryKey(question.getId()) == null){
             question.setGmtCreate(question.getGmtModified());
-            questionMapper.create(question);
+            questionMapper.insertSelective(question);
         }else {
-            questionMapper.update(question);
+            questionMapper.updateByPrimaryKeySelective(question);
         }
     }
 }

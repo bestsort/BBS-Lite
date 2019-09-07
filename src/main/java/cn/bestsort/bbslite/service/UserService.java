@@ -3,7 +3,6 @@ package cn.bestsort.bbslite.service;
 import cn.bestsort.bbslite.mapper.UserMapper;
 import cn.bestsort.bbslite.model.User;
 import cn.bestsort.bbslite.model.UserExample;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,13 +32,15 @@ public class UserService {
         if (dbUser.isEmpty()){
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
-            userMapper.insert(user);
+            userMapper.insertSelective(user);
         }else {
-            user.setAvatarUrl(user.getAvatarUrl());
-            user.setName(user.getName());
-            user.setToken(user.getToken());
-            user.setGmtModified(System.currentTimeMillis());
-            userMapper.updateByPrimaryKeySelective(user);
+            User save2Db = new User();
+            save2Db = dbUser.get(0);
+            save2Db.setAvatarUrl(user.getAvatarUrl());
+            save2Db.setName(user.getName());
+            save2Db.setToken(user.getToken());
+            save2Db.setGmtModified(System.currentTimeMillis());
+            userMapper.updateByPrimaryKeySelective(save2Db);
         }
     }
 }

@@ -77,15 +77,17 @@ public class PublishController {
         User user = (User)request.getSession().getAttribute("user");;
 
 
-        if(user == null || isNull){
-            if(user == null) {
-                model.addAttribute("error", "用户未登录");
-            }
+        if(user == null){
+            model.addAttribute("error", "用户未登录");
             return "publish";
         }
 
-        Question question = new Question(title, description, tag, user.getId(),id);
-
+        Question question = new Question();
+        question.setTitle(title);
+        question.setTag(tag);
+        question.setDescription(description);
+        question.setCreator(user.getId());
+        question.setId(id);
         questionService.createOrUpdate(question);
         return "redirect:/";
     }

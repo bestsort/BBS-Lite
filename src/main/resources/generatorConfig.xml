@@ -5,6 +5,17 @@
 
 <generatorConfiguration>
     <context id="DB2Tables" targetRuntime="MyBatis3">
+
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+
+        <commentGenerator>
+
+            <property name="suppressAllComments" value="true" />
+            <property name="suppressDate" value="true"/>
+            <property name="javaFileEncoding" value="UTF-8"/>
+        </commentGenerator>
+
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost/bbs_lite"
                         userId="bestsort"
@@ -30,6 +41,6 @@
         </javaClientGenerator>
 
         <table tableName="user" domainObjectName="User" />
-
+        <table tableName="question" domainObjectName="Question" />
     </context>
 </generatorConfiguration>

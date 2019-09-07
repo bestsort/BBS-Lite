@@ -1,59 +1,41 @@
 package cn.bestsort.bbslite.mapper;
 
 import cn.bestsort.bbslite.model.Question;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
-
-
+import cn.bestsort.bbslite.model.QuestionExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
-/**
- * @ClassName QuestionMapper
- * @Description TODO
- * @Author bestsort
- * @Date 19-8-27 下午7:38
- * @Version 1.0
- */
-
-@Mapper
 public interface QuestionMapper {
+    long countByExample(QuestionExample example);
 
-    /**
-     * @param question
-     */
-    @Insert("INSERT INTO question " +
-            "(title,description,gmt_create,gmt_modified,creator,tag)" +
-            " VALUES " +
-            "(#{title},#{description},#{gmtCreate},#{gmtModified},#{creator},#{tag})")
-    void create(Question question);
+    int deleteByExample(QuestionExample example);
 
-    /**
-     * @param offset
-     * @param size
-     * @return 问题列表
-     */
-    @Select("SELECT * FROM question ORDER BY gmt_create DESC LIMIT #{offset},#{size} ")
-    List<Question> list(Integer offset, Integer size);
+    int deleteByPrimaryKey(Integer id);
 
-    /**
-     * @return 问题总数
-     */
-    @Select("SELECT COUNT(1) FROM question")
-    Integer count();
+    int insert(Question record);
 
-    @Select("SELECT * FROM question WHERE creator=#{userId} ORDER BY gmt_create DESC LIMIT #{offset},#{size} ")
-    List<Question> listByUserId(Integer userId, Integer offset, Integer size);
+    int insertSelective(Question record);
 
-    @Select("SELECT count(1) FROM question WHERE creator=#{userId}")
-    Integer countByUserId(Integer userId);
+    List<Question> selectByExampleWithBLOBsWithRowbounds(QuestionExample example, RowBounds rowBounds);
 
-    @Select("SELECT * FROM question WHERE id=#{id}")
-    Question getById(Integer id);
+    List<Question> selectByExampleWithBLOBs(QuestionExample example);
 
-    @Update("UPDATE question SET " +
-            "title=#{title},description=#{description},gmt_modified=#{gmtModified},tag=#{tag} " +
-            "WHERE id = #{id}")
-    void update(Question question);
+    List<Question> selectByExampleWithRowbounds(QuestionExample example, RowBounds rowBounds);
+
+    List<Question> selectByExample(QuestionExample example);
+
+    Question selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") Question record, @Param("example") QuestionExample example);
+
+    int updateByExampleWithBLOBs(@Param("record") Question record, @Param("example") QuestionExample example);
+
+    int updateByExample(@Param("record") Question record, @Param("example") QuestionExample example);
+
+    int updateByPrimaryKeySelective(Question record);
+
+    int updateByPrimaryKeyWithBLOBs(Question record);
+
+    int updateByPrimaryKey(Question record);
 }
