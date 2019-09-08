@@ -19,16 +19,18 @@
 - 方便上手
 
 ## 采用技术及工具
-- Spring Boot
+- Spring Boot(快速构建应用)
     - spring-boot-starter-jdbc
     - spring-boot-starter-web
-    - spring-boot-starter-mybatis
-    - spring-boot-starter-thymeleaf
-- Fastjson
-- OkHttp
-- Flyway
-- Bootstrap
-- Maven
+    - spring-boot-starter-mybatis(SQL 模板引擎)
+    - spring-boot-starter-thymeleaf(HTML 模板引擎)
+- Fastjson(JSON 文本处理)
+- OkHttp3(处理网络请求)
+- Flyway(数据库版本控制)
+- Bootstrap3(前端框架)
+- Druid(数据库连接池)
+- Maven(包管理)
+
 ---
 - IntelliJ IDEA
 - MySQL Workbench
