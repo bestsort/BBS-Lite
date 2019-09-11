@@ -7,9 +7,17 @@ on:
     - release/*
 jobs:
   build:
- 
     runs-on: ubuntu-latest
-    
+    MYSQL-build:
+      steps:
+        - name: MySQL-build
+          uses: docker://mysql-server:5.7
+          run: |
+            docker run --name=mysql1 -d mysql/mysql-server:tag
+            docker exec -it mysql1 mysql -uroot -p
+            CREATE USER 'bestsort'@'localhost' IDENTIFIED BY 'ce8YChPDJ5GRFOUE';
+            GRANT ALL ON *.* TO 'bestsort'@'localhost'
+            CREATE DATABASES bbs_lite
     steps:
     - uses: actions/checkout@v1
     - name: Set up JDK 1.8
