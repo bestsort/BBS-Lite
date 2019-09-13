@@ -2,12 +2,13 @@ package cn.bestsort.bbslite.service;
 
 import cn.bestsort.bbslite.dto.PagInationDTO;
 import cn.bestsort.bbslite.dto.QuestionDTO;
+import cn.bestsort.bbslite.exception.CustomizeErrorCodeEnum;
+import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.QuestionMapper;
 import cn.bestsort.bbslite.mapper.UserMapper;
 import cn.bestsort.bbslite.model.Question;
 import cn.bestsort.bbslite.model.QuestionExample;
 import cn.bestsort.bbslite.model.User;
-import cn.bestsort.bbslite.model.UserExample;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.util.List;
 
 /**
  * @ClassName QuestionService
- * @Description TODO
+ * @Description 问题处理(按条件搜索,所有,根据Id查找等)
  * @Author bestsort
  * @Date 19-8-28 下午6:30
  * @Version 1.0
@@ -92,6 +93,9 @@ public class QuestionService {
 
     public QuestionDTO getById(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
+        if(question == null){
+            throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
+        }
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question,questionDTO);
         questionDTO.setUser(userMapper.selectByPrimaryKey(question.getCreator()));
@@ -104,7 +108,10 @@ public class QuestionService {
             question.setGmtCreate(question.getGmtModified());
             questionMapper.insertSelective(question);
         }else {
-            questionMapper.updateByPrimaryKeySelective(question);
+            int updated = questionMapper.updateByPrimaryKeySelective(question);
+            if(updated != 1) {
+                throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
+            }
         }
     }
 }

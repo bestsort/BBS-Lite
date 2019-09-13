@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @ClassName WebConfig
- * @Description TODO
+ * @Description Web 本地配置
  * @Author bestsort
  * @Date 19-8-31 下午7:25
  * @Version 1.0

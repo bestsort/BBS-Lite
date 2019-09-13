@@ -1,6 +1,6 @@
 /**
  * @ClassName
- * @Description TODO
+ * @Description 处理从 Gitub 接受到的JSON数据
  * @Author bestsort
  * @Date 19-8-22 下午7:53
  * @Version 1.0

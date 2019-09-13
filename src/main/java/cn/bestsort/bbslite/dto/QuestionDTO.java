@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @ClassName QuestionDTO
- * @Description TODO
+ * @Description 问题详情
  * @Author bestsort
  * @Date 19-8-28 下午6:28
  * @Version 1.0

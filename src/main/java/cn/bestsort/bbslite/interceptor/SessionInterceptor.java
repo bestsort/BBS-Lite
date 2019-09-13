@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * @ClassName SessionInterceptor
- * @Description TODO
+ * @Description 验证用户是否需要登录
  * @Author bestsort
  * @Date 19-8-31 下午7:53
  * @Version 1.0

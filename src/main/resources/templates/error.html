@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>bestsort</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+</head>
+<body>
+<div th:insert="navgation :: nav"></div>
+
+<div class="container-fluid main">
+    <div class="bbs-jumbotron">
+        <h1>哦豁</h1>
+        <span th:text="${message}"></span>
+        <p><a class="btn btn-primary btn-lg" href="/" role="button">点击传送到出生地</a></p>
+    </div>
+</div>
+</body>
+</html>
