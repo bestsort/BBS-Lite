@@ -2,8 +2,9 @@ package cn.bestsort.bbslite.service;
 
 import cn.bestsort.bbslite.dto.PagInationDTO;
 import cn.bestsort.bbslite.dto.QuestionDTO;
-import cn.bestsort.bbslite.exception.CustomizeErrorCodeEnum;
+import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
+import cn.bestsort.bbslite.mapper.QuestionExtMapper;
 import cn.bestsort.bbslite.mapper.QuestionMapper;
 import cn.bestsort.bbslite.mapper.UserMapper;
 import cn.bestsort.bbslite.model.Question;
@@ -31,7 +32,8 @@ public class QuestionService {
     private QuestionMapper questionMapper;
     @Autowired
     private UserMapper userMapper;
-
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
     public PagInationDTO list(Integer page, Integer size) {
 
         Integer totalCount = (int)questionMapper.countByExample(new QuestionExample());
@@ -59,7 +61,7 @@ public class QuestionService {
         return pagInationDTO;
     }
 
-    public PagInationDTO list(Integer userId , Integer page, Integer size) {
+    public PagInationDTO list(Long userId , Integer page, Integer size) {
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria()
                 .andCreatorEqualTo(userId);
@@ -91,7 +93,7 @@ public class QuestionService {
         return pagInationDTO;
     }
 
-    public QuestionDTO getById(Integer id) {
+    public QuestionDTO getById(Long id) {
         Question question = questionMapper.selectByPrimaryKey(id);
         if(question == null){
             throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
@@ -113,5 +115,12 @@ public class QuestionService {
                 throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
             }
         }
+    }
+
+    public void incView(Long id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }

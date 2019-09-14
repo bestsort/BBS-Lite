@@ -1,9 +1,9 @@
 package cn.bestsort.bbslite.model;
 
 public class User {
-    private Integer id;
+    private Long id;
 
-    private Integer accountId;
+    private Long accountId;
 
     private String name;
 
@@ -17,19 +17,19 @@ public class User {
 
     private String avatarUrl;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getAccountId() {
+    public Long getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Integer accountId) {
+    public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
 

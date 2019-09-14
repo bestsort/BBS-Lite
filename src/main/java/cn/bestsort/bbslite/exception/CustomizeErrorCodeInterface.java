@@ -6,4 +6,5 @@ package cn.bestsort.bbslite.exception;
  */
 public interface CustomizeErrorCodeInterface {
     String getMessage();
+    Integer getCode();
 }

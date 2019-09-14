@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bestsort.bbslite.mapper.QuestionExtMapper">
+    <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.model.Question">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+        <result column="creator" jdbcType="INTEGER" property="creator" />
+        <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+        <result column="view_count" jdbcType="INTEGER" property="viewCount" />
+        <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+        <result column="tag" jdbcType="VARCHAR" property="tag" />
+    </resultMap>
+
+    <update id="incView" parameterType="cn.bestsort.bbslite.model.Question">
+        update question
+        set
+            view_count = view_count + #{viewCount,jdbcType=INTEGER}
+        where id = #{id}
+    </update>
+
+    <update id="incCommentCount" parameterType="cn.bestsort.bbslite.model.Question">
+        update question
+        set
+            comment_count = comment_count + #{commentCount,jdbcType=INTEGER}
+        where id = #{id}
+    </update>
+</mapper>

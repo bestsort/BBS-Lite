@@ -1,7 +1,7 @@
 package cn.bestsort.bbslite.model;
 
 public class Question {
-    private Integer id;
+    private Long id;
 
     private String title;
 
@@ -9,7 +9,7 @@ public class Question {
 
     private Long gmtModified;
 
-    private Integer creator;
+    private Long creator;
 
     private Integer commentCount;
 
@@ -21,11 +21,11 @@ public class Question {
 
     private String description;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,11 +53,11 @@ public class Question {
         this.gmtModified = gmtModified;
     }
 
-    public Integer getCreator() {
+    public Long getCreator() {
         return creator;
     }
 
-    public void setCreator(Integer creator) {
+    public void setCreator(Long creator) {
         this.creator = creator;
     }
 

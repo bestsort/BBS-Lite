@@ -1,6 +1,6 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.exception.CustomizeErrorCodeEnum;
+import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 public class CustomizeErrorController implements ErrorController {
     @Override
     public String getErrorPath(){
-
         return "error";
     }
     @RequestMapping(produces = MediaType.TEXT_HTML_VALUE)
@@ -35,7 +34,7 @@ public class CustomizeErrorController implements ErrorController {
         }
         // 服务端出错提示信息
         else if(status.is5xxServerError()){
-            model.addAttribute("message", CustomizeErrorCodeEnum.OTHER.getMessage());
+            model.addAttribute("message", CustomizeErrorCodeEnum.SYS_ERROR.getMessage());
         }
         return new ModelAndView("error");
     }
