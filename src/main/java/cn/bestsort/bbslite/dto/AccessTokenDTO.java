@@ -1,6 +1,6 @@
 /**
  * @ClassName
- * @Description GitHub API
+ * @Description GitHub API DTO
  * @Author bestsort
  * @Date 19-8-22 下午7:55
  * @Version 1.0

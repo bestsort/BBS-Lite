@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * @ClassName SessionInterceptor
- * @Description 验证用户是否需要登录
+ * @Description 拦截器,验证用户在进入某一页面是否已经登录
  * @Author bestsort
  * @Date 19-8-31 下午7:53
  * @Version 1.0

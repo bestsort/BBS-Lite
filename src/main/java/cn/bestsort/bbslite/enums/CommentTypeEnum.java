@@ -1,10 +1,8 @@
 package cn.bestsort.bbslite.enums;
 
-import cn.bestsort.bbslite.model.Comment;
-
 /**
  * @ClassName CommentTypeEnum
- * @Description TODO
+ * @Description 用于判断用户回复的类型(对问题回复/对评论回复/都不是)
  * @Author bestsort
  * @Date 19-9-13 下午4:54
  * @Version 1.0

@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 
 /**
  * @ClassName CustomizeExceptionHandler
- * @Description TODO
+ * @Description 根据传入的异常返回不同的错误提示并决定是否跳转到错误页面
  * @Author bestsort
  * @Date 19-9-10 下午2:40
  * @Version 1.0

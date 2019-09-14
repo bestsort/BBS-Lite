@@ -2,7 +2,7 @@ package cn.bestsort.bbslite.exception;
 
 /**
  * @ClassName CustomizeException
- * @Description TODO
+ * @Description
  * @Author bestsort
  * @Date 19-9-10 下午3:30
  * @Version 1.0

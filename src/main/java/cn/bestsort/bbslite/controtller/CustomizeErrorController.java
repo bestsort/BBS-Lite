@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @ClassName CustomizeErrorController
- * @Description TODO
+ * @Description 根据错误信息返回相关的错误提示页面
  * @Author bestsort
  * @Date 19-9-13 上午10:02
  * @Version 1.0
  */
 @Controller
-@RequestMapping("${server.error.path:${error.path:/error}}")
+@RequestMapping("${server.error.path:${ error.path:/error}}")
 public class CustomizeErrorController implements ErrorController {
     @Override
     public String getErrorPath(){
@@ -30,7 +30,7 @@ public class CustomizeErrorController implements ErrorController {
         HttpStatus status = getStatus(request);
         // 客户端出错提示信息
         if(status.is4xxClientError()){
-            model.addAttribute("message","你请求姿势有问题,换一个试试?");
+            model.addAttribute("message",CustomizeErrorCodeEnum.USER_ERROR);
         }
         // 服务端出错提示信息
         else if(status.is5xxServerError()){

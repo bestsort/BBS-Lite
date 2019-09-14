@@ -16,6 +16,7 @@
             <property name="javaFileEncoding" value="UTF-8"/>
         </commentGenerator>
 
+        <!--Your Database Config-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost/bbs_lite"
                         userId="bestsort"
