@@ -14,7 +14,7 @@
 
 ## 快速开始
 ```bash
-git clone https://github.com/bestsort/BBS-Lite.git`
+git clone https://github.com/bestsort/BBS-Lite.git
 cd BBS-lite
 ```
 将该项目导入到 IDEA 或者其他的IDE中,并配置`/src/main/resources/application.properties`
