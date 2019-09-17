@@ -5,7 +5,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="pid" jdbcType="BIGINT" property="pid" />
     <result column="type" jdbcType="TINYINT" property="type" />
-    <result column="commentator" jdbcType="INTEGER" property="commentator" />
+    <result column="commentator" jdbcType="BIGINT" property="commentator" />
     <result column="like_count" jdbcType="BIGINT" property="likeCount" />
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
@@ -107,7 +107,7 @@
       commentator, like_count, gmt_modified, 
       gmt_create, content)
     values (#{id,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT}, #{type,jdbcType=TINYINT}, 
-      #{commentator,jdbcType=INTEGER}, #{likeCount,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
+      #{commentator,jdbcType=BIGINT}, #{likeCount,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
       #{gmtCreate,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.model.Comment">
@@ -149,7 +149,7 @@
         #{type,jdbcType=TINYINT},
       </if>
       <if test="commentator != null">
-        #{commentator,jdbcType=INTEGER},
+        #{commentator,jdbcType=BIGINT},
       </if>
       <if test="likeCount != null">
         #{likeCount,jdbcType=BIGINT},
@@ -184,7 +184,7 @@
         type = #{record.type,jdbcType=TINYINT},
       </if>
       <if test="record.commentator != null">
-        commentator = #{record.commentator,jdbcType=INTEGER},
+        commentator = #{record.commentator,jdbcType=BIGINT},
       </if>
       <if test="record.likeCount != null">
         like_count = #{record.likeCount,jdbcType=BIGINT},
@@ -208,7 +208,7 @@
     set id = #{record.id,jdbcType=BIGINT},
       pid = #{record.pid,jdbcType=BIGINT},
       type = #{record.type,jdbcType=TINYINT},
-      commentator = #{record.commentator,jdbcType=INTEGER},
+      commentator = #{record.commentator,jdbcType=BIGINT},
       like_count = #{record.likeCount,jdbcType=BIGINT},
       gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
@@ -227,7 +227,7 @@
         type = #{type,jdbcType=TINYINT},
       </if>
       <if test="commentator != null">
-        commentator = #{commentator,jdbcType=INTEGER},
+        commentator = #{commentator,jdbcType=BIGINT},
       </if>
       <if test="likeCount != null">
         like_count = #{likeCount,jdbcType=BIGINT},
@@ -248,7 +248,7 @@
     update comment
     set pid = #{pid,jdbcType=BIGINT},
       type = #{type,jdbcType=TINYINT},
-      commentator = #{commentator,jdbcType=INTEGER},
+      commentator = #{commentator,jdbcType=BIGINT},
       like_count = #{likeCount,jdbcType=BIGINT},
       gmt_modified = #{gmtModified,jdbcType=BIGINT},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},

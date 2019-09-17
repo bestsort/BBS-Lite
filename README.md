@@ -18,11 +18,11 @@ git clone https://github.com/bestsort/BBS-Lite.git
 cd BBS-lite
 ```
 将该项目导入到 IDEA 或者其他的IDE中,并配置`/src/main/resources/application.properties`
-和`/src/main/resources/generatorConfig.xml`中的数据库信息为自己的数据库配置然后执行以下命令
+和`/src/main/resources/generatorConfig.xml`和`pom.xml`中102-105行中的数据库信息为自己的数据库配置然后执行以下命令
 ```bash
-./mvnw package
-./mvnw flyway:migrate
-./mvnw -Dmybatis.generator.overwrite=true mybatis-generator:generate
+mvn package
+mvn flyway:migrate
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 ```
 最后,配置好 Tomcat 即可启动项目
 

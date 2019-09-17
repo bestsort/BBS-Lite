@@ -56,7 +56,6 @@ public class PublishController {
             HttpServletRequest request,
             Model model){
 
-        System.out.println(title);
         boolean isNull = false;
 
         if(tag == null || "".equals(tag)){

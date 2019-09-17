@@ -18,7 +18,8 @@
         <li class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="/">首页 <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">阿里云</a></li>
+                <li><a href="https://bestsort.cn" target="_blank">BLOG</a></li>
+                <li><a href="https://promotion.aliyun.com/ntms/act/campus2018.html?source=5176.11533457&userCode=8nvrpwl8&type=copy" target="_blank">阿里云</a></li>
 
             </ul>
             <form class="navbar-form navbar-left">
@@ -30,8 +31,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <!--Before login-->
                 <li th:if="${session.user == null}">
-                    <a href="https://github.com/login/oauth/authorize?client_id=08b076ae3cf904cf324c
-&redirect_uri=http://localhost:8080/callback&scope=user&state=1&&allow_signup=true">
+                    <a href="https://github.com/login/oauth/authorize?client_id=08b076ae3cf904cf324c&redirect_uri=http://localhost:8080/callback&scope=user&state=1&&allow_signup=true">
                         登录
                     </a>
                 </li>

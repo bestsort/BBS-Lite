@@ -1,19 +1,24 @@
 package cn.bestsort.bbslite.dto;
 
+import cn.bestsort.bbslite.model.User;
 import lombok.Data;
 
 /**
  * @ClassName CommentDTO
- * @Description Comment DTO
+ * @Description TODO
  * @Author bestsort
- * @Date 19-9-13 下午4:00
+ * @Date 19-9-16 下午8:08
  * @Version 1.0
  */
 
 @Data
 public class CommentDTO {
+    private Long id;
     private Long pid;
     private Byte type;
-    private Integer commentator;
+    private Long commentator;
+    private Long gmtCreate;
+    private Long likeCount;
     private String content;
+    private User user;
 }

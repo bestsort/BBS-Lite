@@ -24,6 +24,7 @@ import java.util.List;
  * @Author bestsort
  * @Date 19-8-28 下午6:30
  * @Version 1.0
+ * @Notice 待修复:可直接通过 {website}/{publish}/{id} 修改他人的问题
  */
 
 @Service
@@ -34,63 +35,22 @@ public class QuestionService {
     private UserMapper userMapper;
     @Autowired
     private QuestionExtMapper questionExtMapper;
+    private Integer totalCount;
     public PagInationDTO list(Integer page, Integer size) {
 
-        Integer totalCount = (int)questionMapper.countByExample(new QuestionExample());
-        //限制访问合法
-        page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
-        page = Math.max(page,1);
-
-        int offset = size * (page - 1);
-        QuestionExample example = new QuestionExample();
-
-        List<Question> questions = questionMapper.selectByExampleWithRowbounds(
-                new QuestionExample(),
-                new RowBounds(offset,size));
-        List<QuestionDTO> questionDTOList = new ArrayList<>();
-        PagInationDTO pagInationDTO = new PagInationDTO();
-        for (Question question : questions) {
-            User user = userMapper.selectByPrimaryKey(question.getCreator());
-            QuestionDTO questionDTO = new QuestionDTO();
-            BeanUtils.copyProperties(question,questionDTO);
-            questionDTO.setUser(user);
-            questionDTOList.add(questionDTO);
-        }
-        pagInationDTO.setQuestions(questionDTOList);
-        pagInationDTO.setPagination(totalCount,page,size);
-        return pagInationDTO;
+        totalCount = (int)questionMapper.countByExample(new QuestionExample());
+        return getPagInation(new QuestionExample(),page,size);
     }
 
     public PagInationDTO list(Long userId , Integer page, Integer size) {
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria()
                 .andCreatorEqualTo(userId);
-        Integer totalCount = (int)questionMapper.countByExample(questionExample);
-        //限制访问合法
-        page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
-        page = Math.max(page,1);
-
-        int offset = size * (page - 1);
+        totalCount = (int)questionMapper.countByExample(questionExample);
         QuestionExample example = new QuestionExample();
         example.createCriteria()
                 .andCreatorEqualTo(userId);
-
-        List<Question> questions = questionMapper.selectByExampleWithRowbounds(
-                example,
-                new RowBounds(offset,size));
-
-        List<QuestionDTO> questionDTOList = new ArrayList<>();
-        PagInationDTO pagInationDTO = new PagInationDTO();
-        for (Question question : questions) {
-            User user = userMapper.selectByPrimaryKey(question.getCreator());
-            QuestionDTO questionDTO = new QuestionDTO();
-            BeanUtils.copyProperties(question,questionDTO);
-            questionDTO.setUser(user);
-            questionDTOList.add(questionDTO);
-        }
-        pagInationDTO.setQuestions(questionDTOList);
-        pagInationDTO.setPagination(totalCount,page,size);
-        return pagInationDTO;
+        return getPagInation(example,page,size);
     }
 
     public QuestionDTO getById(Long id) {
@@ -122,5 +82,28 @@ public class QuestionService {
         question.setId(id);
         question.setViewCount(1);
         questionExtMapper.incView(question);
+    }
+
+    private PagInationDTO getPagInation(QuestionExample example,Integer page,Integer size){
+        int offset = size * (page - 1);
+        //限制访问合法
+        page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
+        page = Math.max(page,1);
+
+        List<Question> questions = questionMapper.selectByExampleWithRowbounds(
+                example,
+                new RowBounds(offset,size));
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        PagInationDTO pagInationDTO = new PagInationDTO();
+        for (Question question : questions) {
+            User user = userMapper.selectByPrimaryKey(question.getCreator());
+            QuestionDTO questionDTO = new QuestionDTO();
+            BeanUtils.copyProperties(question,questionDTO);
+            questionDTO.setUser(user);
+            questionDTOList.add(questionDTO);
+        }
+        pagInationDTO.setQuestions(questionDTOList);
+        pagInationDTO.setPagination(totalCount,page,size);
+        return pagInationDTO;
     }
 }

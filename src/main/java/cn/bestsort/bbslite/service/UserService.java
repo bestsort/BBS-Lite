@@ -34,7 +34,7 @@ public class UserService {
             user.setGmtModified(user.getGmtCreate());
             userMapper.insertSelective(user);
         }else {
-            User save2Db = new User();
+            User save2Db;
             save2Db = dbUser.get(0);
             save2Db.setAvatarUrl(user.getAvatarUrl());
             save2Db.setName(user.getName());

@@ -1,6 +1,6 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dto.CommentDTO;
+import cn.bestsort.bbslite.dto.CommentCreateDTO;
 import cn.bestsort.bbslite.dto.ResultDTO;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.mapper.CommentMapper;
@@ -31,7 +31,7 @@ public class CommentController {
     CommentService commentService;
     @ResponseBody
     @RequestMapping(value = "/comment",method = RequestMethod.POST)
-    public Object post(@RequestBody CommentDTO commentDTO,
+    public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
                        HttpServletRequest request){
 
 
@@ -40,12 +40,12 @@ public class CommentController {
             return ResultDTO.errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
         Comment comment = new Comment();
-        comment.setPid(commentDTO.getPid());
-        comment.setContent(commentDTO.getContent());
-        comment.setType(commentDTO.getType());
+        comment.setPid(commentCreateDTO.getPid());
+        comment.setContent(commentCreateDTO.getContent());
+        comment.setType(commentCreateDTO.getType());
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setGmtModified(comment.getGmtCreate());
-        comment.setCommentator(1);
+        comment.setCommentator(user.getId());
         commentService.insert(comment);
         return ResultDTO.okOf();
     }

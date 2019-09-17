@@ -7,7 +7,7 @@ public class Comment {
 
     private Byte type;
 
-    private Integer commentator;
+    private Long commentator;
 
     private Long likeCount;
 
@@ -41,11 +41,11 @@ public class Comment {
         this.type = type;
     }
 
-    public Integer getCommentator() {
+    public Long getCommentator() {
         return commentator;
     }
 
-    public void setCommentator(Integer commentator) {
+    public void setCommentator(Long commentator) {
         this.commentator = commentator;
     }
 
