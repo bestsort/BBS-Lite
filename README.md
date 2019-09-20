@@ -12,6 +12,27 @@
 
 > 这是一个基于 Spring Boot 搭建的轻论坛
 
+## TODO
+
+- [x] 发布问题
+- [x] 修改问题
+- [x] 查看我的问题
+- [x] 评论
+- [ ] 多级评论
+- [ ] 查看最新评论
+- [ ] 文章搜索
+- [ ] 标签分类
+- [ ] 热门推荐
+- [ ] 文章排序
+- [ ] 个人资料
+
+## Demo
+
+![](picture/main.png)
+
+![](picture/question.png)
+
+![](picture/my_question.png)
 ## 快速开始
 ```bash
 git clone https://github.com/bestsort/BBS-Lite.git
