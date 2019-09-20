@@ -48,9 +48,7 @@ public class CustomizeExceptionHandler {
                 writer.write(JSON.toJSONString(result));
                 writer.close();
             }
-            catch (IOException ioe){
-
-            }
+            catch (IOException ioe){}
             return null;
         }
         //否则跳转至错误信息页面(error.html)

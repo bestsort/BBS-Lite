@@ -71,10 +71,22 @@
 
 }
 .comment-menu .icon:hover{
+    color: #337ab7;
+}
 
+.comment-menu .active{
+    color: #337ab7;
 }
 .comments{
     margin-bottom: 15px;
     padding-bottom: 5px;
     border-bottom: 1px solid #eee;
+}
+
+/* 二级评论样式 */
+.comment-son{
+    margin-top: 10px;
+    border: 1px solid #eee;
+    padding-top: 15px;
+    border-radius: 10px;
 }

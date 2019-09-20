@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @ClassName CommentDTO
- * @Description TODO
+ * @Description 评论数据传输类
  * @Author bestsort
  * @Date 19-9-16 下午8:08
  * @Version 1.0

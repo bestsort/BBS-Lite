@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  * @Author bestsort
  * @Date 19-9-13 下午4:57
  * @Version 1.0
- * @Notice 待修复: 当comment输入内容长度 >1000 的时候会报错.
+ * TODO BUG:当comment输入内容长度 >1000 的时候会报错.
  */
 
 @Service
@@ -73,6 +73,8 @@ public class CommentService {
         commentExample.createCriteria()
                 .andPidEqualTo(id)
                 .andTypeEqualTo(CommentTypeEnum.QUESTION.getType());
+        commentExample.setOrderByClause("gmt_create desc");
+
         List<Comment> comments = commentMapper.selectByExample(commentExample);
         if (comments.isEmpty()) {
             return new ArrayList<>();

@@ -9,10 +9,7 @@ import cn.bestsort.bbslite.model.User;
 import cn.bestsort.bbslite.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,7 +31,6 @@ public class CommentController {
     public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
                        HttpServletRequest request){
 
-
         User user = (User)request.getSession().getAttribute("user");
         if (user == null) {
             return ResultDTO.errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
@@ -48,5 +44,12 @@ public class CommentController {
         comment.setCommentator(user.getId());
         commentService.insert(comment);
         return ResultDTO.okOf();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/comment/{id}",method = RequestMethod.POST)
+    public ResultDTO comments(@PathVariable(name="id") Long id){
+
+        return null;
     }
 }

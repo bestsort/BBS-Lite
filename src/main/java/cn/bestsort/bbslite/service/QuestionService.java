@@ -22,9 +22,9 @@ import java.util.List;
  * @ClassName QuestionService
  * @Description 问题处理(按条件搜索,所有,根据Id查找等)
  * @Author bestsort
- * @Date 19-8-28 下午6:30
+ * @Date C19-8-28 下午6:30
  * @Version 1.0
- * @Notice 待修复:可直接通过 {website}/{publish}/{id} 修改他人的问题
+ * TODO BUG:可直接通过 {website}/{publish}/{id} 修改他人的问题
  */
 
 @Service
@@ -89,7 +89,8 @@ public class QuestionService {
         //限制访问合法
         page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
         page = Math.max(page,1);
-
+        //按创建时间降序排序
+        example.setOrderByClause("gmt_create desc");
         List<Question> questions = questionMapper.selectByExampleWithRowbounds(
                 example,
                 new RowBounds(offset,size));

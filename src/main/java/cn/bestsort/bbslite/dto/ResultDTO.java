@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * @ClassName ResultDTO
- * @Description TODO
+ * @Description 结果集,根据构造/参数返回一个 错误代码+错误提示 的对象
  * @Author bestsort
  * @Date 19-9-13 下午4:46
  * @Version 1.0

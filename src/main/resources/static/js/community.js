@@ -1,4 +1,6 @@
 
+/* TODO 前端校验回复内容是否为空
+ *提交回复 */
 function post() {
     var questionId = $("#question_id").val();
     var content = $("#comment_content").val();
@@ -33,4 +35,22 @@ function post() {
     });
     console.log(questionId);
     console.log(content);
+}
+
+
+
+/* 评论的展开与折叠 */
+function collapseComments(e) {
+    var id = e.getAttribute("data-id");
+    var comments = $("#comment-" + id);
+    // 折叠评论
+    if(comments.hasClass("in")) {
+        comments.removeClass("in");
+        e.classList.remove("active");
+    }
+    // 展开评论
+    else{
+        comments.addClass("in");
+        e.classList.add("active");
+    }
 }
