@@ -4,9 +4,10 @@
   <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.model.Comment">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="pid" jdbcType="BIGINT" property="pid" />
-    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="question_id" jdbcType="BIGINT" property="questionId" />
     <result column="commentator" jdbcType="BIGINT" property="commentator" />
     <result column="like_count" jdbcType="BIGINT" property="likeCount" />
+    <result column="level" jdbcType="TINYINT" property="level" />
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="content" jdbcType="VARCHAR" property="content" />
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, pid, type, commentator, like_count, gmt_modified, gmt_create, content
+    id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content
   </sql>
   <select id="selectByExample" parameterType="cn.bestsort.bbslite.model.CommentExample" resultMap="BaseResultMap">
     select
@@ -103,12 +104,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.bestsort.bbslite.model.Comment">
-    insert into comment (id, pid, type, 
-      commentator, like_count, gmt_modified, 
-      gmt_create, content)
-    values (#{id,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT}, #{type,jdbcType=TINYINT}, 
-      #{commentator,jdbcType=BIGINT}, #{likeCount,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
-      #{gmtCreate,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR})
+    insert into comment (id, pid, question_id, 
+      commentator, like_count, level, 
+      gmt_modified, gmt_create, content
+      )
+    values (#{id,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT}, #{questionId,jdbcType=BIGINT}, 
+      #{commentator,jdbcType=BIGINT}, #{likeCount,jdbcType=BIGINT}, #{level,jdbcType=TINYINT}, 
+      #{gmtModified,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.model.Comment">
     insert into comment
@@ -119,14 +122,17 @@
       <if test="pid != null">
         pid,
       </if>
-      <if test="type != null">
-        type,
+      <if test="questionId != null">
+        question_id,
       </if>
       <if test="commentator != null">
         commentator,
       </if>
       <if test="likeCount != null">
         like_count,
+      </if>
+      <if test="level != null">
+        level,
       </if>
       <if test="gmtModified != null">
         gmt_modified,
@@ -145,14 +151,17 @@
       <if test="pid != null">
         #{pid,jdbcType=BIGINT},
       </if>
-      <if test="type != null">
-        #{type,jdbcType=TINYINT},
+      <if test="questionId != null">
+        #{questionId,jdbcType=BIGINT},
       </if>
       <if test="commentator != null">
         #{commentator,jdbcType=BIGINT},
       </if>
       <if test="likeCount != null">
         #{likeCount,jdbcType=BIGINT},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=TINYINT},
       </if>
       <if test="gmtModified != null">
         #{gmtModified,jdbcType=BIGINT},
@@ -180,14 +189,17 @@
       <if test="record.pid != null">
         pid = #{record.pid,jdbcType=BIGINT},
       </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=TINYINT},
+      <if test="record.questionId != null">
+        question_id = #{record.questionId,jdbcType=BIGINT},
       </if>
       <if test="record.commentator != null">
         commentator = #{record.commentator,jdbcType=BIGINT},
       </if>
       <if test="record.likeCount != null">
         like_count = #{record.likeCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=TINYINT},
       </if>
       <if test="record.gmtModified != null">
         gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
@@ -207,9 +219,10 @@
     update comment
     set id = #{record.id,jdbcType=BIGINT},
       pid = #{record.pid,jdbcType=BIGINT},
-      type = #{record.type,jdbcType=TINYINT},
+      question_id = #{record.questionId,jdbcType=BIGINT},
       commentator = #{record.commentator,jdbcType=BIGINT},
       like_count = #{record.likeCount,jdbcType=BIGINT},
+      level = #{record.level,jdbcType=TINYINT},
       gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       content = #{record.content,jdbcType=VARCHAR}
@@ -223,14 +236,17 @@
       <if test="pid != null">
         pid = #{pid,jdbcType=BIGINT},
       </if>
-      <if test="type != null">
-        type = #{type,jdbcType=TINYINT},
+      <if test="questionId != null">
+        question_id = #{questionId,jdbcType=BIGINT},
       </if>
       <if test="commentator != null">
         commentator = #{commentator,jdbcType=BIGINT},
       </if>
       <if test="likeCount != null">
         like_count = #{likeCount,jdbcType=BIGINT},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=TINYINT},
       </if>
       <if test="gmtModified != null">
         gmt_modified = #{gmtModified,jdbcType=BIGINT},
@@ -247,9 +263,10 @@
   <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.model.Comment">
     update comment
     set pid = #{pid,jdbcType=BIGINT},
-      type = #{type,jdbcType=TINYINT},
+      question_id = #{questionId,jdbcType=BIGINT},
       commentator = #{commentator,jdbcType=BIGINT},
       like_count = #{likeCount,jdbcType=BIGINT},
+      level = #{level,jdbcType=TINYINT},
       gmt_modified = #{gmtModified,jdbcType=BIGINT},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
       content = #{content,jdbcType=VARCHAR}

@@ -5,11 +5,13 @@ public class Comment {
 
     private Long pid;
 
-    private Byte type;
+    private Long questionId;
 
     private Long commentator;
 
     private Long likeCount;
+
+    private Byte level;
 
     private Long gmtModified;
 
@@ -33,12 +35,12 @@ public class Comment {
         this.pid = pid;
     }
 
-    public Byte getType() {
-        return type;
+    public Long getQuestionId() {
+        return questionId;
     }
 
-    public void setType(Byte type) {
-        this.type = type;
+    public void setQuestionId(Long questionId) {
+        this.questionId = questionId;
     }
 
     public Long getCommentator() {
@@ -55,6 +57,14 @@ public class Comment {
 
     public void setLikeCount(Long likeCount) {
         this.likeCount = likeCount;
+    }
+
+    public Byte getLevel() {
+        return level;
+    }
+
+    public void setLevel(Byte level) {
+        this.level = level;
     }
 
     public Long getGmtModified() {

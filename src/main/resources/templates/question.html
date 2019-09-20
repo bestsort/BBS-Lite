@@ -55,7 +55,7 @@
                 <input type="hidden" id="question_id" th:value="${question.id}">
                 <textarea class="form-control comment" id="comment_content" rows="6"></textarea>
                 <button type="button" class="btn btn-success btn-comment"
-                        onclick="post()">回复</button>
+                        onclick="pComment()">回复</button>
                 </div>
             </div>
             <!-- 回复 -->
@@ -71,7 +71,18 @@
                         <img class="media-min img-circle" th:src="${comment.user.avatarUrl}">
                     </div>
                     <div class="media-body ">
-                        <div class="media-heading" th:text="${comment.user.name}"></div>
+                        <div class="media-heading" th:text="${comment.user.name}">
+                            <div class="btn pull-right">
+                                删除
+                            </div>
+                            <div class="btn pull-right">
+                                举报
+                            </div>
+                            <div class="btn pull-right">
+                                评论
+                            </div>
+
+                        </div>
                         <div th:text="${comment.content}"></div>
                         <div class="comment-menu">
                             <span class="glyphicon glyphicon-thumbs-up icon"></span>
@@ -81,7 +92,7 @@
                         </div>
 
                         <!-- 二级评论 -->
-                        <div class="collapse comment-son" th:id="${'comment-'+comment.id}">
+                        <div class="collapse comment-son" th:each="secondComment:${comment.secondaryComment}" th:id="${'comment-'+comment.id}">
                             <div class="media">
                                 <div class="media-left">
                                     <img class="media-min img-circle" th:src="${comment.user.avatarUrl}">

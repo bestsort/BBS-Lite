@@ -3,6 +3,8 @@ package cn.bestsort.bbslite.dto;
 import cn.bestsort.bbslite.model.User;
 import lombok.Data;
 
+import java.util.LinkedList;
+
 /**
  * @ClassName CommentDTO
  * @Description 评论数据传输类
@@ -15,10 +17,11 @@ import lombok.Data;
 public class CommentDTO {
     private Long id;
     private Long pid;
-    private Byte type;
+    private Byte level;
     private Long commentator;
     private Long gmtCreate;
     private Long likeCount;
     private String content;
     private User user;
+    private LinkedList<CommentDTO> secondaryComment;
 }

@@ -1,7 +1,7 @@
 
 /* TODO 前端校验回复内容是否为空
- *提交回复 */
-function post() {
+ *提交一级回复 */
+function pComment() {
     var questionId = $("#question_id").val();
     var content = $("#comment_content").val();
     $.ajax({
@@ -9,9 +9,10 @@ function post() {
         url:"/comment",
         contentType:'application/json',
         data:JSON.stringify({
-            "pid":questionId,
+            "pid":1,
             "content":content,
-            "type":1
+            "level":1,
+            "questionId":questionId
         }),
         success:function (response) {
             if(response.code === 200){
@@ -33,10 +34,12 @@ function post() {
         },
         dataType:"json"
     });
-    console.log(questionId);
-    console.log(content);
 }
 
+function comment() {
+
+
+}
 
 
 /* 评论的展开与折叠 */

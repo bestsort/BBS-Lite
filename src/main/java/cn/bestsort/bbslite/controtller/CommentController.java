@@ -38,10 +38,11 @@ public class CommentController {
         Comment comment = new Comment();
         comment.setPid(commentCreateDTO.getPid());
         comment.setContent(commentCreateDTO.getContent());
-        comment.setType(commentCreateDTO.getType());
+        comment.setLevel(commentCreateDTO.getLevel());
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setGmtModified(comment.getGmtCreate());
         comment.setCommentator(user.getId());
+        comment.setQuestionId(commentCreateDTO.getQuestionId());
         commentService.insert(comment);
         return ResultDTO.okOf();
     }

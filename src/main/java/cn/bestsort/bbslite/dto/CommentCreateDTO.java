@@ -13,7 +13,8 @@ import lombok.Data;
 @Data
 public class CommentCreateDTO {
     private Long pid;
-    private Byte type;
+    private Byte level;
     private Integer commentator;
     private String content;
+    private Long questionId;
 }

@@ -224,63 +224,63 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNull() {
-            addCriterion("type is null");
+        public Criteria andQuestionIdIsNull() {
+            addCriterion("question_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNotNull() {
-            addCriterion("type is not null");
+        public Criteria andQuestionIdIsNotNull() {
+            addCriterion("question_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeEqualTo(Byte value) {
-            addCriterion("type =", value, "type");
+        public Criteria andQuestionIdEqualTo(Long value) {
+            addCriterion("question_id =", value, "questionId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotEqualTo(Byte value) {
-            addCriterion("type <>", value, "type");
+        public Criteria andQuestionIdNotEqualTo(Long value) {
+            addCriterion("question_id <>", value, "questionId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThan(Byte value) {
-            addCriterion("type >", value, "type");
+        public Criteria andQuestionIdGreaterThan(Long value) {
+            addCriterion("question_id >", value, "questionId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThanOrEqualTo(Byte value) {
-            addCriterion("type >=", value, "type");
+        public Criteria andQuestionIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("question_id >=", value, "questionId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThan(Byte value) {
-            addCriterion("type <", value, "type");
+        public Criteria andQuestionIdLessThan(Long value) {
+            addCriterion("question_id <", value, "questionId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThanOrEqualTo(Byte value) {
-            addCriterion("type <=", value, "type");
+        public Criteria andQuestionIdLessThanOrEqualTo(Long value) {
+            addCriterion("question_id <=", value, "questionId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIn(List<Byte> values) {
-            addCriterion("type in", values, "type");
+        public Criteria andQuestionIdIn(List<Long> values) {
+            addCriterion("question_id in", values, "questionId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotIn(List<Byte> values) {
-            addCriterion("type not in", values, "type");
+        public Criteria andQuestionIdNotIn(List<Long> values) {
+            addCriterion("question_id not in", values, "questionId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeBetween(Byte value1, Byte value2) {
-            addCriterion("type between", value1, value2, "type");
+        public Criteria andQuestionIdBetween(Long value1, Long value2) {
+            addCriterion("question_id between", value1, value2, "questionId");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotBetween(Byte value1, Byte value2) {
-            addCriterion("type not between", value1, value2, "type");
+        public Criteria andQuestionIdNotBetween(Long value1, Long value2) {
+            addCriterion("question_id not between", value1, value2, "questionId");
             return (Criteria) this;
         }
 
@@ -401,6 +401,66 @@ public class CommentExample {
 
         public Criteria andLikeCountNotBetween(Long value1, Long value2) {
             addCriterion("like_count not between", value1, value2, "likeCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andLevelIsNull() {
+            addCriterion("level is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLevelIsNotNull() {
+            addCriterion("level is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLevelEqualTo(Byte value) {
+            addCriterion("level =", value, "level");
+            return (Criteria) this;
+        }
+
+        public Criteria andLevelNotEqualTo(Byte value) {
+            addCriterion("level <>", value, "level");
+            return (Criteria) this;
+        }
+
+        public Criteria andLevelGreaterThan(Byte value) {
+            addCriterion("level >", value, "level");
+            return (Criteria) this;
+        }
+
+        public Criteria andLevelGreaterThanOrEqualTo(Byte value) {
+            addCriterion("level >=", value, "level");
+            return (Criteria) this;
+        }
+
+        public Criteria andLevelLessThan(Byte value) {
+            addCriterion("level <", value, "level");
+            return (Criteria) this;
+        }
+
+        public Criteria andLevelLessThanOrEqualTo(Byte value) {
+            addCriterion("level <=", value, "level");
+            return (Criteria) this;
+        }
+
+        public Criteria andLevelIn(List<Byte> values) {
+            addCriterion("level in", values, "level");
+            return (Criteria) this;
+        }
+
+        public Criteria andLevelNotIn(List<Byte> values) {
+            addCriterion("level not in", values, "level");
+            return (Criteria) this;
+        }
+
+        public Criteria andLevelBetween(Byte value1, Byte value2) {
+            addCriterion("level between", value1, value2, "level");
+            return (Criteria) this;
+        }
+
+        public Criteria andLevelNotBetween(Byte value1, Byte value2) {
+            addCriterion("level not between", value1, value2, "level");
             return (Criteria) this;
         }
 

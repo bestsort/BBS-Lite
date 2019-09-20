@@ -1,7 +1,6 @@
 package cn.bestsort.bbslite.service;
 
 import cn.bestsort.bbslite.dto.CommentDTO;
-import cn.bestsort.bbslite.enums.CommentTypeEnum;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.CommentMapper;
@@ -14,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -45,41 +41,36 @@ public class CommentService {
         if (comment.getPid() == null || comment.getPid()==0) {
             throw new CustomizeException(CustomizeErrorCodeEnum.TARGET_PAI_NOT_FOUND);
         }
-        if(comment.getType() == null || !CommentTypeEnum.isExist(comment.getType())){
-            throw new  CustomizeException((CustomizeErrorCodeEnum.TYPE_PARAM_WRONG));
-        }
-
-        if(comment.getType().equals(CommentTypeEnum.COMMENT.getType())){
-            //回复评论
-            Comment dbComment =commentMapper.selectByPrimaryKey(comment.getPid());
-            if (dbComment == null) {
-                throw new CustomizeException(CustomizeErrorCodeEnum.COMMENT_NOT_FOUND);
-            }
-            commentMapper.insertSelective(comment);
-        }else{
+        if(comment.getLevel() <= 1){
             //回复问题
-            Question question = questionMapper.selectByPrimaryKey(comment.getPid());
+            Question question = questionMapper.selectByPrimaryKey(comment.getQuestionId());
             if (question == null){
                 throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
             }
             commentMapper.insertSelective(comment);
             question.setCommentCount(1);
             questionExtMapper.incCommentCount(question);
+
+        }else{
+            //回复评论
+            Comment dbComment =commentMapper.selectByPrimaryKey(comment.getPid());
+            if (dbComment == null) {
+                throw new CustomizeException(CustomizeErrorCodeEnum.COMMENT_NOT_FOUND);
+            }
+            commentMapper.insertSelective(comment);
         }
     }
 
-    public List<CommentDTO> listByQuestionId(Long id) {
+    public List<CommentDTO> listByQuestionId(Long questionId) {
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria()
-                .andPidEqualTo(id)
-                .andTypeEqualTo(CommentTypeEnum.QUESTION.getType());
+                .andQuestionIdEqualTo(questionId);
         commentExample.setOrderByClause("gmt_create desc");
 
         List<Comment> comments = commentMapper.selectByExample(commentExample);
         if (comments.isEmpty()) {
             return new ArrayList<>();
         }
-
         //获取去重后的评论人id
         Set<Long>commentators = comments.stream().map(Comment::getCommentator)
                 .collect(Collectors.toSet());
@@ -94,14 +85,45 @@ public class CommentService {
         List<User> users = userMapper.selectByExample(userExample);
         Map<Long,User> userMap = users.stream().collect(Collectors.toMap(User::getId, user->user));
 
+
+        //将comments 先按照评论分级排序再按照时间排序
+        comments.sort(new CommentComparator());
+
+
         //将 comment 转为 commentDTO
-        List<CommentDTO> commentDTOList = comments.stream().map(comment -> {
+        HashMap<Long,CommentDTO> dtoHashMap = new HashMap<>();
+        List<CommentDTO> commentDTOList = new ArrayList<>();
+        for(Comment comment:comments){
             CommentDTO commentDTO = new CommentDTO();
             BeanUtils.copyProperties(comment,commentDTO);
             commentDTO.setUser(userMap.get(comment.getCommentator()));
-            return commentDTO;
-        }).collect(Collectors.toList());
-
+            if(comment.getLevel() <= 1) {
+                // 如果为父评论则将其加入到 commentDTOList 并在 map 中标记
+                dtoHashMap.put(comment.getId(), commentDTO);
+                commentDTOList.add(commentDTO);
+            }
+            else{
+                // 否则就将评论装入到对应的父评论下
+                dtoHashMap.get(comment.getPid())
+                        .getSecondaryComment()
+                        .add(commentDTO);
+            }
+        }
         return commentDTOList;
+    }
+    private class CommentComparator implements Comparator<Comment>{
+        @Override
+        public int compare(Comment o1, Comment o2) {
+            long res = 0;
+            if(!o1.getLevel().equals(o2.getLevel())){
+                //level 不相等则按照level排序
+                res = o2.getLevel()-o1.getLevel();
+            }
+            else{
+                //否则按照时间先后排序
+                res = o1.getGmtCreate()-o2.getGmtCreate();
+            }
+            return (int)res;
+        }
     }
 }
