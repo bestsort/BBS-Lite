@@ -28,11 +28,11 @@
 
 ## Demo
 
-![](picture/main.png)
+![](https://bestsort-git-project.oss-cn-hangzhou.aliyuncs.com/main.png)
 
-![](picture/question.png)
+![](https://bestsort-git-project.oss-cn-hangzhou.aliyuncs.com/my_question.png)
 
-![](picture/my_question.png)
+![](https://bestsort-git-project.oss-cn-hangzhou.aliyuncs.com/question.png)
 ## 快速开始
 ```bash
 git clone https://github.com/bestsort/BBS-Lite.git
