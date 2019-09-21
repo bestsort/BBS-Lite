@@ -17,7 +17,7 @@
 
         <!--Your Database Config-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost/bbs_lite"
+                        connectionURL="jdbc:mysql://localhost/bbs_lite?serverTimezone=UTC"
                         userId="bestsort"
                         password="ce8YChPDJ5GRFOUE">
             <property name="nullCatalogMeansCurrent" value="true"/>

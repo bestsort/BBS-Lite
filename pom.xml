@@ -108,7 +108,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>6.0.1</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3306/bbs_lite</url>
+                    <url>jdbc:mysql://localhost:3306/bbs_lite?serverTimezone=UTC</url>
                     <user>bestsort</user>
                     <password>ce8YChPDJ5GRFOUE</password>
                 </configuration>
