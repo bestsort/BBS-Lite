@@ -1,4 +1,7 @@
 
+function search(e) {
+
+}
 /* 提交一级回复 */
 function pComment(e) {
     var questionId = $("#question_id").val();

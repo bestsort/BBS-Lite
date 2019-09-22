@@ -26,4 +26,13 @@
             comment_count = comment_count + #{commentCount,jdbcType=INTEGER}
         where id = #{id}
     </update>
+    <select id="listBySearch" resultType="cn.bestsort.bbslite.model.Question">
+        select *
+        from question
+        where
+              concat(`title`,`tag`,`description`)
+        like concat(concat('%', #{search}), '%')
+        order by #{order}
+
+    </select>
 </mapper>

@@ -29,7 +29,6 @@ public class QuestionController {
     public String question(@PathVariable(name = "id") Long id,
                            Model model){
         QuestionDTO questionDTO = questionService.getById(id);
-
         //增加阅读数
         questionService.incView(id);
         List<CommentDTO> comments = commentService.listByQuestionId(id);

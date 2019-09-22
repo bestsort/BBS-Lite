@@ -24,7 +24,7 @@
             </ul>
             <form class="navbar-form navbar-left">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="搜索">
+                    <input type="text" th:name="search" th:value="${search}" class="form-control" placeholder="搜索标签,标题">
                 </div>
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>

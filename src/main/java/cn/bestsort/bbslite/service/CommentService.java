@@ -36,7 +36,6 @@ public class CommentService {
     private QuestionMapper questionMapper;
     @Autowired
     private UserMapper userMapper;
-    @Transactional
     public void insert(Comment comment) {
         if (comment.getPid() == null || comment.getPid()==0) {
             throw new CustomizeException(CustomizeErrorCodeEnum.TARGET_PAI_NOT_FOUND);

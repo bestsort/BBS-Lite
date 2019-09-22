@@ -2,6 +2,8 @@ package cn.bestsort.bbslite.mapper;
 
 import cn.bestsort.bbslite.model.Question;
 
+import java.util.List;
+
 /**
  * @ClassName QuestionExtMapper
  * @Description 对于 question 表相关内容的扩展封装,实现了一些将要用到而 Myatis 不能自动生成的功能:
@@ -15,4 +17,5 @@ import cn.bestsort.bbslite.model.Question;
 public interface QuestionExtMapper {
     int incView(Question record);
     int incCommentCount(Question record);
+    List<Question> listBySearch(String search,String order);
 }
