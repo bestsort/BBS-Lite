@@ -24,14 +24,15 @@
                         <span th:text="${tag}" style="color: #fff;cursor: pointer;"></span>
                     </a>
                 </div>
-                <hr class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${question.description}"><hr>
+                <hr class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${question.description}">
+                    <hr class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
                 </div>
             </div>
 
             <!--编辑问题按钮-->
-            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <hr class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
                 <a th:href="@{'/publish/'+${question.id}}" class="bbs-menu"
                    th:if="${session.user != null && session.user.id == question.creator}">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true">编辑问题</span>
@@ -60,7 +61,7 @@
             <h4 class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                   <span th:text="${question.commentCount}"></span>个回复
             </h4>
-            <hr class="col-lg-12 col-md-12 col-xs-12 col-sm-12 comment-question-sp">
+                <hr class="col-lg-11 col-md-11 col-sm-11 col-xs-11 comment-question-sp">
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 comments"
                  th:each="comment : ${comments}">
                 <div class="media">
@@ -121,7 +122,7 @@
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <hr>
+                <hr class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
                 <h4>相关问题</h4>
             </div>
         </div>
