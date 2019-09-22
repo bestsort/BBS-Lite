@@ -1,10 +1,10 @@
 <h1 align="center">Welcome to BBS-Lite 👋
 <span align="center">
 
-<img src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000"></img>
-<img src="https://codebeat.co/badges/4c86e787-ca80-4e4b-8d94-29388044a3b4"></img>
-<img src="https://img.shields.io/github/last-commit/bestsort/bbs-lite"></img>
-<img src="https://img.shields.io/github/license/bestsort/bbs-lite"></img>
+<img src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000"/>
+<img src="https://codebeat.co/badges/4c86e787-ca80-4e4b-8d94-29388044a3b4"/>
+<img src="https://img.shields.io/github/last-commit/bestsort/bbs-lite"/>
+<img src="https://img.shields.io/github/license/bestsort/bbs-lite"/>
 </span>
 </h1>
 
