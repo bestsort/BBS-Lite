@@ -3871,3 +3871,1141 @@ Caused by: org.thymeleaf.exceptions.TemplateInputException: Error resolving temp
 2019-09-22 10:51:02.953 DEBUG 22639 --- [http-nio-8080-exec-4] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
 2019-09-22 10:51:02.954 DEBUG 22639 --- [http-nio-8080-exec-4] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
 2019-09-22 10:51:02.955 DEBUG 22639 --- [http-nio-8080-exec-4] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:48:46.846  INFO 29841 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 29841 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 11:48:46.849  INFO 29841 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 11:48:46.900  INFO 29841 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 11:48:46.901  INFO 29841 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 11:48:46.922  WARN 29841 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 11:48:47.742  INFO 29841 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 11:48:47.765  INFO 29841 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$2b2df841] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 11:48:47.785  INFO 29841 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 11:48:47.991  INFO 29841 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 11:48:48.009  INFO 29841 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 11:48:48.009  INFO 29841 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 11:48:48.062  INFO 29841 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 11:48:48.062  INFO 29841 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1161 ms
+2019-09-22 11:48:48.161  INFO 29841 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 11:48:48.442  INFO 29841 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 11:48:48.875  INFO 29841 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 11:48:48.914  INFO 29841 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 11:48:48.917  INFO 29841 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.41 seconds (JVM running for 2.842)
+2019-09-22 11:49:08.894  INFO 29841 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 11:49:08.894  INFO 29841 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 11:49:08.900  INFO 29841 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2019-09-22 11:49:08.953 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.QuestionMapper.countByExample    : ==>  Preparing: select count(*) from question 
+2019-09-22 11:49:09.027 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.QuestionMapper.countByExample    : ==> Parameters: 
+2019-09-22 11:49:09.061 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.QuestionMapper.countByExample    : <==      Total: 1
+2019-09-22 11:49:09.064 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByExampleWithRowbounds   : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag from question order by gmt_create desc 
+2019-09-22 11:49:09.068 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByExampleWithRowbounds   : ==> Parameters: 
+2019-09-22 11:49:09.070 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByExampleWithRowbounds   : <==      Total: 1
+2019-09-22 11:49:09.071 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:49:09.086 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:49:09.088 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:49:11.309 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:49:11.311 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:49:11.315 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:49:11.316 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:49:11.316 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:49:11.318 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:49:11.319 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:49:11.324 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:49:11.334 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:49:11.347 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:49:11.348 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:49:11.348 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:49:53.103 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( account_id = ? ) 
+2019-09-22 11:49:53.105 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: 43701948(Long)
+2019-09-22 11:49:53.107 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 0
+2019-09-22 11:49:53.110 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.insertSelective  : ==>  Preparing: insert into user ( account_id, name, token, gmt_create, gmt_modified, avatar_url ) values ( ?, ?, ?, ?, ?, ? ) 
+2019-09-22 11:49:53.157 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.insertSelective  : ==> Parameters: 43701948(Long), bestsort(String), ce6e2d75-630e-45be-b5fd-dbeb8f801942(String), 1569124193107(Long), 1569124193107(Long), https://avatars1.githubusercontent.com/u/43701948?v=4(String)
+2019-09-22 11:49:53.168 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.insertSelective  : <==    Updates: 1
+2019-09-22 11:49:53.247 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:49:53.249 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:49:53.251 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:49:53.252 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.m.QuestionMapper.countByExample    : ==>  Preparing: select count(*) from question 
+2019-09-22 11:49:53.253 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.m.QuestionMapper.countByExample    : ==> Parameters: 
+2019-09-22 11:49:53.255 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.m.QuestionMapper.countByExample    : <==      Total: 1
+2019-09-22 11:49:53.256 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.m.Q.selectByExampleWithRowbounds   : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag from question order by gmt_create desc 
+2019-09-22 11:49:53.257 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.m.Q.selectByExampleWithRowbounds   : ==> Parameters: 
+2019-09-22 11:49:53.258 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.m.Q.selectByExampleWithRowbounds   : <==      Total: 1
+2019-09-22 11:49:53.259 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:49:53.260 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:49:53.261 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:49:53.301 DEBUG 29841 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:49:53.302 DEBUG 29841 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:49:53.303 DEBUG 29841 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:49:55.925 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:49:55.926 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:49:55.927 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:49:55.928 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:49:55.929 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:49:55.931 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:49:55.932 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:49:55.932 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:49:55.934 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:49:55.934 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:49:55.935 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:49:55.944 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:49:55.946 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:49:55.946 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:49:55.948 DEBUG 29841 --- [http-nio-8080-exec-5] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:50:00.055 DEBUG 29841 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:50:00.055 DEBUG 29841 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:50:00.057 DEBUG 29841 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:50:00.058 DEBUG 29841 --- [http-nio-8080-exec-6] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:50:00.058 DEBUG 29841 --- [http-nio-8080-exec-6] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:50:00.059 DEBUG 29841 --- [http-nio-8080-exec-6] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:50:13.351 DEBUG 29841 --- [http-nio-8080-exec-9] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:50:13.352 DEBUG 29841 --- [http-nio-8080-exec-9] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:50:13.353 DEBUG 29841 --- [http-nio-8080-exec-9] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:50:13.354 DEBUG 29841 --- [http-nio-8080-exec-9] c.b.b.m.QuestionMapper.countByExample    : ==>  Preparing: select count(*) from question 
+2019-09-22 11:50:13.354 DEBUG 29841 --- [http-nio-8080-exec-9] c.b.b.m.QuestionMapper.countByExample    : ==> Parameters: 
+2019-09-22 11:50:13.355 DEBUG 29841 --- [http-nio-8080-exec-9] c.b.b.m.QuestionMapper.countByExample    : <==      Total: 1
+2019-09-22 11:50:13.356 DEBUG 29841 --- [http-nio-8080-exec-9] c.b.b.m.Q.selectByExampleWithRowbounds   : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag from question order by gmt_create desc 
+2019-09-22 11:50:13.356 DEBUG 29841 --- [http-nio-8080-exec-9] c.b.b.m.Q.selectByExampleWithRowbounds   : ==> Parameters: 
+2019-09-22 11:50:13.357 DEBUG 29841 --- [http-nio-8080-exec-9] c.b.b.m.Q.selectByExampleWithRowbounds   : <==      Total: 1
+2019-09-22 11:50:13.358 DEBUG 29841 --- [http-nio-8080-exec-9] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:50:13.359 DEBUG 29841 --- [http-nio-8080-exec-9] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:50:13.360 DEBUG 29841 --- [http-nio-8080-exec-9] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:50:13.392 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:50:13.393 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:50:13.394 DEBUG 29841 --- [http-nio-8080-exec-10] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:50:22.670 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:50:22.671 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:50:22.672 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:50:22.673 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:50:22.674 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:50:22.675 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:50:22.675 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:50:22.675 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:50:22.676 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:50:22.677 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:50:22.677 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:50:22.686 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:50:22.687 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:50:22.687 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:50:22.688 DEBUG 29841 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:50:22.718 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:50:22.718 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:50:22.720 DEBUG 29841 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:08.398  INFO 29841 --- [Thread-12] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 11:54:10.666  INFO 31188 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 31188 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 11:54:10.667  INFO 31188 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 11:54:10.718  INFO 31188 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 11:54:10.719  INFO 31188 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 11:54:10.722  WARN 31188 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 11:54:11.488  INFO 31188 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 11:54:11.509  INFO 31188 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$9856c52d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 11:54:11.530  INFO 31188 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 11:54:11.754  INFO 31188 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 11:54:11.775  INFO 31188 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 11:54:11.775  INFO 31188 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 11:54:11.845  INFO 31188 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 11:54:11.846  INFO 31188 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1126 ms
+2019-09-22 11:54:11.970  INFO 31188 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 11:54:12.249  INFO 31188 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 11:54:12.704  INFO 31188 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 11:54:12.751  INFO 31188 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 11:54:12.753  INFO 31188 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.371 seconds (JVM running for 2.888)
+2019-09-22 11:54:19.323  INFO 31188 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 11:54:19.324  INFO 31188 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 11:54:19.330  INFO 31188 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2019-09-22 11:54:19.374 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:19.464 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:19.479 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:19.493 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:54:19.495 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:54:19.497 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:54:19.500 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:54:19.500 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:54:19.502 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:54:19.503 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:54:19.506 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:54:19.515 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:54:19.525 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:54:19.528 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:54:19.530 DEBUG 31188 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:54:19.830 DEBUG 31188 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:19.831 DEBUG 31188 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:19.833 DEBUG 31188 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:35.034  INFO 31188 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 11:54:37.383  INFO 31337 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 31337 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 11:54:37.385  INFO 31337 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 11:54:37.473  INFO 31337 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 11:54:37.474  INFO 31337 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 11:54:37.476  WARN 31337 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 11:54:38.644  INFO 31337 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 11:54:38.671  INFO 31337 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$679ce1fc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 11:54:38.710  INFO 31337 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 11:54:39.009  INFO 31337 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 11:54:39.027  INFO 31337 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 11:54:39.028  INFO 31337 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 11:54:39.080  INFO 31337 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 11:54:39.080  INFO 31337 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1606 ms
+2019-09-22 11:54:39.202  INFO 31337 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 11:54:39.516  INFO 31337 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 11:54:39.944  INFO 31337 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 11:54:39.982  INFO 31337 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 11:54:39.984  INFO 31337 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.971 seconds (JVM running for 3.448)
+2019-09-22 11:54:43.029  INFO 31337 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 11:54:43.029  INFO 31337 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 11:54:43.035  INFO 31337 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-09-22 11:54:43.086 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:43.170 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:43.187 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:43.201 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:54:43.203 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:54:43.206 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:54:43.209 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:54:43.210 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:54:43.211 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:54:43.212 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:54:43.215 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:54:43.225 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:54:43.232 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:54:43.234 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:54:43.235 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:54:45.114 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:45.116 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:45.121 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:45.122 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:54:45.123 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:54:45.126 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:54:45.127 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:54:45.128 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:54:45.130 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:54:45.130 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:54:45.131 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:54:45.134 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:54:45.136 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:54:45.136 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:54:45.138 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:54:47.339 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:47.340 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:47.345 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:47.347 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:54:47.348 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:54:47.350 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:54:47.352 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:54:47.352 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:54:47.354 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:54:47.355 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:54:47.356 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:54:47.364 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:54:47.366 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:54:47.366 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:54:47.367 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:54:47.408 DEBUG 31337 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:47.409 DEBUG 31337 --- [http-nio-8080-exec-6] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:47.409 DEBUG 31337 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:47.409 DEBUG 31337 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:47.409 DEBUG 31337 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:47.409 DEBUG 31337 --- [http-nio-8080-exec-6] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:47.410 DEBUG 31337 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:47.410 DEBUG 31337 --- [http-nio-8080-exec-6] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:47.410 DEBUG 31337 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:47.421 DEBUG 31337 --- [http-nio-8080-exec-7] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:47.421 DEBUG 31337 --- [http-nio-8080-exec-7] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:47.431 DEBUG 31337 --- [http-nio-8080-exec-7] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:47.432 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:47.432 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:47.432 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:47.432 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:47.434 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:47.434 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:48.236 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:48.237 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:48.241 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:48.243 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:54:48.245 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:54:48.249 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:54:48.251 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:54:48.252 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:54:48.255 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:54:48.257 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:54:48.259 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:54:48.270 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:54:48.273 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:54:48.275 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:54:48.279 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:54:48.386 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:48.386 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:48.387 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:48.387 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:48.387 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:48.387 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:48.388 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:48.389 DEBUG 31337 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:48.391 DEBUG 31337 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:48.399 DEBUG 31337 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:48.399 DEBUG 31337 --- [http-nio-8080-exec-6] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:48.399 DEBUG 31337 --- [http-nio-8080-exec-6] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:48.399 DEBUG 31337 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:48.401 DEBUG 31337 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:48.401 DEBUG 31337 --- [http-nio-8080-exec-6] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:48.401 DEBUG 31337 --- [http-nio-8080-exec-7] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:48.401 DEBUG 31337 --- [http-nio-8080-exec-7] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:48.403 DEBUG 31337 --- [http-nio-8080-exec-7] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:50.082 DEBUG 31337 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:50.083 DEBUG 31337 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:50.084 DEBUG 31337 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:50.089 DEBUG 31337 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:50.090 DEBUG 31337 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:50.092 DEBUG 31337 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:52.015 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:52.016 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:52.018 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:52.019 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:54:52.019 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:54:52.021 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:54:52.021 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:54:52.022 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:54:52.023 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:54:52.024 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:54:52.025 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:54:52.034 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:54:52.035 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:54:52.036 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:54:52.036 DEBUG 31337 --- [http-nio-8080-exec-9] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:54:52.809 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:52.810 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:52.812 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:52.813 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:54:52.814 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:54:52.816 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:54:52.817 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:54:52.817 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:54:52.819 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:54:52.819 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:54:52.820 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:54:52.829 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:54:52.830 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:54:52.830 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:54:52.831 DEBUG 31337 --- [http-nio-8080-exec-8] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:54:53.689 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:54:53.690 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:54:53.692 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:54:53.694 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:54:53.695 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:54:53.697 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:54:53.699 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:54:53.700 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:54:53.702 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:54:53.703 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:54:53.703 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:54:53.713 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:54:53.714 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:54:53.714 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:54:53.715 DEBUG 31337 --- [http-nio-8080-exec-10] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:55:10.582 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:55:10.583 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:55:10.587 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:55:10.588 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:55:10.589 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:55:10.592 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:55:10.594 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:55:10.594 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:55:10.596 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:55:10.597 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:55:10.598 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:55:10.607 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:55:10.609 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:55:10.609 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:55:10.610 DEBUG 31337 --- [http-nio-8080-exec-2] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:55:45.549  INFO 31337 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 11:55:48.371  INFO 31542 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 31542 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 11:55:48.372  INFO 31542 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 11:55:48.423  INFO 31542 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 11:55:48.424  INFO 31542 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 11:55:48.451  WARN 31542 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 11:55:49.160  INFO 31542 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 11:55:49.179  INFO 31542 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$1465d808] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 11:55:49.199  INFO 31542 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 11:55:49.430  INFO 31542 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 11:55:49.446  INFO 31542 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 11:55:49.447  INFO 31542 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 11:55:49.495  INFO 31542 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 11:55:49.495  INFO 31542 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1071 ms
+2019-09-22 11:55:49.599  INFO 31542 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 11:55:49.847  INFO 31542 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 11:55:50.280  INFO 31542 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 11:55:50.323  INFO 31542 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 11:55:50.326  INFO 31542 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.364 seconds (JVM running for 3.033)
+2019-09-22 11:55:52.154  INFO 31542 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 11:55:52.154  INFO 31542 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 11:55:52.160  INFO 31542 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2019-09-22 11:55:52.204 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:55:52.288 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:55:52.314 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:55:52.329 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:55:52.330 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:55:52.332 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:55:52.335 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:55:52.336 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:55:52.337 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:55:52.338 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:55:52.342 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:55:52.351 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:55:52.357 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:55:52.359 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:55:52.360 DEBUG 31542 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:55:52.650 DEBUG 31542 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:55:52.651 DEBUG 31542 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:55:52.653 DEBUG 31542 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:59:03.650  INFO 31542 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 11:59:06.238  INFO 31854 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 31854 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 11:59:06.239  INFO 31854 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 11:59:06.294  INFO 31854 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 11:59:06.294  INFO 31854 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 11:59:06.325  WARN 31854 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 11:59:07.226  INFO 31854 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 11:59:07.246  INFO 31854 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$b322aaa3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 11:59:07.269  INFO 31854 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 11:59:07.491  INFO 31854 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 11:59:07.509  INFO 31854 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 11:59:07.510  INFO 31854 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 11:59:07.558  INFO 31854 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 11:59:07.558  INFO 31854 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1263 ms
+2019-09-22 11:59:07.663  INFO 31854 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 11:59:07.941  INFO 31854 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 11:59:08.416  INFO 31854 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 11:59:08.456  INFO 31854 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 11:59:08.458  INFO 31854 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.803 seconds (JVM running for 3.381)
+2019-09-22 11:59:10.156  INFO 31854 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 11:59:10.157  INFO 31854 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 11:59:10.162  INFO 31854 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-09-22 11:59:10.211 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:59:10.299 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:59:10.317 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 11:59:10.333 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 11:59:10.334 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 11:59:10.337 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 11:59:10.340 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 11:59:10.341 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 11:59:10.342 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 11:59:10.343 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 11:59:10.346 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 11:59:10.356 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 11:59:10.371 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 11:59:10.374 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 11:59:10.375 DEBUG 31854 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 11:59:10.679 DEBUG 31854 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 11:59:10.680 DEBUG 31854 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 11:59:10.682 DEBUG 31854 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:01:40.314  INFO 31854 --- [Thread-14] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:01:43.284  INFO 32121 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 32121 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:01:43.286  INFO 32121 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:01:43.393  INFO 32121 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:01:43.394  INFO 32121 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:01:43.407  WARN 32121 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:01:44.160  INFO 32121 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:01:44.179  INFO 32121 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$dab8b323] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:01:44.199  INFO 32121 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:01:44.401  INFO 32121 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:01:44.418  INFO 32121 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:01:44.418  INFO 32121 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:01:44.473  INFO 32121 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:01:44.473  INFO 32121 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1079 ms
+2019-09-22 12:01:44.579  INFO 32121 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:01:44.827  INFO 32121 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:01:45.259  INFO 32121 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:01:45.299  INFO 32121 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:01:45.301  INFO 32121 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.682 seconds (JVM running for 3.249)
+2019-09-22 12:01:50.272  INFO 32121 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 12:01:50.272  INFO 32121 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 12:01:50.277  INFO 32121 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-09-22 12:01:50.324 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:01:50.411 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:01:50.428 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:01:50.443 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:01:50.445 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:01:50.448 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:01:50.451 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:01:50.452 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:01:50.453 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:01:50.454 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:01:50.457 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:01:50.461 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:01:50.467 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:01:50.469 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:01:50.470 DEBUG 32121 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:01:50.767 DEBUG 32121 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:01:50.768 DEBUG 32121 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:01:50.769 DEBUG 32121 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:01:51.553 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:01:51.554 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:01:51.555 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:01:51.556 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:01:51.557 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:01:51.558 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:01:51.559 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:01:51.559 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:01:51.560 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:01:51.561 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:01:51.561 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:01:51.570 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:01:51.572 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:01:51.572 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:01:51.573 DEBUG 32121 --- [http-nio-8080-exec-4] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:01:51.617 DEBUG 32121 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:01:51.617 DEBUG 32121 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:01:51.619 DEBUG 32121 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:01:54.780 DEBUG 32121 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:01:54.780 DEBUG 32121 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:01:54.781 DEBUG 32121 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:02:28.504  INFO 32121 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:02:30.502  INFO 32316 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 32316 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:02:30.503  INFO 32316 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:02:30.553  INFO 32316 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:02:30.553  INFO 32316 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:02:30.573  WARN 32316 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:02:31.478  INFO 32316 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:02:31.497  INFO 32316 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$b9bcaf7f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:02:31.517  INFO 32316 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:02:31.723  INFO 32316 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:02:31.740  INFO 32316 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:02:31.740  INFO 32316 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:02:31.789  INFO 32316 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:02:31.789  INFO 32316 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1236 ms
+2019-09-22 12:02:31.897  INFO 32316 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:02:32.169  INFO 32316 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:02:32.610  INFO 32316 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:02:32.652  INFO 32316 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:02:32.655  INFO 32316 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.464 seconds (JVM running for 2.893)
+2019-09-22 12:03:52.530  INFO 32316 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:03:55.018  INFO 32620 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 32620 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:03:55.019  INFO 32620 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:03:55.062  INFO 32620 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:03:55.063  INFO 32620 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:03:55.117  WARN 32620 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:03:55.859  INFO 32620 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:03:55.880  INFO 32620 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$51871fc5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:03:55.904  INFO 32620 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:03:56.142  INFO 32620 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:03:56.162  INFO 32620 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:03:56.162  INFO 32620 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:03:56.213  INFO 32620 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:03:56.213  INFO 32620 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1150 ms
+2019-09-22 12:03:56.324  INFO 32620 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:03:56.607  INFO 32620 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:03:57.140  INFO 32620 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:03:57.238  INFO 32620 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:03:57.241  INFO 32620 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.729 seconds (JVM running for 3.283)
+2019-09-22 12:03:59.618  INFO 32620 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 12:03:59.618  INFO 32620 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 12:03:59.623  INFO 32620 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-09-22 12:03:59.672 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:03:59.763 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:03:59.777 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:03:59.792 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:03:59.794 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:03:59.796 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:03:59.800 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:03:59.801 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:03:59.802 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:03:59.803 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:03:59.806 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:03:59.816 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:03:59.827 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:03:59.830 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:03:59.831 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:04:00.122 DEBUG 32620 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:04:00.123 DEBUG 32620 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:04:00.126 DEBUG 32620 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:04:12.336 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:04:12.338 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:04:12.342 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:04:12.344 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:04:12.345 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:04:12.350 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:04:12.352 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:04:12.353 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:04:12.357 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:04:12.358 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:04:12.359 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:04:12.370 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:04:12.374 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:04:12.375 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:04:12.379 DEBUG 32620 --- [http-nio-8080-exec-4] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:04:12.461 DEBUG 32620 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:04:12.462 DEBUG 32620 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:04:12.464 DEBUG 32620 --- [http-nio-8080-exec-5] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:04:47.318 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:04:47.319 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:04:47.323 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:04:47.325 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:04:47.326 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:04:47.329 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:04:47.330 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:04:47.331 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:04:47.333 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:04:47.334 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:04:47.335 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:04:47.341 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:04:47.342 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:04:47.343 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:04:47.344 DEBUG 32620 --- [http-nio-8080-exec-7] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:04:47.383 DEBUG 32620 --- [http-nio-8080-exec-8] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:04:47.384 DEBUG 32620 --- [http-nio-8080-exec-8] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:04:47.385 DEBUG 32620 --- [http-nio-8080-exec-8] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:07:11.135 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:07:11.136 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:07:11.137 DEBUG 32620 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:09:19.847  INFO 32620 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:09:22.555  INFO 709 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 709 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:09:22.557  INFO 709 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:09:22.605  INFO 709 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:09:22.605  INFO 709 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:09:22.627  WARN 709 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:09:23.350  INFO 709 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:09:23.369  INFO 709 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$e08a56ee] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:09:23.390  INFO 709 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:09:23.618  INFO 709 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:09:23.635  INFO 709 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:09:23.635  INFO 709 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:09:23.683  INFO 709 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:09:23.683  INFO 709 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1078 ms
+2019-09-22 12:09:23.791  INFO 709 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:09:24.101  INFO 709 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:09:24.570  INFO 709 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:09:24.618  INFO 709 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:09:24.620  INFO 709 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.467 seconds (JVM running for 3.128)
+2019-09-22 12:09:27.007  INFO 709 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 12:09:27.008  INFO 709 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 12:09:27.014  INFO 709 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2019-09-22 12:09:27.071 DEBUG 709 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:09:27.177 DEBUG 709 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:09:27.193 DEBUG 709 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:09:27.209 DEBUG 709 --- [http-nio-8080-exec-1] c.b.b.m.QuestionMapper.countByExample    : ==>  Preparing: select count(*) from question 
+2019-09-22 12:09:27.210 DEBUG 709 --- [http-nio-8080-exec-1] c.b.b.m.QuestionMapper.countByExample    : ==> Parameters: 
+2019-09-22 12:09:27.212 DEBUG 709 --- [http-nio-8080-exec-1] c.b.b.m.QuestionMapper.countByExample    : <==      Total: 1
+2019-09-22 12:09:27.213 DEBUG 709 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByExampleWithRowbounds   : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag from question order by gmt_create desc 
+2019-09-22 12:09:27.214 DEBUG 709 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByExampleWithRowbounds   : ==> Parameters: 
+2019-09-22 12:09:27.216 DEBUG 709 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByExampleWithRowbounds   : <==      Total: 1
+2019-09-22 12:09:27.216 DEBUG 709 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:09:27.218 DEBUG 709 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:09:27.219 DEBUG 709 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:09:27.528 DEBUG 709 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:09:27.528 DEBUG 709 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:09:27.530 DEBUG 709 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:09:29.369 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:09:29.369 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:09:29.371 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:09:29.373 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:09:29.374 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:09:29.377 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:09:29.377 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:09:29.378 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:09:29.379 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:09:29.380 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:09:29.383 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:09:29.396 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:09:29.413 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:09:29.415 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:09:29.417 DEBUG 709 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:09:29.466 DEBUG 709 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:09:29.467 DEBUG 709 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:09:29.468 DEBUG 709 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:09:59.012  INFO 709 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:10:01.582  INFO 882 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 882 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:10:01.584  INFO 882 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:10:01.677  INFO 882 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:10:01.677  INFO 882 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:10:01.737  WARN 882 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:10:02.706  INFO 882 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:10:02.724  INFO 882 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$df7ba1b5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:10:02.744  INFO 882 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:10:02.946  INFO 882 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:10:02.961  INFO 882 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:10:02.961  INFO 882 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:10:03.008  INFO 882 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:10:03.008  INFO 882 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1330 ms
+2019-09-22 12:10:03.111  INFO 882 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:10:03.367  INFO 882 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:10:03.789  INFO 882 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:10:03.829  INFO 882 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:10:03.831  INFO 882 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.789 seconds (JVM running for 3.279)
+2019-09-22 12:10:05.393  INFO 882 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 12:10:05.393  INFO 882 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 12:10:05.399  INFO 882 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2019-09-22 12:10:05.447 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:10:05.536 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:10:05.553 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:10:05.568 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:10:05.570 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:10:05.572 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:10:05.575 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:10:05.576 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:10:05.577 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:10:05.578 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:10:05.582 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:10:05.591 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:10:05.598 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:10:05.600 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:10:05.601 DEBUG 882 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:10:05.903 DEBUG 882 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:10:05.904 DEBUG 882 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:10:05.905 DEBUG 882 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:10:06.390 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:10:06.390 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:10:06.392 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:10:06.393 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:10:06.393 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:10:06.395 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:10:06.396 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:10:06.396 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:10:06.398 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:10:06.398 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:10:06.399 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:10:06.409 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:10:06.410 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:10:06.411 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:10:06.412 DEBUG 882 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:10:55.975  INFO 882 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:10:58.484  INFO 1068 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 1068 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:10:58.485  INFO 1068 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:10:58.536  INFO 1068 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:10:58.536  INFO 1068 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:10:58.566  WARN 1068 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:10:59.357  INFO 1068 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:10:59.379  INFO 1068 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$1a2fd7d4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:10:59.403  INFO 1068 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:10:59.644  INFO 1068 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:10:59.660  INFO 1068 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:10:59.661  INFO 1068 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:10:59.708  INFO 1068 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:10:59.708  INFO 1068 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1172 ms
+2019-09-22 12:10:59.811  INFO 1068 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:11:00.062  INFO 1068 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:11:00.483  INFO 1068 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:11:00.525  INFO 1068 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:11:00.527  INFO 1068 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.333 seconds (JVM running for 3.022)
+2019-09-22 12:11:03.130  INFO 1068 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 12:11:03.131  INFO 1068 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 12:11:03.137  INFO 1068 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2019-09-22 12:11:03.193 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:11:03.274 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:11:03.290 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:11:03.305 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:11:03.307 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:11:03.310 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:11:03.314 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:11:03.315 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:11:03.317 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:11:03.318 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:11:03.321 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:11:03.331 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:11:03.339 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:11:03.341 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:11:03.342 DEBUG 1068 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:11:03.627 DEBUG 1068 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:11:03.627 DEBUG 1068 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:11:03.630 DEBUG 1068 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:12:36.427  INFO 1068 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:12:38.330  INFO 1284 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 1284 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:12:38.331  INFO 1284 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:12:38.365  INFO 1284 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:12:38.366  INFO 1284 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:12:38.425  WARN 1284 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:12:39.177  INFO 1284 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:12:39.195  INFO 1284 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$e6489422] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:12:39.216  INFO 1284 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:12:39.447  INFO 1284 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:12:39.464  INFO 1284 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:12:39.464  INFO 1284 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:12:39.515  INFO 1284 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:12:39.516  INFO 1284 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1149 ms
+2019-09-22 12:12:39.622  INFO 1284 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:12:39.886  INFO 1284 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:12:40.334  INFO 1284 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:12:40.380  INFO 1284 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:12:40.383  INFO 1284 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.329 seconds (JVM running for 2.74)
+2019-09-22 12:12:41.703  INFO 1284 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 12:12:41.704  INFO 1284 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 12:12:41.710  INFO 1284 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2019-09-22 12:12:41.759 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:12:41.848 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:12:41.865 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:12:41.881 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:12:41.882 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:12:41.884 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:12:41.888 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:12:41.889 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:12:41.890 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:12:41.891 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:12:41.894 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:12:41.904 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:12:41.913 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:12:41.916 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:12:41.917 DEBUG 1284 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:12:42.214 DEBUG 1284 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:12:42.214 DEBUG 1284 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:12:42.216 DEBUG 1284 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:12:48.713 DEBUG 1284 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:12:48.713 DEBUG 1284 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:12:48.715 DEBUG 1284 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:13:02.974  INFO 1284 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:13:05.012  INFO 1511 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 1511 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:13:05.014  INFO 1511 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:13:05.062  INFO 1511 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:13:05.063  INFO 1511 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:13:05.087  WARN 1511 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:13:05.797  INFO 1511 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:13:05.816  INFO 1511 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$be3dab0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:13:05.836  INFO 1511 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:13:06.049  INFO 1511 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:13:06.065  INFO 1511 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:13:06.065  INFO 1511 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:13:06.118  INFO 1511 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:13:06.118  INFO 1511 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1055 ms
+2019-09-22 12:13:06.229  INFO 1511 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:13:06.493  INFO 1511 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:13:06.935  INFO 1511 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:13:06.976  INFO 1511 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:13:06.978  INFO 1511 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.245 seconds (JVM running for 2.685)
+2019-09-22 12:13:12.813  INFO 1511 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 12:13:12.814  INFO 1511 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 12:13:12.820  INFO 1511 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2019-09-22 12:13:12.866 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:13:12.953 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:13:12.970 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:13:12.986 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:13:12.988 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:13:12.990 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:13:12.994 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:13:12.995 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:13:12.996 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:13:12.997 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:13:13.000 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:13:13.010 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:13:13.023 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:13:13.026 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:13:13.027 DEBUG 1511 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:13:13.323 DEBUG 1511 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:13:13.324 DEBUG 1511 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:13:13.326 DEBUG 1511 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:13:27.676  INFO 1511 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:13:30.294  INFO 1684 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 1684 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:13:30.296  INFO 1684 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:13:30.352  INFO 1684 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:13:30.353  INFO 1684 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:13:30.367  WARN 1684 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:13:31.105  INFO 1684 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:13:31.124  INFO 1684 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$288dde65] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:13:31.145  INFO 1684 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:13:31.389  INFO 1684 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:13:31.406  INFO 1684 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:13:31.406  INFO 1684 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:13:31.457  INFO 1684 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:13:31.457  INFO 1684 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1104 ms
+2019-09-22 12:13:31.578  INFO 1684 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:13:31.863  INFO 1684 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:13:32.314  INFO 1684 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:13:32.358  INFO 1684 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:13:32.361  INFO 1684 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.389 seconds (JVM running for 3.224)
+2019-09-22 12:14:14.789  INFO 1684 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:14:16.823  INFO 2005 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 2005 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:14:16.824  INFO 2005 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:14:16.859  INFO 2005 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:14:16.868  INFO 2005 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:14:16.898  WARN 2005 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:14:17.625  INFO 2005 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:14:17.643  INFO 2005 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$c42481f0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:14:17.664  INFO 2005 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:14:17.872  INFO 2005 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:14:17.889  INFO 2005 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:14:17.889  INFO 2005 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:14:17.937  INFO 2005 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:14:17.937  INFO 2005 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1069 ms
+2019-09-22 12:14:18.038  INFO 2005 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:14:18.293  INFO 2005 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:14:18.753  INFO 2005 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:14:18.793  INFO 2005 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:14:18.795  INFO 2005 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.257 seconds (JVM running for 2.652)
+2019-09-22 12:14:28.793  INFO 2005 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 12:14:28.794  INFO 2005 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 12:14:28.799  INFO 2005 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-09-22 12:14:28.849 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:14:28.937 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:14:28.953 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:14:28.969 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:14:28.971 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:14:28.973 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:14:28.976 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:14:28.977 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:14:28.978 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:14:28.979 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:14:28.982 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:14:28.988 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:14:28.995 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:14:28.997 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:14:28.998 DEBUG 2005 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:14:29.302 DEBUG 2005 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:14:29.302 DEBUG 2005 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:14:29.305 DEBUG 2005 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:14:37.392 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:14:37.393 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:14:37.396 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:14:37.397 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:14:37.398 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:14:37.399 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:14:37.400 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:14:37.400 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:14:37.402 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:14:37.402 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:14:37.403 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:14:37.412 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:14:37.413 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:14:37.414 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:14:37.415 DEBUG 2005 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:14:37.457 DEBUG 2005 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:14:37.458 DEBUG 2005 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:14:37.459 DEBUG 2005 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:15:30.818  INFO 2005 --- [Thread-12] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:15:33.441  INFO 2358 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 2358 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:15:33.442  INFO 2358 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:15:33.511  INFO 2358 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:15:33.512  INFO 2358 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:15:33.545  WARN 2358 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:15:34.252  INFO 2358 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:15:34.270  INFO 2358 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$6c8b8879] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:15:34.291  INFO 2358 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:15:34.498  INFO 2358 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:15:34.513  INFO 2358 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:15:34.513  INFO 2358 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:15:34.561  INFO 2358 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:15:34.561  INFO 2358 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1049 ms
+2019-09-22 12:15:34.666  INFO 2358 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:15:34.918  INFO 2358 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:15:35.349  INFO 2358 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:15:35.387  INFO 2358 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:15:35.389  INFO 2358 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.365 seconds (JVM running for 2.971)
+2019-09-22 12:15:38.673  INFO 2358 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 12:15:38.673  INFO 2358 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 12:15:38.679  INFO 2358 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-09-22 12:15:38.729 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:15:38.817 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:15:38.833 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:15:38.849 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:15:38.851 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:15:38.853 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:15:38.857 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:15:38.857 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:15:38.859 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:15:38.860 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:15:38.864 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:15:38.873 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:15:38.880 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:15:38.882 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:15:38.883 DEBUG 2358 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:15:39.178 DEBUG 2358 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:15:39.179 DEBUG 2358 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:15:39.181 DEBUG 2358 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:16:05.532 DEBUG 2358 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:16:05.533 DEBUG 2358 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:16:05.534 DEBUG 2358 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:17:06.973  INFO 2358 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:17:09.523  INFO 2625 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 2625 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:17:09.524  INFO 2625 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:17:09.579  INFO 2625 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:17:09.580  INFO 2625 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:17:09.618  WARN 2625 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:17:10.376  INFO 2625 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:17:10.395  INFO 2625 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$6188aac0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:17:10.417  INFO 2625 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:17:10.639  INFO 2625 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:17:10.655  INFO 2625 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:17:10.656  INFO 2625 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:17:10.703  INFO 2625 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:17:10.704  INFO 2625 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1124 ms
+2019-09-22 12:17:10.810  INFO 2625 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:17:11.079  INFO 2625 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:17:11.506  INFO 2625 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:17:11.546  INFO 2625 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:17:11.548  INFO 2625 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.332 seconds (JVM running for 3.06)
+2019-09-22 12:17:13.134  INFO 2625 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 12:17:13.135  INFO 2625 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 12:17:13.140  INFO 2625 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-09-22 12:17:13.189 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:17:13.277 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:17:13.294 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:17:13.309 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:17:13.311 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:17:13.313 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:17:13.316 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:17:13.317 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:17:13.318 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:17:13.319 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:17:13.323 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:17:13.332 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:17:13.347 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:17:13.349 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:17:13.350 DEBUG 2625 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:17:13.647 DEBUG 2625 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:17:13.648 DEBUG 2625 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:17:13.649 DEBUG 2625 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:17:14.358 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:17:14.360 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:17:14.363 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:17:14.364 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:17:14.365 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:17:14.367 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:17:14.368 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:17:14.368 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:17:14.370 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:17:14.371 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:17:14.371 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:17:14.380 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:17:14.382 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:17:14.383 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:17:14.384 DEBUG 2625 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:19:43.710  INFO 2625 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:19:45.960  INFO 2939 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 2939 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:19:45.961  INFO 2939 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:19:46.014  INFO 2939 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:19:46.014  INFO 2939 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:19:46.043  WARN 2939 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:19:46.874  INFO 2939 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:19:46.898  INFO 2939 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$db2d935f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:19:46.922  INFO 2939 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:19:47.154  INFO 2939 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:19:47.176  INFO 2939 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:19:47.176  INFO 2939 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:19:47.225  INFO 2939 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:19:47.225  INFO 2939 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1211 ms
+2019-09-22 12:19:47.329  INFO 2939 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:19:47.620  INFO 2939 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:19:48.060  INFO 2939 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:19:48.120  INFO 2939 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:19:48.122  INFO 2939 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.46 seconds (JVM running for 2.911)
+2019-09-22 12:20:00.423  INFO 2939 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 12:20:00.424  INFO 2939 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 12:20:00.430  INFO 2939 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2019-09-22 12:20:00.479 DEBUG 2939 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:20:00.570 DEBUG 2939 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:20:00.587 DEBUG 2939 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:20:00.606 DEBUG 2939 --- [http-nio-8080-exec-1] c.b.b.m.QuestionMapper.countByExample    : ==>  Preparing: select count(*) from question 
+2019-09-22 12:20:00.607 DEBUG 2939 --- [http-nio-8080-exec-1] c.b.b.m.QuestionMapper.countByExample    : ==> Parameters: 
+2019-09-22 12:20:00.608 DEBUG 2939 --- [http-nio-8080-exec-1] c.b.b.m.QuestionMapper.countByExample    : <==      Total: 1
+2019-09-22 12:20:00.609 DEBUG 2939 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByExampleWithRowbounds   : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag from question order by gmt_create desc 
+2019-09-22 12:20:00.611 DEBUG 2939 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByExampleWithRowbounds   : ==> Parameters: 
+2019-09-22 12:20:00.612 DEBUG 2939 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByExampleWithRowbounds   : <==      Total: 1
+2019-09-22 12:20:00.613 DEBUG 2939 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:20:00.614 DEBUG 2939 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:20:00.615 DEBUG 2939 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:20:00.906 DEBUG 2939 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:20:00.907 DEBUG 2939 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:20:00.908 DEBUG 2939 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:20:02.115 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:20:02.116 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:20:02.117 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:20:02.120 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:20:02.121 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:20:02.122 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:20:02.123 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:20:02.123 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:20:02.124 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:20:02.125 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:20:02.128 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:20:02.134 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:20:02.141 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:20:02.141 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:20:02.142 DEBUG 2939 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:20:02.183 DEBUG 2939 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:20:02.184 DEBUG 2939 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:20:02.186 DEBUG 2939 --- [http-nio-8080-exec-4] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:20:28.076  INFO 2939 --- [Thread-13] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:20:30.699  INFO 3094 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 3094 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:20:30.700  INFO 3094 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:20:30.744  INFO 3094 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:20:30.744  INFO 3094 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:20:30.771  WARN 3094 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:20:31.514  INFO 3094 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:20:31.532  INFO 3094 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$2653c70f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:20:31.556  INFO 3094 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:20:31.787  INFO 3094 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:20:31.803  INFO 3094 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:20:31.803  INFO 3094 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:20:31.857  INFO 3094 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:20:31.857  INFO 3094 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1112 ms
+2019-09-22 12:20:32.023  INFO 3094 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:20:32.359  INFO 3094 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:20:33.017  INFO 3094 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:20:33.093  INFO 3094 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:20:33.096  INFO 3094 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 2.736 seconds (JVM running for 3.358)
+2019-09-22 12:20:35.078  INFO 3094 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 12:20:35.078  INFO 3094 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 12:20:35.083  INFO 3094 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-09-22 12:20:35.133 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:20:35.220 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:20:35.236 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:20:35.253 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:20:35.254 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:20:35.256 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:20:35.260 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:20:35.261 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:20:35.262 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:20:35.262 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:20:35.266 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:20:35.275 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:20:35.282 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:20:35.285 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:20:35.286 DEBUG 3094 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:20:35.580 DEBUG 3094 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:20:35.581 DEBUG 3094 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:20:35.583 DEBUG 3094 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:20:37.595 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:20:37.596 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:20:37.598 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:20:37.599 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:20:37.600 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:20:37.601 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:20:37.602 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:20:37.602 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:20:37.603 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:20:37.604 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:20:37.604 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:20:37.610 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:20:37.611 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:20:37.611 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:20:37.612 DEBUG 3094 --- [http-nio-8080-exec-3] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:20:55.501  INFO 3094 --- [Thread-14] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2019-09-22 12:20:57.790  INFO 3253 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Starting CommunityApplication on bestsort-PC with PID 3253 (/home/bestsort/IdeaProjects/bbslite/target/classes started by bestsort in /home/bestsort/IdeaProjects/bbslite)
+2019-09-22 12:20:57.791  INFO 3253 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : No active profile set, falling back to default profiles: default
+2019-09-22 12:20:57.837  INFO 3253 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2019-09-22 12:20:57.837  INFO 3253 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2019-09-22 12:20:57.917  WARN 3253 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2019-09-22 12:20:59.057  INFO 3253 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration' of type [com.alibaba.druid.spring.boot.autoconfigure.stat.DruidSpringAopConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:20:59.076  INFO 3253 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$eb2496ab] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-22 12:20:59.097  INFO 3253 --- [restartedMain] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-09-22 12:20:59.301  INFO 3253 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-09-22 12:20:59.328  INFO 3253 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-22 12:20:59.328  INFO 3253 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-09-22 12:20:59.397  INFO 3253 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-09-22 12:20:59.398  INFO 3253 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1561 ms
+2019-09-22 12:20:59.555  INFO 3253 --- [restartedMain] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2019-09-22 12:20:59.903  INFO 3253 --- [restartedMain] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2019-09-22 12:21:00.568  INFO 3253 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-09-22 12:21:00.613  INFO 3253 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-09-22 12:21:00.615  INFO 3253 --- [restartedMain] c.bestsort.bbslite.CommunityApplication  : Started CommunityApplication in 3.158 seconds (JVM running for 3.586)
+2019-09-22 12:21:03.475  INFO 3253 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-22 12:21:03.476  INFO 3253 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-22 12:21:03.481  INFO 3253 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-09-22 12:21:03.529 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:21:03.616 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:21:03.633 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1
+2019-09-22 12:21:03.649 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-09-22 12:21:03.650 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : ==> Parameters: 1(Long)
+2019-09-22 12:21:03.652 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.m.Q.selectByPrimaryKey             : <==      Total: 1
+2019-09-22 12:21:03.656 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-09-22 12:21:03.656 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : ==> Parameters: 1(Long)
+2019-09-22 12:21:03.658 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.m.UserMapper.selectByPrimaryKey    : <==      Total: 1
+2019-09-22 12:21:03.658 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==>  Preparing: update question set view_count = view_count + ? where id = ? 
+2019-09-22 12:21:03.662 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : ==> Parameters: 1(Integer), 1(Long)
+2019-09-22 12:21:03.671 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.mapper.QuestionExtMapper.incView   : <==    Updates: 1
+2019-09-22 12:21:03.677 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==>  Preparing: select id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content from comment WHERE ( question_id = ? ) order by gmt_create desc 
+2019-09-22 12:21:03.680 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : ==> Parameters: 1(Long)
+2019-09-22 12:21:03.681 DEBUG 3253 --- [http-nio-8080-exec-1] c.b.b.m.CommentMapper.selectByExample    : <==      Total: 0
+2019-09-22 12:21:03.970 DEBUG 3253 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-09-22 12:21:03.971 DEBUG 3253 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : ==> Parameters: ce6e2d75-630e-45be-b5fd-dbeb8f801942(String)
+2019-09-22 12:21:03.972 DEBUG 3253 --- [http-nio-8080-exec-2] c.b.b.mapper.UserMapper.selectByExample  : <==      Total: 1

@@ -90,3 +90,15 @@
     padding-top: 15px;
     border-radius: 10px;
 }
+
+.label-tag{
+    background-color: #999;
+    margin: 2px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 1px 3px;
+}
+.label-tag:hover{
+    background-color: #5bc0de;
+}
