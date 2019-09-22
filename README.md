@@ -54,6 +54,7 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - 方便上手
 
 ## 采用技术及工具
+
 - Spring Boot(快速构建应用)
     - spring-boot-starter-jdbc
     - spring-boot-starter-web
@@ -67,10 +68,12 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - Maven(包管理)
 
 ---
+### 其他
 - IntelliJ IDEA
 - MySQL Workbench
 - Git
 - Chrome
-- Lombook
+- Lombook(IDEA插件 自动处理@Data注解)
+- Postman(Chrome插件 向后端提交请求)
 ## 作者
 **bestsort**
