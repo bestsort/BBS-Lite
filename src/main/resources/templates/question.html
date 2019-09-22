@@ -19,9 +19,11 @@
                  | 发布于:<span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm:ss')}"></span>
                 </span><br>
                 <!-- 问题标签 -->
-                <span class="label label-tag" th:each="tag:${#strings.listSplit(question.tag,' ')}">
-                    <span style="margin:0 3px" th:text="${tag}"></span>
-                </span>
+                <div class="label label-tag" th:each="tag:${#strings.listSplit(question.tag,' ')}">
+                    <a th:href="${'/?search=' + tag}" target="_parent">
+                        <span th:text="${tag}" style="color: #fff;cursor: pointer;"></span>
+                    </a>
+                </div>
                 <hr class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${question.description}"><hr>
                 </div>

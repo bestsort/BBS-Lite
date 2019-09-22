@@ -102,3 +102,8 @@
 .label-tag:hover{
     background-color: #5bc0de;
 }
+
+.tag-herf{
+    margin: 3px;
+    color: #999999;
+}

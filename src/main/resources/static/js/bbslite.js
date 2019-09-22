@@ -1,5 +1,7 @@
 
 function search(e) {
+    var str = $("#tag").val();
+    alert(str);
 
 }
 /* 提交一级回复 */
@@ -7,7 +9,6 @@ function pComment(e) {
     var questionId = $("#question_id").val();
     var content = $("#comment_content").val();
     var reg = /^\s*$/;
-    debugger;
     if(content != null && !reg.test(content)){
         $.ajax({
             type:"POST",
@@ -50,8 +51,6 @@ function pComment(e) {
 
 
 function comment() {
-
-
 }
 
 
