@@ -1,14 +1,11 @@
-<h1 align="center">Welcome to BBS-Lite 👋
+<h1 align="center">Welcome to BBS-Lite </h1>
 <span align="center">
-
-<img src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000"/>
-<img src="https://codebeat.co/badges/4c86e787-ca80-4e4b-8d94-29388044a3b4"/>
-<img src="https://img.shields.io/github/last-commit/bestsort/bbs-lite"/>
-<img src="https://img.shields.io/github/license/bestsort/bbs-lite"/>
+<img src="https://img.shields.io/badge/version-1.0-blue.svg?cacheSeconds=2592000">
+<img src="https://codebeat.co/badges/4c86e787-ca80-4e4b-8d94-29388044a3b4">
+<img src="https://img.shields.io/github/last-commit/bestsort/bbs-lite">
+<img src="https://img.shields.io/github/license/bestsort/bbs-lite">
 </span>
-</h1>
-
-
+<hr>
 
 > 这是一个基于 Spring Boot 搭建的轻论坛
 
@@ -18,10 +15,10 @@
 - [x] 修改问题
 - [x] 查看我的问题
 - [x] 评论
+- [x] 文章搜索
 - [ ] 多级评论
 - [ ] 查看最新评论
-- [ ] 文章搜索
-- [ ] 标签分类http://www.zykcoderman.xyz/
+- [ ] 标签分类
 - [ ] 热门推荐
 - [ ] 文章排序
 - [ ] 个人资料
