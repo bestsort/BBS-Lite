@@ -53,7 +53,14 @@ function pComment(e) {
 function comment() {
 }
 
-
+function hideoptions(e) {
+    const id = "reply-" + e.getAttribute("data-id");
+    document.getElementById(id).style.display="none";
+}
+function showoptions(e) {
+    const id = "reply-" + e.getAttribute("data-id");
+    document.getElementById(id).style.display="inline-block";
+}
 /* 评论的展开与折叠 */
 function collapseComments(e) {
     var id = e.getAttribute("data-id");

@@ -7,9 +7,9 @@
 <body>
 <div th:insert="navgation :: nav"></div>
 
-<div class="container profile">
+<div class="container main profile">
     <div class="row">
-        <div class="col-lg-9 col-md-9 col-xs-9 col-sm-12">
+        <div class="col-lg-9 col-md-9 col-xs-9 col-sm-12" style="border-right:1px solid #eee">
             <!-- 问题正文 -->
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                 <h3><span th:text="${question.title}"></span></h3>
@@ -67,17 +67,14 @@
                     <div class="media-left">
                         <img class="media-min img-circle" th:src="${comment.user.avatarUrl}">
                     </div>
-                    <div class="media-body ">
-                        <div class="media-heading" th:text="${comment.user.name}">
-                            <div class="btn pull-right">
-                                删除
-                            </div>
-                            <div class="btn pull-right">
-                                举报
-                            </div>
-                            <div class="btn pull-right">
-                                评论
-                            </div>
+                    <div class="media-body">
+                        <div onmouseleave="hideoptions(this)" onmouseover="showoptions(this)"
+                             th:data-id="${comment.id}">
+                            <span class="media-heading" th:text="${comment.user.name}">
+                            </span>
+                            <span th:class="pull-right" th:id="${'reply-'+comment.id}">
+                                <a href="/">SSS</a>
+                            </span>
                         </div>
                         <div th:text="${comment.content}"></div>
                         <div class="comment-menu">
