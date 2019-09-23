@@ -60,7 +60,7 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - Fastjson(JSON 文本处理)
 - OkHttp3(处理网络请求)
 - Flyway(数据库版本控制)
-- Bootstrap3(前端框架)
+- Bootstrap4(前端框架)
 - Druid(数据库连接池)
 - Maven(包管理)
 

@@ -7,12 +7,31 @@ body, html {
     background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1569164248494&di=c40f1c2c95d0efb1eb9886b7bb61e570&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201502%2F25%2F20150225091006_8khtX.jpeg") repeat center;
 }
 
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #a0d9e2;
+    border-color: #dee2e6;
+}
+.media-margin{
+    margin: 20px 0;
+}
+.media-heading{
+    color: #7f7f7f;
+}
+.media-heading:hover{
+    color: #3f3f3f;
+}
+.navbar-diy{
+    margin: 5px;
+}
 .main {
     background-color: #fff;
     border-radius: 10px;
     padding-top: 20px;
     padding-left: 20px;
     overflow: hidden;
+    margin-top: 20px;
 }
 /* 发布问题按钮 */
 .btn-publish{
@@ -22,10 +41,13 @@ body, html {
 
 /* 媒体图最小大小 */
 .media-min{
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 42px;
 }
 
+.media-left-margin{
+    margin-right: 5px;
+}
 .media-body{
     margin-top: 10px;
 }
