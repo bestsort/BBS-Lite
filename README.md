@@ -63,7 +63,7 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - Bootstrap4(前端框架)
 - Druid(数据库连接池)
 - Maven(包管理)
-
+- Font Awesome(图标库)
 ---
 ### 其他
 - IntelliJ IDEA

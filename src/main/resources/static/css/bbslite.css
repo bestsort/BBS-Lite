@@ -19,6 +19,12 @@ body, html {
 .media-heading{
     color: #676767;
 }
+.search{
+    border: 1px solid #e6e2e2;
+    border-radius: 10px;
+    height: 35px;
+    font-size: 14px;
+}
 .media-heading:hover{
     color: #353535;
 }
