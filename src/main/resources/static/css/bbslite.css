@@ -55,7 +55,7 @@ body, html {
     margin-right: 12px;
 }
 .media-body{
-    margin-top: 10px;
+    margin-top: 1px;
 }
 /* 问题页面的小字(回复数,浏览数等) */
 .aw-question-content{
@@ -136,7 +136,9 @@ body, html {
     border-radius: 3px;
     font-size: 12px;
     cursor: pointer;
-    padding: 1px 3px;
+    padding: 4px;
+    text-decoration: none;
+    font-weight: 700;
 }
 .label-tag:hover{
     background-color: #5bc0de;
@@ -149,4 +151,22 @@ body, html {
 
 .hide-all{
     display: none;
+}
+/*时间位置*/
+.time-post {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+/*隐藏按钮位置*/
+.comment-post {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+/*评论位置*/
+.comment-postion {
+    position: absolute;
+    left: 20px;
+    bottom: 1px;
 }
