@@ -7,10 +7,15 @@
 <body>
 <div th:insert="navgation :: nav"></div>
 
-<div class="container-fluid main">
+<div class="container jumbotron main" style="background: #fff" th:fragment="error">
     <div class="bbs-jumbotron">
-        <h1>哦豁</h1>
-        <span th:text="${message}"></span>
+        <h1 class="display-4">你知道吗</h1>
+        <p class="lead">在山的那边海的那边有一只蓝精灵叫做404,今天被你捕捉到了!</p>
+
+        <hr class="my-4">
+
+        <p th:if="${message != null}" th:text="${message}"></p>
+        <p th:if="${message == null}">再也不要乱跑喔~</p>
         <p><a class="btn btn-primary btn-lg" href="/" role="button">点击传送到出生地</a></p>
     </div>
 </div>

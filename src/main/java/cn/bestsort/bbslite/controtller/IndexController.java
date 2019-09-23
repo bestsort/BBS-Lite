@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @ClassName IndexController
- * @Description TODO
+ * @Description 主页面控制器,可处理搜索结果
  * @Author bestsort
  * @Date 19-8-22 上午5:53
  * @Version 1.0

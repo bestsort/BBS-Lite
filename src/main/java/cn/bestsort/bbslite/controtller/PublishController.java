@@ -1,6 +1,8 @@
 package cn.bestsort.bbslite.controtller;
 
 import cn.bestsort.bbslite.dto.QuestionDTO;
+import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
+import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.QuestionMapper;
 import cn.bestsort.bbslite.model.Question;
 import cn.bestsort.bbslite.model.User;
@@ -17,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @ClassName PublishController
- * @Description TODO
+ * @Description 提问控制器,用于修改问题/发布问题
  * @Author bestsort
  * @Date 19-8-26 下午7:53
  * @Version 1.0
@@ -37,13 +39,18 @@ public class PublishController {
 
     @GetMapping("/publish/{id}")
     public String edit(@PathVariable(name = "id") Long id,
-                       Model model){
+                       Model model,
+                       HttpServletRequest request){
 
         QuestionDTO question = questionService.getById(id);
+        User user = (User)request.getSession().getAttribute("user");
+        if(!question.getCreator().equals(user.getId())){
+            throw new CustomizeException(CustomizeErrorCodeEnum.USER_ERROR);
+        }
         model.addAttribute("title",question.getTitle())
                 .addAttribute("tag",question.getTag())
                 .addAttribute("description",question.getDescription())
-                .addAttribute("id",question.getId());
+                .addAttribute("id",question.getId()) ;
         return "publish";
     }
 
@@ -53,9 +60,9 @@ public class PublishController {
             @RequestParam("description") String description,
             @RequestParam("tag") String tag,
             @RequestParam("id") Long id,
+            @RequestParam("creator")
             HttpServletRequest request,
             Model model){
-
         boolean isNull = false;
 
         if(tag == null || "".equals(tag)){
@@ -73,11 +80,9 @@ public class PublishController {
         model.addAttribute("title",title)
                  .addAttribute("tag",tag)
                  .addAttribute("description",description);
-        User user = (User)request.getSession().getAttribute("user");;
-
-
+        User user = (User)request.getSession().getAttribute("user");
         if(user == null){
-            model.addAttribute("error", "用户未登录");
+            model.addAttribute("error", CustomizeErrorCodeEnum.NO_LOGIN);
             return "publish";
         }
 

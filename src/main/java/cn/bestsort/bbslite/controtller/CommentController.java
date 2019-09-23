@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @ClassName CommentController
- * @Description TODO
+ * @Description 评论控制器,用于处理评论(以及对问题的回复)提交
  * @Author bestsort
  * @Date 19-9-13 下午3:51
  * @Version 1.0
@@ -50,7 +50,6 @@ public class CommentController {
     @ResponseBody
     @RequestMapping(value = "/comment/{id}",method = RequestMethod.POST)
     public ResultDTO comments(@PathVariable(name="id") Long id){
-
         return null;
     }
 }

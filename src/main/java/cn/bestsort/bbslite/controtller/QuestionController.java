@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * @ClassName QuestionController
- * @Description TODO
+ * @Description 问题控制器,用于查询问题列表
  * @Author bestsort
  * @Date 19-8-31 下午8:35
  * @Version 1.0
