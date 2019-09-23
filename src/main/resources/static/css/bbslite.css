@@ -17,10 +17,10 @@ body, html {
     margin: 20px 0;
 }
 .media-heading{
-    color: #7f7f7f;
+    color: #676767;
 }
 .media-heading:hover{
-    color: #3f3f3f;
+    color: #353535;
 }
 .navbar-diy{
     margin: 5px;
@@ -41,12 +41,12 @@ body, html {
 
 /* 媒体图最小大小 */
 .media-min{
-    width: 42px;
-    height: 42px;
+    width: 45px;
+    height: 45px;
 }
 
 .media-left-margin{
-    margin-right: 5px;
+    margin-right: 12px;
 }
 .media-body{
     margin-top: 10px;
@@ -55,7 +55,7 @@ body, html {
 .aw-question-content{
     font-size: 12px;
     font-weight: normal;
-    color: #999;
+    color: #7b7b7b;
 }
 
 /* 个人中心右栏 */
