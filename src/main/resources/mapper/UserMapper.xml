@@ -4,14 +4,14 @@
   <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.model.User">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="account_id" jdbcType="VARCHAR" property="accountId" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="token" jdbcType="VARCHAR" property="token" />
-    <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
-    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     <result column="bio" jdbcType="VARCHAR" property="bio" />
     <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     <result column="html_url" jdbcType="VARCHAR" property="htmlUrl" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, account_id, password, email, name, token, gmt_create, gmt_modified, bio, avatar_url, 
+    id, account_id, email, name, token, bio, avatar_url, password, gmt_create, gmt_modified, 
     html_url
   </sql>
   <select id="selectByExample" parameterType="cn.bestsort.bbslite.model.UserExample" resultMap="BaseResultMap">
@@ -107,14 +107,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.bestsort.bbslite.model.User">
-    insert into user (id, account_id, password, 
-      email, name, token, 
-      gmt_create, gmt_modified, bio, 
-      avatar_url, html_url)
-    values (#{id,jdbcType=BIGINT}, #{accountId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
-      #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, #{bio,jdbcType=VARCHAR}, 
-      #{avatarUrl,jdbcType=VARCHAR}, #{htmlUrl,jdbcType=VARCHAR})
+    insert into user (id, account_id, email, 
+      name, token, bio, avatar_url, 
+      password, gmt_create, gmt_modified, 
+      html_url)
+    values (#{id,jdbcType=BIGINT}, #{accountId,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{bio,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
+      #{htmlUrl,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.model.User">
     insert into user
@@ -125,9 +125,6 @@
       <if test="accountId != null">
         account_id,
       </if>
-      <if test="password != null">
-        password,
-      </if>
       <if test="email != null">
         email,
       </if>
@@ -137,17 +134,20 @@
       <if test="token != null">
         token,
       </if>
-      <if test="gmtCreate != null">
-        gmt_create,
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified,
-      </if>
       <if test="bio != null">
         bio,
       </if>
       <if test="avatarUrl != null">
         avatar_url,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
       </if>
       <if test="htmlUrl != null">
         html_url,
@@ -160,9 +160,6 @@
       <if test="accountId != null">
         #{accountId,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
@@ -172,17 +169,20 @@
       <if test="token != null">
         #{token,jdbcType=VARCHAR},
       </if>
-      <if test="gmtCreate != null">
-        #{gmtCreate,jdbcType=BIGINT},
-      </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=BIGINT},
-      </if>
       <if test="bio != null">
         #{bio,jdbcType=VARCHAR},
       </if>
       <if test="avatarUrl != null">
         #{avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=BIGINT},
       </if>
       <if test="htmlUrl != null">
         #{htmlUrl,jdbcType=VARCHAR},
@@ -204,9 +204,6 @@
       <if test="record.accountId != null">
         account_id = #{record.accountId,jdbcType=VARCHAR},
       </if>
-      <if test="record.password != null">
-        password = #{record.password,jdbcType=VARCHAR},
-      </if>
       <if test="record.email != null">
         email = #{record.email,jdbcType=VARCHAR},
       </if>
@@ -216,17 +213,20 @@
       <if test="record.token != null">
         token = #{record.token,jdbcType=VARCHAR},
       </if>
-      <if test="record.gmtCreate != null">
-        gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
-      </if>
-      <if test="record.gmtModified != null">
-        gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
-      </if>
       <if test="record.bio != null">
         bio = #{record.bio,jdbcType=VARCHAR},
       </if>
       <if test="record.avatarUrl != null">
         avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreate != null">
+        gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="record.gmtModified != null">
+        gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       </if>
       <if test="record.htmlUrl != null">
         html_url = #{record.htmlUrl,jdbcType=VARCHAR},
@@ -240,14 +240,14 @@
     update user
     set id = #{record.id,jdbcType=BIGINT},
       account_id = #{record.accountId,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       token = #{record.token,jdbcType=VARCHAR},
-      gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       bio = #{record.bio,jdbcType=VARCHAR},
       avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
+      gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       html_url = #{record.htmlUrl,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -259,9 +259,6 @@
       <if test="accountId != null">
         account_id = #{accountId,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
@@ -271,17 +268,20 @@
       <if test="token != null">
         token = #{token,jdbcType=VARCHAR},
       </if>
-      <if test="gmtCreate != null">
-        gmt_create = #{gmtCreate,jdbcType=BIGINT},
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=BIGINT},
-      </if>
       <if test="bio != null">
         bio = #{bio,jdbcType=VARCHAR},
       </if>
       <if test="avatarUrl != null">
         avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=BIGINT},
       </if>
       <if test="htmlUrl != null">
         html_url = #{htmlUrl,jdbcType=VARCHAR},
@@ -292,14 +292,14 @@
   <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.model.User">
     update user
     set account_id = #{accountId,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       token = #{token,jdbcType=VARCHAR},
-      gmt_create = #{gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{gmtModified,jdbcType=BIGINT},
       bio = #{bio,jdbcType=VARCHAR},
       avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      gmt_modified = #{gmtModified,jdbcType=BIGINT},
       html_url = #{htmlUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>

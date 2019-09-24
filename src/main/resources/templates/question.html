@@ -130,13 +130,15 @@
                     <!-- TODO 跳转到个人主页 -->
                     <a href="/" style="color: #155faa" th:text="${question.user.name}"></a>
                     <br>
-                    网址:
-                    <a th:href="${question.user.htmlUrl}"
-                       style="color: #155faa" target="_blank"
-                       th:text="${question.user.htmlUrl}"></a>
+
+                    <a th:if="${question.user.htmlUrl!=null}" target="_blank" th:href="${question.user.htmlUrl}" style="color: #155faa" >
+                        网址:<span>th:text="${question.user.htmlUrl}"></span>
+                    </a>
                     <br>
-                    简介:
-                    <span style="color: #155faa" th:text="${question.user.bio}"></span>
+                    <span th:if="${question.user.bio != null}">
+                    简介:<span style="color: #155faa" th:text="${question.user.bio}"></span>
+                    </span>
+
                 </small>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

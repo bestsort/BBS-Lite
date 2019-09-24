@@ -3,7 +3,7 @@ package cn.bestsort.bbslite.enums;
 import cn.bestsort.bbslite.exception.CustomizeErrorCodeInterface;
 
 public enum CustomizeErrorCodeEnum  implements CustomizeErrorCodeInterface {
-
+    USER_EXITED(8,"该账户已存在"),
     USER_ERROR(7,"你请求姿势有问题,换一个试试?"),
     COMMENT_NOT_FOUND(6,"你操作的评论不存在了,换一个试试?"),
     TYPE_PARAM_WRONG(5,"评论类型错误或不存在"),

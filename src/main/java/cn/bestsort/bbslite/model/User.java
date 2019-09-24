@@ -5,21 +5,21 @@ public class User {
 
     private String accountId;
 
-    private String password;
-
     private String email;
 
     private String name;
 
     private String token;
 
-    private Long gmtCreate;
-
-    private Long gmtModified;
-
     private String bio;
 
     private String avatarUrl;
+
+    private String password;
+
+    private Long gmtCreate;
+
+    private Long gmtModified;
 
     private String htmlUrl;
 
@@ -37,14 +37,6 @@ public class User {
 
     public void setAccountId(String accountId) {
         this.accountId = accountId == null ? null : accountId.trim();
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
     }
 
     public String getEmail() {
@@ -71,22 +63,6 @@ public class User {
         this.token = token == null ? null : token.trim();
     }
 
-    public Long getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(Long gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public Long getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(Long gmtModified) {
-        this.gmtModified = gmtModified;
-    }
-
     public String getBio() {
         return bio;
     }
@@ -101,6 +77,30 @@ public class User {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl == null ? null : avatarUrl.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public Long getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Long gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public Long getGmtModified() {
+        return gmtModified;
+    }
+
+    public void setGmtModified(Long gmtModified) {
+        this.gmtModified = gmtModified;
     }
 
     public String getHtmlUrl() {
