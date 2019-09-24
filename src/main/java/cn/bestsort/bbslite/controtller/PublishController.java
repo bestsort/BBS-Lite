@@ -60,7 +60,6 @@ public class PublishController {
             @RequestParam("description") String description,
             @RequestParam("tag") String tag,
             @RequestParam("id") Long id,
-            @RequestParam("creator")
             HttpServletRequest request,
             Model model){
         boolean isNull = false;
@@ -86,13 +85,15 @@ public class PublishController {
             return "publish";
         }
 
-        Question question = new Question();
-        question.setTitle(title);
-        question.setTag(tag);
-        question.setDescription(description);
-        question.setCreator(user.getId());
-        question.setId(id);
-        questionService.createOrUpdate(question);
+        if(!isNull) {
+            Question question = new Question();
+            question.setTitle(title);
+            question.setTag(tag);
+            question.setDescription(description);
+            question.setCreator(user.getId());
+            question.setId(id);
+            questionService.createOrUpdate(question);
+        }
         return "redirect:/";
     }
 }
