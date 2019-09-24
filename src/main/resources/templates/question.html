@@ -14,9 +14,9 @@
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                 <h3><span th:text="${question.title}"></span></h3>
                 <span class="aw-question-content">
-                作者:<span th:text="${question.user.name}"></span>
-                 | 浏览数:<span th:text="${question.viewCount}"></span>
-                 | 发布于:<span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm:ss')}"></span>
+                    <span th:text="${question.viewCount}"></span>次浏览 •
+                    <span th:text="${question.commentCount}"></span>条评论 •
+                   发布于:<span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm:ss')}"></span>
                 </span><br>
                 <!-- 问题标签 -->
                 <span class="label label-tag" th:each="tag:${#strings.listSplit(question.tag,' ')}">
@@ -130,10 +130,11 @@
                     <!-- TODO 跳转到个人主页 -->
                     <a href="/" style="color: #155faa" th:text="${question.user.name}"></a>
                     <br>
-
-                    <a th:if="${question.user.htmlUrl!=null}" target="_blank" th:href="${question.user.htmlUrl}" style="color: #155faa" >
-                        网址:<span>th:text="${question.user.htmlUrl}"></span>
-                    </a>
+                    <span>
+                        网址:<a th:if="${question.user.htmlUrl!=null}" target="_blank"
+                              th:href="${question.user.htmlUrl}" style="color: #155faa"
+                              th:text="${question.user.htmlUrl}"></a>
+                    </span>
                     <br>
                     <span th:if="${question.user.bio != null}">
                     简介:<span style="color: #155faa" th:text="${question.user.bio}"></span>
