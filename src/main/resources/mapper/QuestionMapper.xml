@@ -11,6 +11,9 @@
     <result column="view_count" jdbcType="INTEGER" property="viewCount" />
     <result column="like_count" jdbcType="INTEGER" property="likeCount" />
     <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="top" jdbcType="TINYINT" property="top" />
+    <result column="topic" jdbcType="VARCHAR" property="topic" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.bestsort.bbslite.model.Question">
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
@@ -75,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, 
-    tag
+    tag, top, topic, category
   </sql>
   <sql id="Blob_Column_List">
     description
@@ -132,10 +135,12 @@
     insert into question (id, title, gmt_create, 
       gmt_modified, creator, comment_count, 
       view_count, like_count, tag, 
+      top, topic, category, 
       description)
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=BIGINT}, 
       #{gmtModified,jdbcType=BIGINT}, #{creator,jdbcType=BIGINT}, #{commentCount,jdbcType=INTEGER}, 
       #{viewCount,jdbcType=INTEGER}, #{likeCount,jdbcType=INTEGER}, #{tag,jdbcType=VARCHAR}, 
+      #{top,jdbcType=TINYINT}, #{topic,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
       #{description,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.model.Question">
@@ -168,6 +173,15 @@
       <if test="tag != null">
         tag,
       </if>
+      <if test="top != null">
+        top,
+      </if>
+      <if test="topic != null">
+        topic,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
       <if test="description != null">
         description,
       </if>
@@ -199,6 +213,15 @@
       </if>
       <if test="tag != null">
         #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="top != null">
+        #{top,jdbcType=TINYINT},
+      </if>
+      <if test="topic != null">
+        #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
       </if>
       <if test="description != null">
         #{description,jdbcType=LONGVARCHAR},
@@ -241,6 +264,15 @@
       <if test="record.tag != null">
         tag = #{record.tag,jdbcType=VARCHAR},
       </if>
+      <if test="record.top != null">
+        top = #{record.top,jdbcType=TINYINT},
+      </if>
+      <if test="record.topic != null">
+        topic = #{record.topic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category != null">
+        category = #{record.category,jdbcType=VARCHAR},
+      </if>
       <if test="record.description != null">
         description = #{record.description,jdbcType=LONGVARCHAR},
       </if>
@@ -260,6 +292,9 @@
       view_count = #{record.viewCount,jdbcType=INTEGER},
       like_count = #{record.likeCount,jdbcType=INTEGER},
       tag = #{record.tag,jdbcType=VARCHAR},
+      top = #{record.top,jdbcType=TINYINT},
+      topic = #{record.topic,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -275,7 +310,10 @@
       comment_count = #{record.commentCount,jdbcType=INTEGER},
       view_count = #{record.viewCount,jdbcType=INTEGER},
       like_count = #{record.likeCount,jdbcType=INTEGER},
-      tag = #{record.tag,jdbcType=VARCHAR}
+      tag = #{record.tag,jdbcType=VARCHAR},
+      top = #{record.top,jdbcType=TINYINT},
+      topic = #{record.topic,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -307,6 +345,15 @@
       <if test="tag != null">
         tag = #{tag,jdbcType=VARCHAR},
       </if>
+      <if test="top != null">
+        top = #{top,jdbcType=TINYINT},
+      </if>
+      <if test="topic != null">
+        topic = #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
       <if test="description != null">
         description = #{description,jdbcType=LONGVARCHAR},
       </if>
@@ -323,6 +370,9 @@
       view_count = #{viewCount,jdbcType=INTEGER},
       like_count = #{likeCount,jdbcType=INTEGER},
       tag = #{tag,jdbcType=VARCHAR},
+      top = #{top,jdbcType=TINYINT},
+      topic = #{topic,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR},
       description = #{description,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -335,7 +385,10 @@
       comment_count = #{commentCount,jdbcType=INTEGER},
       view_count = #{viewCount,jdbcType=INTEGER},
       like_count = #{likeCount,jdbcType=INTEGER},
-      tag = #{tag,jdbcType=VARCHAR}
+      tag = #{tag,jdbcType=VARCHAR},
+      top = #{top,jdbcType=TINYINT},
+      topic = #{topic,jdbcType=VARCHAR},
+      category = #{category,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByExampleWithBLOBsWithRowbounds" parameterType="cn.bestsort.bbslite.model.QuestionExample" resultMap="ResultMapWithBLOBs">

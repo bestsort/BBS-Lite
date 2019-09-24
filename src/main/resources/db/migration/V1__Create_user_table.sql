@@ -6,7 +6,7 @@ create table user
     name varchar(14) default 'none',
     token varchar(36) default '',
     bio varchar(256),
-    avatar_url varchar(100) default 'https://alicdn.bestsort.cn/default.jpeg',
+    avatar_url varchar(100) default 'https://alicdn.bestsort.cn/icon/default.jpeg',
     password varchar(20) default null,
     gmt_create bigint,
     gmt_modified bigint,

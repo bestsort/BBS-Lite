@@ -9,5 +9,8 @@ create table question
     comment_count int default 0,
     view_count int default 0,
     like_count int default 0,
-    tag varchar(256)
+    tag varchar(256),
+    top tinyint default 0,
+    topic varchar(10),
+    category varchar(10)
 );

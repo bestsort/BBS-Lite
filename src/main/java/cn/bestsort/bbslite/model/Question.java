@@ -19,6 +19,12 @@ public class Question {
 
     private String tag;
 
+    private Byte top;
+
+    private String topic;
+
+    private String category;
+
     private String description;
 
     public Long getId() {
@@ -91,6 +97,30 @@ public class Question {
 
     public void setTag(String tag) {
         this.tag = tag == null ? null : tag.trim();
+    }
+
+    public Byte getTop() {
+        return top;
+    }
+
+    public void setTop(Byte top) {
+        this.top = top;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic == null ? null : topic.trim();
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category == null ? null : category.trim();
     }
 
     public String getDescription() {
