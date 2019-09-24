@@ -130,9 +130,9 @@
                     <!-- TODO 跳转到个人主页 -->
                     <a href="/" style="color: #155faa" th:text="${question.user.name}"></a>
                     <br>
-                    <span>
-                        网址:<a th:if="${question.user.htmlUrl!=null}" target="_blank"
-                              th:href="${question.user.htmlUrl}" style="color: #155faa"
+                    <span th:if="${question.user.htmlUrl != null}">
+                        网址:<a target="_blank" th:href="${question.user.htmlUrl}"
+                              style="color: #155faa"
                               th:text="${question.user.htmlUrl}"></a>
                     </span>
                     <br>
