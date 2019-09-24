@@ -133,7 +133,7 @@ body, html {
 .label-tag{
     background-color: #999;
     margin: 2px;
-    border-radius: 3px;
+    border-radius: 10px;
     font-size: 12px;
     cursor: pointer;
     padding: 4px;

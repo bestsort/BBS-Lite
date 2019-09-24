@@ -1,7 +1,8 @@
 create table user
 (
     id bigint auto_increment primary key not null,
-    account_id varchar(20) default null,
+    account_id varchar(20),
+    email varchar(30),
     name varchar(50) default 'none',
     token varchar(36) default '',
     bio varchar(256),
@@ -9,5 +10,5 @@ create table user
     password varchar(40) default null,
     gmt_create bigint,
     gmt_modified bigint,
-    email varchar(40)
-)  default charset = utf8;
+    html_url varchar(100)
+);

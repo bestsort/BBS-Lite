@@ -20,7 +20,6 @@
                 </span><br>
                 <!-- 问题标签 -->
                 <span class="label label-tag" th:each="tag:${#strings.listSplit(question.tag,' ')}">
-
                     <a th:href="${'/?search=' + tag}" target="_parent" style="color: #fff;cursor: pointer;text-decoration: none;">
                         <i class="fas fa-tags"></i>
                         <span th:text="${tag}" ></span>
@@ -112,21 +111,33 @@
                 </div>
             </div>
         </div>
+
+        <!-- 右侧栏 -->
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h4>发起人</h4>
-                <div class="media">
-                    <div class="media-left">
-                        <a href="/">
-                            <img class="media-min img-circle" th:src="${question.user.avatarUrl}">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4>
-                            <a href="/" class="media-heading" th:text="${question.user.name}"></a>
-                        </h4>
-                    </div>
+                <small style="color: #333">发起人</small>
+                <hr>
+                <div class="media media-left" style="width: 120%">
+                    <a href="/">
+                        <img class="media-min img-circle" th:src="${question.user.avatarUrl}">
+                    </a>
+                    <button type="button" class="btn btn-outline-success btn-sm"
+                            style="margin-top: 4%;margin-left: 45%;">关注</button>
                 </div>
+                <hr>
+                <small style="font-size: 12px;color: #1f1f1f;">
+                    昵称:
+                    <!-- TODO 跳转到个人主页 -->
+                    <a href="/" style="color: #155faa" th:text="${question.user.name}"></a>
+                    <br>
+                    网址:
+                    <a th:href="${question.user.htmlUrl}"
+                       style="color: #155faa" target="_blank"
+                       th:text="${question.user.htmlUrl}"></a>
+                    <br>
+                    简介:
+                    <span style="color: #155faa" th:text="${question.user.bio}"></span>
+                </small>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <hr class="col-lg-11 col-md-11 col-sm-11 col-xs-11">

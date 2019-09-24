@@ -3,13 +3,16 @@
 <mapper namespace="cn.bestsort.bbslite.mapper.UserMapper">
   <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.model.User">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="account_id" jdbcType="BIGINT" property="accountId" />
+    <result column="account_id" jdbcType="VARCHAR" property="accountId" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="token" jdbcType="VARCHAR" property="token" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     <result column="bio" jdbcType="VARCHAR" property="bio" />
     <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+    <result column="html_url" jdbcType="VARCHAR" property="htmlUrl" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url
+    id, account_id, password, email, name, token, gmt_create, gmt_modified, bio, avatar_url, 
+    html_url
   </sql>
   <select id="selectByExample" parameterType="cn.bestsort.bbslite.model.UserExample" resultMap="BaseResultMap">
     select
@@ -103,12 +107,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.bestsort.bbslite.model.User">
-    insert into user (id, account_id, name, 
-      token, gmt_create, gmt_modified, 
-      bio, avatar_url)
-    values (#{id,jdbcType=BIGINT}, #{accountId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
-      #{token,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
-      #{bio,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR})
+    insert into user (id, account_id, password, 
+      email, name, token, 
+      gmt_create, gmt_modified, bio, 
+      avatar_url, html_url)
+    values (#{id,jdbcType=BIGINT}, #{accountId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, #{bio,jdbcType=VARCHAR}, 
+      #{avatarUrl,jdbcType=VARCHAR}, #{htmlUrl,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.model.User">
     insert into user
@@ -118,6 +124,12 @@
       </if>
       <if test="accountId != null">
         account_id,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="email != null">
+        email,
       </if>
       <if test="name != null">
         name,
@@ -137,13 +149,22 @@
       <if test="avatarUrl != null">
         avatar_url,
       </if>
+      <if test="htmlUrl != null">
+        html_url,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
       <if test="accountId != null">
-        #{accountId,jdbcType=BIGINT},
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -163,6 +184,9 @@
       <if test="avatarUrl != null">
         #{avatarUrl,jdbcType=VARCHAR},
       </if>
+      <if test="htmlUrl != null">
+        #{htmlUrl,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="cn.bestsort.bbslite.model.UserExample" resultType="java.lang.Long">
@@ -178,7 +202,13 @@
         id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.accountId != null">
-        account_id = #{record.accountId,jdbcType=BIGINT},
+        account_id = #{record.accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -198,6 +228,9 @@
       <if test="record.avatarUrl != null">
         avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
       </if>
+      <if test="record.htmlUrl != null">
+        html_url = #{record.htmlUrl,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -206,13 +239,16 @@
   <update id="updateByExample" parameterType="map">
     update user
     set id = #{record.id,jdbcType=BIGINT},
-      account_id = #{record.accountId,jdbcType=BIGINT},
+      account_id = #{record.accountId,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       token = #{record.token,jdbcType=VARCHAR},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       bio = #{record.bio,jdbcType=VARCHAR},
-      avatar_url = #{record.avatarUrl,jdbcType=VARCHAR}
+      avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
+      html_url = #{record.htmlUrl,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -221,7 +257,13 @@
     update user
     <set>
       <if test="accountId != null">
-        account_id = #{accountId,jdbcType=BIGINT},
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
@@ -241,18 +283,24 @@
       <if test="avatarUrl != null">
         avatar_url = #{avatarUrl,jdbcType=VARCHAR},
       </if>
+      <if test="htmlUrl != null">
+        html_url = #{htmlUrl,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.model.User">
     update user
-    set account_id = #{accountId,jdbcType=BIGINT},
+    set account_id = #{accountId,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       token = #{token,jdbcType=VARCHAR},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{gmtModified,jdbcType=BIGINT},
       bio = #{bio,jdbcType=VARCHAR},
-      avatar_url = #{avatarUrl,jdbcType=VARCHAR}
+      avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      html_url = #{htmlUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.model.UserExample" resultMap="BaseResultMap">
