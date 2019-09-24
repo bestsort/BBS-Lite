@@ -6,6 +6,7 @@ import cn.bestsort.bbslite.mapper.UserMapper;
 import cn.bestsort.bbslite.model.User;
 import cn.bestsort.bbslite.provider.GithubProvider;
 import cn.bestsort.bbslite.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -60,11 +61,13 @@ public class AuthorizeController {
         if(githubUser != null && githubUser.getId() != null){
             User user = new User();
             String token = UUID.randomUUID().toString();
+            BeanUtils.copyProperties(githubUser,user);
             user.setToken(token);
             user.setName(githubUser.getLogin());
             user.setAccountId(githubUser.getId());
-            user.setAvatarUrl(githubUser.getAvatarUrl());
+
             userService.createOrUpdate(user);
+
             request.getSession().setAttribute("user",user);
             response.addCookie(new Cookie("token",token));
             return "redirect:/";

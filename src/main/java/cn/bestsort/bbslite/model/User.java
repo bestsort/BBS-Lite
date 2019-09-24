@@ -3,7 +3,11 @@ package cn.bestsort.bbslite.model;
 public class User {
     private Long id;
 
-    private Long accountId;
+    private String accountId;
+
+    private String password;
+
+    private String email;
 
     private String name;
 
@@ -17,6 +21,8 @@ public class User {
 
     private String avatarUrl;
 
+    private String htmlUrl;
+
     public Long getId() {
         return id;
     }
@@ -25,12 +31,28 @@ public class User {
         this.id = id;
     }
 
-    public Long getAccountId() {
+    public String getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId == null ? null : accountId.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 
     public String getName() {
@@ -79,5 +101,13 @@ public class User {
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl == null ? null : avatarUrl.trim();
+    }
+
+    public String getHtmlUrl() {
+        return htmlUrl;
+    }
+
+    public void setHtmlUrl(String htmlUrl) {
+        this.htmlUrl = htmlUrl == null ? null : htmlUrl.trim();
     }
 }

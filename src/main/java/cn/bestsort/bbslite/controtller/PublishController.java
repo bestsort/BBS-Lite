@@ -60,7 +60,6 @@ public class PublishController {
             @RequestParam("description") String description,
             @RequestParam("tag") String tag,
             @RequestParam("id") Long id,
-            @RequestParam("creator")
             HttpServletRequest request,
             Model model){
         boolean isNull = false;
