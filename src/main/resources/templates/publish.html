@@ -36,7 +36,13 @@
                     <input name="tag" type="text" class="form-control" placeholder="输入标签,以逗号分割"
                            th:value="${tag}" id="tag" >
                 </div>
-                <button type="submit" class="btn btn-success btn-publish" value="发布">发布</button>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6" style="float: left;padding-left: 0">
+                <select type="text" class="form-control" id="topic" name="topic">
+                    <option value="0" selected="">加入话题</option>
+                    <option th:each="info : ${topic_info}" th:value="${info.name}" th:text="${info.name}"></option>
+                </select>
+                </div>
+                    <button type="submit" class="btn btn-success btn-publish" value="发布">发布</button>
             </form>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">

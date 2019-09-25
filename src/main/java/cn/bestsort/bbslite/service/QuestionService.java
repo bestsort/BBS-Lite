@@ -4,11 +4,10 @@ import cn.bestsort.bbslite.dto.PagInationDTO;
 import cn.bestsort.bbslite.dto.QuestionDTO;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
-import cn.bestsort.bbslite.mapper.QuestionExtMapper;
-import cn.bestsort.bbslite.mapper.QuestionMapper;
-import cn.bestsort.bbslite.mapper.UserMapper;
+import cn.bestsort.bbslite.mapper.*;
 import cn.bestsort.bbslite.model.Question;
 import cn.bestsort.bbslite.model.QuestionExample;
+import cn.bestsort.bbslite.model.Topic;
 import cn.bestsort.bbslite.model.User;
 import org.apache.ibatis.session.RowBounds;
 import org.jetbrains.annotations.NotNull;
@@ -35,6 +34,8 @@ public class QuestionService {
     private UserMapper userMapper;
     @Autowired
     private QuestionExtMapper questionExtMapper;
+    @Autowired
+    TopicExtMapper topicExtMapper;
     private Integer totalCount;
 
     public PagInationDTO list(String search,Integer page, Integer size){
@@ -51,6 +52,16 @@ public class QuestionService {
         }
         return result;
     }
+
+    public PagInationDTO list(Integer page, Integer size,String topic){
+        QuestionExample questionExample = new QuestionExample();
+        questionExample.createCriteria()
+                .andTopicEqualTo(topic);
+        totalCount = (int)questionMapper.countByExample(new QuestionExample());
+        return getPagInation(questionExample,page,size);
+    }
+
+
     public PagInationDTO list(Long userId , Integer page, Integer size) {
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria()
@@ -84,6 +95,9 @@ public class QuestionService {
             if(updated != 1) {
                 throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
             }
+            Topic topic = new Topic();
+            topic.setName(question.getTopic());
+            topicExtMapper.incQuestion(topic);
         }
     }
 

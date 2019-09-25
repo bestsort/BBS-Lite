@@ -17,6 +17,8 @@ public class QuestionDTO {
     private String title;
     private String description;
     private String tag;
+    private String topic;
+    private String category;
     private Long gmtCreate;
     private Long gmtModified;
     private Long creator;

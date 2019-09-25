@@ -1,6 +1,6 @@
 create table topic(
     id bigint primary key auto_increment,
-    name varchar(10),
+    name varchar(10) unique ,
     avatar_url varchar(50),
     question_count bigint default 0,
     follow bigint default 0

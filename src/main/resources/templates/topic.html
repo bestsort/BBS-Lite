@@ -10,6 +10,7 @@
 <div th:insert="navgation :: nav"></div>
 
 <div class="container features-boxed main">
+    <div th:if="${topic == null}">
     <div>
         <div>
             <h2 style="margin-left: 20px;padding-top: 10px">
@@ -20,7 +21,7 @@
     </div>
         <div class="row">
                 <div class="item topic-width" th:each="topic : ${topics}">
-                    <a th:href="${'/topic/' + topic.name}">
+                    <a th:href="${'/topic/' + topic.id}">
                         <div class="box">
                             <div style="padding-top: 10%">
                                 <img th:src="${topic.avatarUrl}" class=" media-topic">
@@ -34,6 +35,18 @@
                         </div>
                     </a>
             </div>
+    </div>
+    </div>
+    <div th:if="${topic != null}" class="col-lg-9 col-md-9 col-xs-9 col-sm-12" style="border-right:1px solid #eee">
+        <span>
+            <div style="margin-top: 3%;margin-bottom: 4%">
+                <img th:src="${topic.avatarUrl}" class="media-mid media-circle">
+                <span class="topic-head" th:text="${topic.name}"> </span>
+                <button class="btn btn-success" style="float: right;margin-top: 2%" th:text="${'关注 | ' + topic.follow}"></button>
+            </div>
+        </span>
+            <hr>
+        <div th:insert="~{questionlist :: question}"></div>
     </div>
 </div>
 <div th:insert="~{footer :: foot}"></div>

@@ -4,7 +4,10 @@ import cn.bestsort.bbslite.dto.QuestionDTO;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.QuestionMapper;
+import cn.bestsort.bbslite.mapper.TopicMapper;
 import cn.bestsort.bbslite.model.Question;
+import cn.bestsort.bbslite.model.Topic;
+import cn.bestsort.bbslite.model.TopicExample;
 import cn.bestsort.bbslite.model.User;
 import cn.bestsort.bbslite.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @ClassName PublishController
@@ -29,11 +33,13 @@ import javax.servlet.http.HttpServletRequest;
 public class PublishController {
     @Autowired
     private QuestionMapper questionMapper;
-
+    @Autowired
+    private TopicMapper topicMapper;
     @Autowired
     private QuestionService questionService;
     @GetMapping("/publish")
-    public String publish(){
+    public String publish(Model model){
+        topicAttribute(model);
         return "publish";
     }
 
@@ -47,6 +53,8 @@ public class PublishController {
         if(!question.getCreator().equals(user.getId())){
             throw new CustomizeException(CustomizeErrorCodeEnum.USER_ERROR);
         }
+
+        topicAttribute(model);
         model.addAttribute("title",question.getTitle())
                 .addAttribute("tag",question.getTag())
                 .addAttribute("description",question.getDescription())
@@ -60,10 +68,10 @@ public class PublishController {
             @RequestParam("description") String description,
             @RequestParam("tag") String tag,
             @RequestParam("id") Long id,
+            @RequestParam("topic") String topic,
             HttpServletRequest request,
             Model model){
         boolean isNull = false;
-
         if(tag == null || "".equals(tag)){
             model.addAttribute("error","标签不能为空");
             isNull = true;
@@ -86,14 +94,22 @@ public class PublishController {
         }
 
         if(!isNull) {
+            String defaltTopic = "加入话题";
             Question question = new Question();
             question.setTitle(title);
             question.setTag(tag);
             question.setDescription(description);
             question.setCreator(user.getId());
             question.setId(id);
+            if (!defaltTopic.equals(topic)){
+                question.setTopic(topic);
+            }
             questionService.createOrUpdate(question);
         }
         return "redirect:/";
+    }
+    private void topicAttribute(Model model){
+        List<Topic> topics = topicMapper.selectByExample(new TopicExample());
+        model.addAttribute("topic_info",topics);
     }
 }

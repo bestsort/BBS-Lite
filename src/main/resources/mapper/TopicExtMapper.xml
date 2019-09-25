@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bestsort.bbslite.mapper.TopicExtMapper">
+    <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.model.Topic">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+        <result column="question_count" jdbcType="BIGINT" property="questionCount" />
+        <result column="follow" jdbcType="BIGINT" property="follow" />
+    </resultMap>
+
+    <update id="incQuestion" parameterType="cn.bestsort.bbslite.model.Topic">
+        update topic
+        set
+            question_count = question_count + 1
+        where name = #{name}
+    </update>
+
+    <update id="incFollow" parameterType="cn.bestsort.bbslite.model.Topic">
+        update topic
+        set
+            follow = follow + 1
+        where name = #{name}
+    </update>
+</mapper>

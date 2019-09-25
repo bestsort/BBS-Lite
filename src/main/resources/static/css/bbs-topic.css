@@ -51,15 +51,24 @@
     height: 10vw;
     border: 1px solid #f1f1f1;
 
+
 }
 
 @keyframes item-box {  /*定义关键帧、scaleDrew是需要绑定到选择器的关键帧名称*/
     0%{
         transform: scale(1);  /*开始为原始大小*/
     }
-
+    35%{
+        transform: scale(1.2, 0.8);  /*开始为原始大小*/
+    }
     50%{
-        transform: scale(1.1);
+        transform: scale(0.8, 1.2);
+    }
+    70%{
+        transform: scale(1.1 , 0.9);
+    }
+    85%{
+        transform: scale(0.9,1.1);
     }
     100%{
         transform: scale(1);
@@ -72,7 +81,7 @@
     -webkit-animation-name: item-box; /*关键帧名称*/
     -webkit-animation-timing-function: ease-in-out; /*动画的速度曲线*/
     -webkit-animation-iteration-count: 1;  /*动画播放的次数*/
-    -webkit-animation-duration: 0.5s; /*动画所花费的时间*/
+    -webkit-animation-duration: 0.8s; /*动画所花费的时间*/
 
 }
 

@@ -51,6 +51,18 @@ body, html {
     height: 45px;
 }
 
+/* 中等大小*/
+.media-mid{
+    width: 70px;
+    height: 70px;
+}
+
+.topic-head{
+    font-size: 26px;
+    margin-left: 3%;
+    font-weight: bold;
+}
+
 .media-left-margin{
     margin-right: 12px;
 }
