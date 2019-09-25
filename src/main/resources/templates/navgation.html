@@ -9,11 +9,12 @@
             <ul class="nav navbar-nav">
                 <li role="presentation" class="nav-item"><a class="nav-link" href="/">首页</a></li>
                 <li role="presentation" class="nav-item"><a class="nav-link" href="https://bestsort.cn">博客</a></li>
+                <li role="presentation" class="nav-item"><a class="nav-link" href="/topic">话题</a></li>
             </ul>
             <form class="form-inline mr-auto" target="_self">
                 <div class="form-group">
                     <input type="search" class="form-control search-field"
-                           style="border: 1px solid #e6e2e2;border-radius: 10px;height: 35px;font-size: 14px;"
+                           style="margin-left: 0;border: 1px solid #e6e2e2;border-radius: 10px;height: 35px;font-size: 14px;"
                            id="search-field" name="search" placeholder="点此搜索"/>
                 </div>
             </form>
@@ -23,7 +24,7 @@
 
         <!-- 注册 -->
         <div th:if="${session.user == null}" class="nav-item">
-            <a class="nav-link" style="color: #465765" href="/sgin-up">注册</a>
+            <a class="nav-link" style="color: #465765" href="/sign-up">注册</a>
         </div>
 
         <!-- 发布按钮 -->

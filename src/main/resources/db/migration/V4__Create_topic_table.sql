@@ -6,7 +6,7 @@ create table topic(
     follow bigint default 0
 );
 
-insert into topic (name, avatar_url) values ('c++','https://alicdn.bestsort.cn/icon/c++.jpg');
+insert into topic (name, avatar_url) values ('c++','https://alicdn.bestsort.cn/icon/cplusplus.jpg');
 insert into topic (name, avatar_url) values ('java','https://alicdn.bestsort.cn/icon/java.jpeg');
 insert into topic (name, avatar_url) values ('mybatis','https://alicdn.bestsort.cn/icon/mybatis.jpg');
 insert into topic (name, avatar_url) values ('redis','https://alicdn.bestsort.cn/icon/redis.jpg');

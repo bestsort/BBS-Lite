@@ -122,6 +122,12 @@ body, html {
     border-bottom: 1px solid #eee;
 }
 
+.topic-list{
+    float: left;
+    width:50%;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
 /* 二级评论样式 */
 .comment-son{
     margin-top: 10px;

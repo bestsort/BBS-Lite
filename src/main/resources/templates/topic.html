@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>bestsort</title>
+    <head th:insert="~{import :: head}"></head>
+    <link rel="stylesheet" href="/css/bbs-topic.css">
+</head>
+
+<body>
+<div th:insert="navgation :: nav"></div>
+
+<div class="container features-boxed main">
+    <div>
+        <div>
+            <h2 style="margin-left: 20px;padding-top: 10px">
+                <i class="fas fa-dice-d6"></i>
+                话题</h2>
+            <hr>
+        </div>
+    </div>
+        <div class="row">
+                <div class="item topic-width" th:each="topic : ${topics}">
+                    <a th:href="${'/topic/' + topic.name}">
+                        <div class="box">
+                            <div style="padding-top: 10%">
+                                <img th:src="${topic.avatarUrl}" class=" media-topic">
+                            </div>
+                                <h3 class="name" th:text="${topic.name}" style="color: #465765"></h3>
+                            <div class="aw-question-content" >
+                                <span th:text="${topic.questionCount}"></span>个问题
+                                <br>
+                                <span th:text="${topic.follow}"></span>个关注
+                            </div>
+                        </div>
+                    </a>
+            </div>
+    </div>
+</div>
+<div th:insert="~{footer :: foot}"></div>
+</body>
+</html>
