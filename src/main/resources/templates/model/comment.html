@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12"  style="margin-top: 40px">
+    <h4 class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+        <span th:text="${question.commentCount}"></span>个回复
+    </h4>
+    <hr class="col-lg-11 col-md-11 col-sm-11 col-xs-11 comment-question-sp">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 comments"
+         th:each="comment : ${comments}">
+        <div class="media" onmouseleave="hideoptions(this)" onmouseover="showoptions(this)"
+             th:data-id="${comment.id}">
+            <div >
+                <div class="media-left">
+                    <img class="media-min img-circle" th:src="${comment.user.avatarUrl}">
+                    <span class="media-heading" th:text="${comment.user.name}"></span>
+                </div>
+                <div class="media-body">
+                    <!--                            <span th:class="float-sm-right" style="display: none" th:id="${'reply-'+comment.id}">-->
+                    <!--                            </span>-->
+                    <div th:text="${comment.content}"></div>
+
+
+                    <!-- 二级评论 -->
+
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                                aria-expanded="false" aria-controls="collapseExample">
+                            Button with data-target
+                        </button>
+
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="comment-menu" style="float: right !important;">
+                        <span class="float-right comment-post" style="display: none" th:id="${'reply-'+comment.id}">
+                            <a href="/">评论</a>
+                            <a href="/">点赞</a>
+                        </span>
+                <span class="glyphicon glyphicon-thumbs-up icon"></span>
+                <span class="glyphicon glyphicon-comment icon" th:data-id="${comment.id}"
+                      onclick="collapseComments(this)"></span>
+                <span class="float-right time-post" th:text="${#dates.format(comment.gmtCreate,'yyyy-MM-dd HH:mm')}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>bestsort</title>
-    <head th:insert="~{import :: head}"></head>
+    <head th:insert="model/import"></head>
     <link rel="stylesheet" href="/css/bbs-topic.css">
 </head>
 
 <body>
-<div th:insert="navgation :: nav"></div>
+<div th:insert="model/navgation"></div>
 
 <div class="container features-boxed main">
     <div th:if="${topic == null}">
@@ -46,9 +46,9 @@
             </div>
         </span>
             <hr>
-        <div th:insert="~{questionlist :: question}"></div>
+        <div th:insert="model/questionlist :: question"></div>
     </div>
 </div>
-<div th:insert="~{footer :: foot}"></div>
+<div th:insert="model/foot"></div>
 </body>
 </html>

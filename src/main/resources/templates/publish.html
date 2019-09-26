@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>发布</title>
-    <head th:insert="~{import :: head}"></head>
+    <head th:insert="model/import"></head>
 </head>
 
 <body>
-<div th:insert="navgation :: nav"></div>
+<div th:insert="model/navgation"></div>
 
 <div th:if="${error!=null}">
     <div class="alert alert-danger text-center" th:text="${error}"></div>
@@ -56,7 +56,7 @@
         </div>
     </div>
 </div>
-<div th:insert="~{footer :: foot}"></div>
+<div th:insert="model/foot"></div>
 
 </body>
 </html>

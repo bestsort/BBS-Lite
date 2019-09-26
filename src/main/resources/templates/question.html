@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="${question.title}"></title>
-    <head th:insert="~{import :: head}"></head>
+    <head th:insert="model/import"></head>
 </head>
 <body>
-<div th:insert="navgation :: nav"></div>
+<div th:insert="model/navgation"></div>
 
 <div class="container main profile">
     <div class="row">
@@ -44,75 +44,25 @@
 
             <!-- 回复问题输入框 -->
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="comment_section">
-                <!--<div class="media">
-                    <div class="media-left">
-                        <img class="media-min img-circle" th:src="${question.user.avatarUrl}">
+                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 collapse" id="comment_section" name="comment_section">
+                    <input type="hidden" id="question_id" th:value="${question.id}">
+                    <textarea class="form-control comment" id="comment_content" rows="6"></textarea>
+                    <div>
+                    <a href="#comment_input" role="button" class="btn btn-success btn-comment" tabindex="0" onclick="pComment(this)">评论一下</a>
                     </div>
-                    <div class="media-body ">
-                        <div class="media-heading" th:text="${question.user.name}"></div>
-                    </div>
-                </div>-->
-                <input type="hidden" id="question_id" th:value="${question.id}">
-                <textarea class="form-control comment" id="comment_content" rows="6"></textarea>
-                <a role="button" class="btn btn-success btn-comment" tabindex="0"
-                   onclick="pComment(this)">回复</a>
                 </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#comment_section"
+                        aria-expanded="false" aria-controls="comment_section">
+                    展开/折叠
+                </button>
             </div>
             <!-- 回复 -->
-            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-            <h4 class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                  <span th:text="${question.commentCount}"></span>个回复
-            </h4>
-                <hr class="col-lg-11 col-md-11 col-sm-11 col-xs-11 comment-question-sp">
-            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 comments"
-                 th:each="comment : ${comments}">
-                <div class="media" onmouseleave="hideoptions(this)" onmouseover="showoptions(this)"
-                     th:data-id="${comment.id}">
-                    <div >
-                    <div class="media-left">
-                        <img class="media-min img-circle" th:src="${comment.user.avatarUrl}">
-                        <span class="media-heading" th:text="${comment.user.name}"></span>
-                    </div>
-                    <div class="media-body">
-<!--                            <span th:class="float-sm-right" style="display: none" th:id="${'reply-'+comment.id}">-->
-<!--                            </span>-->
-                        <div th:text="${comment.content}"></div>
+            <div th:insert="model/comment"</div>
 
-
-                        <!-- 二级评论 -->
-                        <div class="collapse comment-son" th:each="secondComment:${comment.secondaryComment}" th:id="${'comment-'+comment.id}">
-                            <div class="media">
-                                <div class="media-left">
-                                    <img class="media-min img-circle" th:src="${comment.user.avatarUrl}">
-                                </div>
-                                <div class="media-body ">
-                                    <div class="media-heading" th:text="${comment.user.name}"></div>
-                                    <div th:text="${comment.content}"></div>
-                                    <div class="comment-menu">
-                                        <span class="pull-right" th:text="${#dates.format(comment.gmtCreate,'yyyy-MM-dd HH:mm')}"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-
-
-                    <div class="comment-menu" style="float: right !important;">
-                        <span class="float-right comment-post" style="display: none" th:id="${'reply-'+comment.id}">
-                            <a href="/">评论</a>
-                            <a href="/">点赞</a>
-                        </span>
-                        <span class="glyphicon glyphicon-thumbs-up icon"></span>
-                        <span class="glyphicon glyphicon-comment icon" th:data-id="${comment.id}"
-                              onclick="collapseComments(this)"></span>
-                        <span class="float-right time-post" th:text="${#dates.format(comment.gmtCreate,'yyyy-MM-dd HH:mm')}"></span>
-                    </div>
-                </div>
-                </div>
-            </div>
         </div>
+
 
         <!-- 右侧栏 -->
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -151,6 +101,6 @@
         </div>
     </div>
 </div>
-<div th:insert="~{footer :: foot}"></div>
+<div th:insert="model/foot"></div>
 </body>
 </html>

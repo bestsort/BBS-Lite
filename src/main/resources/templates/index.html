@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>bestsort</title>
-    <head th:insert="~{import :: head}"></head>
+    <head th:insert="model/import"></head>
 </head>
 
 <script>
@@ -17,17 +17,17 @@
 
 </script>
 <body>
-<div th:insert="navgation :: nav"></div>
+<div th:insert="model/navgation"></div>
 
 <div class="container main">
     <div class="row" style="margin: 5px;">
         <div class="col-lg-9 col-md-9 col-xs-9 col-sm-12" style="border-right:1px solid #eee">
             <h2><span class="glyphicon glyphicon-list" aria-hidden="true">发现</span></h2>
             <hr>
-            <div th:insert="~{questionlist :: question}"></div>
+            <div th:insert="~{model/questionlist :: question}"></div>
         </div>
     </div>
 </div>
-<div th:insert="~{footer :: foot}"></div>
+<div th:insert="model/foot"></div>
 </body>
 </html>

@@ -60,6 +60,7 @@
     }
     35%{
         transform: scale(1.2, 0.8);  /*开始为原始大小*/
+        
     }
     50%{
         transform: scale(0.8, 1.2);

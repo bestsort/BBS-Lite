@@ -58,7 +58,8 @@ public class PublishController {
         model.addAttribute("title",question.getTitle())
                 .addAttribute("tag",question.getTag())
                 .addAttribute("description",question.getDescription())
-                .addAttribute("id",question.getId()) ;
+                .addAttribute("id",question.getId())
+                .addAttribute("topic",question.getTopic());
         return "publish";
     }
 
@@ -86,7 +87,8 @@ public class PublishController {
         }
         model.addAttribute("title",title)
                  .addAttribute("tag",tag)
-                 .addAttribute("description",description);
+                 .addAttribute("description",description)
+                 .addAttribute(topic);
         User user = (User)request.getSession().getAttribute("user");
         if(user == null){
             model.addAttribute("error", CustomizeErrorCodeEnum.NO_LOGIN);

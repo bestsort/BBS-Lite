@@ -2,11 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="${sectionName}"></title>
-    <head th:insert="~{import :: head}"></head>
-
+    <head th:insert="model/import"></head>
 </head>
 <body>
-<div th:insert="navgation :: nav"></div>
+<div th:insert="model/navgation"></div>
 
 <div class="container main profile">
     <div class="row">
@@ -78,6 +77,5 @@
     </div>
 </div>
 </body>
-<div th:insert="~{footer :: foot}"></div>
-
+<div th:insert="model/foot"></div>
 </html>
