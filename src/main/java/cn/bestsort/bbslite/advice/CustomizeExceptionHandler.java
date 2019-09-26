@@ -31,7 +31,7 @@ public class CustomizeExceptionHandler {
         String contentType = request.getContentType();
         String type = "application/json";
         //获取错误信息
-        //如果为 JSON 则返回至当前页面
+        //如果为 JSON 则返回至当前页面(问题发布页面/评论页面会用到)
         if(type.equals(contentType)){
             ResultDTO result;
             if(e instanceof CustomizeException){
@@ -48,7 +48,7 @@ public class CustomizeExceptionHandler {
                 writer.write(JSON.toJSONString(result));
                 writer.close();
             }
-            catch (IOException ioe){}
+            catch (IOException ignored){}
             return null;
         }
         //否则跳转至错误信息页面(error.html)

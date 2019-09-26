@@ -37,7 +37,7 @@ public class ProfileController {
             return "redirect:/";
         }
 
-        Map<String,String> item = new HashMap<String, String>(8){{
+        Map<String,String> item = new HashMap<String, String>(4){{
             put("questions","我的提问");
             put("replies","我的回复");
         }};

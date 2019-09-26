@@ -129,7 +129,6 @@ public class QuestionService {
         return getPagInationDTO(questions, page, size);
     }
     private PagInationDTO getPagInation(List<Question> questions,Integer page,Integer size){
-        int offset = size * (page - 1);
         //限制访问合法
         page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
         page = Math.max(page,1);

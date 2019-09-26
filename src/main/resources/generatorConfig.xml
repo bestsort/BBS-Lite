@@ -44,5 +44,6 @@
         <table tableName="question" domainObjectName="Question" />
         <table tableName="comment" domainObjectName="Comment" />
         <table tableName="topic" domainObjectName="Topic"/>
+        <table tableName="thumb_up" domainObjectName="ThumbUp"/>
     </context>
 </generatorConfiguration>

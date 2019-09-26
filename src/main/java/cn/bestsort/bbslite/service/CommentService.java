@@ -11,7 +11,6 @@ import cn.bestsort.bbslite.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -71,11 +70,11 @@ public class CommentService {
             return new ArrayList<>();
         }
         //获取去重后的评论人id
-        Set<Long>commentators = comments.stream().map(Comment::getCommentator)
-                .collect(Collectors.toSet());
 
-        List<Long>userIds = new ArrayList();
-        userIds.addAll(commentators);
+        List<Long> userIds = comments.stream()
+                .map(Comment::getCommentator)
+                .distinct()
+                .collect(Collectors.toList());
 
         //获取去重后的评论人信息并将其映射为Map, Key为id, Value为User信息
         UserExample userExample = new UserExample();
@@ -110,7 +109,7 @@ public class CommentService {
         }
         return commentDTOList;
     }
-    private class CommentComparator implements Comparator<Comment>{
+    private static class CommentComparator implements Comparator<Comment>{
         @Override
         public int compare(Comment o1, Comment o2) {
             long res = 0;

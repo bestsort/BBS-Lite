@@ -83,10 +83,15 @@ body, html {
 
 /* 问题详情页面的编辑按钮 */
 .bbs-menu{
-    margin-bottom: 15px;
-    display: block;
-    color: #999;
-    font-size: 13px;
+    margin-right:15px;
+    color: #5f8e99;
+    font-size: 14px;
+    border: none;
+    background: none;
+}
+.bbs-menu:focus{
+    outline:none;
+    color: #5f8e99;
 }
 
 /* error返回主菜单按钮 */
@@ -149,7 +154,7 @@ body, html {
 }
 
 .label-tag{
-    background-color: #999;
+    background-color: #6ddeba;
     margin: 2px;
     border-radius: 10px;
     font-size: 12px;

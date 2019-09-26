@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Version 1.0
  */
 @Controller
-@RequestMapping("${server.error.path:${ error.path:/error}}")
+@RequestMapping("${server.error.path:${error.path:/error}}")
 public class CustomizeErrorController implements ErrorController {
     @Override
     public String getErrorPath(){
