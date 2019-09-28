@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.bestsort.bbslite.mapper.CommentMapper">
-  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.model.Comment">
+<mapper namespace="cn.bestsort.bbslite.dao.mapper.CommentMapper">
+  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.bean.model.Comment">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="pid" jdbcType="BIGINT" property="pid" />
     <result column="question_id" jdbcType="BIGINT" property="questionId" />
@@ -73,7 +73,7 @@
   <sql id="Base_Column_List">
     id, pid, question_id, commentator, like_count, level, gmt_modified, gmt_create, content
   </sql>
-  <select id="selectByExample" parameterType="cn.bestsort.bbslite.model.CommentExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cn.bestsort.bbslite.bean.model.CommentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -97,13 +97,13 @@
     delete from comment
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.model.CommentExample">
+  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.bean.model.CommentExample">
     delete from comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.bestsort.bbslite.model.Comment">
+  <insert id="insert" parameterType="cn.bestsort.bbslite.bean.model.Comment">
     insert into comment (id, pid, question_id, 
       commentator, like_count, level, 
       gmt_modified, gmt_create, content
@@ -113,7 +113,7 @@
       #{gmtModified,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.model.Comment">
+  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.bean.model.Comment">
     insert into comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -174,7 +174,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.bestsort.bbslite.model.CommentExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="cn.bestsort.bbslite.bean.model.CommentExample" resultType="java.lang.Long">
     select count(*) from comment
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -230,7 +230,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.model.Comment">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.bean.model.Comment">
     update comment
     <set>
       <if test="pid != null">
@@ -260,7 +260,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.model.Comment">
+  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.bean.model.Comment">
     update comment
     set pid = #{pid,jdbcType=BIGINT},
       question_id = #{questionId,jdbcType=BIGINT},
@@ -272,7 +272,7 @@
       content = #{content,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.model.CommentExample" resultMap="BaseResultMap">
+  <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.bean.model.CommentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct

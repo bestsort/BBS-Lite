@@ -1,11 +1,11 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dto.CommentCreateDTO;
-import cn.bestsort.bbslite.dto.ResultDTO;
+import cn.bestsort.bbslite.dao.dto.CommentCreateDTO;
+import cn.bestsort.bbslite.dao.dto.ResultDTO;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
-import cn.bestsort.bbslite.mapper.CommentMapper;
-import cn.bestsort.bbslite.model.Comment;
-import cn.bestsort.bbslite.model.User;
+import cn.bestsort.bbslite.dao.mapper.CommentMapper;
+import cn.bestsort.bbslite.bean.model.Comment;
+import cn.bestsort.bbslite.bean.model.User;
 import cn.bestsort.bbslite.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

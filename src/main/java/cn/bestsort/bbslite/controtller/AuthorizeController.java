@@ -1,11 +1,12 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dto.AccessTokenDTO;
-import cn.bestsort.bbslite.dto.GithubUser;
-import cn.bestsort.bbslite.mapper.UserMapper;
-import cn.bestsort.bbslite.model.User;
-import cn.bestsort.bbslite.provider.GithubProvider;
+import cn.bestsort.bbslite.dao.dto.AccessTokenDTO;
+import cn.bestsort.bbslite.dao.create.GithubUser;
+import cn.bestsort.bbslite.dao.mapper.UserMapper;
+import cn.bestsort.bbslite.bean.model.User;
+import cn.bestsort.bbslite.util.provider.GithubProvider;
 import cn.bestsort.bbslite.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +27,7 @@ import java.util.UUID;
  * @Version 1.0
  */
 @Controller
+@Slf4j
 public class AuthorizeController {
 
     @Autowired
@@ -70,10 +72,10 @@ public class AuthorizeController {
 
             request.getSession().setAttribute("user",user);
             response.addCookie(new Cookie("token",token));
-            return "redirect:/";
         }else {
-            return "redirect:/";
+            log.error("callback get github error,{}",githubUser);
         }
+        return "redirect:/";
     }
 
     @GetMapping("/logout")

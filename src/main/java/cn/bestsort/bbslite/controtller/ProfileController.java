@@ -1,7 +1,7 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dto.PagInationDTO;
-import cn.bestsort.bbslite.model.User;
+import cn.bestsort.bbslite.dao.dto.PagInationDTO;
+import cn.bestsort.bbslite.bean.model.User;
 import cn.bestsort.bbslite.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,10 +41,11 @@ public class ProfileController {
             put("questions","我的提问");
             put("replies","我的回复");
         }};
-        model.addAttribute("section",action);
-        model.addAttribute("sectionName",item.get(action));
         PagInationDTO pagInationDTO = questionService.list(user.getId(),page,size);
-        model.addAttribute("pagination",pagInationDTO);
+        model.addAttribute("section",action)
+            .addAttribute("sectionName",item.get(action))
+            .addAttribute("user",user)
+            .addAttribute("pagination",pagInationDTO);
         return "profile";
     }
 }

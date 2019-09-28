@@ -1,13 +1,13 @@
 package cn.bestsort.bbslite.service;
 
-import cn.bestsort.bbslite.dto.CommentDTO;
+import cn.bestsort.bbslite.dao.dto.CommentDTO;
+import cn.bestsort.bbslite.bean.model.*;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
-import cn.bestsort.bbslite.mapper.CommentMapper;
-import cn.bestsort.bbslite.mapper.QuestionExtMapper;
-import cn.bestsort.bbslite.mapper.QuestionMapper;
-import cn.bestsort.bbslite.mapper.UserMapper;
-import cn.bestsort.bbslite.model.*;
+import cn.bestsort.bbslite.dao.mapper.CommentMapper;
+import cn.bestsort.bbslite.dao.mapper.QuestionExtMapper;
+import cn.bestsort.bbslite.dao.mapper.QuestionMapper;
+import cn.bestsort.bbslite.dao.mapper.UserMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

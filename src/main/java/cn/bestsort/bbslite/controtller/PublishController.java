@@ -1,14 +1,14 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dto.QuestionDTO;
+import cn.bestsort.bbslite.dao.dto.QuestionDTO;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
-import cn.bestsort.bbslite.mapper.QuestionMapper;
-import cn.bestsort.bbslite.mapper.TopicMapper;
-import cn.bestsort.bbslite.model.Question;
-import cn.bestsort.bbslite.model.Topic;
-import cn.bestsort.bbslite.model.TopicExample;
-import cn.bestsort.bbslite.model.User;
+import cn.bestsort.bbslite.dao.mapper.QuestionMapper;
+import cn.bestsort.bbslite.dao.mapper.TopicMapper;
+import cn.bestsort.bbslite.bean.model.Question;
+import cn.bestsort.bbslite.bean.model.Topic;
+import cn.bestsort.bbslite.bean.model.TopicExample;
+import cn.bestsort.bbslite.bean.model.User;
 import cn.bestsort.bbslite.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -96,6 +96,7 @@ public class PublishController {
         }
 
         if(!isNull) {
+
             String defaltTopic = "加入话题";
             Question question = new Question();
             question.setTitle(title);

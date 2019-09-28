@@ -1,14 +1,17 @@
 package cn.bestsort.bbslite.service;
 
-import cn.bestsort.bbslite.dto.PagInationDTO;
-import cn.bestsort.bbslite.dto.QuestionDTO;
+import cn.bestsort.bbslite.dao.dto.PagInationDTO;
+import cn.bestsort.bbslite.dao.dto.QuestionDTO;
+import cn.bestsort.bbslite.dao.mapper.QuestionExtMapper;
+import cn.bestsort.bbslite.dao.mapper.QuestionMapper;
+import cn.bestsort.bbslite.dao.mapper.TopicExtMapper;
+import cn.bestsort.bbslite.dao.mapper.UserMapper;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
-import cn.bestsort.bbslite.mapper.*;
-import cn.bestsort.bbslite.model.Question;
-import cn.bestsort.bbslite.model.QuestionExample;
-import cn.bestsort.bbslite.model.Topic;
-import cn.bestsort.bbslite.model.User;
+import cn.bestsort.bbslite.bean.model.Question;
+import cn.bestsort.bbslite.bean.model.QuestionExample;
+import cn.bestsort.bbslite.bean.model.Topic;
+import cn.bestsort.bbslite.bean.model.User;
 import org.apache.ibatis.session.RowBounds;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeanUtils;

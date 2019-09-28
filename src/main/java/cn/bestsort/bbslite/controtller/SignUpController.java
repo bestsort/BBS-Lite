@@ -1,18 +1,20 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dto.*;
+import cn.bestsort.bbslite.dao.dto.ResultDTO;
+import cn.bestsort.bbslite.dao.create.UserCreateDTO;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
-import cn.bestsort.bbslite.mapper.UserMapper;
-import cn.bestsort.bbslite.model.User;
-import cn.bestsort.bbslite.model.UserExample;
-import cn.bestsort.bbslite.service.MurmursHash;
-import jdk.nashorn.internal.parser.Token;
+import cn.bestsort.bbslite.dao.mapper.UserMapper;
+import cn.bestsort.bbslite.bean.model.User;
+import cn.bestsort.bbslite.bean.model.UserExample;
+import cn.bestsort.bbslite.util.MurmursHash;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -32,13 +34,13 @@ public class SignUpController {
     @Autowired
     UserMapper userMapper;
 
-    @RequestMapping("/sign-up")
+    @RequestMapping("/sign_up")
     public String signUp(){
-        return "sign-up";
+        return "sign_up";
     }
 
     @ResponseBody
-    @RequestMapping(value = "/sign-up",method = RequestMethod.POST)
+    @RequestMapping(value = "/sign_up",method = RequestMethod.POST)
     public Object post(@RequestBody UserCreateDTO userCreateDTO,
                        HttpServletResponse response,
                        HttpServletRequest request) {

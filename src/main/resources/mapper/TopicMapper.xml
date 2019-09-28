@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.bestsort.bbslite.mapper.TopicMapper">
-  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.model.Topic">
+<mapper namespace="cn.bestsort.bbslite.dao.mapper.TopicMapper">
+  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.bean.model.Topic">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List">
     id, name, avatar_url, question_count, follow
   </sql>
-  <select id="selectByExample" parameterType="cn.bestsort.bbslite.model.TopicExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cn.bestsort.bbslite.bean.model.TopicExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -93,19 +93,19 @@
     delete from topic
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.model.TopicExample">
+  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.bean.model.TopicExample">
     delete from topic
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.bestsort.bbslite.model.Topic">
+  <insert id="insert" parameterType="cn.bestsort.bbslite.bean.model.Topic">
     insert into topic (id, name, avatar_url, 
       question_count, follow)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
       #{questionCount,jdbcType=BIGINT}, #{follow,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.model.Topic">
+  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.bean.model.Topic">
     insert into topic
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -142,7 +142,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.bestsort.bbslite.model.TopicExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="cn.bestsort.bbslite.bean.model.TopicExample" resultType="java.lang.Long">
     select count(*) from topic
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -182,7 +182,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.model.Topic">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.bean.model.Topic">
     update topic
     <set>
       <if test="name != null">
@@ -200,7 +200,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.model.Topic">
+  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.bean.model.Topic">
     update topic
     set name = #{name,jdbcType=VARCHAR},
       avatar_url = #{avatarUrl,jdbcType=VARCHAR},
@@ -208,7 +208,7 @@
       follow = #{follow,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.model.TopicExample" resultMap="BaseResultMap">
+  <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.bean.model.TopicExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct

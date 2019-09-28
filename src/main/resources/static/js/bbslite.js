@@ -76,3 +76,56 @@ function collapseComments(e) {
         e.classList.add("active");
     }
 }
+
+function thumb_up_question() {
+    var question_id = $("#thumb_up_to").val();
+    var user_id = $("#thumb_up_by").val();
+    var is_ghost = false;
+    if(user_id === "" || user_id ==null) {
+        is_ghost = true;
+    }
+    $.ajax({
+        type:"POST",
+        url:"/question/{question_id}",
+        async:"true",
+        success:function (response) {
+            if(response.code === 200){
+                $("#comment_section").hide();
+            }
+            else{
+                alert("提交失败");
+            }
+        },
+        contentType:'application/json',
+        data:JSON.stringify({
+            "isGhost":is_ghost,
+            "thumbUpBy":user_id,
+            "thumbUpTo":question_id,
+            "type": 1
+        }),
+        dataType: "json"
+    });
+
+    debugger;
+}
+
+function follow_topic() {
+    var follow_by = $("#follow_by").val();
+    var follow_to = $("#follow_to").val();
+    if(follow_by === "" || follow_by=== undefined){
+        alert("登录后再收藏好不好");
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            url: "/topic",
+            contentType: 'application/json',
+            data: JSON.stringify({
+                "followBy": follow_by,
+                "followTo": follow_to,
+                "type": 2
+            }),
+            dataType: "json"
+        });
+    }
+}

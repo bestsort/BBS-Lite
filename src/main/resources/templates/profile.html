@@ -2,70 +2,43 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="${sectionName}"></title>
-    <head th:insert="model/import"></head>
+    <head th:insert="common/import"></head>
 </head>
 <body>
-<div th:insert="model/navgation"></div>
+<div th:insert="common/navgation"></div>
 
 <div class="container main profile">
     <div class="row">
-        <div class="col-lg-9 col-md-9 col-xs-9 col-sm-12">
+        <div class="col-lg-9 col-md-9 col-xs-9 col-sm-12" style="border-right:1px solid #eee">
             <h2>
                 <span th:text="${sectionName}"></span>
             </h2>
             <hr>
-            <div class="media" th:each="question:${pagination.questions}">
-                <div class="media-left">
-                    <a href="#">
-                        <img class="media-min img-rounded" th:src="${question.user.avatarUrl}">
-                    </a>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">
-                        <a th:href="@{'/question/'+ ${question.id}}"  th:text="${question.title}"></a>
-                    </h4>
-                    <span th:text="${question.description}"></span><br>
-                    <span class="aw-question-content">
-                        <span th:text="${question.commentCount}"></span> 个回复,
-                        <span th:text="${question.viewCount}"></span> 次浏览,发布于:
-                        <span th:text="${#dates.format(question.gmtCreate,'yyyy 年 MM 月 dd 日 HH 时 mm 分 ss 秒')}"></span>
-                    </span>
-                </div>
-            </div>
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-
-                    <li th:if="${pagination.showFirstPage}">
-                        <a th:href="@{'/profile/' + ${section}(page=${1})}" aria-label="Previous">
-                            <span aria-hidden="true">&lt;&lt;</span>
-                        </a>
-                    </li>
-                    <li th:if="${pagination.showPrevious}">
-                        <a th:href="@{'/profile/' + ${section}(page=${pagination.focusPage-1})}" aria-label="Previous">
-                            <span aria-hidden="true">&lt;</span>
-                        </a>
-                    </li>
-
-                    <li th:each="i:${#numbers.sequence(pagination.startPage,pagination.startPage+pagination.pageLenth)}"
-                        th:class="${pagination.focusPage==i?'active':''}">
-                        <a th:href="@{'/profile/' + ${section}(page=${i})}" th:text="${i}"></a>
-                    </li>
-
-                    <li th:if="${pagination.showNext}">
-                        <a th:href="@{'/profile/' + ${section}(page=${pagination.focusPage+1})}" aria-label="Next">
-                            <span aria-hidden="true">&gt;</span>
-                        </a>
-                    </li>
-
-                    <li th:if="${pagination.showEndPage}">
-                        <a th:href="@{'/profile' + (page=${pagination.totalPage})}" aria-label="Next">
-                            <span aria-hidden="true">&gt;&gt;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <div th:insert="common/questionlist"></div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="media media-left" style="width: 120%">
+                <a href="/">
+                    <img class="media-min img-circle" th:src="${user.avatarUrl}">
+                </a>
+            </div>
+            <hr>
+            <small style="font-size: 12px;color: #1f1f1f;">
+                昵称:
+                <a href="/" style="color: #155faa" th:text="${user.name}"></a>
+                <br>
+                <span th:if="${user.htmlUrl != null}">
+                网址:<a target="_blank" th:href="${user.htmlUrl}"
+                      style="color: #155faa"
+                      th:text="${user.htmlUrl}"></a>
+                    </span>
+                <br>
+                <span th:if="${user.bio != null}">
+                    简介:<span style="color: #155faa" th:text="${user.bio}"></span>
+                    </span>
+
+            </small>
+
             <div class="list-group section">
                 <a href="/profile/questions" th:class="${section=='questions'}?'active list-group-item':'list-group-item'">我的问题</a>
                 <a href="/profile/replies " th:class="${section=='replies'}?'active list-group-item':'list-group-item'">
@@ -77,5 +50,5 @@
     </div>
 </div>
 </body>
-<div th:insert="model/foot"></div>
+<div th:insert="common/foot"></div>
 </html>

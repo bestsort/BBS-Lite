@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="${question.title}"></title>
-    <head th:insert="model/import"></head>
+    <head th:insert="common/import"></head>
 </head>
 <body>
-<div th:insert="model/navgation"></div>
+<div th:insert="common/navgation"></div>
 
 <div class="container main profile">
     <div class="row">
@@ -36,21 +36,25 @@
             <!--编辑问题按钮-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <hr class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                <input type="hidden" id="thumb_up_to" th:value="${question.id}">
                 <button th:href="@{'/publish/'+${question.id}}" class="bbs-menu"
                    th:if="${session.user != null && session.user.id == question.creator}">
                     编辑问题
                 </button>
-                <button th:text="${'收藏(' + question.likeCount + ')'}" class="bbs-menu">
-                </button>
+                <button th:text="${'收藏(' + question.likeCount + ')'}" class="bbs-menu"></button>
+                    <button th:text="${'点赞(' + question.likeCount + ')'}" id="thumb_up_by"
+                            onclick="thumb_up_question(this)" class="bbs-menu"
+                            th:value="${user==null?null:user.id}">
+                    </button>
             </div>
-
             <!-- 回复问题输入框 -->
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                 <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 collapse" id="comment_section" name="comment_section">
                     <input type="hidden" id="question_id" th:value="${question.id}">
                     <textarea class="form-control comment" id="comment_content" rows="6"></textarea>
                     <div>
-                    <a href="#comment_input" role="button" class="btn btn-success btn-comment" tabindex="0" onclick="pComment(this)">评论一下</a>
+                        <a href="#comment_input" role="button" class="btn btn-success btn-comment"
+                           tabindex="0" onclick="pComment(this)">评论一下</a>
                     </div>
                 </div>
             </div>
@@ -61,8 +65,7 @@
                 </button>
             </div>
             <!-- 回复 -->
-            <div th:insert="model/comment"</div>
-
+            <div th:insert="common/comment"></div>
         </div>
 
 
@@ -103,6 +106,6 @@
         </div>
     </div>
 </div>
-<div th:insert="model/foot"></div>
+<div th:insert="common/foot"></div>
 </body>
 </html>

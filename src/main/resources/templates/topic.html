@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>bestsort</title>
-    <head th:insert="model/import"></head>
+    <head th:insert="common/import"></head>
     <link rel="stylesheet" href="/css/bbs-topic.css">
 </head>
 
 <body>
-<div th:insert="model/navgation"></div>
+<div th:insert="common/navgation"></div>
 
 <div class="container features-boxed main">
     <div th:if="${topic == null}">
@@ -42,13 +42,17 @@
             <div style="margin-top: 3%;margin-bottom: 4%">
                 <img th:src="${topic.avatarUrl}" class="media-mid media-circle">
                 <span class="topic-head" th:text="${topic.name}"> </span>
-                <button class="btn btn-success" style="float: right;margin-top: 2%" th:text="${'关注 | ' + topic.follow}"></button>
+
+                <input type="hidden" id="follow_by" th:if="${user != null}" th:value="${user.id}">
+                <button class="btn btn-success" style="float: right;margin-top: 2%" th:text="${'关注 | ' + topic.follow}"
+                        th:value="${topic.id}" id="follow_to" type="submit" onclick="follow_topic(this)">
+                </button>
             </div>
         </span>
             <hr>
-        <div th:insert="model/questionlist :: question"></div>
+        <div th:insert="common/questionlist :: question"></div>
     </div>
 </div>
-<div th:insert="model/foot"></div>
+<div th:insert="common/foot"></div>
 </body>
 </html>
