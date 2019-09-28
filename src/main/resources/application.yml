@@ -1,0 +1,46 @@
+server:
+  port:8080
+  ######################################################################
+  #####                Your GitHub OAuth Config                    #####
+  ######################################################################
+github:
+  client:
+    id: 08b076ae3cf904cf324c
+    secret: 09c5129c5e0ff8b3284adbc7ae8031fe3ea04af3
+  redurect:
+    uri: http://localhost:8080/callback
+
+spring:
+  ######################################################################
+  #####                    Your Database Config                    #####
+  #####       Please make sure the Database character is utf8m4    #####
+  ######################################################################
+  datasource:
+    url: jdbc:mysql://localhost/bbs_lite?characterEncoding=utf8&serverTimezone=UTC
+    username: bestsort
+    password: ce8YChPDJ5GRFOUE
+
+    ######################################################################
+    #####                       Default Config                       #####
+    ######################################################################
+
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      filter:
+        stat:
+          enabled: true
+          db-type: mysql
+          log-slow-sql: true
+          slow-sql-millis: 2000
+      filters:  stat,wall
+      aop-patterns: cn.bestsort.bbslite.service.*
+logging:
+  file: log/bbs-lite.log
+  level:
+    root: info
+    cn.bestsort.bbslite.mapper: debug
+mybatis:
+  type-aliases-package: cn.bestsort.bbslite.mapper
+  configuration.map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml

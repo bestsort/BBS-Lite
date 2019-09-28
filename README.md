@@ -35,7 +35,7 @@
 git clone https://github.com/bestsort/BBS-Lite.git
 cd BBS-lite
 ```
-将该项目导入到 IDEA 或者其他的IDE中,并配置`/src/main/resources/application.properties`
+将该项目导入到 IDEA 或者其他的IDE中,并配置`/src/main/resources/application.yml`
 和`/src/main/resources/generatorConfig.xml`和`pom.xml`中`build`标签中的数据库信息为自己的数据库配置然后执行以下命令
 ```bash
 mvn package
