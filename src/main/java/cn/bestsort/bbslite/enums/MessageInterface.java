@@ -1,15 +1,14 @@
 package cn.bestsort.bbslite.enums;
 
 /**
- * @ClassName ItemTypeInterface
+ * @ClassName MessageInterface
  * @Description TODO
  * @Author bestsort
- * @Date 19-9-28 下午6:47
+ * @Date 19-9-29 下午2:53
  * @Version 1.0
  */
 
-
-public interface ItemTypeInterface {
+public interface MessageInterface {
     String getName();
     Integer getCode();
 }

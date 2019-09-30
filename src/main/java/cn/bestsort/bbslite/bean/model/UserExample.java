@@ -654,6 +654,196 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andHtmlUrlIsNull() {
+            addCriterion("html_url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlUrlIsNotNull() {
+            addCriterion("html_url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlUrlEqualTo(String value) {
+            addCriterion("html_url =", value, "htmlUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlUrlNotEqualTo(String value) {
+            addCriterion("html_url <>", value, "htmlUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlUrlGreaterThan(String value) {
+            addCriterion("html_url >", value, "htmlUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("html_url >=", value, "htmlUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlUrlLessThan(String value) {
+            addCriterion("html_url <", value, "htmlUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlUrlLessThanOrEqualTo(String value) {
+            addCriterion("html_url <=", value, "htmlUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlUrlLike(String value) {
+            addCriterion("html_url like", value, "htmlUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlUrlNotLike(String value) {
+            addCriterion("html_url not like", value, "htmlUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlUrlIn(List<String> values) {
+            addCriterion("html_url in", values, "htmlUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlUrlNotIn(List<String> values) {
+            addCriterion("html_url not in", values, "htmlUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlUrlBetween(String value1, String value2) {
+            addCriterion("html_url between", value1, value2, "htmlUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlUrlNotBetween(String value1, String value2) {
+            addCriterion("html_url not between", value1, value2, "htmlUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbUpIsNull() {
+            addCriterion("thumb_up is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbUpIsNotNull() {
+            addCriterion("thumb_up is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbUpEqualTo(Long value) {
+            addCriterion("thumb_up =", value, "thumbUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbUpNotEqualTo(Long value) {
+            addCriterion("thumb_up <>", value, "thumbUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbUpGreaterThan(Long value) {
+            addCriterion("thumb_up >", value, "thumbUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbUpGreaterThanOrEqualTo(Long value) {
+            addCriterion("thumb_up >=", value, "thumbUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbUpLessThan(Long value) {
+            addCriterion("thumb_up <", value, "thumbUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbUpLessThanOrEqualTo(Long value) {
+            addCriterion("thumb_up <=", value, "thumbUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbUpIn(List<Long> values) {
+            addCriterion("thumb_up in", values, "thumbUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbUpNotIn(List<Long> values) {
+            addCriterion("thumb_up not in", values, "thumbUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbUpBetween(Long value1, Long value2) {
+            addCriterion("thumb_up between", value1, value2, "thumbUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andThumbUpNotBetween(Long value1, Long value2) {
+            addCriterion("thumb_up not between", value1, value2, "thumbUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountIsNull() {
+            addCriterion("follow_count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountIsNotNull() {
+            addCriterion("follow_count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountEqualTo(Long value) {
+            addCriterion("follow_count =", value, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountNotEqualTo(Long value) {
+            addCriterion("follow_count <>", value, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountGreaterThan(Long value) {
+            addCriterion("follow_count >", value, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountGreaterThanOrEqualTo(Long value) {
+            addCriterion("follow_count >=", value, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountLessThan(Long value) {
+            addCriterion("follow_count <", value, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountLessThanOrEqualTo(Long value) {
+            addCriterion("follow_count <=", value, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountIn(List<Long> values) {
+            addCriterion("follow_count in", values, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountNotIn(List<Long> values) {
+            addCriterion("follow_count not in", values, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountBetween(Long value1, Long value2) {
+            addCriterion("follow_count between", value1, value2, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountNotBetween(Long value1, Long value2) {
+            addCriterion("follow_count not between", value1, value2, "followCount");
+            return (Criteria) this;
+        }
+
         public Criteria andGmtCreateIsNull() {
             addCriterion("gmt_create is null");
             return (Criteria) this;
@@ -771,76 +961,6 @@ public class UserExample {
 
         public Criteria andGmtModifiedNotBetween(Long value1, Long value2) {
             addCriterion("gmt_modified not between", value1, value2, "gmtModified");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlIsNull() {
-            addCriterion("html_url is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlIsNotNull() {
-            addCriterion("html_url is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlEqualTo(String value) {
-            addCriterion("html_url =", value, "htmlUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlNotEqualTo(String value) {
-            addCriterion("html_url <>", value, "htmlUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlGreaterThan(String value) {
-            addCriterion("html_url >", value, "htmlUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlGreaterThanOrEqualTo(String value) {
-            addCriterion("html_url >=", value, "htmlUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlLessThan(String value) {
-            addCriterion("html_url <", value, "htmlUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlLessThanOrEqualTo(String value) {
-            addCriterion("html_url <=", value, "htmlUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlLike(String value) {
-            addCriterion("html_url like", value, "htmlUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlNotLike(String value) {
-            addCriterion("html_url not like", value, "htmlUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlIn(List<String> values) {
-            addCriterion("html_url in", values, "htmlUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlNotIn(List<String> values) {
-            addCriterion("html_url not in", values, "htmlUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlBetween(String value1, String value2) {
-            addCriterion("html_url between", value1, value2, "htmlUrl");
-            return (Criteria) this;
-        }
-
-        public Criteria andHtmlUrlNotBetween(String value1, String value2) {
-            addCriterion("html_url not between", value1, value2, "htmlUrl");
             return (Criteria) this;
         }
     }

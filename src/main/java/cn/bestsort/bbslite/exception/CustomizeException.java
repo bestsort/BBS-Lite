@@ -1,5 +1,7 @@
 package cn.bestsort.bbslite.exception;
 
+import cn.bestsort.bbslite.enums.MessageInterface;
+
 /**
  * @ClassName CustomizeException
  * @Description
@@ -12,8 +14,8 @@ public class CustomizeException extends RuntimeException{
     private String message;
     private Integer code;
 
-    public CustomizeException(CustomizeErrorCodeInterface errorCode){
-        this.message = errorCode.getMessage();
+    public CustomizeException(MessageInterface errorCode){
+        this.message = errorCode.getName();
         this.code = errorCode.getCode();
     }
     @Override

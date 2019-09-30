@@ -364,63 +364,63 @@ public class TopicExample {
             return (Criteria) this;
         }
 
-        public Criteria andFollowIsNull() {
-            addCriterion("follow is null");
+        public Criteria andFollowCountIsNull() {
+            addCriterion("follow_count is null");
             return (Criteria) this;
         }
 
-        public Criteria andFollowIsNotNull() {
-            addCriterion("follow is not null");
+        public Criteria andFollowCountIsNotNull() {
+            addCriterion("follow_count is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFollowEqualTo(Long value) {
-            addCriterion("follow =", value, "follow");
+        public Criteria andFollowCountEqualTo(Long value) {
+            addCriterion("follow_count =", value, "followCount");
             return (Criteria) this;
         }
 
-        public Criteria andFollowNotEqualTo(Long value) {
-            addCriterion("follow <>", value, "follow");
+        public Criteria andFollowCountNotEqualTo(Long value) {
+            addCriterion("follow_count <>", value, "followCount");
             return (Criteria) this;
         }
 
-        public Criteria andFollowGreaterThan(Long value) {
-            addCriterion("follow >", value, "follow");
+        public Criteria andFollowCountGreaterThan(Long value) {
+            addCriterion("follow_count >", value, "followCount");
             return (Criteria) this;
         }
 
-        public Criteria andFollowGreaterThanOrEqualTo(Long value) {
-            addCriterion("follow >=", value, "follow");
+        public Criteria andFollowCountGreaterThanOrEqualTo(Long value) {
+            addCriterion("follow_count >=", value, "followCount");
             return (Criteria) this;
         }
 
-        public Criteria andFollowLessThan(Long value) {
-            addCriterion("follow <", value, "follow");
+        public Criteria andFollowCountLessThan(Long value) {
+            addCriterion("follow_count <", value, "followCount");
             return (Criteria) this;
         }
 
-        public Criteria andFollowLessThanOrEqualTo(Long value) {
-            addCriterion("follow <=", value, "follow");
+        public Criteria andFollowCountLessThanOrEqualTo(Long value) {
+            addCriterion("follow_count <=", value, "followCount");
             return (Criteria) this;
         }
 
-        public Criteria andFollowIn(List<Long> values) {
-            addCriterion("follow in", values, "follow");
+        public Criteria andFollowCountIn(List<Long> values) {
+            addCriterion("follow_count in", values, "followCount");
             return (Criteria) this;
         }
 
-        public Criteria andFollowNotIn(List<Long> values) {
-            addCriterion("follow not in", values, "follow");
+        public Criteria andFollowCountNotIn(List<Long> values) {
+            addCriterion("follow_count not in", values, "followCount");
             return (Criteria) this;
         }
 
-        public Criteria andFollowBetween(Long value1, Long value2) {
-            addCriterion("follow between", value1, value2, "follow");
+        public Criteria andFollowCountBetween(Long value1, Long value2) {
+            addCriterion("follow_count between", value1, value2, "followCount");
             return (Criteria) this;
         }
 
-        public Criteria andFollowNotBetween(Long value1, Long value2) {
-            addCriterion("follow not between", value1, value2, "follow");
+        public Criteria andFollowCountNotBetween(Long value1, Long value2) {
+            addCriterion("follow_count not between", value1, value2, "followCount");
             return (Criteria) this;
         }
     }

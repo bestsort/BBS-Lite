@@ -9,7 +9,7 @@ public class Topic {
 
     private Long questionCount;
 
-    private Long follow;
+    private Long followCount;
 
     public Long getId() {
         return id;
@@ -43,11 +43,11 @@ public class Topic {
         this.questionCount = questionCount;
     }
 
-    public Long getFollow() {
-        return follow;
+    public Long getFollowCount() {
+        return followCount;
     }
 
-    public void setFollow(Long follow) {
-        this.follow = follow;
+    public void setFollowCount(Long followCount) {
+        this.followCount = followCount;
     }
 }

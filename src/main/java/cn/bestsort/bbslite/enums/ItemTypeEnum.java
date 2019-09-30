@@ -8,12 +8,10 @@ package cn.bestsort.bbslite.enums;
  * @Version 1.0
  */
 
-public enum ItemTypeEnum implements ItemTypeInterface{
+public enum ItemTypeEnum implements MessageInterface{
 
     COMMENT(2,"comment"),
     QUESTION(1,"question");
-
-
     private String name;
     private Integer code;
     @Override

@@ -34,7 +34,7 @@ public class CustomizeErrorController implements ErrorController {
         }
         // 服务端出错提示信息
         else if(status.is5xxServerError()){
-            model.addAttribute("message", CustomizeErrorCodeEnum.SYS_ERROR.getMessage());
+            model.addAttribute("message", CustomizeErrorCodeEnum.SYS_ERROR.getName());
         }
         return new ModelAndView("error");
     }

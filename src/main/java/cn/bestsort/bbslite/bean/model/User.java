@@ -17,11 +17,15 @@ public class User {
 
     private String password;
 
+    private String htmlUrl;
+
+    private Long thumbUp;
+
+    private Long followCount;
+
     private Long gmtCreate;
 
     private Long gmtModified;
-
-    private String htmlUrl;
 
     public Long getId() {
         return id;
@@ -87,6 +91,30 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
+    public String getHtmlUrl() {
+        return htmlUrl;
+    }
+
+    public void setHtmlUrl(String htmlUrl) {
+        this.htmlUrl = htmlUrl == null ? null : htmlUrl.trim();
+    }
+
+    public Long getThumbUp() {
+        return thumbUp;
+    }
+
+    public void setThumbUp(Long thumbUp) {
+        this.thumbUp = thumbUp;
+    }
+
+    public Long getFollowCount() {
+        return followCount;
+    }
+
+    public void setFollowCount(Long followCount) {
+        this.followCount = followCount;
+    }
+
     public Long getGmtCreate() {
         return gmtCreate;
     }
@@ -101,13 +129,5 @@ public class User {
 
     public void setGmtModified(Long gmtModified) {
         this.gmtModified = gmtModified;
-    }
-
-    public String getHtmlUrl() {
-        return htmlUrl;
-    }
-
-    public void setHtmlUrl(String htmlUrl) {
-        this.htmlUrl = htmlUrl == null ? null : htmlUrl.trim();
     }
 }

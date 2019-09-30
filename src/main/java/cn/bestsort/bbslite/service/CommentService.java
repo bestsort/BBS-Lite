@@ -46,7 +46,7 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
             }
             commentMapper.insertSelective(comment);
-            question.setCommentCount(1);
+            question.setCommentCount(1L);
             questionExtMapper.incCommentCount(question);
 
         }else{

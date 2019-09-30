@@ -1,8 +1,6 @@
 package cn.bestsort.bbslite.enums;
 
-import cn.bestsort.bbslite.exception.CustomizeErrorCodeInterface;
-
-public enum CustomizeErrorCodeEnum  implements CustomizeErrorCodeInterface {
+public enum CustomizeErrorCodeEnum  implements MessageInterface {
     USER_EXITED(8,"该账户已存在"),
     USER_ERROR(7,"你请求姿势有问题,换一个试试?"),
     COMMENT_NOT_FOUND(6,"你操作的评论不存在了,换一个试试?"),
@@ -13,19 +11,19 @@ public enum CustomizeErrorCodeEnum  implements CustomizeErrorCodeInterface {
     SYS_ERROR(1,"出 BUG 啦,要不杀个程序员祭天吧?"),
 
     ;
-    private String message;
+    private String name;
     private Integer code;
 
     @Override
-    public String getMessage(){
-        return message;
+    public String getName(){
+        return name;
     }
     @Override
     public Integer getCode(){
         return code;
     }
     CustomizeErrorCodeEnum(Integer code, String message){
-        this.message=message;
+        this.name =message;
         this.code = code;
     }
 

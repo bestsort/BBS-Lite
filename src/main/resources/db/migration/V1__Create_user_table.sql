@@ -8,7 +8,9 @@ create table user
     bio varchar(256),
     avatar_url varchar(100) default 'https://alicdn.bestsort.cn/icon/default.jpeg',
     password varchar(20) default null,
+    html_url varchar(50),
+    thumb_up bigint default 0,
+    follow_count bigint default 0,
     gmt_create bigint,
-    gmt_modified bigint,
-    html_url varchar(50)
+    gmt_modified bigint
 );

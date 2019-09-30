@@ -4,5 +4,5 @@ import cn.bestsort.bbslite.bean.model.Topic;
 
 public interface TopicExtMapper {
     int incQuestion(Topic record);
-    int updateFollow(Topic record);
+    int updateFollowCount(Topic record);
 }

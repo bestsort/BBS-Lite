@@ -14,8 +14,6 @@
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                 <h3><span th:text="${question.title}"></span></h3>
                 <span class="aw-question-content">
-                    <span th:if="${question.category != null}" th:text="${question.category} + ' • '"></span>
-                    <span th:if="${question.topic  != null}" th:text="${question.topic + ' • '}"></span>
                     <span th:text="${question.viewCount + '次浏览 • '}"></span>
                     <span th:text="${question.commentCount} + '条评论 • '"></span>
                     <span th:text="${'发布于: '+ #dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm:ss')}"></span>
@@ -41,11 +39,21 @@
                    th:if="${session.user != null && session.user.id == question.creator}">
                     编辑问题
                 </button>
-                <button th:text="${'收藏(' + question.likeCount + ')'}" class="bbs-menu"></button>
-                    <button th:text="${'点赞(' + question.likeCount + ')'}" id="thumb_up_by"
-                            onclick="thumb_up_question(this)" class="bbs-menu"
+                <iframe name="targetIfr" id="targetIfr" style="display:none"></iframe>
+                <form action="/follow" method="post" name="follow" target="targetIfr">
+                    <input type="hidden" name="followBy" th:if="${user != null}" th:value="${user.id}">
+                    <input type="hidden" name="followTo" th:value="${question.id}">
+
+                    <button th:text="${'收藏(' + question.followCount + ')'}" class="bbs-menu"
+                        name="type" value="question" type="submit"></button>
+                    <button th:text="${'点赞(' + question.likeCount + ')'}"
+                            id="thumb_up_by"
+                            type="submit" class="bbs-menu"
                             th:value="${user==null?null:user.id}">
                     </button>
+                </form>
+
+
             </div>
             <!-- 回复问题输入框 -->
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
@@ -78,9 +86,18 @@
                     <a href="/">
                         <img class="media-min img-circle" th:src="${question.user.avatarUrl}">
                     </a>
-                    <button type="button" class="btn btn-outline-success btn-sm"
-                            style="margin-top: 4%;margin-left: 45%;">关注</button>
+                    <form action="/follow" method="post" name="follow" target="targetIfr2">
+                        <input type="hidden" name="followBy" th:if="${user != null}" th:value="${user.id}">
+                        <input type="hidden" name="followTo" th:value="${question.creator}">
+
+                        <button th:text="${'关注|' + question.user.followCount}"
+                                class="btn btn-outline-success btn-sm"
+                                style="margin-top: 13%;margin-left: 200%; width: 100%"
+                                name="type" value="user" type="submit"></button>
+                    </form>
+                    <iframe name="targetIfr2" id="targetIfr2" style="display:none"></iframe>
                 </div>
+
                 <hr>
                 <small style="font-size: 12px;color: #1f1f1f;">
                     昵称:
@@ -96,7 +113,6 @@
                     <span th:if="${question.user.bio != null}">
                     简介:<span style="color: #155faa" th:text="${question.user.bio}"></span>
                     </span>
-
                 </small>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

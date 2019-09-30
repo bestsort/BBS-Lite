@@ -9,6 +9,7 @@ import cn.bestsort.bbslite.dao.dto.PagInationDTO;
 import cn.bestsort.bbslite.dao.dto.ResultDTO;
 import cn.bestsort.bbslite.dao.mapper.TopicMapper;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
+import cn.bestsort.bbslite.enums.FollowEnum;
 import cn.bestsort.bbslite.service.FollowService;
 import cn.bestsort.bbslite.service.QuestionService;
 import org.springframework.beans.BeanUtils;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class TopicController {
@@ -47,18 +49,4 @@ public class TopicController {
         return "topic";
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/topic",method = RequestMethod.POST)
-    public Object follow(@RequestBody FollowCreateDTO followCreateDTO,
-                         HttpServletRequest request){
-        User user = (User)request.getSession().getAttribute("user");
-        if(user == null){
-            return  ResultDTO.errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
-        }
-        Follow follow = new Follow();
-        BeanUtils.copyProperties(followCreateDTO,follow);
-
-        followService.insertOrUpdate(follow);
-        return ResultDTO.okOf();
-    }
 }

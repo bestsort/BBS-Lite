@@ -14,7 +14,7 @@ import lombok.Data;
 public class CommentCreateDTO {
     private Long pid;
     private Byte level;
-    private Integer commentator;
+    private Long commentator;
     private String content;
     private Long questionId;
 }

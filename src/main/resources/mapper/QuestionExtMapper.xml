@@ -6,26 +6,34 @@
         <result column="title" jdbcType="VARCHAR" property="title" />
         <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
         <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
-        <result column="creator" jdbcType="INTEGER" property="creator" />
-        <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
-        <result column="view_count" jdbcType="INTEGER" property="viewCount" />
-        <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+        <result column="creator" jdbcType="BIGINT" property="creator" />
+        <result column="comment_count" jdbcType="BIGINT" property="commentCount" />
+        <result column="view_count" jdbcType="BIGINT" property="viewCount" />
+        <result column="like_count" jdbcType="BIGINT" property="likeCount" />
+        <result column="follow_count" jdbcType="BIGINT" property="followCount" />
         <result column="tag" jdbcType="VARCHAR" property="tag" />
     </resultMap>
 
     <update id="incView" parameterType="cn.bestsort.bbslite.bean.model.Question">
         update question
         set
-            view_count = view_count + #{viewCount,jdbcType=INTEGER}
+            view_count = view_count + 1
         where id = #{id}
     </update>
 
     <update id="incCommentCount" parameterType="cn.bestsort.bbslite.bean.model.Question">
         update question
         set
-            comment_count = comment_count + #{commentCount,jdbcType=INTEGER}
+            comment_count = comment_count + #{commentCount,jdbcType=BIGINT}
         where id = #{id}
     </update>
+
+    <update id="updateFollowCount" parameterType="cn.bestsort.bbslite.bean.model.Question">
+        insert into question (id,follow_count)
+        values (#{id,jdbcType=BIGINT}, 1)
+        on duplicate key update follow_count = follow_count+#{followCount,jdbcType=BIGINT};
+    </update>
+
     <select id="listBySearch" resultType="cn.bestsort.bbslite.bean.model.Question">
         select *
         from question

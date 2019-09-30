@@ -14,5 +14,5 @@ import lombok.Data;
 public class FollowCreateDTO {
     private Long followBy;
     private Long followTo;
-    private Byte type;
+    private String type;
 }

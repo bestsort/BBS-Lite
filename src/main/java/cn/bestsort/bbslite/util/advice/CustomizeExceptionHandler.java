@@ -56,7 +56,7 @@ public class CustomizeExceptionHandler {
             model.addAttribute("message",
                 e instanceof CustomizeException?
                 e.getMessage():
-                CustomizeErrorCodeEnum.SYS_ERROR.getMessage());
+                CustomizeErrorCodeEnum.SYS_ERROR.getName());
             return new ModelAndView("error");
         }
     }

@@ -73,7 +73,7 @@ public class AuthorizeController {
             request.getSession().setAttribute("user",user);
             response.addCookie(new Cookie("token",token));
         }else {
-            log.error("callback get github error,{}",githubUser);
+            log.error("callback post github error,{}",githubUser);
         }
         return "redirect:/";
     }

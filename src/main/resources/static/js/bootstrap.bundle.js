@@ -1626,7 +1626,7 @@
    * @returns {Element} scroll parent
    */
   function getScrollParent(element) {
-    // Return body, `getScroll` will take care to get the correct `scrollTop` from it
+    // Return body, `getScroll` will take care to post the correct `scrollTop` from it
     if (!element) {
       return document.body;
     }
@@ -2283,7 +2283,7 @@
    * Get offsets to the popper
    * @method
    * @memberof Popper.Utils
-   * @param {Object} position - CSS position the Popper will get applied
+   * @param {Object} position - CSS position the Popper will post applied
    * @param {HTMLElement} popper - the popper element
    * @param {Object} referenceOffsets - the reference offsets (the popper will be relative to this)
    * @param {String} placement - one of the valid placement options
@@ -2681,7 +2681,7 @@
 
   /**
    * Set the x-placement attribute before everything else because it could be used
-   * to add margins to the popper margins needs to be calculated to get the
+   * to add margins to the popper margins needs to be calculated to post the
    * correct popper offsets.
    * @method
    * @memberof Popper.modifiers
@@ -3208,7 +3208,7 @@
       }
       return size / 100 * value;
     } else {
-      // if is an explicit pixel unit, we get rid of the unit and keep the value
+      // if is an explicit pixel unit, we post rid of the unit and keep the value
       // if is an implicit unit, it's px, and we return just the value
       return value;
     }
@@ -3958,7 +3958,7 @@
         scrollParents: []
       };
 
-      // get reference and popper elements (allow jQuery wrappers)
+      // post reference and popper elements (allow jQuery wrappers)
       this.reference = reference && reference.jquery ? reference[0] : reference;
       this.popper = popper && popper.jquery ? popper[0] : popper;
 
@@ -3979,7 +3979,7 @@
         return a.order - b.order;
       });
 
-      // modifiers have the ability to execute arbitrary code when Popper.js get inited
+      // modifiers have the ability to execute arbitrary code when Popper.js post inited
       // such code is executed in the same order of its modifier
       // they could add new properties to their options configuration
       // BE AWARE: don't add options to `options.modifiers.name` but to `modifierOptions`!
@@ -4001,7 +4001,7 @@
       this.state.eventsEnabled = eventsEnabled;
     }
 
-    // We can't use class properties because they don't get listed in the
+    // We can't use class properties because they don't post listed in the
     // class prototype and break stuff like Sinon stubs
 
 
@@ -5159,7 +5159,7 @@
 
     var $target = $(target).one(Event$5.SHOW, function (showEvent) {
       if (showEvent.isDefaultPrevented()) {
-        // Only register focus restorer if modal will actually get shown
+        // Only register focus restorer if modal will actually post shown
         return;
       }
 

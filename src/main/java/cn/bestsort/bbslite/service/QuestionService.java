@@ -105,17 +105,6 @@ public class QuestionService {
     }
 
     /**
-     * 增加访问量
-     * @param id
-     */
-    public void incView(Long id) {
-        Question question = new Question();
-        question.setId(id);
-        question.setViewCount(1);
-        questionExtMapper.incView(question);
-    }
-
-    /**
      * 将问题分页
      */
     @NotNull

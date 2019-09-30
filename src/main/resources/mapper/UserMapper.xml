@@ -10,9 +10,11 @@
     <result column="bio" jdbcType="VARCHAR" property="bio" />
     <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="html_url" jdbcType="VARCHAR" property="htmlUrl" />
+    <result column="thumb_up" jdbcType="BIGINT" property="thumbUp" />
+    <result column="follow_count" jdbcType="BIGINT" property="followCount" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
-    <result column="html_url" jdbcType="VARCHAR" property="htmlUrl" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, account_id, email, name, token, bio, avatar_url, password, gmt_create, gmt_modified, 
-    html_url
+    id, account_id, email, name, token, bio, avatar_url, password, html_url, thumb_up, 
+    follow_count, gmt_create, gmt_modified
   </sql>
   <select id="selectByExample" parameterType="cn.bestsort.bbslite.bean.model.UserExample" resultMap="BaseResultMap">
     select
@@ -109,12 +111,14 @@
   <insert id="insert" parameterType="cn.bestsort.bbslite.bean.model.User">
     insert into user (id, account_id, email, 
       name, token, bio, avatar_url, 
-      password, gmt_create, gmt_modified, 
-      html_url)
+      password, html_url, thumb_up, 
+      follow_count, gmt_create, gmt_modified
+      )
     values (#{id,jdbcType=BIGINT}, #{accountId,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{bio,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
-      #{htmlUrl,jdbcType=VARCHAR})
+      #{password,jdbcType=VARCHAR}, #{htmlUrl,jdbcType=VARCHAR}, #{thumbUp,jdbcType=BIGINT}, 
+      #{followCount,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.bean.model.User">
     insert into user
@@ -143,14 +147,20 @@
       <if test="password != null">
         password,
       </if>
+      <if test="htmlUrl != null">
+        html_url,
+      </if>
+      <if test="thumbUp != null">
+        thumb_up,
+      </if>
+      <if test="followCount != null">
+        follow_count,
+      </if>
       <if test="gmtCreate != null">
         gmt_create,
       </if>
       <if test="gmtModified != null">
         gmt_modified,
-      </if>
-      <if test="htmlUrl != null">
-        html_url,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -178,14 +188,20 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
+      <if test="htmlUrl != null">
+        #{htmlUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbUp != null">
+        #{thumbUp,jdbcType=BIGINT},
+      </if>
+      <if test="followCount != null">
+        #{followCount,jdbcType=BIGINT},
+      </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=BIGINT},
       </if>
       <if test="gmtModified != null">
         #{gmtModified,jdbcType=BIGINT},
-      </if>
-      <if test="htmlUrl != null">
-        #{htmlUrl,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -222,14 +238,20 @@
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
       </if>
+      <if test="record.htmlUrl != null">
+        html_url = #{record.htmlUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumbUp != null">
+        thumb_up = #{record.thumbUp,jdbcType=BIGINT},
+      </if>
+      <if test="record.followCount != null">
+        follow_count = #{record.followCount,jdbcType=BIGINT},
+      </if>
       <if test="record.gmtCreate != null">
         gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       </if>
       <if test="record.gmtModified != null">
         gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
-      </if>
-      <if test="record.htmlUrl != null">
-        html_url = #{record.htmlUrl,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -246,9 +268,11 @@
       bio = #{record.bio,jdbcType=VARCHAR},
       avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
+      html_url = #{record.htmlUrl,jdbcType=VARCHAR},
+      thumb_up = #{record.thumbUp,jdbcType=BIGINT},
+      follow_count = #{record.followCount,jdbcType=BIGINT},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
-      html_url = #{record.htmlUrl,jdbcType=VARCHAR}
+      gmt_modified = #{record.gmtModified,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -277,14 +301,20 @@
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
+      <if test="htmlUrl != null">
+        html_url = #{htmlUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbUp != null">
+        thumb_up = #{thumbUp,jdbcType=BIGINT},
+      </if>
+      <if test="followCount != null">
+        follow_count = #{followCount,jdbcType=BIGINT},
+      </if>
       <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=BIGINT},
       </if>
       <if test="gmtModified != null">
         gmt_modified = #{gmtModified,jdbcType=BIGINT},
-      </if>
-      <if test="htmlUrl != null">
-        html_url = #{htmlUrl,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -298,9 +328,11 @@
       bio = #{bio,jdbcType=VARCHAR},
       avatar_url = #{avatarUrl,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
+      html_url = #{htmlUrl,jdbcType=VARCHAR},
+      thumb_up = #{thumbUp,jdbcType=BIGINT},
+      follow_count = #{followCount,jdbcType=BIGINT},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{gmtModified,jdbcType=BIGINT},
-      html_url = #{htmlUrl,jdbcType=VARCHAR}
+      gmt_modified = #{gmtModified,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.bean.model.UserExample" resultMap="BaseResultMap">

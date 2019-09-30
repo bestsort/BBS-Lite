@@ -6,7 +6,7 @@
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
         <result column="question_count" jdbcType="BIGINT" property="questionCount" />
-        <result column="follow" jdbcType="BIGINT" property="follow" />
+        <result column="follow_count" jdbcType="BIGINT" property="followCount" />
     </resultMap>
 
     <update id="incQuestion" parameterType="cn.bestsort.bbslite.bean.model.Topic">
@@ -16,11 +16,10 @@
         where name = #{name}
     </update>
 
-    <update id="updateFollow" parameterType="cn.bestsort.bbslite.bean.model.Topic">
-        update topic
-        set
-            follow = follow + #{follow}
-        where id = #{id}
-    </update>
+    <insert id="updateFollowCount" parameterType="cn.bestsort.bbslite.bean.model.Topic">
+        insert into topic (id,follow_count)
+        values (#{id,jdbcType=BIGINT}, 1)
+        on duplicate key update follow_count = follow_count+#{followCount,jdbcType=BIGINT};
+    </insert>
 
 </mapper>

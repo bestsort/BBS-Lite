@@ -109,23 +109,39 @@ function thumb_up_question() {
     debugger;
 }
 
-function follow_topic() {
-    var follow_by = $("#follow_by").val();
-    var follow_to = $("#follow_to").val();
-    if(follow_by === "" || follow_by=== undefined){
-        alert("登录后再收藏好不好");
+$('form').submit(function (event) {
+    event.preventDefault();
+    var form = $(this);
+
+    if (!form.hasClass('fupload')) {
+        //普通表单
+
+        $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.stringify(),
+        }).success(function () {
+            //成功提交
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            //错误信息
+        });
+        debugger;
     }
     else {
+        // mulitipart form,如文件上传类
+        var formData = new FormData(this);
         $.ajax({
-            type: "POST",
-            url: "/topic",
-            contentType: 'application/json',
-            data: JSON.stringify({
-                "followBy": follow_by,
-                "followTo": follow_to,
-                "type": 2
-            }),
-            dataType: "json"
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: formData,
+            mimeType: "multipart/form-data",
+            contentType: false,
+            cache: false,
+            processData: false
+        }).success(function () {
+            //成功提交
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            //错误信息
         });
-    }
-}
+    };
+});
