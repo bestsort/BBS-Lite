@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.bestsort.bbslite.dao.mapper.ThumbUpMapper">
-  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.bean.model.ThumbUp">
+<mapper namespace="cn.bestsort.bbslite.mapper.ThumbUpMapper">
+  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.ThumbUp">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="thumb_up_to" jdbcType="BIGINT" property="thumbUpTo" />
     <result column="thumb_up_by" jdbcType="BIGINT" property="thumbUpBy" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     id, thumb_up_to, thumb_up_by, type, gmt_create, gmt_modified
   </sql>
-  <select id="selectByExample" parameterType="cn.bestsort.bbslite.bean.model.ThumbUpExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.ThumbUpExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -94,13 +94,13 @@
     delete from thumb_up
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.bean.model.ThumbUpExample">
+  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.pojo.model.ThumbUpExample">
     delete from thumb_up
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.bestsort.bbslite.bean.model.ThumbUp">
+  <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.ThumbUp">
     insert into thumb_up (id, thumb_up_to, thumb_up_by, 
       type, gmt_create, gmt_modified
       )
@@ -108,7 +108,7 @@
       #{type,jdbcType=TINYINT}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.bean.model.ThumbUp">
+  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.ThumbUp">
     insert into thumb_up
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -151,7 +151,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.bestsort.bbslite.bean.model.ThumbUpExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="cn.bestsort.bbslite.pojo.model.ThumbUpExample" resultType="java.lang.Long">
     select count(*) from thumb_up
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -195,7 +195,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.bean.model.ThumbUp">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.pojo.model.ThumbUp">
     update thumb_up
     <set>
       <if test="thumbUpTo != null">
@@ -216,7 +216,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.bean.model.ThumbUp">
+  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.pojo.model.ThumbUp">
     update thumb_up
     set thumb_up_to = #{thumbUpTo,jdbcType=BIGINT},
       thumb_up_by = #{thumbUpBy,jdbcType=BIGINT},
@@ -225,7 +225,7 @@
       gmt_modified = #{gmtModified,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.bean.model.ThumbUpExample" resultMap="BaseResultMap">
+  <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.pojo.model.ThumbUpExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct

@@ -30,7 +30,7 @@ public class CustomizeErrorController implements ErrorController {
         HttpStatus status = getStatus(request);
         // 客户端出错提示信息
         if(status.is4xxClientError()){
-            model.addAttribute("message",CustomizeErrorCodeEnum.USER_ERROR);
+            model.addAttribute("message",CustomizeErrorCodeEnum.USER_ERROR.getName());
         }
         // 服务端出错提示信息
         else if(status.is5xxServerError()){

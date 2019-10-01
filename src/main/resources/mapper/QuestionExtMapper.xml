@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.bestsort.bbslite.dao.mapper.QuestionExtMapper">
-    <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.bean.model.Question">
+<mapper namespace="cn.bestsort.bbslite.mapper.QuestionExtMapper">
+    <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Question">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="title" jdbcType="VARCHAR" property="title" />
         <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
@@ -14,27 +14,27 @@
         <result column="tag" jdbcType="VARCHAR" property="tag" />
     </resultMap>
 
-    <update id="incView" parameterType="cn.bestsort.bbslite.bean.model.Question">
+    <update id="incView" parameterType="cn.bestsort.bbslite.pojo.model.Question">
         update question
         set
             view_count = view_count + 1
         where id = #{id}
     </update>
 
-    <update id="incCommentCount" parameterType="cn.bestsort.bbslite.bean.model.Question">
+    <update id="incCommentCount" parameterType="cn.bestsort.bbslite.pojo.model.Question">
         update question
         set
             comment_count = comment_count + #{commentCount,jdbcType=BIGINT}
         where id = #{id}
     </update>
 
-    <update id="updateFollowCount" parameterType="cn.bestsort.bbslite.bean.model.Question">
+    <update id="updateFollowCount" parameterType="cn.bestsort.bbslite.pojo.model.Question">
         insert into question (id,follow_count)
         values (#{id,jdbcType=BIGINT}, 1)
         on duplicate key update follow_count = follow_count+#{followCount,jdbcType=BIGINT};
     </update>
 
-    <select id="listBySearch" resultType="cn.bestsort.bbslite.bean.model.Question">
+    <select id="listBySearch" resultType="cn.bestsort.bbslite.pojo.model.Question">
         select *
         from question
         where

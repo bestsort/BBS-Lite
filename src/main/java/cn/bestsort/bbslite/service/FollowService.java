@@ -1,21 +1,17 @@
 package cn.bestsort.bbslite.service;
 
-import cn.bestsort.bbslite.bean.model.*;
-import cn.bestsort.bbslite.dao.create.FollowCreateDTO;
-import cn.bestsort.bbslite.dao.mapper.FollowMapper;
-import cn.bestsort.bbslite.dao.mapper.QuestionExtMapper;
-import cn.bestsort.bbslite.dao.mapper.TopicExtMapper;
-import cn.bestsort.bbslite.dao.mapper.UserExtMapper;
-import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.enums.FollowEnum;
-import cn.bestsort.bbslite.exception.CustomizeException;
+import cn.bestsort.bbslite.mapper.FollowMapper;
+import cn.bestsort.bbslite.mapper.QuestionExtMapper;
+import cn.bestsort.bbslite.mapper.TopicExtMapper;
+import cn.bestsort.bbslite.mapper.UserExtMapper;
+import cn.bestsort.bbslite.pojo.model.*;
+import cn.bestsort.bbslite.pojo.vo.FollowVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,7 +35,7 @@ public class FollowService {
     UserExtMapper userExtMapper;
     Follow follow;
     @Transactional(rollbackFor = Exception.class)
-    public void insertOrUpdate(FollowCreateDTO followCreateDTO) {
+    public void insertOrUpdate(FollowVO followCreateDTO) {
         follow = new Follow();
         BeanUtils.copyProperties(followCreateDTO, follow);
         follow.setType(

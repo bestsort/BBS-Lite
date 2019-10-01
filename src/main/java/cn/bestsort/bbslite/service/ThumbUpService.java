@@ -1,6 +1,6 @@
 package cn.bestsort.bbslite.service;
 
-import cn.bestsort.bbslite.dao.mapper.ThumbUpMapper;
+import cn.bestsort.bbslite.mapper.ThumbUpMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

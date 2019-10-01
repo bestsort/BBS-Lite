@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.bestsort.bbslite.dao.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.bean.model.User">
+<mapper namespace="cn.bestsort.bbslite.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.User">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="account_id" jdbcType="VARCHAR" property="accountId" />
     <result column="email" jdbcType="VARCHAR" property="email" />
@@ -78,7 +78,7 @@
     id, account_id, email, name, token, bio, avatar_url, password, html_url, thumb_up, 
     follow_count, gmt_create, gmt_modified
   </sql>
-  <select id="selectByExample" parameterType="cn.bestsort.bbslite.bean.model.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,13 +102,13 @@
     delete from user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.bean.model.UserExample">
+  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.pojo.model.UserExample">
     delete from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.bestsort.bbslite.bean.model.User">
+  <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.User">
     insert into user (id, account_id, email, 
       name, token, bio, avatar_url, 
       password, html_url, thumb_up, 
@@ -120,7 +120,7 @@
       #{followCount,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.bean.model.User">
+  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -205,7 +205,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.bestsort.bbslite.bean.model.UserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="cn.bestsort.bbslite.pojo.model.UserExample" resultType="java.lang.Long">
     select count(*) from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -277,7 +277,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.bean.model.User">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.pojo.model.User">
     update user
     <set>
       <if test="accountId != null">
@@ -319,7 +319,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.bean.model.User">
+  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.pojo.model.User">
     update user
     set account_id = #{accountId,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
@@ -335,7 +335,7 @@
       gmt_modified = #{gmtModified,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.bean.model.UserExample" resultMap="BaseResultMap">
+  <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.pojo.model.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct

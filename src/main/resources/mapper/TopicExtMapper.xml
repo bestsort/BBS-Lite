@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.bestsort.bbslite.dao.mapper.TopicExtMapper">
-    <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.bean.model.Topic">
+<mapper namespace="cn.bestsort.bbslite.mapper.TopicExtMapper">
+    <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Topic">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
@@ -9,14 +9,14 @@
         <result column="follow_count" jdbcType="BIGINT" property="followCount" />
     </resultMap>
 
-    <update id="incQuestion" parameterType="cn.bestsort.bbslite.bean.model.Topic">
+    <update id="incQuestion" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
         update topic
         set
             question_count = question_count + 1
         where name = #{name}
     </update>
 
-    <insert id="updateFollowCount" parameterType="cn.bestsort.bbslite.bean.model.Topic">
+    <insert id="updateFollowCount" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
         insert into topic (id,follow_count)
         values (#{id,jdbcType=BIGINT}, 1)
         on duplicate key update follow_count = follow_count+#{followCount,jdbcType=BIGINT};

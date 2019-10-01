@@ -1,9 +1,9 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dao.dto.AccessTokenDTO;
-import cn.bestsort.bbslite.dao.create.GithubUser;
-import cn.bestsort.bbslite.dao.mapper.UserMapper;
-import cn.bestsort.bbslite.bean.model.User;
+import cn.bestsort.bbslite.pojo.dto.AccessTokenDto;
+import cn.bestsort.bbslite.pojo.vo.GithubUserVo;
+import cn.bestsort.bbslite.mapper.UserMapper;
+import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.util.provider.GithubProvider;
 import cn.bestsort.bbslite.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -51,7 +51,7 @@ public class AuthorizeController {
                            @RequestParam(name = "state") String state,
                            HttpServletRequest request,
                            HttpServletResponse response){
-        AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
+        AccessTokenDto accessTokenDTO = new AccessTokenDto();
         accessTokenDTO.setClient_id(clientId);
         accessTokenDTO.setClient_secret(secret);
         accessTokenDTO.setCode(code);
@@ -59,7 +59,7 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
 
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
-        GithubUser githubUser = githubProvider.getUser(accessToken);
+        GithubUserVo githubUser = githubProvider.getUser(accessToken);
         if(githubUser != null && githubUser.getId() != null){
             User user = new User();
             String token = UUID.randomUUID().toString();

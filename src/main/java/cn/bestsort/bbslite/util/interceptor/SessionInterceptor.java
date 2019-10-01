@@ -1,8 +1,8 @@
 package cn.bestsort.bbslite.util.interceptor;
 
-import cn.bestsort.bbslite.dao.mapper.UserMapper;
-import cn.bestsort.bbslite.bean.model.User;
-import cn.bestsort.bbslite.bean.model.UserExample;
+import cn.bestsort.bbslite.mapper.UserMapper;
+import cn.bestsort.bbslite.pojo.model.User;
+import cn.bestsort.bbslite.pojo.model.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;

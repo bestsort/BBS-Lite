@@ -1,6 +1,6 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dao.dto.PagInationDTO;
+import cn.bestsort.bbslite.pojo.dto.PagInationDto;
 import cn.bestsort.bbslite.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,7 @@ public class IndexController {
                         @RequestParam(name="page",defaultValue = "1") Integer page,
                         @RequestParam(name="size",defaultValue = "10") Integer size,
                         @RequestParam(name = "search",defaultValue = "") String search){
-        PagInationDTO pagination = questionService.list(search,page,size);
+        PagInationDto pagination = questionService.list(search,page,size);
         model.addAttribute("pagination",pagination);
         return "index";
     }

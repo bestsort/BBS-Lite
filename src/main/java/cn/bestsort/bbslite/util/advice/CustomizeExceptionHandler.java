@@ -1,6 +1,6 @@
 package cn.bestsort.bbslite.util.advice;
 
-import cn.bestsort.bbslite.dao.dto.ResultDTO;
+import cn.bestsort.bbslite.pojo.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import com.alibaba.fastjson.JSON;
@@ -33,12 +33,12 @@ public class CustomizeExceptionHandler {
         //获取错误信息
         //如果为 JSON 则返回至当前页面(问题发布页面/评论页面会用到)
         if(type.equals(contentType)){
-            ResultDTO result;
+            ResultDto result;
             if(e instanceof CustomizeException){
-                result =  ResultDTO.errorOf((CustomizeException) e);
+                result =  ResultDto.errorOf((CustomizeException) e);
             }
             else{
-                result =  ResultDTO.errorOf(CustomizeErrorCodeEnum.SYS_ERROR);
+                result =  ResultDto.errorOf(CustomizeErrorCodeEnum.SYS_ERROR);
             }
             try {
                 response.setContentType(type);

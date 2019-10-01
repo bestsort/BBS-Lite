@@ -1,14 +1,14 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dao.dto.QuestionDTO;
+import cn.bestsort.bbslite.pojo.dto.QuestionDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
-import cn.bestsort.bbslite.dao.mapper.QuestionMapper;
-import cn.bestsort.bbslite.dao.mapper.TopicMapper;
-import cn.bestsort.bbslite.bean.model.Question;
-import cn.bestsort.bbslite.bean.model.Topic;
-import cn.bestsort.bbslite.bean.model.TopicExample;
-import cn.bestsort.bbslite.bean.model.User;
+import cn.bestsort.bbslite.mapper.QuestionMapper;
+import cn.bestsort.bbslite.mapper.TopicMapper;
+import cn.bestsort.bbslite.pojo.model.Question;
+import cn.bestsort.bbslite.pojo.model.Topic;
+import cn.bestsort.bbslite.pojo.model.TopicExample;
+import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,7 +48,7 @@ public class PublishController {
                        Model model,
                        HttpServletRequest request){
 
-        QuestionDTO question = questionService.getById(id);
+        QuestionDto question = questionService.getById(id);
         User user = (User)request.getSession().getAttribute("user");
         if(!question.getCreator().equals(user.getId())){
             throw new CustomizeException(CustomizeErrorCodeEnum.USER_ERROR);

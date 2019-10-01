@@ -1,13 +1,13 @@
 package cn.bestsort.bbslite.service;
 
-import cn.bestsort.bbslite.dao.dto.CommentDTO;
-import cn.bestsort.bbslite.bean.model.*;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
-import cn.bestsort.bbslite.dao.mapper.CommentMapper;
-import cn.bestsort.bbslite.dao.mapper.QuestionExtMapper;
-import cn.bestsort.bbslite.dao.mapper.QuestionMapper;
-import cn.bestsort.bbslite.dao.mapper.UserMapper;
+import cn.bestsort.bbslite.mapper.CommentMapper;
+import cn.bestsort.bbslite.mapper.QuestionExtMapper;
+import cn.bestsort.bbslite.mapper.QuestionMapper;
+import cn.bestsort.bbslite.mapper.UserMapper;
+import cn.bestsort.bbslite.pojo.dto.CommentDto;
+import cn.bestsort.bbslite.pojo.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,7 +59,7 @@ public class CommentService {
         }
     }
 
-    public List<CommentDTO> listByQuestionId(Long questionId) {
+    public List<CommentDto> listByQuestionId(Long questionId) {
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria()
                 .andQuestionIdEqualTo(questionId);
@@ -69,32 +69,21 @@ public class CommentService {
         if (comments.isEmpty()) {
             return new ArrayList<>();
         }
-        //获取去重后的评论人id
-
-        List<Long> userIds = comments.stream()
-                .map(Comment::getCommentator)
-                .distinct()
-                .collect(Collectors.toList());
-
-        //获取去重后的评论人信息并将其映射为Map, Key为id, Value为User信息
-        UserExample userExample = new UserExample();
-        userExample.createCriteria()
-                .andIdIn(userIds);
-        List<User> users = userMapper.selectByExample(userExample);
-        Map<Long,User> userMap = users.stream().collect(Collectors.toMap(User::getId, user->user));
-
 
         //将comments 先按照评论分级排序再按照时间排序
         comments.sort(new CommentComparator());
 
 
         //将 comment 转为 commentDTO
-        HashMap<Long,CommentDTO> dtoHashMap = new HashMap<>();
-        List<CommentDTO> commentDTOList = new ArrayList<>();
+        HashMap<Long, CommentDto> dtoHashMap = new HashMap<>();
+        List<CommentDto> commentDTOList = new ArrayList<>();
         for(Comment comment:comments){
-            CommentDTO commentDTO = new CommentDTO();
+            CommentDto commentDTO = new CommentDto();
             BeanUtils.copyProperties(comment,commentDTO);
-            commentDTO.setUser(userMap.get(comment.getCommentator()));
+            User user = new User();
+            user.setId(comment.getUserId());
+            user.setAvatarUrl(comment.getUserAvatarUrl());
+            commentDTO.setUser(user);
             if(comment.getLevel() <= 1) {
                 // 如果为父评论则将其加入到 commentDTOList 并在 map 中标记
                 dtoHashMap.put(comment.getId(), commentDTO);

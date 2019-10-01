@@ -1,7 +1,7 @@
 package cn.bestsort.bbslite;
 
-import cn.bestsort.bbslite.dao.mapper.UserMapper;
-import cn.bestsort.bbslite.bean.model.UserExample;
+import cn.bestsort.bbslite.mapper.UserMapper;
+import cn.bestsort.bbslite.pojo.model.UserExample;
 import cn.bestsort.bbslite.util.MurmursHash;
 import org.junit.Test;
 import org.junit.runner.RunWith;

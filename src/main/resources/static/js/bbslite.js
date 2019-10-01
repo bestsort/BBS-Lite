@@ -145,3 +145,5 @@ $('form').submit(function (event) {
         });
     };
 });
+
+$('.collapse').collapse();

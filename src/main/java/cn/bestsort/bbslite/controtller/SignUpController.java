@@ -1,12 +1,12 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dao.dto.ResultDTO;
-import cn.bestsort.bbslite.dao.create.UserCreateDTO;
+import cn.bestsort.bbslite.pojo.dto.ResultDto;
+import cn.bestsort.bbslite.pojo.vo.UserCreateVo;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
-import cn.bestsort.bbslite.dao.mapper.UserMapper;
-import cn.bestsort.bbslite.bean.model.User;
-import cn.bestsort.bbslite.bean.model.UserExample;
+import cn.bestsort.bbslite.mapper.UserMapper;
+import cn.bestsort.bbslite.pojo.model.User;
+import cn.bestsort.bbslite.pojo.model.UserExample;
 import cn.bestsort.bbslite.util.MurmursHash;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class SignUpController {
 
     @ResponseBody
     @RequestMapping(value = "/sign_up",method = RequestMethod.POST)
-    public Object post(@RequestBody UserCreateDTO userCreateDTO,
+    public Object post(@RequestBody UserCreateVo userCreateDTO,
                        HttpServletResponse response,
                        HttpServletRequest request) {
         UserExample userExample = new UserExample();
@@ -62,6 +62,6 @@ public class SignUpController {
         request.getSession().setAttribute("user",user);
         response.addCookie(new Cookie("token",token));
         userMapper.insertSelective(user);
-        return ResultDTO.okOf();
+        return ResultDto.okOf();
     }
 }

@@ -9,8 +9,8 @@
 package cn.bestsort.bbslite.util.provider;
 
 
-import cn.bestsort.bbslite.dao.dto.AccessTokenDTO;
-import cn.bestsort.bbslite.dao.create.GithubUser;
+import cn.bestsort.bbslite.pojo.dto.AccessTokenDto;
+import cn.bestsort.bbslite.pojo.vo.GithubUserVo;
 import com.alibaba.fastjson.JSON;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ import java.util.Objects;
 
 @Component
 public class GithubProvider {
-    public String getAccessToken(AccessTokenDTO accessTokenDTO){
+    public String getAccessToken(AccessTokenDto accessTokenDTO){
         MediaType mediaType = MediaType.get("application/json; charset=utf-8");
         OkHttpClient client = new OkHttpClient();
 
@@ -37,7 +37,7 @@ public class GithubProvider {
         }
         return null;
     }
-    public GithubUser getUser(String accessToken){
+    public GithubUserVo getUser(String accessToken){
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://api.github.com/user?access_token=" + accessToken)
@@ -45,7 +45,7 @@ public class GithubProvider {
         try {
             Response response = client.newCall(request).execute();
             String str = Objects.requireNonNull(response.body()).string();
-            return JSON.parseObject(str,GithubUser.class);
+            return JSON.parseObject(str, GithubUserVo.class);
         }catch (IOException ignored){ }
         return null;
     }

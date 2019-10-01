@@ -1,17 +1,17 @@
 package cn.bestsort.bbslite.service;
 
-import cn.bestsort.bbslite.dao.dto.PagInationDTO;
-import cn.bestsort.bbslite.dao.dto.QuestionDTO;
-import cn.bestsort.bbslite.dao.mapper.QuestionExtMapper;
-import cn.bestsort.bbslite.dao.mapper.QuestionMapper;
-import cn.bestsort.bbslite.dao.mapper.TopicExtMapper;
-import cn.bestsort.bbslite.dao.mapper.UserMapper;
+import cn.bestsort.bbslite.pojo.dto.PagInationDto;
+import cn.bestsort.bbslite.pojo.dto.QuestionDto;
+import cn.bestsort.bbslite.mapper.QuestionExtMapper;
+import cn.bestsort.bbslite.mapper.QuestionMapper;
+import cn.bestsort.bbslite.mapper.TopicExtMapper;
+import cn.bestsort.bbslite.mapper.UserMapper;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
-import cn.bestsort.bbslite.bean.model.Question;
-import cn.bestsort.bbslite.bean.model.QuestionExample;
-import cn.bestsort.bbslite.bean.model.Topic;
-import cn.bestsort.bbslite.bean.model.User;
+import cn.bestsort.bbslite.pojo.model.Question;
+import cn.bestsort.bbslite.pojo.model.QuestionExample;
+import cn.bestsort.bbslite.pojo.model.Topic;
+import cn.bestsort.bbslite.pojo.model.User;
 import org.apache.ibatis.session.RowBounds;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeanUtils;
@@ -41,8 +41,8 @@ public class QuestionService {
     TopicExtMapper topicExtMapper;
     private Integer totalCount;
 
-    public PagInationDTO list(String search,Integer page, Integer size){
-        PagInationDTO result;
+    public PagInationDto list(String search, Integer page, Integer size){
+        PagInationDto result;
         if(search.isEmpty()){
             totalCount = (int)questionMapper.countByExample(new QuestionExample());
             result = getPagInation(new QuestionExample(),page,size);
@@ -56,7 +56,7 @@ public class QuestionService {
         return result;
     }
 
-    public PagInationDTO list(Integer page, Integer size,String topic){
+    public PagInationDto list(Integer page, Integer size, String topic){
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria()
                 .andTopicEqualTo(topic);
@@ -65,7 +65,7 @@ public class QuestionService {
     }
 
 
-    public PagInationDTO list(Long userId , Integer page, Integer size) {
+    public PagInationDto list(Long userId , Integer page, Integer size) {
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria()
                 .andCreatorEqualTo(userId);
@@ -76,13 +76,13 @@ public class QuestionService {
         return getPagInation(example,page,size);
     }
 
-    public QuestionDTO getById(Long id) {
+    public QuestionDto getById(Long id) {
 
         Question question = questionMapper.selectByPrimaryKey(id);
         if(question == null){
             throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
         }
-        QuestionDTO questionDTO = new QuestionDTO();
+        QuestionDto questionDTO = new QuestionDto();
         BeanUtils.copyProperties(question,questionDTO);
         questionDTO.setUser(userMapper.selectByPrimaryKey(question.getCreator()));
         return  questionDTO;
@@ -108,7 +108,7 @@ public class QuestionService {
      * 将问题分页
      */
     @NotNull
-    private PagInationDTO getPagInation(QuestionExample example, Integer page, Integer size){
+    private PagInationDto getPagInation(QuestionExample example, Integer page, Integer size){
         int offset = size * (page - 1);
         //限制访问合法
         page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
@@ -120,7 +120,7 @@ public class QuestionService {
                 new RowBounds(offset,size));
         return getPagInationDTO(questions, page, size);
     }
-    private PagInationDTO getPagInation(List<Question> questions,Integer page,Integer size){
+    private PagInationDto getPagInation(List<Question> questions, Integer page, Integer size){
         //限制访问合法
         page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
         page = Math.max(page,1);
@@ -128,12 +128,12 @@ public class QuestionService {
     }
 
     @NotNull
-    private PagInationDTO getPagInationDTO(List<Question> questions, Integer page, Integer size) {
-        List<QuestionDTO> questionDTOList = new ArrayList<>();
-        PagInationDTO pagInationDTO = new PagInationDTO();
+    private PagInationDto getPagInationDTO(List<Question> questions, Integer page, Integer size) {
+        List<QuestionDto> questionDTOList = new ArrayList<>();
+        PagInationDto pagInationDTO = new PagInationDto();
         for (Question question : questions) {
             User user = userMapper.selectByPrimaryKey(question.getCreator());
-            QuestionDTO questionDTO = new QuestionDTO();
+            QuestionDto questionDTO = new QuestionDto();
             BeanUtils.copyProperties(question,questionDTO);
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
