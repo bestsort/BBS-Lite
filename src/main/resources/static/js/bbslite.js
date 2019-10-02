@@ -114,18 +114,19 @@ $('form').submit(function (event) {
     var form = $(this);
 
     if (!form.hasClass('fupload')) {
+        debugger;
         //普通表单
-
         $.ajax({
+            contentType: 'application/json',
             type: form.attr('method'),
             url: form.attr('action'),
             data: form.stringify(),
+            dataType: "json",//返回值类型
         }).success(function () {
             //成功提交
         }).fail(function (jqXHR, textStatus, errorThrown) {
             //错误信息
         });
-        debugger;
     }
     else {
         // mulitipart form,如文件上传类

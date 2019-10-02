@@ -16,6 +16,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ import java.util.List;
  * @Date C19-8-28 下午6:30
  * @Version 1.0
  */
-
+@CacheConfig(cacheNames = {"PagInation"})
 @Service
 public class QuestionService {
     @Autowired
@@ -41,6 +43,7 @@ public class QuestionService {
     TopicExtMapper topicExtMapper;
     private Integer totalCount;
 
+    @Cacheable(key = "targetClass + methodName +#p0")
     public PagInationDto list(String search, Integer page, Integer size){
         PagInationDto result;
         if(search.isEmpty()){

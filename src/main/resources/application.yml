@@ -1,5 +1,4 @@
-server:
-  port:8080
+
   ######################################################################
   #####                Your GitHub OAuth Config                    #####
   ######################################################################
@@ -66,3 +65,8 @@ mybatis:
   type-aliases-package: cn.bestsort.bbslite.mapper
   configuration.map-underscore-to-camel-case: true
   mapper-locations: classpath:mapper/*.xml
+
+server:
+  servlet:
+    session:
+      timeout: 15552000

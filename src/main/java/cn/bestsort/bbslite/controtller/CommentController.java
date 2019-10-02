@@ -7,11 +7,13 @@ import cn.bestsort.bbslite.mapper.CommentMapper;
 import cn.bestsort.bbslite.pojo.model.Comment;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.CommentService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @ClassName CommentController
@@ -20,38 +22,30 @@ import javax.servlet.http.HttpServletRequest;
  * @Date 19-9-13 下午3:51
  * @Version 1.0
  */
-@Controller
+@RestController
 public class CommentController {
     @Autowired
     CommentMapper commentMapper;
     @Autowired
     CommentService commentService;
-    @GetMapping("/comment")
-    public String comment(){
-        return "comment";
-    }
+
     @ResponseBody
     @RequestMapping(value = "/comment",method = RequestMethod.POST)
-    public Object post(@RequestBody CommentCreateDto commentCreateDTO,
-                       HttpServletRequest request){
+    public Object post(CommentCreateDto commentCreateDTO,
+                       HttpSession session){
 
-        User user = (User)request.getSession().getAttribute("user");
+        User user = (User)session.getAttribute("user");
         if (user == null) {
             return ResultDto.errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
         Comment comment = new Comment();
-        comment.setPid(commentCreateDTO.getPid());
-        comment.setContent(commentCreateDTO.getContent());
-        comment.setLevel(commentCreateDTO.getLevel());
+        BeanUtils.copyProperties(commentCreateDTO,comment);
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setGmtModified(comment.getGmtCreate());
-        comment.setCommentator(user.getId());
-        comment.setQuestionId(commentCreateDTO.getQuestionId());
         commentService.insert(comment);
         return ResultDto.okOf();
     }
 
-    @ResponseBody
     @RequestMapping(value = "/comment/{id}",method = RequestMethod.POST)
     public ResultDto comments(@PathVariable(name="id") Long id){
         return null;

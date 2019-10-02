@@ -81,7 +81,7 @@ public class CommentService {
             CommentDto commentDTO = new CommentDto();
             BeanUtils.copyProperties(comment,commentDTO);
             User user = new User();
-            user.setId(comment.getUserId());
+            user.setId(comment.getCommentator());
             user.setAvatarUrl(comment.getUserAvatarUrl());
             commentDTO.setUser(user);
             if(comment.getLevel() <= 1) {

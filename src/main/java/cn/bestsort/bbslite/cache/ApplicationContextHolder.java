@@ -2,7 +2,6 @@ package cn.bestsort.bbslite.cache;
 
 /**
  * @ClassName ApplicationContextHolder
- * @Description TODO
  * @Author bestsort
  * @Date 19-10-2 上午10:22
  * @Version 1.0

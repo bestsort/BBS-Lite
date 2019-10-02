@@ -1,6 +1,5 @@
 package cn.bestsort.bbslite.cache;
 
-import cn.bestsort.bbslite.cache.ApplicationContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.cache.Cache;
 import org.springframework.data.redis.core.RedisCallback;
@@ -13,7 +12,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * @ClassName RedisCache
- * @Description TODO
+ * @Description Mybatis 二级缓存实现
  * @Author bestsort
  * @Date 19-10-2 上午10:15
  * @Version 1.0
@@ -24,10 +23,15 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class RedisCache implements Cache {
 
     private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-    private final String id; // cache instance id
+    /**
+     * id,每个继承自 Cache 的类都需要实现 getId 方法
+     */
+    private final String id;
     private RedisTemplate redisTemplate;
-
-    private static final long EXPIRE_TIME_IN_MINUTES = 30; // redis过期时间
+    /**
+     * redis过期时间
+     */
+    private static final long EXPIRE_TIME_IN_MINUTES = 30;
 
     public RedisCache(String id) {
         if (id == null) {
@@ -41,12 +45,6 @@ public class RedisCache implements Cache {
         return id;
     }
 
-    /**
-     * Put query result to redis
-     *
-     * @param key
-     * @param value
-     */
     @Override
     @SuppressWarnings("unchecked")
     public void putObject(Object key, Object value) {
@@ -61,12 +59,6 @@ public class RedisCache implements Cache {
         }
     }
 
-    /**
-     * Get cached query result from redis
-     *
-     * @param key
-     * @return
-     */
     @Override
     public Object getObject(Object key) {
         try {
@@ -81,12 +73,6 @@ public class RedisCache implements Cache {
         }
     }
 
-    /**
-     * Remove cached query result from redis
-     *
-     * @param key
-     * @return
-     */
     @Override
     @SuppressWarnings("unchecked")
     public Object removeObject(Object key) {
@@ -101,9 +87,6 @@ public class RedisCache implements Cache {
         return null;
     }
 
-    /**
-     * Clears this cache instance
-     */
     @Override
     public void clear() {
         RedisTemplate redisTemplate = getRedisTemplate();
@@ -114,11 +97,6 @@ public class RedisCache implements Cache {
         log.debug("Clear all the cached query result from redis");
     }
 
-    /**
-     * This method is not used
-     *
-     * @return
-     */
     @Override
     public int getSize() {
         return 0;

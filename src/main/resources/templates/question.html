@@ -44,7 +44,6 @@
                 <form action="/follow" method="post" name="follow" target="targetIfr">
                     <input type="hidden" name="followBy" th:if="${user != null}" th:value="${user.id}">
                     <input type="hidden" name="followTo" th:value="${question.id}">
-
                     <button th:text="${'收藏(' + question.followCount + ')'}" class="bbs-menu"
                         name="type" value="question" type="submit"></button>
                     <button th:text="${'点赞(' + question.likeCount + ')'}"
@@ -53,19 +52,19 @@
                             th:value="${user==null?null:user.id}">
                     </button>
                 </form>
-
-
             </div>
             <!-- 回复问题输入框 -->
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                 <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 collapse" id="comment_section" name="comment_section">
-                    <form>
-                        <input type="hidden" id="question_id" th:value="${question.id}">
-                        <textarea class="form-control comment" id="comment_content" rows="6"></textarea>
-                        <div>
-                            <a href="#comment_input" role="button" class="btn btn-success btn-comment"
-                               tabindex="0" onclick="pComment(this)">评论一下</a>
-                        </div>
+                    <iframe name="targetIfr1" id="targetIfr1" style="display:none"></iframe>
+                    <form action="/comment" method="post" name="comment" target="targetIfr1">
+                        <input type="hidden" name="questionId" th:value="${question.id}">
+                        <input type="hidden" name="pid" value="1">
+                        <input type="hidden" name="userAvatarUrl" th:if="${user != null}" th:value="${user.avatarUrl}">
+                        <input type="hidden" name="commentator" th:if="${user != null}" th:value="${user.id}">
+                        <textarea class="form-control comment" name="content" rows="6"></textarea>
+                        <button type="submit" name="pid" th:value="${question.id}"
+                                class="btn btn-success btn-comment">提交</button>
                     </form>
                 </div>
             </div>

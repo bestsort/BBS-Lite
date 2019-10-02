@@ -9,8 +9,6 @@ public class Comment implements Serializable {
 
     private String userAvatarUrl;
 
-    private Long userId;
-
     private Long questionId;
 
     private Long commentator;
@@ -49,14 +47,6 @@ public class Comment implements Serializable {
 
     public void setUserAvatarUrl(String userAvatarUrl) {
         this.userAvatarUrl = userAvatarUrl == null ? null : userAvatarUrl.trim();
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public Long getQuestionId() {

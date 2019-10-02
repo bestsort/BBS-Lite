@@ -5,7 +5,6 @@
 
 <generatorConfiguration>
     <context id="DB2Tables" targetRuntime="MyBatis3">
-
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>

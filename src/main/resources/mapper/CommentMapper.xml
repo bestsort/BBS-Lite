@@ -5,7 +5,6 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="pid" jdbcType="BIGINT" property="pid" />
     <result column="user_avatar_url" jdbcType="VARCHAR" property="userAvatarUrl" />
-    <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="question_id" jdbcType="BIGINT" property="questionId" />
     <result column="commentator" jdbcType="BIGINT" property="commentator" />
     <result column="like_count" jdbcType="BIGINT" property="likeCount" />
@@ -73,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, pid, user_avatar_url, user_id, question_id, commentator, like_count, level, gmt_modified, 
+    id, pid, user_avatar_url, question_id, commentator, like_count, level, gmt_modified, 
     gmt_create, content
   </sql>
   <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.CommentExample" resultMap="BaseResultMap">
@@ -108,13 +107,13 @@
   </delete>
   <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
     insert into comment (id, pid, user_avatar_url, 
-      user_id, question_id, commentator, 
-      like_count, level, gmt_modified, 
-      gmt_create, content)
+      question_id, commentator, like_count, 
+      level, gmt_modified, gmt_create, 
+      content)
     values (#{id,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT}, #{userAvatarUrl,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=BIGINT}, #{questionId,jdbcType=BIGINT}, #{commentator,jdbcType=BIGINT}, 
-      #{likeCount,jdbcType=BIGINT}, #{level,jdbcType=TINYINT}, #{gmtModified,jdbcType=BIGINT}, 
-      #{gmtCreate,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR})
+      #{questionId,jdbcType=BIGINT}, #{commentator,jdbcType=BIGINT}, #{likeCount,jdbcType=BIGINT}, 
+      #{level,jdbcType=TINYINT}, #{gmtModified,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, 
+      #{content,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
     insert into comment
@@ -127,9 +126,6 @@
       </if>
       <if test="userAvatarUrl != null">
         user_avatar_url,
-      </if>
-      <if test="userId != null">
-        user_id,
       </if>
       <if test="questionId != null">
         question_id,
@@ -162,9 +158,6 @@
       </if>
       <if test="userAvatarUrl != null">
         #{userAvatarUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=BIGINT},
       </if>
       <if test="questionId != null">
         #{questionId,jdbcType=BIGINT},
@@ -207,9 +200,6 @@
       <if test="record.userAvatarUrl != null">
         user_avatar_url = #{record.userAvatarUrl,jdbcType=VARCHAR},
       </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=BIGINT},
-      </if>
       <if test="record.questionId != null">
         question_id = #{record.questionId,jdbcType=BIGINT},
       </if>
@@ -241,7 +231,6 @@
     set id = #{record.id,jdbcType=BIGINT},
       pid = #{record.pid,jdbcType=BIGINT},
       user_avatar_url = #{record.userAvatarUrl,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=BIGINT},
       question_id = #{record.questionId,jdbcType=BIGINT},
       commentator = #{record.commentator,jdbcType=BIGINT},
       like_count = #{record.likeCount,jdbcType=BIGINT},
@@ -261,9 +250,6 @@
       </if>
       <if test="userAvatarUrl != null">
         user_avatar_url = #{userAvatarUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=BIGINT},
       </if>
       <if test="questionId != null">
         question_id = #{questionId,jdbcType=BIGINT},
@@ -293,7 +279,6 @@
     update comment
     set pid = #{pid,jdbcType=BIGINT},
       user_avatar_url = #{userAvatarUrl,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=BIGINT},
       question_id = #{questionId,jdbcType=BIGINT},
       commentator = #{commentator,jdbcType=BIGINT},
       like_count = #{likeCount,jdbcType=BIGINT},

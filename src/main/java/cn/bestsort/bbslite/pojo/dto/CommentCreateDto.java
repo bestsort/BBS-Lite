@@ -17,4 +17,5 @@ public class CommentCreateDto {
     private Long commentator;
     private String content;
     private Long questionId;
+    private String userAvatarUrl;
 }

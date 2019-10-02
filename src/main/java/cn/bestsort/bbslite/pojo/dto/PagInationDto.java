@@ -3,6 +3,7 @@ package cn.bestsort.bbslite.pojo.dto;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,9 +15,9 @@ import java.util.List;
  */
 
 @Data
-public class PagInationDto {
-    @Autowired
+public class PagInationDto implements Serializable {
     private List<QuestionDto> questions;
+    private static final long serialVersionUID = 1L;
     private Boolean showPrevious;
     private Boolean showFirstPage;
     private Boolean showNext;
