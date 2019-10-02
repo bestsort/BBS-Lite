@@ -1,6 +1,8 @@
 package cn.bestsort.bbslite.pojo.model;
 
-public class Question {
+import java.io.Serializable;
+
+public class Question implements Serializable {
     private Long id;
 
     private String title;
@@ -28,6 +30,8 @@ public class Question {
     private String category;
 
     private String description;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

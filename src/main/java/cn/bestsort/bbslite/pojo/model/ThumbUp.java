@@ -1,6 +1,8 @@
 package cn.bestsort.bbslite.pojo.model;
 
-public class ThumbUp {
+import java.io.Serializable;
+
+public class ThumbUp implements Serializable {
     private Long id;
 
     private Long thumbUpTo;
@@ -12,6 +14,8 @@ public class ThumbUp {
     private Long gmtCreate;
 
     private Long gmtModified;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

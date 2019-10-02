@@ -239,4 +239,5 @@
       order by ${orderByClause}
     </if>
   </select>
+  <cache eviction="LRU" flushInterval="60000" size="512" type="cn.bestsort.bbslite.cache.RedisCache" />
 </mapper>

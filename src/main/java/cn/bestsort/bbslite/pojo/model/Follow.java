@@ -1,6 +1,8 @@
 package cn.bestsort.bbslite.pojo.model;
 
-public class Follow {
+import java.io.Serializable;
+
+public class Follow implements Serializable {
     private Long id;
 
     private Long followBy;
@@ -14,6 +16,8 @@ public class Follow {
     private Long gmtModified;
 
     private Byte status;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

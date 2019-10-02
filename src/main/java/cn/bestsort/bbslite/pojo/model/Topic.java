@@ -1,6 +1,8 @@
 package cn.bestsort.bbslite.pojo.model;
 
-public class Topic {
+import java.io.Serializable;
+
+public class Topic implements Serializable {
     private Long id;
 
     private String name;
@@ -10,6 +12,8 @@ public class Topic {
     private Long questionCount;
 
     private Long followCount;
+
+    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

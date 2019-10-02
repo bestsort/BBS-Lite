@@ -31,6 +31,14 @@
 
 ![](https://bestsort-git-project.oss-cn-hangzhou.aliyuncs.com/question.png)
 ## 快速开始
+### 依赖
+在使用前,请确保电脑中已配置好以下环境:
+- maven
+- redis
+- mysql
+- jdk-8
+
+### 开始
 ```bash
 git clone https://github.com/bestsort/BBS-Lite.git
 cd BBS-lite
@@ -44,12 +52,6 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 ```
 最后,配置好 Tomcat 即可启动项目
 
-## 优点
-
-- 代码简易，逻辑清晰
-- 对 Spring Boot, MyBatis, Spring MVC 等常用框架都有应用
-- 方便上手
-
 ## 采用技术及工具
 
 - Spring Boot(快速构建应用)
@@ -58,6 +60,7 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
     - spring-boot-starter-mybatis(SQL 模板引擎)
     - spring-boot-starter-thymeleaf(HTML 模板引擎)
 - Fastjson(JSON 文本处理)
+- Redis(缓存)
 - OkHttp3(处理网络请求)
 - Flyway(数据库版本控制)
 - Bootstrap4(前端框架)
