@@ -10,6 +10,9 @@ import cn.bestsort.bbslite.pojo.dto.CommentDto;
 import cn.bestsort.bbslite.pojo.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -23,7 +26,7 @@ import java.util.stream.Collectors;
  * @Version 1.0
  * TODO BUG:当comment输入内容长度 >1000 的时候会报错.
  */
-
+@CacheConfig(cacheNames = {"comment"})
 @Service
 public class CommentService {
 
@@ -35,6 +38,7 @@ public class CommentService {
     private QuestionMapper questionMapper;
     @Autowired
     private UserMapper userMapper;
+    @CachePut(keyGenerator = "keyGenerator")
     public void insert(Comment comment) {
         if (comment.getPid() == null || comment.getPid()==0) {
             throw new CustomizeException(CustomizeErrorCodeEnum.TARGET_PAI_NOT_FOUND);
@@ -59,6 +63,7 @@ public class CommentService {
         }
     }
 
+    @Cacheable(keyGenerator = "keyGenerator")
     public List<CommentDto> listByQuestionId(Long questionId) {
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria()

@@ -67,6 +67,8 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - Druid(数据库连接池)
 - Maven(包管理)
 - Font Awesome(图标库)
+- Log4j(日志记录)
+
 ---
 ### 其他
 - IntelliJ IDEA

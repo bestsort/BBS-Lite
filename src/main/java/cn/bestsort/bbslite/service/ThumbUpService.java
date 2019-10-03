@@ -2,6 +2,8 @@ package cn.bestsort.bbslite.service;
 
 import cn.bestsort.bbslite.mapper.ThumbUpMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
  * @Version 1.0
  */
 
+@CacheConfig(cacheNames = {"like"})
 @Service
 public class ThumbUpService {
     @Autowired

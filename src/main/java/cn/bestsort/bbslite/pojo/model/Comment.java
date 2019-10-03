@@ -1,8 +1,6 @@
 package cn.bestsort.bbslite.pojo.model;
 
-import java.io.Serializable;
-
-public class Comment implements Serializable {
+public class Comment {
     private Long id;
 
     private Long pid;
@@ -22,8 +20,6 @@ public class Comment implements Serializable {
     private Long gmtCreate;
 
     private String content;
-
-    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

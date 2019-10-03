@@ -704,10 +704,10 @@ editors:
     - indent
     - italic
     - link
-    - list
-    - list-alt
-    - list-ol
-    - list-ul
+    - listByPage
+    - listByPage-alt
+    - listByPage-ol
+    - listByPage-ul
     - marker
     - outdent
     - paper-plane
@@ -741,7 +741,7 @@ editors:
     - text-width
     - th
     - th-large
-    - th-list
+    - th-listByPage
     - tools
     - trash
     - trash-alt
@@ -1331,7 +1331,7 @@ logistics:
     - box
     - boxes
     - clipboard-check
-    - clipboard-list
+    - clipboard-listByPage
     - dolly
     - dolly-flatbed
     - hard-hat

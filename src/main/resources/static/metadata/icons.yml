@@ -1304,7 +1304,7 @@ bars:
       - checklist
       - drag
       - hamburger
-      - list
+      - listByPage
       - menu
       - nav
       - navigation
@@ -6077,7 +6077,7 @@ ellipsis-h:
       - dots
       - drag
       - kebab
-      - list
+      - listByPage
       - menu
       - nav
       - navigation
@@ -6099,7 +6099,7 @@ ellipsis-v:
       - dots
       - drag
       - kebab
-      - list
+      - listByPage
       - menu
       - nav
       - navigation
@@ -11293,7 +11293,7 @@ list-ol:
     - '2'
     - 5.0.0
     - 5.9.0
-  label: list-ol
+  label: listByPage-ol
   search:
     terms:
       - checklist
@@ -11313,7 +11313,7 @@ list-ul:
     - '2'
     - 5.0.0
     - 5.9.0
-  label: list-ul
+  label: listByPage-ul
   search:
     terms:
       - checklist
@@ -17248,7 +17248,7 @@ stream:
   search:
     terms:
       - flow
-      - list
+      - listByPage
       - timeline
   styles:
     - solid
@@ -18027,7 +18027,7 @@ th-list:
   changes:
     - '1'
     - 5.0.0
-  label: th-list
+  label: th-listByPage
   search:
     terms:
       - checklist

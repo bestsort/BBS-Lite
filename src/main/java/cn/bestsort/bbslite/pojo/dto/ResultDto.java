@@ -15,7 +15,6 @@ import lombok.Data;
 public class ResultDto {
     private Integer code;
     private String message;
-
     public static ResultDto errorOf(Integer code, String message){
         ResultDto resultDTO = new ResultDto();
         resultDTO.setCode(code);

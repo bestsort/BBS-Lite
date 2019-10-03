@@ -5,7 +5,7 @@ import cn.bestsort.bbslite.pojo.model.TopicExample;
 import cn.bestsort.bbslite.pojo.dto.PagInationDto;
 import cn.bestsort.bbslite.mapper.TopicMapper;
 import cn.bestsort.bbslite.service.FollowService;
-import cn.bestsort.bbslite.service.QuestionService;
+import cn.bestsort.bbslite.service.PagInationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ public class TopicController {
     @Autowired
     TopicMapper topicMapper;
     @Autowired
-    QuestionService questionService;
+    PagInationService questionService;
     @Autowired
     FollowService followService;
     @GetMapping("/topic")
@@ -34,7 +34,7 @@ public class TopicController {
                            @RequestParam(name="size",defaultValue = "10") Integer size,
                            Model model){
         Topic topic = topicMapper.selectByPrimaryKey(id);
-        PagInationDto pagInation = questionService.list(page,size,topic.getName());
+        PagInationDto pagInation = questionService.listByPage(page,size,topic.getName());
         model.addAttribute("pagination",pagInation);
         model.addAttribute("topic",topic);
         return "topic";

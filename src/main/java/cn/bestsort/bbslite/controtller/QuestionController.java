@@ -7,6 +7,7 @@ import cn.bestsort.bbslite.pojo.dto.ResultDto;
 import cn.bestsort.bbslite.mapper.QuestionExtMapper;
 import cn.bestsort.bbslite.service.CommentService;
 import cn.bestsort.bbslite.service.FollowService;
+import cn.bestsort.bbslite.service.PagInationService;
 import cn.bestsort.bbslite.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,7 @@ public class QuestionController {
     @GetMapping("/question/{id}")
     public String question(@PathVariable("id") Long id,
                            Model model){
-        QuestionDto questionDTO = questionService.getById(id);
+        QuestionDto questionDTO = questionService.getByQuestionId(id);
         //增加阅读数
         Question question = new Question();
         question.setId(id);

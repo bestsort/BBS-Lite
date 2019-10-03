@@ -1,8 +1,6 @@
 package cn.bestsort.bbslite.pojo.model;
 
-import java.io.Serializable;
-
-public class User implements Serializable {
+public class User {
     private Long id;
 
     private String accountId;
@@ -28,8 +26,6 @@ public class User implements Serializable {
     private Long gmtCreate;
 
     private Long gmtModified;
-
-    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

@@ -549,7 +549,7 @@ stay-linked:
     - box
     - boxes
     - clipboard-check
-    - clipboard-list
+    - clipboard-listByPage
     - dolly
     - dolly-flatbed
     - pallet

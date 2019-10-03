@@ -9,12 +9,12 @@ github:
   redurect:
     uri: http://localhost:8080/callback
 
-spring:
+
   ######################################################################
   #####                    Your Database Config                    #####
   #####       Please make sure the Database character is utf8m4    #####
   ######################################################################
-
+spring:
   datasource:
     url: jdbc:mysql://localhost/bbs_lite?characterEncoding=utf8&serverTimezone=UTC
     username: bestsort
