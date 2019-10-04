@@ -3,23 +3,16 @@ package cn.bestsort.bbslite.service;
 import cn.bestsort.bbslite.pojo.dto.PagInationDto;
 import cn.bestsort.bbslite.pojo.dto.QuestionDto;
 import cn.bestsort.bbslite.mapper.QuestionExtMapper;
-import cn.bestsort.bbslite.mapper.QuestionMapper;
 import cn.bestsort.bbslite.mapper.TopicExtMapper;
-import cn.bestsort.bbslite.mapper.UserMapper;
-import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
-import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.pojo.model.QuestionExample;
-import cn.bestsort.bbslite.pojo.model.Topic;
 import cn.bestsort.bbslite.pojo.model.User;
-import org.apache.ibatis.session.RowBounds;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,53 +24,44 @@ import java.util.List;
  * @Version 1.0
  */
 @Service
-@CacheConfig(cacheNames = "PagInation")
 public class PagInationService {
-    @Autowired
-    private QuestionMapper questionMapper;
+    @Resource
+    private QuestionService questionService;
     @Autowired
     TopicExtMapper topicExtMapper;
-    @Autowired
-    QuestionExtMapper questionExtMapper;
+
     private Integer totalCount;
 
-    @Autowired
+    @Resource
     UserService userService;
-    @Cacheable(keyGenerator = "keyGenerator")
     public PagInationDto listBySearch(String search, Integer page, Integer size){
         PagInationDto result;
         if(search.isEmpty()){
-            totalCount = (int)questionMapper.countByExample(new QuestionExample());
+            totalCount =  questionService.countAll().intValue();
             result = getPagInation(new QuestionExample(),page,size);
         }
         else{
-            String order = "gmt_create desc";
-            List<Question> questions = questionExtMapper.listBySearch(search,order);
+            List<Question> questions = questionService.listBySearch(search);
             totalCount = questions.size();
             result = getPagInation(questions,page,size);
         }
         return result;
     }
-    @Cacheable(keyGenerator = "keyGenerator")
     public PagInationDto listByPage(Integer page, Integer size, String topic){
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria()
                 .andTopicEqualTo(topic);
-        totalCount = (int)questionMapper.countByExample(new QuestionExample());
+        totalCount = questionService.countAll().intValue();
         return getPagInation(questionExample,page,size);
     }
-    @Cacheable(keyGenerator = "keyGenerator")
     public PagInationDto listByUserId(Long userId , Integer page, Integer size) {
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.createCriteria()
-                .andCreatorEqualTo(userId);
-        totalCount = (int)questionMapper.countByExample(questionExample);
+
+        totalCount = questionService.countByUserId(userId).intValue();
         QuestionExample example = new QuestionExample();
         example.createCriteria()
                 .andCreatorEqualTo(userId);
         return getPagInation(example,page,size);
     }
-
 
     /**
      * 将问题分页
@@ -89,13 +73,11 @@ public class PagInationService {
         //限制访问合法
         page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
         page = Math.max(page,1);
-        //按创建时间降序排序
-        example.setOrderByClause("gmt_create desc");
-        List<Question> questions = questionMapper.selectByExampleWithRowbounds(
-                example,
-                new RowBounds(offset,size));
+
+        List<Question> questions = questionService.listByRowBounds(offset,size);
         return getPagInationDTO(questions, page, size);
     }
+
     private PagInationDto getPagInation(List<Question> questions, Integer page, Integer size){
         //限制访问合法
         page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);

@@ -24,11 +24,13 @@ import java.util.List;
 public class UserService {
     @Autowired
     UserMapper userMapper;
-    @Cacheable(keyGenerator = "keyGenerator")
+    @Cacheable(keyGenerator = "myKeyGenerator")
     public User getById(Long id){
         return userMapper.selectByPrimaryKey(id);
     }
-    @CachePut(keyGenerator = "keyGenerator")
+
+
+    @CachePut(keyGenerator = "myKeyGenerator")
     public void createOrUpdate(User user) {
         UserExample userExample = new UserExample();
         userExample.createCriteria()

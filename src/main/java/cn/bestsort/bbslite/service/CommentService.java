@@ -38,7 +38,7 @@ public class CommentService {
     private QuestionMapper questionMapper;
     @Autowired
     private UserMapper userMapper;
-    @CachePut(keyGenerator = "keyGenerator")
+    @CachePut(keyGenerator = "myKeyGenerator")
     public void insert(Comment comment) {
         if (comment.getPid() == null || comment.getPid()==0) {
             throw new CustomizeException(CustomizeErrorCodeEnum.TARGET_PAI_NOT_FOUND);
@@ -63,7 +63,7 @@ public class CommentService {
         }
     }
 
-    @Cacheable(keyGenerator = "keyGenerator")
+    @Cacheable(keyGenerator = "myKeyGenerator")
     public List<CommentDto> listByQuestionId(Long questionId) {
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria()

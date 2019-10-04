@@ -13,12 +13,15 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
+import java.util.regex.Pattern;
 
 /**
  * 不要导入com.alibaba.fastjson.support.spring.FastJsonRedisSerializer,自己实现反序列化工具
@@ -28,17 +31,34 @@ import java.util.Map;
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
 
-    @Override
     @Bean
-    public KeyGenerator keyGenerator() {
+    public KeyGenerator myKeyGenerator() {
         return new KeyGenerator() {
             @Override
             public Object generate(Object target, Method method, Object... params) {
-                StringBuilder sb = new StringBuilder();
-                sb.append(method.getDeclaringClass().getName());
-                sb.append(target.getClass().getName());
-                Arrays.stream(params).map(Object::toString).forEach(sb::append);
-                return sb.toString();
+                String buffer = target.getClass().getSimpleName();
+                int index = buffer.indexOf("$$");
+                if(index != -1) {
+                    buffer = buffer.substring(0,index);
+                }
+                return buffer + "_" + method.getName() + "_"
+                  + StringUtils.arrayToDelimitedString(params, "_");
+                /*StringBuilder sb = new StringBuilder();
+                String buffer = target.getClass().getSimpleName();
+                int index = buffer.indexOf("$$");
+                if(index != -1) {
+                    sb.append(buffer.substring(0,index));
+                }
+                else {
+                    sb.append(buffer);
+                }
+                sb.append("--");
+                sb.append(method.getName()).append("--");
+                //sb.append(UUID.randomUUID());
+                for (Object obj : objects) {
+                    sb.append(obj.toString());
+                }
+                return sb.toString();*/
             }
         };
     }
@@ -62,7 +82,6 @@ public class RedisConfig extends CachingConfigurerSupport {
         template.setValueSerializer(serializer);
         //使用StringRedisSerializer来序列化和反序列化redis的key值
         template.setKeySerializer(new StringRedisSerializer());
-        log.debug("hit cache:{}",serializer);
         template.afterPropertiesSet();
         return template;
     }

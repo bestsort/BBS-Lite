@@ -2,16 +2,22 @@ package cn.bestsort.bbslite.service;
 
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
+import cn.bestsort.bbslite.mapper.QuestionExtMapper;
 import cn.bestsort.bbslite.mapper.QuestionMapper;
 import cn.bestsort.bbslite.pojo.dto.QuestionDto;
 import cn.bestsort.bbslite.pojo.model.Question;
+import cn.bestsort.bbslite.pojo.model.QuestionExample;
 import cn.bestsort.bbslite.pojo.model.Topic;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @ClassName QuestionService
@@ -26,8 +32,13 @@ public class QuestionService {
     @Autowired
     QuestionMapper questionMapper;
     @Autowired
+
+    QuestionExtMapper questionExtMapper;
+    @Resource
     UserService userService;
-    @Cacheable(keyGenerator = "keyGenerator")
+
+    private static String DEAFULT_ORDER = "gmt_create desc";
+    @Cacheable(keyGenerator = "myKeyGenerator")
     public QuestionDto getByQuestionId(Long id) {
         Question question = questionMapper.selectByPrimaryKey(id);
         if(question == null){
@@ -39,7 +50,28 @@ public class QuestionService {
         return  questionDTO;
     }
 
-    @CachePut(keyGenerator = "keyGenerator")
+
+    @Cacheable(keyGenerator = "myKeyGenerator")
+    public List<Question> listByRowBounds(Integer offset, Integer size){
+        QuestionExample questionExample = new QuestionExample();
+        questionExample.setOrderByClause(DEAFULT_ORDER);
+        return questionMapper.selectByExampleWithRowbounds(
+                questionExample, new RowBounds(offset,size));
+    }
+
+    public List<Question> listBySearch(String search){
+        return questionExtMapper.listBySearch(search,DEAFULT_ORDER);
+    }
+    @Cacheable(keyGenerator = "myKeyGenerator")
+    public List<Question> listByUserId(Long userId,Integer offset, Integer size){
+        QuestionExample questionExample = new QuestionExample();
+        questionExample.createCriteria().andCreatorEqualTo(userId);
+        questionExample.setOrderByClause(DEAFULT_ORDER);
+        return questionMapper.selectByExampleWithRowbounds(
+                questionExample, new RowBounds(offset,size));
+    }
+
+    @CachePut(keyGenerator = "myKeyGenerator")
     public void createOrUpdate(Question question) {
         question.setGmtModified(System.currentTimeMillis());
         if(questionMapper.selectByPrimaryKey(question.getId()) == null){
@@ -54,5 +86,15 @@ public class QuestionService {
             topic.setName(question.getTopic());
             //topicExtMapper.incQuestion(topic);
         }
+    }
+
+    @Cacheable(keyGenerator = "myKeyGenerator")
+    public Long countAll(){
+        return questionMapper.countByExample(new QuestionExample());
+    }
+    public Long countByUserId(Long userId){
+        QuestionExample questionExample = new QuestionExample();
+        questionExample.createCriteria().andCreatorEqualTo(userId);
+        return questionMapper.countByExample(questionExample);
     }
 }
