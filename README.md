@@ -25,11 +25,11 @@
 
 ## Demo
 
-![](https://bestsort-git-project.oss-cn-hangzhou.aliyuncs.com/main.png)
+![](img/main.png)
 
-![](https://bestsort-git-project.oss-cn-hangzhou.aliyuncs.com/topic.png)
+![](img/topic.png)
 
-![](https://bestsort-git-project.oss-cn-hangzhou.aliyuncs.com/question.png)
+![](img/question.png)
 ## 快速开始
 ### 依赖
 在使用前,请确保电脑中已配置好以下环境:
