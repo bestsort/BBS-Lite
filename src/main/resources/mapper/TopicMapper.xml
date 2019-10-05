@@ -5,6 +5,8 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+    <result column="follow_count" jdbcType="BIGINT" property="followCount" />
+    <result column="question_count" jdbcType="BIGINT" property="questionCount" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, avatar_url
+    id, name, avatar_url, follow_count, question_count
   </sql>
   <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.TopicExample" resultMap="BaseResultMap">
     select
@@ -98,10 +100,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
-    insert into topic (id, name, avatar_url
-      )
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}
-      )
+    insert into topic (id, name, avatar_url, 
+      follow_count, question_count)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
+      #{followCount,jdbcType=BIGINT}, #{questionCount,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
     insert into topic
@@ -115,6 +117,12 @@
       <if test="avatarUrl != null">
         avatar_url,
       </if>
+      <if test="followCount != null">
+        follow_count,
+      </if>
+      <if test="questionCount != null">
+        question_count,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -125,6 +133,12 @@
       </if>
       <if test="avatarUrl != null">
         #{avatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="followCount != null">
+        #{followCount,jdbcType=BIGINT},
+      </if>
+      <if test="questionCount != null">
+        #{questionCount,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -146,6 +160,12 @@
       <if test="record.avatarUrl != null">
         avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
       </if>
+      <if test="record.followCount != null">
+        follow_count = #{record.followCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.questionCount != null">
+        question_count = #{record.questionCount,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -155,7 +175,9 @@
     update topic
     set id = #{record.id,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
-      avatar_url = #{record.avatarUrl,jdbcType=VARCHAR}
+      avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
+      follow_count = #{record.followCount,jdbcType=BIGINT},
+      question_count = #{record.questionCount,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -169,13 +191,21 @@
       <if test="avatarUrl != null">
         avatar_url = #{avatarUrl,jdbcType=VARCHAR},
       </if>
+      <if test="followCount != null">
+        follow_count = #{followCount,jdbcType=BIGINT},
+      </if>
+      <if test="questionCount != null">
+        question_count = #{questionCount,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
     update topic
     set name = #{name,jdbcType=VARCHAR},
-      avatar_url = #{avatarUrl,jdbcType=VARCHAR}
+      avatar_url = #{avatarUrl,jdbcType=VARCHAR},
+      follow_count = #{followCount,jdbcType=BIGINT},
+      question_count = #{questionCount,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.pojo.model.TopicExample" resultMap="BaseResultMap">

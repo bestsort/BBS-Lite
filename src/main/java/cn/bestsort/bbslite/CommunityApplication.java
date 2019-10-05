@@ -7,7 +7,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @MapperScan("cn.bestsort.bbslite.mapper")
 @SpringBootApplication
-@EnableCaching
+//@EnableCaching
 public class CommunityApplication {
     public static void main(String[] args) {
         SpringApplication.run(CommunityApplication.class, args);

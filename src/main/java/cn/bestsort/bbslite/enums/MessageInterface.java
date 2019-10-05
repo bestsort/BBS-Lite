@@ -2,7 +2,7 @@ package cn.bestsort.bbslite.enums;
 
 /**
  * @ClassName MessageInterface
- * @Description TODO
+ * @Description
  * @Author bestsort
  * @Date 19-9-29 下午2:53
  * @Version 1.0

@@ -7,7 +7,7 @@ import lombok.Data;
 
 /**
  * @ClassName QuestionInfoVo
- * @Description TODO
+ * @Description
  * @Author bestsort
  * @Date 2019/10/4 下午2:09
  * @Version 1.0

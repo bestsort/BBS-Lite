@@ -29,10 +29,12 @@ import java.util.List;
  * @Version 1.0
  * TODO BUG:当comment输入内容长度 >1000 的时候会报错.
  */
-@CacheConfig(cacheNames = {"comment"})
+@CacheConfig(cacheNames = {"commentCache"})
 @Service
 public class CommentService {
 
+    @Resource
+    private UserService userServicel;
     @Resource
     private  QuestionService questionService;
     @Resource
@@ -52,7 +54,6 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
             }
             commentMapper.insertSelective(comment);
-
             countService.updateQuestionCommentCount(question.getId(),1L);
         }else{
             //回复评论
@@ -86,9 +87,7 @@ public class CommentService {
         for(Comment comment:comments){
             CommentDto commentDTO = new CommentDto();
             BeanUtils.copyProperties(comment,commentDTO);
-            User user = new User();
-            user.setId(comment.getCommentator());
-            user.setAvatarUrl(comment.getUserAvatarUrl());
+            User user = userServicel.getById(comment.getCommentator());
             commentDTO.setUser(user);
             if(comment.getLevel() <= 1) {
                 // 如果为父评论则将其加入到 commentDTOList 并在 map 中标记

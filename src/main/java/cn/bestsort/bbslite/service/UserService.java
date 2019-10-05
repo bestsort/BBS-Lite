@@ -18,7 +18,7 @@ import java.util.List;
  * @Version 1.0
  */
 @Service
-@CacheConfig(cacheNames = "usersServices")
+@CacheConfig(cacheNames = "userCache")
 public class UserService {
     @Autowired
     private UserMapper userMapper;
@@ -27,6 +27,14 @@ public class UserService {
     @Cacheable(keyGenerator = "myKeyGenerator")
     public User getById(long id){
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Cacheable(keyGenerator = "myKeyGenerator")
+    public User getByToken(String token){
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andTokenEqualTo(token);
+        List<User> users = userMapper.selectByExample(userExample);
+        return users.isEmpty() ? null : users.get(0);
     }
 
     public void createOrUpdate(User user) {

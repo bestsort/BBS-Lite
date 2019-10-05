@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * @ClassName FollowVO
- * @Description TODO
+ * @Description
  * @Author bestsort
  * @Date 19-9-28 下午8:07
  * @Version 1.0

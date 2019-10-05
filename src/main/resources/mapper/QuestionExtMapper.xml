@@ -7,10 +7,6 @@
         <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
         <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
         <result column="creator" jdbcType="BIGINT" property="creator" />
-        <result column="comment_count" jdbcType="BIGINT" property="commentCount" />
-        <result column="view_count" jdbcType="BIGINT" property="viewCount" />
-        <result column="like_count" jdbcType="BIGINT" property="likeCount" />
-        <result column="follow_count" jdbcType="BIGINT" property="followCount" />
         <result column="tag" jdbcType="VARCHAR" property="tag" />
     </resultMap>
 

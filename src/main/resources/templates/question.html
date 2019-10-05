@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="${question.title}"></title>
+    <title th:text="${questionInfoVo.question.title}"></title>
     <head th:insert="common/import"></head>
     <link rel="stylesheet" href="/css/comment.css">
 </head>
@@ -13,21 +13,21 @@
         <div class="col-lg-9 col-md-9 col-xs-9 col-sm-12" style="border-right:1px solid #eee">
             <!-- 问题正文 -->
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                <h3><span th:text="${question.title}"></span></h3>
+                <h3><span th:text="${questionInfoVo.question.title}"></span></h3>
                 <span class="aw-question-content">
-                    <span th:text="${question.viewCount + '次浏览 • '}"></span>
-                    <span th:text="${question.commentCount} + '条评论 • '"></span>
-                    <span th:text="${'发布于: '+ #dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm:ss')}"></span>
+                    <span th:text="${questionInfoVo.questionCount.view + '次浏览 • '}"></span>
+                    <span th:text="${questionInfoVo.questionCount.comment} + '条评论 • '"></span>
+                    <span th:text="${'发布于: '+ #dates.format(questionInfoVo.question.gmtCreate,'yyyy-MM-dd HH:mm:ss')}"></span>
                 </span><br>
                 <!-- 问题标签 -->
-                <span class="label label-tag" th:each="tag:${#strings.listSplit(question.tag,' ')}">
+                <span class="label label-tag" th:each="tag:${#strings.listSplit(questionInfoVo.question.tag,' ')}">
                     <a th:href="${'/?search=' + tag}" target="_parent" style="color: #fff;cursor: pointer;text-decoration: none;">
                         <i class="fas fa-tags"></i>
                         <span th:text="${tag}" ></span>
                     </a>
                 </span>
                 <hr class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${question.description}">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${questionInfoVo.question.description}">
                     <hr class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
                 </div>
             </div>
@@ -35,21 +35,21 @@
             <!--编辑问题按钮-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <hr class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-                <input type="hidden" id="thumb_up_to" th:value="${question.id}">
-                <button th:href="@{'/publish/'+${question.id}}" class="bbs-menu"
-                   th:if="${session.user != null && session.user.id == question.creator}">
+                <input type="hidden" id="thumb_up_to" th:value="${questionInfoVo.question.id}">
+                <button th:href="@{'/publish/'+${questionInfoVo.question.id}}" class="bbs-menu"
+                   th:if="${session.user != null && session.user.id == questionInfoVo.question.creator}">
                     编辑问题
                 </button>
                 <iframe name="targetIfr" id="targetIfr" style="display:none"></iframe>
                 <form action="/follow" method="post" name="follow" target="targetIfr">
-                    <input type="hidden" name="followBy" th:if="${user != null}" th:value="${user.id}">
-                    <input type="hidden" name="followTo" th:value="${question.id}">
-                    <button th:text="${'收藏(' + question.followCount + ')'}" class="bbs-menu"
-                        name="type" value="question" type="submit"></button>
-                    <button th:text="${'点赞(' + question.likeCount + ')'}"
+                    <input type="hidden" name="followBy" th:if="${questionInfoVo.user != null}" th:value="${questionInfoVo.user.id}">
+                    <input type="hidden" name="followTo" th:value="${questionInfoVo.question.id}">
+                    <button th:text="${'收藏(' + questionInfoVo.questionCount.follow + ')'}" class="bbs-menu"
+                        name="type" value="questionInfoVo.question" type="submit"></button>
+                    <button th:text="${'点赞(' + questionInfoVo.questionCount.thumbUp + ')'}"
                             id="thumb_up_by"
                             type="submit" class="bbs-menu"
-                            th:value="${user==null?null:user.id}">
+                            th:value="${questionInfoVo.user==null?null:questionInfoVo.user.id}">
                     </button>
                 </form>
             </div>
@@ -58,13 +58,15 @@
                 <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 collapse" id="comment_section" name="comment_section">
                     <iframe name="targetIfr1" id="targetIfr1" style="display:none"></iframe>
                     <form action="/comment" method="post" name="comment" target="targetIfr1">
-                        <input type="hidden" name="questionId" th:value="${question.id}">
+                        <input type="hidden" name="questionId" th:value="${questionInfoVo.question.id}">
                         <input type="hidden" name="pid" value="1">
-                        <input type="hidden" name="userAvatarUrl" th:if="${user != null}" th:value="${user.avatarUrl}">
-                        <input type="hidden" name="commentator" th:if="${user != null}" th:value="${user.id}">
+                        <input type="hidden" name="level" value="1">
+                        <input type="hidden" name="userAvatarUrl"
+                               th:if="${questionInfoVo.user != null}" th:value="${questionInfoVo.user.avatarUrl}">
+                        <input type="hidden" name="commentator"
+                               th:if="${questionInfoVo.user != null}" th:value="${questionInfoVo.user.id}">
                         <textarea class="form-control comment" name="content" rows="6"></textarea>
-                        <button type="submit" name="pid" th:value="${question.id}"
-                                class="btn btn-success btn-comment">提交</button>
+                        <button type="submit" class="btn btn-success btn-comment">提交</button>
                     </form>
                 </div>
             </div>
@@ -86,13 +88,14 @@
                 <hr>
                 <div class="media media-left" style="width: 120%">
                     <a href="/">
-                        <img class="media-min img-circle" th:src="${question.user.avatarUrl}">
+                        <img class="media-min img-circle" th:src="${questionInfoVo.user.avatarUrl}">
                     </a>
                     <form action="/follow" method="post" name="follow" target="targetIfr2">
-                        <input type="hidden" name="followBy" th:if="${user != null}" th:value="${user.id}">
-                        <input type="hidden" name="followTo" th:value="${question.creator}">
+                        <input type="hidden" name="followBy"
+                               th:if="${questionInfoVo.user != null}" th:value="${questionInfoVo.user.id}">
+                        <input type="hidden" name="followTo" th:value="${questionInfoVo.question.creator}">
 
-                        <button th:text="${'关注|' + question.user.followCount}"
+                        <button th:text="${'关注|' + questionInfoVo.user.name}"
                                 class="btn btn-outline-success btn-sm"
                                 style="margin-top: 13%;margin-left: 200%; width: 100%"
                                 name="type" value="user" type="submit"></button>
@@ -104,16 +107,16 @@
                 <small style="font-size: 12px;color: #1f1f1f;">
                     昵称:
                     <!-- TODO 跳转到个人主页 -->
-                    <a href="/" style="color: #155faa" th:text="${question.user.name}"></a>
+                    <a href="/" style="color: #155faa" th:text="${questionInfoVo.user.name}"></a>
                     <br>
-                    <span th:if="${question.user.htmlUrl != null}">
-                        网址:<a target="_blank" th:href="${question.user.htmlUrl}"
+                    <span th:if="${questionInfoVo.user.htmlUrl != null}">
+                        网址:<a target="_blank" th:href="${questionInfoVo.user.htmlUrl}"
                               style="color: #155faa"
-                              th:text="${question.user.htmlUrl}"></a>
+                              th:text="${questionInfoVo.user.htmlUrl}"></a>
                     </span>
                     <br>
-                    <span th:if="${question.user.bio != null}">
-                    简介:<span style="color: #155faa" th:text="${question.user.bio}"></span>
+                    <span th:if="${questionInfoVo.user.bio != null}">
+                    简介:<span style="color: #155faa" th:text="${questionInfoVo.user.bio}"></span>
                     </span>
                 </small>
             </div>

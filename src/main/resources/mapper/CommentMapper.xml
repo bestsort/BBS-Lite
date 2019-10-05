@@ -11,6 +11,7 @@
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="like_count" jdbcType="BIGINT" property="likeCount" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,7 +73,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, pid, user_avatar_url, question_id, commentator, level, gmt_modified, gmt_create, 
-    content
+    content, like_count
   </sql>
   <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.CommentExample" resultMap="BaseResultMap">
     select
@@ -107,12 +108,12 @@
   <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
     insert into comment (id, pid, user_avatar_url, 
       question_id, commentator, level, 
-      gmt_modified, gmt_create, content
-      )
+      gmt_modified, gmt_create, content, 
+      like_count)
     values (#{id,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT}, #{userAvatarUrl,jdbcType=VARCHAR}, 
       #{questionId,jdbcType=BIGINT}, #{commentator,jdbcType=BIGINT}, #{level,jdbcType=TINYINT}, 
-      #{gmtModified,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}
-      )
+      #{gmtModified,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
+      #{likeCount,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
     insert into comment
@@ -144,6 +145,9 @@
       <if test="content != null">
         content,
       </if>
+      <if test="likeCount != null">
+        like_count,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -172,6 +176,9 @@
       </if>
       <if test="content != null">
         #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="likeCount != null">
+        #{likeCount,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -211,6 +218,9 @@
       <if test="record.content != null">
         content = #{record.content,jdbcType=VARCHAR},
       </if>
+      <if test="record.likeCount != null">
+        like_count = #{record.likeCount,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -226,7 +236,8 @@
       level = #{record.level,jdbcType=TINYINT},
       gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
-      content = #{record.content,jdbcType=VARCHAR}
+      content = #{record.content,jdbcType=VARCHAR},
+      like_count = #{record.likeCount,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -258,6 +269,9 @@
       <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
       </if>
+      <if test="likeCount != null">
+        like_count = #{likeCount,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -270,7 +284,8 @@
       level = #{level,jdbcType=TINYINT},
       gmt_modified = #{gmtModified,jdbcType=BIGINT},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
-      content = #{content,jdbcType=VARCHAR}
+      content = #{content,jdbcType=VARCHAR},
+      like_count = #{likeCount,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.pojo.model.CommentExample" resultMap="BaseResultMap">

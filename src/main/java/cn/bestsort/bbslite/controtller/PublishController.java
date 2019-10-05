@@ -2,7 +2,6 @@ package cn.bestsort.bbslite.controtller;
 
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
-import cn.bestsort.bbslite.mapper.QuestionMapper;
 import cn.bestsort.bbslite.mapper.TopicMapper;
 import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.pojo.model.Topic;

@@ -8,5 +8,6 @@ create table comment
     level TINYINT default 1,
     gmt_modified BIGINT null,
     gmt_create BIGINT null,
-    content VARCHAR(255)
+    content VARCHAR(255),
+    like_count bigint default 0
 );

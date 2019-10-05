@@ -2,6 +2,7 @@ package cn.bestsort.bbslite.controtller;
 
 import cn.bestsort.bbslite.pojo.vo.PagInationVo;
 import cn.bestsort.bbslite.service.PagInationService;
+import cn.bestsort.bbslite.service.QuestionService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class IndexController {
 
     @Autowired
-    private PagInationService questionService;
+    private PagInationService pagInationService;
 
 
     @GetMapping("/")
@@ -30,12 +31,11 @@ public class IndexController {
                         @RequestParam(name="size",defaultValue = "10") Integer size,
                         @RequestParam(name = "search",defaultValue = "") String search){
         PagInationVo pagination;
-        if(StringUtils.isEmpty(search)){
-            pagination = questionService.getPagInationList(page,size, PagInationService.ALL,search);
-        }
-        else {
-            pagination = questionService.getPagInationList(page,size,PagInationService.SEARCH,search);
-        }
+        pagination = pagInationService.getPagInationList(page,size,
+                StringUtils.isEmpty(search)?
+                        QuestionService.ALL:
+                        QuestionService.SEARCH,search);
+
         model.addAttribute("pagination",pagination);
         return "index";
     }

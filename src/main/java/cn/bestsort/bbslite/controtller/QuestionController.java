@@ -1,9 +1,8 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.mapper.QuestionExtMapper;
 import cn.bestsort.bbslite.pojo.dto.CommentDto;
 import cn.bestsort.bbslite.pojo.dto.ResultDto;
-import cn.bestsort.bbslite.pojo.model.Question;
+import cn.bestsort.bbslite.pojo.vo.QuestionInfoVo;
 import cn.bestsort.bbslite.service.CommentService;
 import cn.bestsort.bbslite.service.CountService;
 import cn.bestsort.bbslite.service.FollowService;
@@ -37,11 +36,12 @@ public class QuestionController {
     public String question(@PathVariable("id") Long id,
                            Model model){
 
-        Question question = questionService.getByQuestionId(id);
-        countService.incQuestionView(id);
+        QuestionInfoVo questionInfoVo = questionService.getVoByQuestionId(id);
+        //TODO fix bug: countService.incQuestionView(id);
+
         List<CommentDto> comments = commentService.listByQuestionId(id);
         model.addAttribute("comments",comments);
-        model.addAttribute("question",question);
+        model.addAttribute("questionInfoVo",questionInfoVo);
         return "question";
     }
 
@@ -49,7 +49,6 @@ public class QuestionController {
     @ResponseBody
     @RequestMapping(value = "/question/{id}",method = RequestMethod.POST)
     public Object post(@PathVariable(name = "id") Long id){
-
         return ResultDto.okOf();
     }
 }

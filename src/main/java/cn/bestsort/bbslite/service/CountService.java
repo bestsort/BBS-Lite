@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 
 /**
  * @ClassName CountSerVice
- * @Description TODO
+ * @Description
  * @Author bestsort
  * @Date 2019/10/4 上午11:31
  * @Version 1.0
  */
 @Service
-@CacheConfig(cacheNames = "count")
+@CacheConfig(cacheNames = "countCache")
 public class CountService {
     @Autowired
     private QuestionCountExtMapper questionCountExtMapper;

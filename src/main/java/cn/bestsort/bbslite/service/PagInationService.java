@@ -27,38 +27,20 @@ public class PagInationService {
     private UserService userService;
     @Resource
     private CountService countService;
-    public static int SEARCH = 1;
-    public static int TOPIC = 2;
-    public static int USER = 3;
-    public static int ALL = 4;
 
-    public PagInationVo getPagInationList(long page, long size, long type, Object key){
+    public PagInationVo getPagInationList(int page, int size, int type, Object key){
         List<Question> questions;
         PagInationVo result = new PagInationVo();
-        QuestionExample example = new QuestionExample();
-        Long totalCount;
-        if(type == SEARCH){
-            questions = questionService.listBySearch(key.toString());
-            totalCount = (long)questions.size();
-            page = Math.min(totalCount /size + (totalCount %size==0? 0 : 1),page);
-            page = Math.max(page,1);
-        }else {
-            if (type == TOPIC){
-                example.createCriteria().andTopicEqualTo(key.toString());
-            }
-            else if (type == USER){
-                example.createCriteria().andCreatorEqualTo((long)key);
-            }
-            totalCount = questionService.countByExample(example);
-            //限制访问合法
-            page = Math.min(totalCount /size + (totalCount %size==0? 0L : 1L),page);
-            page = Math.max(page,1);
-            long offset = size * (page - 1);
-
-            questions = questionService.listByRowBounds(example,(int)offset,(int)size);
-            totalCount = (long)questions.size();
+        questions = questionService.listByRowBounds(key, page, size, type);
+        int totalCount;
+        if(type == QuestionService.SEARCH) {
+            totalCount = questions.size();
         }
-        result.setPagination(totalCount.intValue(),(int)page,(int)size);
+        else {
+            totalCount = (int)questionService.countByType(type,key);
+        }
+        result.setPagination(totalCount,page,size);
+
         List<QuestionInfoVo> questionInfoVos = new LinkedList<>();
         for(Question i:questions){
             QuestionInfoVo buf = new QuestionInfoVo();

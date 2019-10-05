@@ -19,6 +19,8 @@ public class Comment {
 
     private String content;
 
+    private Long likeCount;
+
     public Long getId() {
         return id;
     }
@@ -91,6 +93,14 @@ public class Comment {
         this.content = content == null ? null : content.trim();
     }
 
+    public Long getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(Long likeCount) {
+        this.likeCount = likeCount;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -106,6 +116,7 @@ public class Comment {
         sb.append(", gmtModified=").append(gmtModified);
         sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", content=").append(content);
+        sb.append(", likeCount=").append(likeCount);
         sb.append("]");
         return sb.toString();
     }

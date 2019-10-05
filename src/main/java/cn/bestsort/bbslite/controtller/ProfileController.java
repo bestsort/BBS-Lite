@@ -3,6 +3,7 @@ package cn.bestsort.bbslite.controtller;
 import cn.bestsort.bbslite.pojo.vo.PagInationVo;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.PagInationService;
+import cn.bestsort.bbslite.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +44,7 @@ public class ProfileController {
             put("questions","我的提问");
             put("replies","我的回复");
         }};
-        PagInationVo pagInationDTO = questionService.getPagInationList(page,size,PagInationService.USER,user.getId());
+        PagInationVo pagInationDTO = questionService.getPagInationList(page,size, QuestionService.USER,user.getId());
         model.addAttribute("section",action)
             .addAttribute("sectionName",item.get(action))
             .addAttribute("user",user)

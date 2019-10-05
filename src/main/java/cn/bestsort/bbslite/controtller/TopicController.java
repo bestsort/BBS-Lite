@@ -6,6 +6,8 @@ import cn.bestsort.bbslite.pojo.model.TopicExample;
 import cn.bestsort.bbslite.pojo.vo.PagInationVo;
 import cn.bestsort.bbslite.service.FollowService;
 import cn.bestsort.bbslite.service.PagInationService;
+import cn.bestsort.bbslite.service.QuestionService;
+import cn.bestsort.bbslite.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,25 +20,27 @@ import java.util.List;
 @Controller
 public class TopicController {
     @Autowired
-    TopicMapper topicMapper;
+    private TopicService topicService;
     @Autowired
-    PagInationService questionService;
-    @Autowired
-    FollowService followService;
+    private PagInationService questionService;
+
+
     @GetMapping("/topic")
     public String topic(Model model){
-        List<Topic> topics = topicMapper.selectByExample(new TopicExample());
+        List<Topic> topics = topicService.getAll();
         model.addAttribute("topics",topics);
         return "topic";
     }
+
 
     @GetMapping("/topic/{id}")
     public String comments(@PathVariable(name="id") Long id,
                            @RequestParam(name="page",defaultValue = "1") Integer page,
                            @RequestParam(name="size",defaultValue = "10") Integer size,
                            Model model){
-        Topic topic = topicMapper.selectByPrimaryKey(id);
-        PagInationVo pagInation = questionService.getPagInationList(page,size,PagInationService.TOPIC,topic.getName());
+        Topic topic = topicService.getById(id);
+        PagInationVo pagInation = questionService.getPagInationList(
+                page,size, QuestionService.TOPIC,topic.getName());
         model.addAttribute("pagination",pagInation);
         model.addAttribute("topic",topic);
         return "topic";

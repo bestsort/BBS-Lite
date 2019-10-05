@@ -10,7 +10,7 @@
                 <!-- Contenedor del Comentario -->
                 <div class="comment-box">
                     <div class="comment-head">
-                        <h6 th:class="'comment-name '+ ${question.creator==comment.user.id?'by-author':''}">
+                        <h6 th:class="'comment-name '+ ${questionInfoVo.question.creator==comment.user.id?'by-author':''}">
                             <a th:href="${comment.user.htmlUrl}" th:text="${comment.user.name}"></a>
                         </h6>
                         <span th:text="${#dates.format(comment.gmtCreate,'yyyy-MM-dd HH:mm')}"></span>

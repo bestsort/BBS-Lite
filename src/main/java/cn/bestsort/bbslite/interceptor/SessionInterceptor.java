@@ -1,8 +1,10 @@
-package cn.bestsort.bbslite.util.interceptor;
+package cn.bestsort.bbslite.interceptor;
 
 import cn.bestsort.bbslite.mapper.UserMapper;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.pojo.model.UserExample;
+import cn.bestsort.bbslite.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -23,7 +25,7 @@ import java.util.List;
 @Service
 public class SessionInterceptor implements HandlerInterceptor {
     @Autowired
-    UserMapper userMapper;
+    UserService userService;
 
     @Override
     public boolean preHandle(HttpServletRequest request,
@@ -34,15 +36,12 @@ public class SessionInterceptor implements HandlerInterceptor {
             for (Cookie cookie : cookies) {
                 if ("token".equals(cookie.getName())) {
                     String token = cookie.getValue();
-                    UserExample userExample = new UserExample();
-                    userExample.createCriteria()
-                            .andTokenEqualTo(token);
-                    List<User> user = userMapper.selectByExample(userExample);
-                     if (!user.isEmpty()) {
+                    User user = userService.getByToken(token);
+                     if (user != null) {
                          //点赞允许匿名用户,所以需要将user信息写入servlet中
-                         request.setAttribute("user", user.get(0));
+                         request.setAttribute("user", user);
                          //写入Session便于持久化登录
-                         request.getSession().setAttribute("user", user.get(0));
+                         request.getSession().setAttribute("user", user);
                      }
                     break;
                 }

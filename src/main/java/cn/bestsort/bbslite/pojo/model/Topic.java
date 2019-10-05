@@ -7,6 +7,10 @@ public class Topic {
 
     private String avatarUrl;
 
+    private Long followCount;
+
+    private Long questionCount;
+
     public Long getId() {
         return id;
     }
@@ -31,6 +35,22 @@ public class Topic {
         this.avatarUrl = avatarUrl == null ? null : avatarUrl.trim();
     }
 
+    public Long getFollowCount() {
+        return followCount;
+    }
+
+    public void setFollowCount(Long followCount) {
+        this.followCount = followCount;
+    }
+
+    public Long getQuestionCount() {
+        return questionCount;
+    }
+
+    public void setQuestionCount(Long questionCount) {
+        this.questionCount = questionCount;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -40,6 +60,8 @@ public class Topic {
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
         sb.append(", avatarUrl=").append(avatarUrl);
+        sb.append(", followCount=").append(followCount);
+        sb.append(", questionCount=").append(questionCount);
         sb.append("]");
         return sb.toString();
     }

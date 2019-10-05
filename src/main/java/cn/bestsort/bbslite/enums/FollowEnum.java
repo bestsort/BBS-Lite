@@ -2,7 +2,7 @@ package cn.bestsort.bbslite.enums;
 
 /**
  * @ClassName FollowEnum
- * @Description TODO
+ * @Description
  * @Author bestsort
  * @Date 19-9-29 下午2:52
  * @Version 1.0

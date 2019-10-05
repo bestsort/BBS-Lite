@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @ClassName ThumbUpService
- * @Description TODO
+ * @Description
  * @Author bestsort
  * @Date 19-9-28 下午6:57
  * @Version 1.0

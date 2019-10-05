@@ -303,6 +303,126 @@ public class TopicExample {
             addCriterion("avatar_url not between", value1, value2, "avatarUrl");
             return (Criteria) this;
         }
+
+        public Criteria andFollowCountIsNull() {
+            addCriterion("follow_count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountIsNotNull() {
+            addCriterion("follow_count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountEqualTo(Long value) {
+            addCriterion("follow_count =", value, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountNotEqualTo(Long value) {
+            addCriterion("follow_count <>", value, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountGreaterThan(Long value) {
+            addCriterion("follow_count >", value, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountGreaterThanOrEqualTo(Long value) {
+            addCriterion("follow_count >=", value, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountLessThan(Long value) {
+            addCriterion("follow_count <", value, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountLessThanOrEqualTo(Long value) {
+            addCriterion("follow_count <=", value, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountIn(List<Long> values) {
+            addCriterion("follow_count in", values, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountNotIn(List<Long> values) {
+            addCriterion("follow_count not in", values, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountBetween(Long value1, Long value2) {
+            addCriterion("follow_count between", value1, value2, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFollowCountNotBetween(Long value1, Long value2) {
+            addCriterion("follow_count not between", value1, value2, "followCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionCountIsNull() {
+            addCriterion("question_count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionCountIsNotNull() {
+            addCriterion("question_count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionCountEqualTo(Long value) {
+            addCriterion("question_count =", value, "questionCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionCountNotEqualTo(Long value) {
+            addCriterion("question_count <>", value, "questionCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionCountGreaterThan(Long value) {
+            addCriterion("question_count >", value, "questionCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionCountGreaterThanOrEqualTo(Long value) {
+            addCriterion("question_count >=", value, "questionCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionCountLessThan(Long value) {
+            addCriterion("question_count <", value, "questionCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionCountLessThanOrEqualTo(Long value) {
+            addCriterion("question_count <=", value, "questionCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionCountIn(List<Long> values) {
+            addCriterion("question_count in", values, "questionCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionCountNotIn(List<Long> values) {
+            addCriterion("question_count not in", values, "questionCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionCountBetween(Long value1, Long value2) {
+            addCriterion("question_count between", value1, value2, "questionCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andQuestionCountNotBetween(Long value1, Long value2) {
+            addCriterion("question_count not between", value1, value2, "questionCount");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -27,7 +27,7 @@
 
 ![](https://bestsort-git-project.oss-cn-hangzhou.aliyuncs.com/main.png)
 
-![](https://bestsort-git-project.oss-cn-hangzhou.aliyuncs.com/my_question.png)
+![](https://bestsort-git-project.oss-cn-hangzhou.aliyuncs.com/topic.png)
 
 ![](https://bestsort-git-project.oss-cn-hangzhou.aliyuncs.com/question.png)
 ## 快速开始
