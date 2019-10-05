@@ -1,8 +1,8 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.pojo.dto.PagInationDto;
+import cn.bestsort.bbslite.pojo.vo.PagInationVo;
 import cn.bestsort.bbslite.service.PagInationService;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +22,20 @@ public class IndexController {
 
     @Autowired
     private PagInationService questionService;
+
+
     @GetMapping("/")
     public String index(Model model,
                         @RequestParam(name="page",defaultValue = "1") Integer page,
                         @RequestParam(name="size",defaultValue = "10") Integer size,
                         @RequestParam(name = "search",defaultValue = "") String search){
-        PagInationDto pagination = questionService.listBySearch(search,page,size);
+        PagInationVo pagination;
+        if(StringUtils.isEmpty(search)){
+            pagination = questionService.getPagInationList(page,size, PagInationService.ALL,search);
+        }
+        else {
+            pagination = questionService.getPagInationList(page,size,PagInationService.SEARCH,search);
+        }
         model.addAttribute("pagination",pagination);
         return "index";
     }

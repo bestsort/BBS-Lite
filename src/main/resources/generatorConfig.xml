@@ -7,6 +7,7 @@
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
         <commentGenerator>
             <property name="suppressAllComments" value="true" />
             <property name="suppressDate" value="true"/>
@@ -44,5 +45,6 @@
         <table tableName="topic" domainObjectName="Topic"/>
         <table tableName="thumb_up" domainObjectName="ThumbUp"/>
         <table tableName="follow" domainObjectName="Follow"/>
+        <table tableName="question_count" domainObjectName="QuestionCount"/>
     </context>
 </generatorConfiguration>

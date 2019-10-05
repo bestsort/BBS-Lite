@@ -70,4 +70,21 @@ public class Follow {
     public void setStatus(Byte status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", followBy=").append(followBy);
+        sb.append(", followTo=").append(followTo);
+        sb.append(", type=").append(type);
+        sb.append(", gmtCreate=").append(gmtCreate);
+        sb.append(", gmtModified=").append(gmtModified);
+        sb.append(", status=").append(status);
+        sb.append("]");
+        return sb.toString();
+    }
 }

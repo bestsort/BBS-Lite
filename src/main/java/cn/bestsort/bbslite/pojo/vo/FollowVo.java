@@ -11,7 +11,7 @@ import lombok.Data;
  */
 
 @Data
-public class FollowVO {
+public class FollowVo {
     private Long followBy;
     private Long followTo;
     private String type;

@@ -3,11 +3,11 @@ package cn.bestsort.bbslite.service;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.CommentMapper;
-import cn.bestsort.bbslite.mapper.QuestionExtMapper;
-import cn.bestsort.bbslite.mapper.QuestionMapper;
-import cn.bestsort.bbslite.mapper.UserMapper;
 import cn.bestsort.bbslite.pojo.dto.CommentDto;
-import cn.bestsort.bbslite.pojo.model.*;
+import cn.bestsort.bbslite.pojo.model.Comment;
+import cn.bestsort.bbslite.pojo.model.CommentExample;
+import cn.bestsort.bbslite.pojo.model.Question;
+import cn.bestsort.bbslite.pojo.model.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -15,8 +15,11 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @ClassName CommentService
@@ -30,14 +33,13 @@ import java.util.stream.Collectors;
 @Service
 public class CommentService {
 
-    @Autowired
-    private QuestionExtMapper questionExtMapper;
+    @Resource
+    private  QuestionService questionService;
+    @Resource
+    private CountService countService;
     @Autowired
     private CommentMapper commentMapper;
-    @Autowired
-    private QuestionMapper questionMapper;
-    @Autowired
-    private UserMapper userMapper;
+
     @CachePut(keyGenerator = "myKeyGenerator")
     public void insert(Comment comment) {
         if (comment.getPid() == null || comment.getPid()==0) {
@@ -45,14 +47,13 @@ public class CommentService {
         }
         if(comment.getLevel() <= 1){
             //回复问题
-            Question question = questionMapper.selectByPrimaryKey(comment.getQuestionId());
+            Question question = questionService.getByQuestionId(comment.getQuestionId());
             if (question == null){
                 throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
             }
             commentMapper.insertSelective(comment);
-            question.setCommentCount(1L);
-            questionExtMapper.incCommentCount(question);
 
+            countService.updateQuestionCommentCount(question.getId(),1L);
         }else{
             //回复评论
             Comment dbComment =commentMapper.selectByPrimaryKey(comment.getPid());
@@ -80,8 +81,8 @@ public class CommentService {
 
 
         //将 comment 转为 commentDTO
-        HashMap<Long, CommentDto> dtoHashMap = new HashMap<>();
-        List<CommentDto> commentDTOList = new ArrayList<>();
+        HashMap<Long, CommentDto> dtoHashMap = new HashMap<>(10);
+        List<CommentDto> commentDtos = new ArrayList<>(10);
         for(Comment comment:comments){
             CommentDto commentDTO = new CommentDto();
             BeanUtils.copyProperties(comment,commentDTO);
@@ -92,7 +93,7 @@ public class CommentService {
             if(comment.getLevel() <= 1) {
                 // 如果为父评论则将其加入到 commentDTOList 并在 map 中标记
                 dtoHashMap.put(comment.getId(), commentDTO);
-                commentDTOList.add(commentDTO);
+                commentDtos.add(commentDTO);
             }
             else{
                 // 否则就将评论装入到对应的父评论下
@@ -101,12 +102,12 @@ public class CommentService {
                         .add(commentDTO);
             }
         }
-        return commentDTOList;
+        return commentDtos;
     }
     private static class CommentComparator implements Comparator<Comment>{
         @Override
         public int compare(Comment o1, Comment o2) {
-            long res = 0;
+            long res;
             if(!o1.getLevel().equals(o2.getLevel())){
                 //level 不相等则按照level排序
                 res = o2.getLevel()-o1.getLevel();

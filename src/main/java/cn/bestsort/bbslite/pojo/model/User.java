@@ -19,10 +19,6 @@ public class User {
 
     private String htmlUrl;
 
-    private Long thumbUp;
-
-    private Long followCount;
-
     private Long gmtCreate;
 
     private Long gmtModified;
@@ -99,22 +95,6 @@ public class User {
         this.htmlUrl = htmlUrl == null ? null : htmlUrl.trim();
     }
 
-    public Long getThumbUp() {
-        return thumbUp;
-    }
-
-    public void setThumbUp(Long thumbUp) {
-        this.thumbUp = thumbUp;
-    }
-
-    public Long getFollowCount() {
-        return followCount;
-    }
-
-    public void setFollowCount(Long followCount) {
-        this.followCount = followCount;
-    }
-
     public Long getGmtCreate() {
         return gmtCreate;
     }
@@ -129,5 +109,26 @@ public class User {
 
     public void setGmtModified(Long gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", accountId=").append(accountId);
+        sb.append(", email=").append(email);
+        sb.append(", name=").append(name);
+        sb.append(", token=").append(token);
+        sb.append(", bio=").append(bio);
+        sb.append(", avatarUrl=").append(avatarUrl);
+        sb.append(", password=").append(password);
+        sb.append(", htmlUrl=").append(htmlUrl);
+        sb.append(", gmtCreate=").append(gmtCreate);
+        sb.append(", gmtModified=").append(gmtModified);
+        sb.append("]");
+        return sb.toString();
     }
 }

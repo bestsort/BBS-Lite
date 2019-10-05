@@ -7,10 +7,6 @@ public class Topic {
 
     private String avatarUrl;
 
-    private Long questionCount;
-
-    private Long followCount;
-
     public Long getId() {
         return id;
     }
@@ -35,19 +31,16 @@ public class Topic {
         this.avatarUrl = avatarUrl == null ? null : avatarUrl.trim();
     }
 
-    public Long getQuestionCount() {
-        return questionCount;
-    }
-
-    public void setQuestionCount(Long questionCount) {
-        this.questionCount = questionCount;
-    }
-
-    public Long getFollowCount() {
-        return followCount;
-    }
-
-    public void setFollowCount(Long followCount) {
-        this.followCount = followCount;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", name=").append(name);
+        sb.append(", avatarUrl=").append(avatarUrl);
+        sb.append("]");
+        return sb.toString();
     }
 }

@@ -11,14 +11,6 @@ public class Question {
 
     private Long creator;
 
-    private Long commentCount;
-
-    private Long viewCount;
-
-    private Long likeCount;
-
-    private Long followCount;
-
     private String tag;
 
     private Byte top;
@@ -69,38 +61,6 @@ public class Question {
         this.creator = creator;
     }
 
-    public Long getCommentCount() {
-        return commentCount;
-    }
-
-    public void setCommentCount(Long commentCount) {
-        this.commentCount = commentCount;
-    }
-
-    public Long getViewCount() {
-        return viewCount;
-    }
-
-    public void setViewCount(Long viewCount) {
-        this.viewCount = viewCount;
-    }
-
-    public Long getLikeCount() {
-        return likeCount;
-    }
-
-    public void setLikeCount(Long likeCount) {
-        this.likeCount = likeCount;
-    }
-
-    public Long getFollowCount() {
-        return followCount;
-    }
-
-    public void setFollowCount(Long followCount) {
-        this.followCount = followCount;
-    }
-
     public String getTag() {
         return tag;
     }
@@ -139,5 +99,25 @@ public class Question {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", title=").append(title);
+        sb.append(", gmtCreate=").append(gmtCreate);
+        sb.append(", gmtModified=").append(gmtModified);
+        sb.append(", creator=").append(creator);
+        sb.append(", tag=").append(tag);
+        sb.append(", top=").append(top);
+        sb.append(", topic=").append(topic);
+        sb.append(", category=").append(category);
+        sb.append(", description=").append(description);
+        sb.append("]");
+        return sb.toString();
     }
 }

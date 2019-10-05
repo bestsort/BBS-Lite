@@ -1,6 +1,6 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.pojo.dto.PagInationDto;
+import cn.bestsort.bbslite.pojo.vo.PagInationVo;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.PagInationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,8 @@ import java.util.Map;
 public class ProfileController {
     @Autowired
     private PagInationService questionService;
+
+
     @GetMapping("/profile/{action}")
     public String profile(@PathVariable(name = "action") String action,
                           HttpServletRequest request,
@@ -41,7 +43,7 @@ public class ProfileController {
             put("questions","我的提问");
             put("replies","我的回复");
         }};
-        PagInationDto pagInationDTO = questionService.listByUserId(user.getId(),page,size);
+        PagInationVo pagInationDTO = questionService.getPagInationList(page,size,PagInationService.USER,user.getId());
         model.addAttribute("section",action)
             .addAttribute("sectionName",item.get(action))
             .addAttribute("user",user)

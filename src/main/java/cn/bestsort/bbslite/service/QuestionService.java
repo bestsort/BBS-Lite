@@ -4,12 +4,10 @@ import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.QuestionExtMapper;
 import cn.bestsort.bbslite.mapper.QuestionMapper;
-import cn.bestsort.bbslite.pojo.dto.QuestionDto;
 import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.pojo.model.QuestionExample;
 import cn.bestsort.bbslite.pojo.model.Topic;
 import org.apache.ibatis.session.RowBounds;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CachePut;
@@ -30,30 +28,25 @@ import java.util.List;
 @Service
 public class QuestionService {
     @Autowired
-    QuestionMapper questionMapper;
+    private QuestionMapper questionMapper;
     @Autowired
+    private QuestionExtMapper questionExtMapper;
 
-    QuestionExtMapper questionExtMapper;
     @Resource
-    UserService userService;
-
+    private CountService countService;
     private static String DEAFULT_ORDER = "gmt_create desc";
+
+
     @Cacheable(keyGenerator = "myKeyGenerator")
-    public QuestionDto getByQuestionId(Long id) {
+    public Question getByQuestionId(long id) {
         Question question = questionMapper.selectByPrimaryKey(id);
         if(question == null){
             throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
         }
-        QuestionDto questionDTO = new QuestionDto();
-        BeanUtils.copyProperties(question,questionDTO);
-        questionDTO.setUser(userService.getById(question.getCreator()));
-        return  questionDTO;
+        return  question;
     }
-
-
     @Cacheable(keyGenerator = "myKeyGenerator")
-    public List<Question> listByRowBounds(Integer offset, Integer size){
-        QuestionExample questionExample = new QuestionExample();
+    public List<Question> listByRowBounds(QuestionExample questionExample,Integer offset, Integer size){
         questionExample.setOrderByClause(DEAFULT_ORDER);
         return questionMapper.selectByExampleWithRowbounds(
                 questionExample, new RowBounds(offset,size));
@@ -62,14 +55,10 @@ public class QuestionService {
     public List<Question> listBySearch(String search){
         return questionExtMapper.listBySearch(search,DEAFULT_ORDER);
     }
-    @Cacheable(keyGenerator = "myKeyGenerator")
-    public List<Question> listByUserId(Long userId,Integer offset, Integer size){
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.createCriteria().andCreatorEqualTo(userId);
-        questionExample.setOrderByClause(DEAFULT_ORDER);
-        return questionMapper.selectByExampleWithRowbounds(
-                questionExample, new RowBounds(offset,size));
-    }
+
+
+    public List<Question> listByExample(QuestionExample example){return questionMapper.selectByExample(example);}
+
 
     @CachePut(keyGenerator = "myKeyGenerator")
     public void createOrUpdate(Question question) {
@@ -77,6 +66,15 @@ public class QuestionService {
         if(questionMapper.selectByPrimaryKey(question.getId()) == null){
             question.setGmtCreate(question.getGmtModified());
             questionMapper.insertSelective(question);
+            QuestionExample example = new QuestionExample();
+            example.createCriteria()
+                    .andGmtCreateEqualTo(question.getGmtCreate())
+                    .andCreatorEqualTo(question.getCreator())
+                    .andTitleEqualTo(question.getTitle())
+                    .andTagEqualTo(question.getTag());
+
+            Question question1 = questionMapper.selectByExample(example).get(0);
+            countService.insertQuestionCount(question1.getId());
         }else {
             int updated = questionMapper.updateByPrimaryKeySelective(question);
             if(updated != 1) {
@@ -92,9 +90,8 @@ public class QuestionService {
     public Long countAll(){
         return questionMapper.countByExample(new QuestionExample());
     }
-    public Long countByUserId(Long userId){
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.createCriteria().andCreatorEqualTo(userId);
+
+    public Long countByExample(QuestionExample questionExample){
         return questionMapper.countByExample(questionExample);
     }
 }

@@ -1,19 +1,15 @@
 package cn.bestsort.bbslite.service;
 
-import cn.bestsort.bbslite.pojo.dto.PagInationDto;
-import cn.bestsort.bbslite.pojo.dto.QuestionDto;
-import cn.bestsort.bbslite.mapper.QuestionExtMapper;
-import cn.bestsort.bbslite.mapper.TopicExtMapper;
 import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.pojo.model.QuestionExample;
-import cn.bestsort.bbslite.pojo.model.User;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import cn.bestsort.bbslite.pojo.vo.PagInationVo;
+import cn.bestsort.bbslite.pojo.vo.QuestionInfoVo;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -27,77 +23,51 @@ import java.util.List;
 public class PagInationService {
     @Resource
     private QuestionService questionService;
-    @Autowired
-    TopicExtMapper topicExtMapper;
-
-    private Integer totalCount;
-
     @Resource
-    UserService userService;
-    public PagInationDto listBySearch(String search, Integer page, Integer size){
-        PagInationDto result;
-        if(search.isEmpty()){
-            totalCount =  questionService.countAll().intValue();
-            result = getPagInation(new QuestionExample(),page,size);
-        }
-        else{
-            List<Question> questions = questionService.listBySearch(search);
-            totalCount = questions.size();
-            result = getPagInation(questions,page,size);
-        }
-        return result;
-    }
-    public PagInationDto listByPage(Integer page, Integer size, String topic){
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.createCriteria()
-                .andTopicEqualTo(topic);
-        totalCount = questionService.countAll().intValue();
-        return getPagInation(questionExample,page,size);
-    }
-    public PagInationDto listByUserId(Long userId , Integer page, Integer size) {
+    private UserService userService;
+    @Resource
+    private CountService countService;
+    public static int SEARCH = 1;
+    public static int TOPIC = 2;
+    public static int USER = 3;
+    public static int ALL = 4;
 
-        totalCount = questionService.countByUserId(userId).intValue();
+    public PagInationVo getPagInationList(long page, long size, long type, Object key){
+        List<Question> questions;
+        PagInationVo result = new PagInationVo();
         QuestionExample example = new QuestionExample();
-        example.createCriteria()
-                .andCreatorEqualTo(userId);
-        return getPagInation(example,page,size);
-    }
+        Long totalCount;
+        if(type == SEARCH){
+            questions = questionService.listBySearch(key.toString());
+            totalCount = (long)questions.size();
+            page = Math.min(totalCount /size + (totalCount %size==0? 0 : 1),page);
+            page = Math.max(page,1);
+        }else {
+            if (type == TOPIC){
+                example.createCriteria().andTopicEqualTo(key.toString());
+            }
+            else if (type == USER){
+                example.createCriteria().andCreatorEqualTo((long)key);
+            }
+            totalCount = questionService.countByExample(example);
+            //限制访问合法
+            page = Math.min(totalCount /size + (totalCount %size==0? 0L : 1L),page);
+            page = Math.max(page,1);
+            long offset = size * (page - 1);
 
-    /**
-     * 将问题分页
-     */
-    @NotNull
-
-    private PagInationDto getPagInation(QuestionExample example, Integer page, Integer size){
-        int offset = size * (page - 1);
-        //限制访问合法
-        page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
-        page = Math.max(page,1);
-
-        List<Question> questions = questionService.listByRowBounds(offset,size);
-        return getPagInationDTO(questions, page, size);
-    }
-
-    private PagInationDto getPagInation(List<Question> questions, Integer page, Integer size){
-        //限制访问合法
-        page = Math.min(totalCount/size + (totalCount%size==0? 0 : 1),page);
-        page = Math.max(page,1);
-        return getPagInationDTO(questions, page, size);
-    }
-
-    @NotNull
-    private PagInationDto getPagInationDTO(List<Question> questions, Integer page, Integer size) {
-        List<QuestionDto> questionDTOList = new ArrayList<>();
-        PagInationDto pagInationDTO = new PagInationDto();
-        for (Question question : questions) {
-            User user = userService.getById(question.getCreator());
-            QuestionDto questionDTO = new QuestionDto();
-            BeanUtils.copyProperties(question,questionDTO);
-            questionDTO.setUser(user);
-            questionDTOList.add(questionDTO);
+            questions = questionService.listByRowBounds(example,(int)offset,(int)size);
+            totalCount = (long)questions.size();
         }
-        pagInationDTO.setQuestions(questionDTOList);
-        pagInationDTO.setPagination(totalCount,page,size);
-        return pagInationDTO;
+        result.setPagination(totalCount.intValue(),(int)page,(int)size);
+        List<QuestionInfoVo> questionInfoVos = new LinkedList<>();
+        for(Question i:questions){
+            QuestionInfoVo buf = new QuestionInfoVo();
+            buf.setQuestion(i);
+            buf.setUser(userService.getById(i.getCreator()));
+            buf.setQuestionCount(countService.getQuestionCountById(i.getId()));
+            questionInfoVos.add(buf);
+        }
+        result.setQuestions(questionInfoVos);
+        return result;
     }
 }

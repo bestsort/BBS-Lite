@@ -3,7 +3,6 @@ package cn.bestsort.bbslite.cache;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
@@ -17,17 +16,11 @@ import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-import java.util.regex.Pattern;
 
 /**
  * 不要导入com.alibaba.fastjson.support.spring.FastJsonRedisSerializer,自己实现反序列化工具
  * <p>千年大坑,切忌切忌</p>
  */
-@Slf4j
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
 
@@ -86,16 +79,13 @@ public class RedisConfig extends CachingConfigurerSupport {
         return template;
     }
 
-    /**
-     * 随机设置缓存时间2-5分钟,避免缓存雪崩
-     */
     @Bean
     public RedisCacheConfiguration redisCacheConfiguration() {
         FastJson2JsonRedisSerializer<Object> fastJsonRedisSerializer = new FastJson2JsonRedisSerializer<>(Object.class);
         RedisCacheConfiguration configuration = RedisCacheConfiguration.defaultCacheConfig();
         configuration = configuration.serializeValuesWith(
-                RedisSerializationContext.SerializationPair.fromSerializer(fastJsonRedisSerializer));
-        configuration.entryTtl(Duration.ofMinutes(5));
+                RedisSerializationContext.SerializationPair.fromSerializer(fastJsonRedisSerializer))
+        .entryTtl(Duration.ofMinutes(5));
         return configuration;
     }
 }

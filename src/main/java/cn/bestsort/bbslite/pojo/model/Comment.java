@@ -11,8 +11,6 @@ public class Comment {
 
     private Long commentator;
 
-    private Long likeCount;
-
     private Byte level;
 
     private Long gmtModified;
@@ -61,14 +59,6 @@ public class Comment {
         this.commentator = commentator;
     }
 
-    public Long getLikeCount() {
-        return likeCount;
-    }
-
-    public void setLikeCount(Long likeCount) {
-        this.likeCount = likeCount;
-    }
-
     public Byte getLevel() {
         return level;
     }
@@ -99,5 +89,24 @@ public class Comment {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", pid=").append(pid);
+        sb.append(", userAvatarUrl=").append(userAvatarUrl);
+        sb.append(", questionId=").append(questionId);
+        sb.append(", commentator=").append(commentator);
+        sb.append(", level=").append(level);
+        sb.append(", gmtModified=").append(gmtModified);
+        sb.append(", gmtCreate=").append(gmtCreate);
+        sb.append(", content=").append(content);
+        sb.append("]");
+        return sb.toString();
     }
 }

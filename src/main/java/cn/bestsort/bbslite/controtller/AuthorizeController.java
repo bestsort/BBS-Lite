@@ -42,10 +42,9 @@ public class AuthorizeController {
     @Value("${github.redurect.uri}")
     private String uri;
     @Autowired
-    private UserMapper userMapper;
-
-    @Autowired
     private UserService userService;
+
+
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
@@ -77,6 +76,7 @@ public class AuthorizeController {
         }
         return "redirect:/";
     }
+
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request,

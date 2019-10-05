@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.bestsort.bbslite.mapper.CommentMapper">
-  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Comment">
+<mapper namespace="cn.bestsort.bbslite.mapper.QuestionCountMapper">
+  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.QuestionCount">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="pid" jdbcType="BIGINT" property="pid" />
-    <result column="user_avatar_url" jdbcType="VARCHAR" property="userAvatarUrl" />
     <result column="question_id" jdbcType="BIGINT" property="questionId" />
-    <result column="commentator" jdbcType="BIGINT" property="commentator" />
-    <result column="level" jdbcType="TINYINT" property="level" />
-    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+    <result column="view" jdbcType="BIGINT" property="view" />
+    <result column="follow" jdbcType="BIGINT" property="follow" />
+    <result column="thumb_up" jdbcType="BIGINT" property="thumbUp" />
+    <result column="comment" jdbcType="BIGINT" property="comment" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,16 +70,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, pid, user_avatar_url, question_id, commentator, level, gmt_modified, gmt_create, 
-    content
+    id, question_id, view, follow, thumb_up, comment, gmt_create, gmt_modified
   </sql>
-  <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.CommentExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.QuestionCountExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from comment
+    from question_count
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -91,125 +89,114 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from comment
+    from question_count
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from comment
+    delete from question_count
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.pojo.model.CommentExample">
-    delete from comment
+  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.pojo.model.QuestionCountExample">
+    delete from question_count
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
-    insert into comment (id, pid, user_avatar_url, 
-      question_id, commentator, level, 
-      gmt_modified, gmt_create, content
-      )
-    values (#{id,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT}, #{userAvatarUrl,jdbcType=VARCHAR}, 
-      #{questionId,jdbcType=BIGINT}, #{commentator,jdbcType=BIGINT}, #{level,jdbcType=TINYINT}, 
-      #{gmtModified,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.QuestionCount">
+    insert into question_count (id, question_id, view, 
+      follow, thumb_up, comment, 
+      gmt_create, gmt_modified)
+    values (#{id,jdbcType=BIGINT}, #{questionId,jdbcType=BIGINT}, #{view,jdbcType=BIGINT}, 
+      #{follow,jdbcType=BIGINT}, #{thumbUp,jdbcType=BIGINT}, #{comment,jdbcType=BIGINT}, 
+      #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
-    insert into comment
+  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.QuestionCount">
+    insert into question_count
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="pid != null">
-        pid,
-      </if>
-      <if test="userAvatarUrl != null">
-        user_avatar_url,
-      </if>
       <if test="questionId != null">
         question_id,
       </if>
-      <if test="commentator != null">
-        commentator,
+      <if test="view != null">
+        view,
       </if>
-      <if test="level != null">
-        level,
+      <if test="follow != null">
+        follow,
       </if>
-      <if test="gmtModified != null">
-        gmt_modified,
+      <if test="thumbUp != null">
+        thumb_up,
+      </if>
+      <if test="comment != null">
+        comment,
       </if>
       <if test="gmtCreate != null">
         gmt_create,
       </if>
-      <if test="content != null">
-        content,
+      <if test="gmtModified != null">
+        gmt_modified,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="pid != null">
-        #{pid,jdbcType=BIGINT},
-      </if>
-      <if test="userAvatarUrl != null">
-        #{userAvatarUrl,jdbcType=VARCHAR},
-      </if>
       <if test="questionId != null">
         #{questionId,jdbcType=BIGINT},
       </if>
-      <if test="commentator != null">
-        #{commentator,jdbcType=BIGINT},
+      <if test="view != null">
+        #{view,jdbcType=BIGINT},
       </if>
-      <if test="level != null">
-        #{level,jdbcType=TINYINT},
+      <if test="follow != null">
+        #{follow,jdbcType=BIGINT},
       </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=BIGINT},
+      <if test="thumbUp != null">
+        #{thumbUp,jdbcType=BIGINT},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=BIGINT},
       </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=BIGINT},
       </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.bestsort.bbslite.pojo.model.CommentExample" resultType="java.lang.Long">
-    select count(*) from comment
+  <select id="countByExample" parameterType="cn.bestsort.bbslite.pojo.model.QuestionCountExample" resultType="java.lang.Long">
+    select count(*) from question_count
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update comment
+    update question_count
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.pid != null">
-        pid = #{record.pid,jdbcType=BIGINT},
-      </if>
-      <if test="record.userAvatarUrl != null">
-        user_avatar_url = #{record.userAvatarUrl,jdbcType=VARCHAR},
-      </if>
       <if test="record.questionId != null">
         question_id = #{record.questionId,jdbcType=BIGINT},
       </if>
-      <if test="record.commentator != null">
-        commentator = #{record.commentator,jdbcType=BIGINT},
+      <if test="record.view != null">
+        view = #{record.view,jdbcType=BIGINT},
       </if>
-      <if test="record.level != null">
-        level = #{record.level,jdbcType=TINYINT},
+      <if test="record.follow != null">
+        follow = #{record.follow,jdbcType=BIGINT},
       </if>
-      <if test="record.gmtModified != null">
-        gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+      <if test="record.thumbUp != null">
+        thumb_up = #{record.thumbUp,jdbcType=BIGINT},
+      </if>
+      <if test="record.comment != null">
+        comment = #{record.comment,jdbcType=BIGINT},
       </if>
       <if test="record.gmtCreate != null">
         gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=VARCHAR},
+      <if test="record.gmtModified != null">
+        gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -217,69 +204,64 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update comment
+    update question_count
     set id = #{record.id,jdbcType=BIGINT},
-      pid = #{record.pid,jdbcType=BIGINT},
-      user_avatar_url = #{record.userAvatarUrl,jdbcType=VARCHAR},
       question_id = #{record.questionId,jdbcType=BIGINT},
-      commentator = #{record.commentator,jdbcType=BIGINT},
-      level = #{record.level,jdbcType=TINYINT},
-      gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+      view = #{record.view,jdbcType=BIGINT},
+      follow = #{record.follow,jdbcType=BIGINT},
+      thumb_up = #{record.thumbUp,jdbcType=BIGINT},
+      comment = #{record.comment,jdbcType=BIGINT},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
-      content = #{record.content,jdbcType=VARCHAR}
+      gmt_modified = #{record.gmtModified,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
-    update comment
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.pojo.model.QuestionCount">
+    update question_count
     <set>
-      <if test="pid != null">
-        pid = #{pid,jdbcType=BIGINT},
-      </if>
-      <if test="userAvatarUrl != null">
-        user_avatar_url = #{userAvatarUrl,jdbcType=VARCHAR},
-      </if>
       <if test="questionId != null">
         question_id = #{questionId,jdbcType=BIGINT},
       </if>
-      <if test="commentator != null">
-        commentator = #{commentator,jdbcType=BIGINT},
+      <if test="view != null">
+        view = #{view,jdbcType=BIGINT},
       </if>
-      <if test="level != null">
-        level = #{level,jdbcType=TINYINT},
+      <if test="follow != null">
+        follow = #{follow,jdbcType=BIGINT},
       </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      <if test="thumbUp != null">
+        thumb_up = #{thumbUp,jdbcType=BIGINT},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=BIGINT},
       </if>
       <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=BIGINT},
       </if>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
-    update comment
-    set pid = #{pid,jdbcType=BIGINT},
-      user_avatar_url = #{userAvatarUrl,jdbcType=VARCHAR},
-      question_id = #{questionId,jdbcType=BIGINT},
-      commentator = #{commentator,jdbcType=BIGINT},
-      level = #{level,jdbcType=TINYINT},
-      gmt_modified = #{gmtModified,jdbcType=BIGINT},
+  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.pojo.model.QuestionCount">
+    update question_count
+    set question_id = #{questionId,jdbcType=BIGINT},
+      view = #{view,jdbcType=BIGINT},
+      follow = #{follow,jdbcType=BIGINT},
+      thumb_up = #{thumbUp,jdbcType=BIGINT},
+      comment = #{comment,jdbcType=BIGINT},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
-      content = #{content,jdbcType=VARCHAR}
+      gmt_modified = #{gmtModified,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.pojo.model.CommentExample" resultMap="BaseResultMap">
+  <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.pojo.model.QuestionCountExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from comment
+    from question_count
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>

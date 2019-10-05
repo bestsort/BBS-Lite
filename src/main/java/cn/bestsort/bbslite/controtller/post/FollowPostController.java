@@ -1,7 +1,7 @@
 package cn.bestsort.bbslite.controtller.post;
 
 import cn.bestsort.bbslite.pojo.dto.ResultDto;
-import cn.bestsort.bbslite.pojo.vo.FollowVO;
+import cn.bestsort.bbslite.pojo.vo.FollowVo;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.service.FollowService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class FollowPostController {
 
     @ResponseBody
     @RequestMapping(value = "/follow",method = RequestMethod.POST)
-    public Object follow(FollowVO followCreateDTO,
+    public Object follow(FollowVo followCreateDTO,
                          HttpSession session){
 
         if(session.getAttribute("user") == null){

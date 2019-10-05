@@ -1,7 +1,7 @@
 create table topic(
     id bigint primary key auto_increment,
     name varchar(10) unique ,
-    avatar_url varchar(50),
+    avatar_url varchar(50)
 );
 
 insert into topic (name, avatar_url) values ('c++','https://alicdn.bestsort.cn/icon/cplusplus.png');

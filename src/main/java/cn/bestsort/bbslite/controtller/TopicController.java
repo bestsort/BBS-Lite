@@ -1,15 +1,17 @@
 package cn.bestsort.bbslite.controtller;
 
+import cn.bestsort.bbslite.mapper.TopicMapper;
 import cn.bestsort.bbslite.pojo.model.Topic;
 import cn.bestsort.bbslite.pojo.model.TopicExample;
-import cn.bestsort.bbslite.pojo.dto.PagInationDto;
-import cn.bestsort.bbslite.mapper.TopicMapper;
+import cn.bestsort.bbslite.pojo.vo.PagInationVo;
 import cn.bestsort.bbslite.service.FollowService;
 import cn.bestsort.bbslite.service.PagInationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class TopicController {
                            @RequestParam(name="size",defaultValue = "10") Integer size,
                            Model model){
         Topic topic = topicMapper.selectByPrimaryKey(id);
-        PagInationDto pagInation = questionService.listByPage(page,size,topic.getName());
+        PagInationVo pagInation = questionService.getPagInationList(page,size,PagInationService.TOPIC,topic.getName());
         model.addAttribute("pagination",pagInation);
         model.addAttribute("topic",topic);
         return "topic";

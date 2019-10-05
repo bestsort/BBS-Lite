@@ -5,7 +5,6 @@ import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.pojo.model.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -18,19 +17,18 @@ import java.util.List;
  * @Date 19-9-1 上午6:48
  * @Version 1.0
  */
-
-@CacheConfig(cacheNames = {"users"})
 @Service
+@CacheConfig(cacheNames = "usersServices")
 public class UserService {
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
+
+
     @Cacheable(keyGenerator = "myKeyGenerator")
-    public User getById(Long id){
+    public User getById(long id){
         return userMapper.selectByPrimaryKey(id);
     }
 
-
-    @CachePut(keyGenerator = "myKeyGenerator")
     public void createOrUpdate(User user) {
         UserExample userExample = new UserExample();
         userExample.createCriteria()

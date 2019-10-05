@@ -2,19 +2,15 @@ package cn.bestsort.bbslite.service;
 
 import cn.bestsort.bbslite.enums.FollowEnum;
 import cn.bestsort.bbslite.mapper.FollowMapper;
-import cn.bestsort.bbslite.mapper.QuestionExtMapper;
-import cn.bestsort.bbslite.mapper.TopicExtMapper;
-import cn.bestsort.bbslite.mapper.UserExtMapper;
-import cn.bestsort.bbslite.pojo.model.*;
-import cn.bestsort.bbslite.pojo.vo.FollowVO;
+import cn.bestsort.bbslite.pojo.model.Follow;
+import cn.bestsort.bbslite.pojo.model.FollowExample;
+import cn.bestsort.bbslite.pojo.vo.FollowVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,17 +25,13 @@ import java.util.Objects;
 @Service
 public class FollowService {
     @Autowired
-    FollowMapper followMapper;
-    @Autowired
-    TopicExtMapper topicExtMapper;
-    @Autowired
-    QuestionExtMapper questionExtMapper;
-    @Autowired
-    UserExtMapper userExtMapper;
-    Follow follow;
+    private FollowMapper followMapper;
+    @Resource
+    private CountService countService;
+
     @Transactional(rollbackFor = Exception.class)
-    public void insertOrUpdate(FollowVO followCreateDTO) {
-        follow = new Follow();
+    public void insertOrUpdate(FollowVo followCreateDTO) {
+        Follow follow = new Follow();
         BeanUtils.copyProperties(followCreateDTO, follow);
         follow.setType(
                 Objects.requireNonNull(FollowEnum.getKeyByValue(
@@ -59,29 +51,25 @@ public class FollowService {
         if (follows.isEmpty()) {
             follow.setGmtCreate(follow.getGmtModified());
             followMapper.insertSelective(follow);
-        }
-        else{
+        } else {
             follow = follows.get(0);
             val = flipStatus(follow);
             followMapper.updateByPrimaryKeySelective(follow);
         }
-
-        if(follow.getType().intValue() == FollowEnum.USER.getCode()){
-            User user = new User();
-            user.setId(follow.getFollowTo());
-            user.setFollowCount(val);
-            userExtMapper.updateFollowCount(user);
-        }else if(follow.getType().intValue() == FollowEnum.TOPIC.getCode()){
-            Topic topic = new Topic();
-            topic.setId(follow.getFollowTo());
-            topic.setFollowCount(val);
-            topicExtMapper.updateFollowCount(topic);
-
-        }else if(follow.getType().intValue() == FollowEnum.QUESTION.getCode()){
-            Question question = new Question();
-            question.setFollowCount(val);
-            question.setId(follow.getFollowTo());
-            questionExtMapper.updateFollowCount(question);
+        /*
+                if(follow.getType().intValue() == FollowEnum.USER.getCode()){
+                    User user = new User();
+                    user.setId(follow.getFollowTo());
+                    user.setFollowCount(val);
+                    userExtMapper.updateFollowCount(user);
+                }else if(follow.getType().intValue() == FollowEnum.TOPIC.getCode()){
+                    Topic topic = new Topic();
+                    topic.setId(follow.getFollowTo());
+                    topic.setFollowCount(val);
+                    topicExtMapper.updateFollowCount(topic);
+                }else */
+        if (follow.getType().intValue() == FollowEnum.QUESTION.getCode()) {
+            countService.updateQuestionFollowCount(follow.getFollowTo(), val);
         }
     }
     private long flipStatus(Follow follow){

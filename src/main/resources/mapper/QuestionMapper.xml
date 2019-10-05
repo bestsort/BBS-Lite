@@ -7,10 +7,6 @@
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     <result column="creator" jdbcType="BIGINT" property="creator" />
-    <result column="comment_count" jdbcType="BIGINT" property="commentCount" />
-    <result column="view_count" jdbcType="BIGINT" property="viewCount" />
-    <result column="like_count" jdbcType="BIGINT" property="likeCount" />
-    <result column="follow_count" jdbcType="BIGINT" property="followCount" />
     <result column="tag" jdbcType="VARCHAR" property="tag" />
     <result column="top" jdbcType="TINYINT" property="top" />
     <result column="topic" jdbcType="VARCHAR" property="topic" />
@@ -78,8 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, gmt_create, gmt_modified, creator, comment_count, view_count, like_count, 
-    follow_count, tag, top, topic, category
+    id, title, gmt_create, gmt_modified, creator, tag, top, topic, category
   </sql>
   <sql id="Blob_Column_List">
     description
@@ -134,14 +129,12 @@
   </delete>
   <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Question">
     insert into question (id, title, gmt_create, 
-      gmt_modified, creator, comment_count, 
-      view_count, like_count, follow_count, 
-      tag, top, topic, category, 
+      gmt_modified, creator, tag, 
+      top, topic, category, 
       description)
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=BIGINT}, 
-      #{gmtModified,jdbcType=BIGINT}, #{creator,jdbcType=BIGINT}, #{commentCount,jdbcType=BIGINT}, 
-      #{viewCount,jdbcType=BIGINT}, #{likeCount,jdbcType=BIGINT}, #{followCount,jdbcType=BIGINT}, 
-      #{tag,jdbcType=VARCHAR}, #{top,jdbcType=TINYINT}, #{topic,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
+      #{gmtModified,jdbcType=BIGINT}, #{creator,jdbcType=BIGINT}, #{tag,jdbcType=VARCHAR}, 
+      #{top,jdbcType=TINYINT}, #{topic,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
       #{description,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Question">
@@ -161,18 +154,6 @@
       </if>
       <if test="creator != null">
         creator,
-      </if>
-      <if test="commentCount != null">
-        comment_count,
-      </if>
-      <if test="viewCount != null">
-        view_count,
-      </if>
-      <if test="likeCount != null">
-        like_count,
-      </if>
-      <if test="followCount != null">
-        follow_count,
       </if>
       <if test="tag != null">
         tag,
@@ -205,18 +186,6 @@
       </if>
       <if test="creator != null">
         #{creator,jdbcType=BIGINT},
-      </if>
-      <if test="commentCount != null">
-        #{commentCount,jdbcType=BIGINT},
-      </if>
-      <if test="viewCount != null">
-        #{viewCount,jdbcType=BIGINT},
-      </if>
-      <if test="likeCount != null">
-        #{likeCount,jdbcType=BIGINT},
-      </if>
-      <if test="followCount != null">
-        #{followCount,jdbcType=BIGINT},
       </if>
       <if test="tag != null">
         #{tag,jdbcType=VARCHAR},
@@ -259,18 +228,6 @@
       <if test="record.creator != null">
         creator = #{record.creator,jdbcType=BIGINT},
       </if>
-      <if test="record.commentCount != null">
-        comment_count = #{record.commentCount,jdbcType=BIGINT},
-      </if>
-      <if test="record.viewCount != null">
-        view_count = #{record.viewCount,jdbcType=BIGINT},
-      </if>
-      <if test="record.likeCount != null">
-        like_count = #{record.likeCount,jdbcType=BIGINT},
-      </if>
-      <if test="record.followCount != null">
-        follow_count = #{record.followCount,jdbcType=BIGINT},
-      </if>
       <if test="record.tag != null">
         tag = #{record.tag,jdbcType=VARCHAR},
       </if>
@@ -298,10 +255,6 @@
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       creator = #{record.creator,jdbcType=BIGINT},
-      comment_count = #{record.commentCount,jdbcType=BIGINT},
-      view_count = #{record.viewCount,jdbcType=BIGINT},
-      like_count = #{record.likeCount,jdbcType=BIGINT},
-      follow_count = #{record.followCount,jdbcType=BIGINT},
       tag = #{record.tag,jdbcType=VARCHAR},
       top = #{record.top,jdbcType=TINYINT},
       topic = #{record.topic,jdbcType=VARCHAR},
@@ -318,10 +271,6 @@
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       creator = #{record.creator,jdbcType=BIGINT},
-      comment_count = #{record.commentCount,jdbcType=BIGINT},
-      view_count = #{record.viewCount,jdbcType=BIGINT},
-      like_count = #{record.likeCount,jdbcType=BIGINT},
-      follow_count = #{record.followCount,jdbcType=BIGINT},
       tag = #{record.tag,jdbcType=VARCHAR},
       top = #{record.top,jdbcType=TINYINT},
       topic = #{record.topic,jdbcType=VARCHAR},
@@ -344,18 +293,6 @@
       </if>
       <if test="creator != null">
         creator = #{creator,jdbcType=BIGINT},
-      </if>
-      <if test="commentCount != null">
-        comment_count = #{commentCount,jdbcType=BIGINT},
-      </if>
-      <if test="viewCount != null">
-        view_count = #{viewCount,jdbcType=BIGINT},
-      </if>
-      <if test="likeCount != null">
-        like_count = #{likeCount,jdbcType=BIGINT},
-      </if>
-      <if test="followCount != null">
-        follow_count = #{followCount,jdbcType=BIGINT},
       </if>
       <if test="tag != null">
         tag = #{tag,jdbcType=VARCHAR},
@@ -381,10 +318,6 @@
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{gmtModified,jdbcType=BIGINT},
       creator = #{creator,jdbcType=BIGINT},
-      comment_count = #{commentCount,jdbcType=BIGINT},
-      view_count = #{viewCount,jdbcType=BIGINT},
-      like_count = #{likeCount,jdbcType=BIGINT},
-      follow_count = #{followCount,jdbcType=BIGINT},
       tag = #{tag,jdbcType=VARCHAR},
       top = #{top,jdbcType=TINYINT},
       topic = #{topic,jdbcType=VARCHAR},
@@ -398,10 +331,6 @@
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{gmtModified,jdbcType=BIGINT},
       creator = #{creator,jdbcType=BIGINT},
-      comment_count = #{commentCount,jdbcType=BIGINT},
-      view_count = #{viewCount,jdbcType=BIGINT},
-      like_count = #{likeCount,jdbcType=BIGINT},
-      follow_count = #{followCount,jdbcType=BIGINT},
       tag = #{tag,jdbcType=VARCHAR},
       top = #{top,jdbcType=TINYINT},
       topic = #{topic,jdbcType=VARCHAR},

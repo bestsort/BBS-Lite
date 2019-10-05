@@ -1,13 +1,12 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.pojo.model.Question;
-import cn.bestsort.bbslite.pojo.dto.CommentDto;
-import cn.bestsort.bbslite.pojo.dto.QuestionDto;
-import cn.bestsort.bbslite.pojo.dto.ResultDto;
 import cn.bestsort.bbslite.mapper.QuestionExtMapper;
+import cn.bestsort.bbslite.pojo.dto.CommentDto;
+import cn.bestsort.bbslite.pojo.dto.ResultDto;
+import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.service.CommentService;
+import cn.bestsort.bbslite.service.CountService;
 import cn.bestsort.bbslite.service.FollowService;
-import cn.bestsort.bbslite.service.PagInationService;
 import cn.bestsort.bbslite.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,22 +29,19 @@ public class QuestionController {
     private QuestionService questionService;
     @Autowired
     private CommentService commentService;
-
     @Autowired
-    FollowService followService;
+    private FollowService followService;
     @Autowired
-    QuestionExtMapper questionExtMapper;
+    private CountService countService;
     @GetMapping("/question/{id}")
     public String question(@PathVariable("id") Long id,
                            Model model){
-        QuestionDto questionDTO = questionService.getByQuestionId(id);
-        //增加阅读数
-        Question question = new Question();
-        question.setId(id);
-        questionExtMapper.incView(question);
+
+        Question question = questionService.getByQuestionId(id);
+        countService.incQuestionView(id);
         List<CommentDto> comments = commentService.listByQuestionId(id);
         model.addAttribute("comments",comments);
-        model.addAttribute("question",questionDTO);
+        model.addAttribute("question",question);
         return "question";
     }
 
