@@ -1,8 +1,8 @@
 package cn.bestsort.bbslite.controtller;
 
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
-import cn.bestsort.bbslite.pojo.dto.CommentCreateDto;
-import cn.bestsort.bbslite.pojo.dto.ResultDto;
+import cn.bestsort.bbslite.dto.CommentCreateDto;
+import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.pojo.model.Comment;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.CommentService;
@@ -31,14 +31,14 @@ public class CommentController {
 
         User user = (User)session.getAttribute("user");
         if (user == null) {
-            return ResultDto.errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
+            return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
         Comment comment = new Comment();
         BeanUtils.copyProperties(commentCreateDTO,comment);
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setGmtModified(comment.getGmtCreate());
         commentService.insert(comment);
-        return ResultDto.okOf();
+        return new ResultDto().okOf();
     }
 
     @RequestMapping(value = "/comment/{id}",method = RequestMethod.POST)

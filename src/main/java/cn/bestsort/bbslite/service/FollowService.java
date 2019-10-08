@@ -4,13 +4,12 @@ import cn.bestsort.bbslite.enums.FollowEnum;
 import cn.bestsort.bbslite.mapper.FollowMapper;
 import cn.bestsort.bbslite.pojo.model.Follow;
 import cn.bestsort.bbslite.pojo.model.FollowExample;
-import cn.bestsort.bbslite.pojo.vo.FollowVo;
+import cn.bestsort.bbslite.vo.FollowVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,8 +25,6 @@ import java.util.Objects;
 public class FollowService {
     @Autowired
     private FollowMapper followMapper;
-    @Resource
-    private CountService countService;
 
     @Transactional(rollbackFor = Exception.class)
     public void insertOrUpdate(FollowVo followCreateDTO) {
@@ -68,9 +65,9 @@ public class FollowService {
                     topic.setFollowCount(val);
                     topicExtMapper.updateFollowCount(topic);
                 }else */
-        if (follow.getType().intValue() == FollowEnum.QUESTION.getCode()) {
+        /*if (follow.getType().intValue() == FollowEnum.QUESTION.getCode()) {
             countService.updateQuestionFollowCount(follow.getFollowTo(), val);
-        }
+        }*/
     }
     private long flipStatus(Follow follow){
         if (follow.getStatus() != null && follow.getStatus() > 0){

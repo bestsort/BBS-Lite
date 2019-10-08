@@ -7,7 +7,6 @@ import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.pojo.model.Topic;
 import cn.bestsort.bbslite.pojo.model.TopicExample;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.CountService;
 import cn.bestsort.bbslite.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,8 +33,7 @@ public class PublishController {
     private TopicMapper topicMapper;
     @Autowired
     private QuestionService questionService;
-    @Autowired
-    private CountService countService;
+
     @GetMapping("/publish")
     public String publish(Model model){
         topicAttribute(model);
@@ -47,10 +45,9 @@ public class PublishController {
                        Model model,
                        HttpServletRequest request){
 
-        Question question = questionService.getByQuestionId(id);
-        countService.incQuestionView(id);
+       /* Question question = questionService.getByQuestionId(id);*/
         User user = (User)request.getSession().getAttribute("user");
-        if(!question.getCreator().equals(user.getId())){
+        /*if(!question.getCreator().equals(user.getId())){
             throw new CustomizeException(CustomizeErrorCodeEnum.USER_ERROR);
         }
 
@@ -59,7 +56,7 @@ public class PublishController {
                 .addAttribute("tag",question.getTag())
                 .addAttribute("description",question.getDescription())
                 .addAttribute("id",question.getId())
-                .addAttribute("topic",question.getTopic());
+                .addAttribute("topic",question.getTopic());*/
         return "publish";
     }
 

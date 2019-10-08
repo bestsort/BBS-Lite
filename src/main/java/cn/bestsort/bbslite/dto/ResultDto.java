@@ -1,8 +1,11 @@
-package cn.bestsort.bbslite.pojo.dto;
+package cn.bestsort.bbslite.dto;
 
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import lombok.Data;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @ClassName ResultDto
@@ -15,24 +18,36 @@ import lombok.Data;
 public class ResultDto {
     private Integer code;
     private String message;
-    public static ResultDto errorOf(Integer code, String message){
+    private Map<String,Object> extend=new HashMap<>();
+    public ResultDto errorOf(Integer code, String message){
         ResultDto resultDTO = new ResultDto();
         resultDTO.setCode(code);
         resultDTO.setMessage(message);
         return resultDTO;
     }
 
-    public static ResultDto errorOf(CustomizeErrorCodeEnum errorCode) {
+    public ResultDto errorOf(CustomizeErrorCodeEnum errorCode) {
         return errorOf(errorCode.getCode(),errorCode.getName());
     }
-    public static ResultDto okOf(){
+    public ResultDto okOf(){
         ResultDto resultDTO = new ResultDto();
         resultDTO.setMessage("成功");
         resultDTO.setCode(200);
         return resultDTO;
     }
 
-    public static ResultDto errorOf(CustomizeException e) {
-        return errorOf(e.getCode(),e.getMessage());
+    public ResultDto addMsg(String key, Object value){
+        this.extend.put(key,value);
+        return this;
+    }
+    @Override
+    public String toString(){
+        return "ResultDto{" +
+                "code='" + code + '\'' +
+                ",message='" + message + '\''+
+                ",extend=" + extend + '}';
+    }
+    public ResultDto errorOf(CustomizeException e) {
+        return new ResultDto().errorOf(e.getCode(),e.getMessage());
     }
 }

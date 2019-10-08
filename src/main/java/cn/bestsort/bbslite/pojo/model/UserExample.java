@@ -514,6 +514,126 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andFansCountIsNull() {
+            addCriterion("fans_count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFansCountIsNotNull() {
+            addCriterion("fans_count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFansCountEqualTo(Long value) {
+            addCriterion("fans_count =", value, "fansCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFansCountNotEqualTo(Long value) {
+            addCriterion("fans_count <>", value, "fansCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFansCountGreaterThan(Long value) {
+            addCriterion("fans_count >", value, "fansCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFansCountGreaterThanOrEqualTo(Long value) {
+            addCriterion("fans_count >=", value, "fansCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFansCountLessThan(Long value) {
+            addCriterion("fans_count <", value, "fansCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFansCountLessThanOrEqualTo(Long value) {
+            addCriterion("fans_count <=", value, "fansCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFansCountIn(List<Long> values) {
+            addCriterion("fans_count in", values, "fansCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFansCountNotIn(List<Long> values) {
+            addCriterion("fans_count not in", values, "fansCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFansCountBetween(Long value1, Long value2) {
+            addCriterion("fans_count between", value1, value2, "fansCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andFansCountNotBetween(Long value1, Long value2) {
+            addCriterion("fans_count not between", value1, value2, "fansCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthenticatedIsNull() {
+            addCriterion("authenticated is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthenticatedIsNotNull() {
+            addCriterion("authenticated is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthenticatedEqualTo(Byte value) {
+            addCriterion("authenticated =", value, "authenticated");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthenticatedNotEqualTo(Byte value) {
+            addCriterion("authenticated <>", value, "authenticated");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthenticatedGreaterThan(Byte value) {
+            addCriterion("authenticated >", value, "authenticated");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthenticatedGreaterThanOrEqualTo(Byte value) {
+            addCriterion("authenticated >=", value, "authenticated");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthenticatedLessThan(Byte value) {
+            addCriterion("authenticated <", value, "authenticated");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthenticatedLessThanOrEqualTo(Byte value) {
+            addCriterion("authenticated <=", value, "authenticated");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthenticatedIn(List<Byte> values) {
+            addCriterion("authenticated in", values, "authenticated");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthenticatedNotIn(List<Byte> values) {
+            addCriterion("authenticated not in", values, "authenticated");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthenticatedBetween(Byte value1, Byte value2) {
+            addCriterion("authenticated between", value1, value2, "authenticated");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthenticatedNotBetween(Byte value1, Byte value2) {
+            addCriterion("authenticated not between", value1, value2, "authenticated");
+            return (Criteria) this;
+        }
+
         public Criteria andAvatarUrlIsNull() {
             addCriterion("avatar_url is null");
             return (Criteria) this;

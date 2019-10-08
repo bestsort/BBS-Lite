@@ -1,7 +1,7 @@
 package cn.bestsort.bbslite.controtller.post;
 
-import cn.bestsort.bbslite.pojo.dto.ResultDto;
-import cn.bestsort.bbslite.pojo.vo.FollowVo;
+import cn.bestsort.bbslite.dto.ResultDto;
+import cn.bestsort.bbslite.vo.FollowVo;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.service.FollowService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +29,10 @@ public class FollowPostController {
                          HttpSession session){
 
         if(session.getAttribute("user") == null){
-            return  ResultDto.errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
+            return  new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
 
         followService.insertOrUpdate(followCreateDTO);
-        return ResultDto.okOf();
+        return new ResultDto().okOf();
     }
 }

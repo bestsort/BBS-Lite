@@ -4,7 +4,6 @@ import cn.bestsort.bbslite.pojo.model.ThumbUp;
 import cn.bestsort.bbslite.pojo.model.ThumbUpExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.session.RowBounds;
 
 public interface ThumbUpMapper {
     long countByExample(ThumbUpExample example);
@@ -16,8 +15,6 @@ public interface ThumbUpMapper {
     int insert(ThumbUp record);
 
     int insertSelective(ThumbUp record);
-
-    List<ThumbUp> selectByExampleWithRowbounds(ThumbUpExample example, RowBounds rowBounds);
 
     List<ThumbUp> selectByExample(ThumbUpExample example);
 

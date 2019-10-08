@@ -4,13 +4,19 @@
   <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Question">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
-    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     <result column="creator" jdbcType="BIGINT" property="creator" />
     <result column="tag" jdbcType="VARCHAR" property="tag" />
     <result column="top" jdbcType="TINYINT" property="top" />
     <result column="topic" jdbcType="VARCHAR" property="topic" />
     <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="user_avatar_url" jdbcType="VARCHAR" property="userAvatarUrl" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="follow_count" jdbcType="BIGINT" property="followCount" />
+    <result column="view_count" jdbcType="BIGINT" property="viewCount" />
+    <result column="like_count" jdbcType="BIGINT" property="likeCount" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.bestsort.bbslite.pojo.model.Question">
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
@@ -74,7 +80,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, gmt_create, gmt_modified, creator, tag, top, topic, category
+    id, title, creator, tag, top, topic, category, user_avatar_url, user_name, follow_count, 
+    view_count, like_count, status, gmt_create, gmt_modified
   </sql>
   <sql id="Blob_Column_List">
     description
@@ -128,14 +135,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Question">
-    insert into question (id, title, gmt_create, 
-      gmt_modified, creator, tag, 
-      top, topic, category, 
-      description)
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=BIGINT}, 
-      #{gmtModified,jdbcType=BIGINT}, #{creator,jdbcType=BIGINT}, #{tag,jdbcType=VARCHAR}, 
-      #{top,jdbcType=TINYINT}, #{topic,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
-      #{description,jdbcType=LONGVARCHAR})
+    insert into question (id, title, creator, 
+      tag, top, topic, category, 
+      user_avatar_url, user_name, follow_count, 
+      view_count, like_count, status, 
+      gmt_create, gmt_modified, description
+      )
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{creator,jdbcType=BIGINT}, 
+      #{tag,jdbcType=VARCHAR}, #{top,jdbcType=TINYINT}, #{topic,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
+      #{userAvatarUrl,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{followCount,jdbcType=BIGINT}, 
+      #{viewCount,jdbcType=BIGINT}, #{likeCount,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, 
+      #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, #{description,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Question">
     insert into question
@@ -145,12 +156,6 @@
       </if>
       <if test="title != null">
         title,
-      </if>
-      <if test="gmtCreate != null">
-        gmt_create,
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified,
       </if>
       <if test="creator != null">
         creator,
@@ -167,6 +172,30 @@
       <if test="category != null">
         category,
       </if>
+      <if test="userAvatarUrl != null">
+        user_avatar_url,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="followCount != null">
+        follow_count,
+      </if>
+      <if test="viewCount != null">
+        view_count,
+      </if>
+      <if test="likeCount != null">
+        like_count,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
       <if test="description != null">
         description,
       </if>
@@ -177,12 +206,6 @@
       </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="gmtCreate != null">
-        #{gmtCreate,jdbcType=BIGINT},
-      </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=BIGINT},
       </if>
       <if test="creator != null">
         #{creator,jdbcType=BIGINT},
@@ -198,6 +221,30 @@
       </if>
       <if test="category != null">
         #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="userAvatarUrl != null">
+        #{userAvatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="followCount != null">
+        #{followCount,jdbcType=BIGINT},
+      </if>
+      <if test="viewCount != null">
+        #{viewCount,jdbcType=BIGINT},
+      </if>
+      <if test="likeCount != null">
+        #{likeCount,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=BIGINT},
       </if>
       <if test="description != null">
         #{description,jdbcType=LONGVARCHAR},
@@ -219,12 +266,6 @@
       <if test="record.title != null">
         title = #{record.title,jdbcType=VARCHAR},
       </if>
-      <if test="record.gmtCreate != null">
-        gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
-      </if>
-      <if test="record.gmtModified != null">
-        gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
-      </if>
       <if test="record.creator != null">
         creator = #{record.creator,jdbcType=BIGINT},
       </if>
@@ -240,6 +281,30 @@
       <if test="record.category != null">
         category = #{record.category,jdbcType=VARCHAR},
       </if>
+      <if test="record.userAvatarUrl != null">
+        user_avatar_url = #{record.userAvatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.followCount != null">
+        follow_count = #{record.followCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.viewCount != null">
+        view_count = #{record.viewCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.likeCount != null">
+        like_count = #{record.likeCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.gmtCreate != null">
+        gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="record.gmtModified != null">
+        gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+      </if>
       <if test="record.description != null">
         description = #{record.description,jdbcType=LONGVARCHAR},
       </if>
@@ -252,13 +317,19 @@
     update question
     set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
-      gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       creator = #{record.creator,jdbcType=BIGINT},
       tag = #{record.tag,jdbcType=VARCHAR},
       top = #{record.top,jdbcType=TINYINT},
       topic = #{record.topic,jdbcType=VARCHAR},
       category = #{record.category,jdbcType=VARCHAR},
+      user_avatar_url = #{record.userAvatarUrl,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      follow_count = #{record.followCount,jdbcType=BIGINT},
+      view_count = #{record.viewCount,jdbcType=BIGINT},
+      like_count = #{record.likeCount,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=TINYINT},
+      gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
+      gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       description = #{record.description,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -268,13 +339,19 @@
     update question
     set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
-      gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       creator = #{record.creator,jdbcType=BIGINT},
       tag = #{record.tag,jdbcType=VARCHAR},
       top = #{record.top,jdbcType=TINYINT},
       topic = #{record.topic,jdbcType=VARCHAR},
-      category = #{record.category,jdbcType=VARCHAR}
+      category = #{record.category,jdbcType=VARCHAR},
+      user_avatar_url = #{record.userAvatarUrl,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      follow_count = #{record.followCount,jdbcType=BIGINT},
+      view_count = #{record.viewCount,jdbcType=BIGINT},
+      like_count = #{record.likeCount,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=TINYINT},
+      gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
+      gmt_modified = #{record.gmtModified,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -284,12 +361,6 @@
     <set>
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="gmtCreate != null">
-        gmt_create = #{gmtCreate,jdbcType=BIGINT},
-      </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=BIGINT},
       </if>
       <if test="creator != null">
         creator = #{creator,jdbcType=BIGINT},
@@ -306,6 +377,30 @@
       <if test="category != null">
         category = #{category,jdbcType=VARCHAR},
       </if>
+      <if test="userAvatarUrl != null">
+        user_avatar_url = #{userAvatarUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="followCount != null">
+        follow_count = #{followCount,jdbcType=BIGINT},
+      </if>
+      <if test="viewCount != null">
+        view_count = #{viewCount,jdbcType=BIGINT},
+      </if>
+      <if test="likeCount != null">
+        like_count = #{likeCount,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      </if>
       <if test="description != null">
         description = #{description,jdbcType=LONGVARCHAR},
       </if>
@@ -315,56 +410,38 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.bestsort.bbslite.pojo.model.Question">
     update question
     set title = #{title,jdbcType=VARCHAR},
-      gmt_create = #{gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{gmtModified,jdbcType=BIGINT},
       creator = #{creator,jdbcType=BIGINT},
       tag = #{tag,jdbcType=VARCHAR},
       top = #{top,jdbcType=TINYINT},
       topic = #{topic,jdbcType=VARCHAR},
       category = #{category,jdbcType=VARCHAR},
+      user_avatar_url = #{userAvatarUrl,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      follow_count = #{followCount,jdbcType=BIGINT},
+      view_count = #{viewCount,jdbcType=BIGINT},
+      like_count = #{likeCount,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
+      gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      gmt_modified = #{gmtModified,jdbcType=BIGINT},
       description = #{description,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.pojo.model.Question">
     update question
     set title = #{title,jdbcType=VARCHAR},
-      gmt_create = #{gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{gmtModified,jdbcType=BIGINT},
       creator = #{creator,jdbcType=BIGINT},
       tag = #{tag,jdbcType=VARCHAR},
       top = #{top,jdbcType=TINYINT},
       topic = #{topic,jdbcType=VARCHAR},
-      category = #{category,jdbcType=VARCHAR}
+      category = #{category,jdbcType=VARCHAR},
+      user_avatar_url = #{userAvatarUrl,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      follow_count = #{followCount,jdbcType=BIGINT},
+      view_count = #{viewCount,jdbcType=BIGINT},
+      like_count = #{likeCount,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
+      gmt_create = #{gmtCreate,jdbcType=BIGINT},
+      gmt_modified = #{gmtModified,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByExampleWithBLOBsWithRowbounds" parameterType="cn.bestsort.bbslite.pojo.model.QuestionExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from question
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.pojo.model.QuestionExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from question
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
 </mapper>

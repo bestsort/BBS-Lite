@@ -4,7 +4,6 @@ import cn.bestsort.bbslite.pojo.model.Topic;
 import cn.bestsort.bbslite.pojo.model.TopicExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.session.RowBounds;
 
 public interface TopicMapper {
     long countByExample(TopicExample example);
@@ -16,8 +15,6 @@ public interface TopicMapper {
     int insert(Topic record);
 
     int insertSelective(Topic record);
-
-    List<Topic> selectByExampleWithRowbounds(TopicExample example, RowBounds rowBounds);
 
     List<Topic> selectByExample(TopicExample example);
 

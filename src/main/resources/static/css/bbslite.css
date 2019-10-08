@@ -65,6 +65,7 @@ body, html {
 
 .media-left-margin{
     margin-right: 12px;
+    float: left;
 }
 .media-body{
     margin-top: 1px;

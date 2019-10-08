@@ -1,6 +1,6 @@
 package cn.bestsort.bbslite.util.advice;
 
-import cn.bestsort.bbslite.pojo.dto.ResultDto;
+import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import com.alibaba.fastjson.JSON;
@@ -35,10 +35,10 @@ public class CustomizeExceptionHandler {
         if(type.equals(contentType)){
             ResultDto result;
             if(e instanceof CustomizeException){
-                result =  ResultDto.errorOf((CustomizeException) e);
+                result =  new ResultDto().errorOf((CustomizeException) e);
             }
             else{
-                result =  ResultDto.errorOf(CustomizeErrorCodeEnum.SYS_ERROR);
+                result =  new ResultDto().errorOf(CustomizeErrorCodeEnum.SYS_ERROR);
             }
             try {
                 response.setContentType(type);

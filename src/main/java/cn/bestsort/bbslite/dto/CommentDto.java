@@ -1,4 +1,4 @@
-package cn.bestsort.bbslite.pojo.dto;
+package cn.bestsort.bbslite.dto;
 
 import cn.bestsort.bbslite.pojo.model.User;
 import lombok.Data;

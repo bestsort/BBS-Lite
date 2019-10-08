@@ -1,4 +1,4 @@
-package cn.bestsort.bbslite.pojo.vo;
+package cn.bestsort.bbslite.vo;
 
 import lombok.Data;
 

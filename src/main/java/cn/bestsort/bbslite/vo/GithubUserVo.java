@@ -6,7 +6,7 @@
  * @Version 1.0
  */
 
-package cn.bestsort.bbslite.pojo.vo;
+package cn.bestsort.bbslite.vo;
 import lombok.Data;
 
 @Data

@@ -1,7 +1,6 @@
-package cn.bestsort.bbslite.pojo.vo;
+package cn.bestsort.bbslite.vo;
 
 import cn.bestsort.bbslite.pojo.model.Question;
-import cn.bestsort.bbslite.pojo.model.QuestionCount;
 import cn.bestsort.bbslite.pojo.model.User;
 import lombok.Data;
 
@@ -15,7 +14,6 @@ import lombok.Data;
 
 @Data
 public class QuestionInfoVo {
-    QuestionCount questionCount;
-    User user;
     Question question;
+    User user;
 }

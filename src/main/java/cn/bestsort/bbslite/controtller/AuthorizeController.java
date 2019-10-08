@@ -1,8 +1,7 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.pojo.dto.AccessTokenDto;
-import cn.bestsort.bbslite.pojo.vo.GithubUserVo;
-import cn.bestsort.bbslite.mapper.UserMapper;
+import cn.bestsort.bbslite.dto.AccessTokenDto;
+import cn.bestsort.bbslite.vo.GithubUserVo;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.util.provider.GithubProvider;
 import cn.bestsort.bbslite.service.UserService;

@@ -8,6 +8,8 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="token" jdbcType="VARCHAR" property="token" />
     <result column="bio" jdbcType="VARCHAR" property="bio" />
+    <result column="fans_count" jdbcType="BIGINT" property="fansCount" />
+    <result column="authenticated" jdbcType="TINYINT" property="authenticated" />
     <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="html_url" jdbcType="VARCHAR" property="htmlUrl" />
@@ -73,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, account_id, email, name, token, bio, avatar_url, password, html_url, gmt_create, 
-    gmt_modified
+    id, account_id, email, name, token, bio, fans_count, authenticated, avatar_url, password, 
+    html_url, gmt_create, gmt_modified
   </sql>
   <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.UserExample" resultMap="BaseResultMap">
     select
@@ -108,13 +110,15 @@
   </delete>
   <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.User">
     insert into user (id, account_id, email, 
-      name, token, bio, avatar_url, 
-      password, html_url, gmt_create, 
-      gmt_modified)
+      name, token, bio, fans_count, 
+      authenticated, avatar_url, password, 
+      html_url, gmt_create, gmt_modified
+      )
     values (#{id,jdbcType=BIGINT}, #{accountId,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{bio,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{htmlUrl,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=BIGINT}, 
-      #{gmtModified,jdbcType=BIGINT})
+      #{name,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{bio,jdbcType=VARCHAR}, #{fansCount,jdbcType=BIGINT}, 
+      #{authenticated,jdbcType=TINYINT}, #{avatarUrl,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{htmlUrl,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.User">
     insert into user
@@ -136,6 +140,12 @@
       </if>
       <if test="bio != null">
         bio,
+      </if>
+      <if test="fansCount != null">
+        fans_count,
+      </if>
+      <if test="authenticated != null">
+        authenticated,
       </if>
       <if test="avatarUrl != null">
         avatar_url,
@@ -171,6 +181,12 @@
       </if>
       <if test="bio != null">
         #{bio,jdbcType=VARCHAR},
+      </if>
+      <if test="fansCount != null">
+        #{fansCount,jdbcType=BIGINT},
+      </if>
+      <if test="authenticated != null">
+        #{authenticated,jdbcType=TINYINT},
       </if>
       <if test="avatarUrl != null">
         #{avatarUrl,jdbcType=VARCHAR},
@@ -216,6 +232,12 @@
       <if test="record.bio != null">
         bio = #{record.bio,jdbcType=VARCHAR},
       </if>
+      <if test="record.fansCount != null">
+        fans_count = #{record.fansCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.authenticated != null">
+        authenticated = #{record.authenticated,jdbcType=TINYINT},
+      </if>
       <if test="record.avatarUrl != null">
         avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
       </if>
@@ -244,6 +266,8 @@
       name = #{record.name,jdbcType=VARCHAR},
       token = #{record.token,jdbcType=VARCHAR},
       bio = #{record.bio,jdbcType=VARCHAR},
+      fans_count = #{record.fansCount,jdbcType=BIGINT},
+      authenticated = #{record.authenticated,jdbcType=TINYINT},
       avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       html_url = #{record.htmlUrl,jdbcType=VARCHAR},
@@ -271,6 +295,12 @@
       <if test="bio != null">
         bio = #{bio,jdbcType=VARCHAR},
       </if>
+      <if test="fansCount != null">
+        fans_count = #{fansCount,jdbcType=BIGINT},
+      </if>
+      <if test="authenticated != null">
+        authenticated = #{authenticated,jdbcType=TINYINT},
+      </if>
       <if test="avatarUrl != null">
         avatar_url = #{avatarUrl,jdbcType=VARCHAR},
       </if>
@@ -296,6 +326,8 @@
       name = #{name,jdbcType=VARCHAR},
       token = #{token,jdbcType=VARCHAR},
       bio = #{bio,jdbcType=VARCHAR},
+      fans_count = #{fansCount,jdbcType=BIGINT},
+      authenticated = #{authenticated,jdbcType=TINYINT},
       avatar_url = #{avatarUrl,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       html_url = #{htmlUrl,jdbcType=VARCHAR},
@@ -303,18 +335,4 @@
       gmt_modified = #{gmtModified,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByExampleWithRowbounds" parameterType="cn.bestsort.bbslite.pojo.model.UserExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from user
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
 </mapper>

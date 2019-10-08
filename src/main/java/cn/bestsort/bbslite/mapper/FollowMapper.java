@@ -4,7 +4,6 @@ import cn.bestsort.bbslite.pojo.model.Follow;
 import cn.bestsort.bbslite.pojo.model.FollowExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.session.RowBounds;
 
 public interface FollowMapper {
     long countByExample(FollowExample example);
@@ -16,8 +15,6 @@ public interface FollowMapper {
     int insert(Follow record);
 
     int insertSelective(Follow record);
-
-    List<Follow> selectByExampleWithRowbounds(FollowExample example, RowBounds rowBounds);
 
     List<Follow> selectByExample(FollowExample example);
 

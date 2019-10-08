@@ -3,26 +3,26 @@
 <body>
 <div th:fragment="question">
     <!-- 问题列表 -->
-    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" th:each="questionInfo:${pagination.questions}">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" th:each="questionInfo:${pagination.list}">
         <div class="media media-margin" >
             <!-- 头像 -->
             <div class="media-left media-left-margin">
                 <a href="#">
-                    <img class="media-min img-rounded" th:src="${questionInfo.user.avatarUrl}">
+                    <img class="media-min img-rounded" th:src="${questionInfo.userAvatarUrl}">
                 </a>
             </div>
             <!-- 描述 -->
             <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
                         <span>
-                            <a th:href="@{'/question/' + ${questionInfo.question.id}}" class="media-heading"
-                               th:text="${questionInfo.question.title}"></a>
+                            <a th:href="@{'/question/' + ${questionInfo.id}}" class="media-heading"
+                               th:text="${questionInfo.title}"></a>
                         </span>
                 <br>
                 <span class="aw-question-content">
-                            <span th:text="${questionInfo.user.name}"></span> •
-                            <span th:text="${questionInfo.questionCount.view}"></span>次浏览 •
-                            <span th:text="${questionInfo.questionCount.comment}"></span>个回复
-                            <span style="float:right" th:text="${#dates.format(questionInfo.question.gmtCreate,'yyyy-MM-dd  HH:mm:ss')}"></span>
+                            <span th:text="${questionInfo.userName}"></span> •
+                            <span th:text="${questionInfo.viewCount}"></span>次浏览 •
+                            <span th:text="${questionInfo.commentCount}"></span>个回复
+                            <span style="float:right" th:text="${#dates.format(questionInfo.gmtCreate,'yyyy-MM-dd  HH:mm:ss')}"></span>
                         </span>
 
             </div>
@@ -37,8 +37,8 @@
                         <span class="page-link" aria-hidden="true">首页</span>
                     </a>
                 </li>
-                <li th:if="${pagination.showPrevious}" class="page-item">
-                    <a th:href="@{/(page=${pagination.focusPage-1})}" aria-label="Previous">
+                <li th:if="${pagination.hasPreviousPage}" class="page-item">
+                    <a th:href="@{/(page=${pagination.prePage})}" aria-label="Previous">
                         <span class="page-link" aria-hidden="true">&lt;</span>
                     </a>
                 </li>

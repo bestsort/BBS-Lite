@@ -1,23 +1,21 @@
 package cn.bestsort.bbslite.service;
 
+import cn.bestsort.bbslite.dto.QuestionQueryDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
-import cn.bestsort.bbslite.enums.ItemTypeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.QuestionExtMapper;
 import cn.bestsort.bbslite.mapper.QuestionMapper;
 import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.pojo.model.QuestionExample;
 import cn.bestsort.bbslite.pojo.model.Topic;
-import cn.bestsort.bbslite.pojo.vo.QuestionInfoVo;
-import org.apache.ibatis.session.RowBounds;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -39,69 +37,18 @@ public class QuestionService {
     private QuestionMapper questionMapper;
     @Autowired
     private QuestionExtMapper questionExtMapper;
-    @Resource
-    private TopicService topicService;
-    @Resource
-    private CountService countService;
-    @Resource
-    private UserService userService;
 
     private static String DEAFULT_ORDER = "gmt_create desc";
 
-
-    @Cacheable(keyGenerator = "myKeyGenerator")
-    public QuestionInfoVo getVoByQuestionId(long id) {
-        QuestionInfoVo result = new QuestionInfoVo();
-        Question question = questionMapper.selectByPrimaryKey(id);
-        if(question == null){
-            throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
-        }
-
-        result.setQuestion(question);
-        result.setQuestionCount(countService.getQuestionCountById(question.getId()));
-        result.setUser(userService.getById(question.getCreator()));
-
-        return  result;
-    }
-    public Question getByQuestionId(long id){
-        return questionMapper.selectByPrimaryKey(id);
-    }
-
-    @Cacheable(keyGenerator = "myKeyGenerator")
-    public List<Question> listByRowBounds(Object key,long page,long size,long type){
+    public PageInfo<Question> findQuestionListByCategory(int page,int size,int category){
         QuestionExample example = new QuestionExample();
-        long offset;
-        long totalCount;
-        List<Question> questions;
-        if(type == SEARCH){
-            questions = questionExtMapper.listBySearch(key.toString(),DEAFULT_ORDER);
-            totalCount = questions.size();
-            page = Math.min(totalCount /size + (totalCount %size==0? 0 : 1),page);
-            page = Math.max(page,1);
-        }else{
-            if(type == TOPIC) {
-                example.createCriteria().andTopicEqualTo(key.toString());
-            }
-            else if (type == USER){
-                example.createCriteria().andCreatorEqualTo((long)key);
-            }
-            totalCount = questionMapper.countByExample(example);
-            //限制访问合法
-            page = Math.min(totalCount /size + (totalCount %size==0? 0L : 1L),page);
-            page = Math.max(page,1);
-            offset = size * (page - 1);
-            example.setOrderByClause(DEAFULT_ORDER);
-            questions = questionMapper.selectByExampleWithRowbounds(example, new RowBounds((int) offset, (int) size));
-        }
-        return questions;
+        example.setOrderByClause(DEAFULT_ORDER);
+
+        PageHelper.startPage(page,size);
+        List<Question> questions = questionMapper.selectByExample(example);
+        return new PageInfo<>(questions);
     }
 
-    public List<Question> listBySearch(String search){
-        return questionExtMapper.listBySearch(search,DEAFULT_ORDER);
-    }
-
-
-    @CacheEvict
     public void createOrUpdate(Question question) {
         question.setGmtModified(System.currentTimeMillis());
         if(questionMapper.selectByPrimaryKey(question.getId()) == null){
@@ -115,7 +62,6 @@ public class QuestionService {
                     .andTagEqualTo(question.getTag());
 
             Question question1 = questionMapper.selectByExample(example).get(0);
-            countService.insertQuestionCount(question1.getId());
         }else {
             int updated = questionMapper.updateByPrimaryKeySelective(question);
             if(updated != 1) {
@@ -137,5 +83,12 @@ public class QuestionService {
             example.createCriteria().andCreatorEqualTo((long)key);
         }
         return questionMapper.countByExample(example);
+    }
+
+    public PageInfo<Question> getPageBySearch(QuestionQueryDto queryDto) {
+        List<Question> questions = new LinkedList<>();
+        PageHelper.startPage(queryDto.getPageNo(),queryDto.getPageSize());
+        questions = questionExtMapper.listBySearch(queryDto);
+        return new PageInfo<>(questions);
     }
 }

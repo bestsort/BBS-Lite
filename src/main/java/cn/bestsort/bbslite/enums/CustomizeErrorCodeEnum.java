@@ -9,7 +9,6 @@ public enum CustomizeErrorCodeEnum  implements MessageInterface {
     TARGET_PAI_NOT_FOUND(3,"未选中任何问题或回复进行评论"),
     QUESTION_NOT_FOUND(2,"问题不见了,换一个试试?"),
     SYS_ERROR(1,"出 BUG 啦,要不杀个程序员祭天吧?"),
-
     ;
     private String name;
     private Integer code;

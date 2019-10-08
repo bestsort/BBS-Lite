@@ -3,12 +3,12 @@
 <head>
     <title>bestsort</title>
     <head th:insert="common/import"></head>
+    <script src="/js/indexdata.js"></script>
 </head>
 
 <script>
     window.onload = function () {
         var  closable = window.localStorage.getItem("closable");
-        debugger;
         if(closable === "true"){
             window.close();
             window.localStorage.removeItem("closable");
@@ -24,7 +24,19 @@
         <div class="col-lg-9 col-md-9 col-xs-9 col-sm-12" style="border-right:1px solid #eee">
             <h2><span class="glyphicon glyphicon-list" aria-hidden="true">发现</span></h2>
             <hr>
-            <div th:insert="~{common/questionlist :: question}"></div>
+            <!--问题列表-->
+            <div id="question_wrapper"></div>
+
+            <div id="no_quetions" class="text-center" style="margin-top: 50px; display: none;">暂无更多</div>
+            <!--分页导航-->
+            <span class="page_info-area" style="font-size: 12px;"></span>
+            <div class="col-lg-9 col-md-9 col-xs-9 col-sm-12" style="border-right:1px solid #eee;margin-top: 20px">
+                <nav aria-label="Page navigation" style="font-size: 12px;">
+                    <ul class="pagination">
+
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </div>

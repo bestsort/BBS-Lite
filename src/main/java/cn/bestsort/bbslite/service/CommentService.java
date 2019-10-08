@@ -3,10 +3,9 @@ package cn.bestsort.bbslite.service;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.CommentMapper;
-import cn.bestsort.bbslite.pojo.dto.CommentDto;
+import cn.bestsort.bbslite.dto.CommentDto;
 import cn.bestsort.bbslite.pojo.model.Comment;
 import cn.bestsort.bbslite.pojo.model.CommentExample;
-import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.pojo.model.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +36,6 @@ public class CommentService {
     private UserService userServicel;
     @Resource
     private  QuestionService questionService;
-    @Resource
-    private CountService countService;
     @Autowired
     private CommentMapper commentMapper;
 
@@ -49,12 +46,12 @@ public class CommentService {
         }
         if(comment.getLevel() <= 1){
             //回复问题
-            Question question = questionService.getByQuestionId(comment.getQuestionId());
+            /*Question question = questionService.getByQuestionId(comment.getQuestionId());
             if (question == null){
                 throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
             }
-            commentMapper.insertSelective(comment);
-            countService.updateQuestionCommentCount(question.getId(),1L);
+            commentMapper.insertSelective(comment);*/
+            /*countService.updateQuestionCommentCount(question.getId(),1L);*/
         }else{
             //回复评论
             Comment dbComment =commentMapper.selectByPrimaryKey(comment.getPid());

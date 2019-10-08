@@ -1,7 +1,7 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.pojo.dto.ResultDto;
-import cn.bestsort.bbslite.pojo.vo.UserCreateVo;
+import cn.bestsort.bbslite.dto.ResultDto;
+import cn.bestsort.bbslite.vo.UserCreateVo;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.UserMapper;
@@ -62,6 +62,6 @@ public class SignUpController {
         request.getSession().setAttribute("user",user);
         response.addCookie(new Cookie("token",token));
         userMapper.insertSelective(user);
-        return ResultDto.okOf();
+        return new ResultDto().okOf();
     }
 }

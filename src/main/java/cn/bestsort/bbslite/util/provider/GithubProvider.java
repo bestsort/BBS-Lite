@@ -9,8 +9,8 @@
 package cn.bestsort.bbslite.util.provider;
 
 
-import cn.bestsort.bbslite.pojo.dto.AccessTokenDto;
-import cn.bestsort.bbslite.pojo.vo.GithubUserVo;
+import cn.bestsort.bbslite.dto.AccessTokenDto;
+import cn.bestsort.bbslite.vo.GithubUserVo;
 import com.alibaba.fastjson.JSON;
 import okhttp3.*;
 import org.springframework.stereotype.Component;

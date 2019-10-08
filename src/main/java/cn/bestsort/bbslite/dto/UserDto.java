@@ -1,8 +1,11 @@
-package cn.bestsort.bbslite.pojo.dto;
+package cn.bestsort.bbslite.dto;
 
-import cn.bestsort.bbslite.pojo.vo.UserCreateVo;
+import cn.bestsort.bbslite.vo.UserCreateVo;
 import lombok.Data;
 
+/**
+ * @author bestsort
+ */
 @Data
 public class UserDto {
     UserCreateVo userCreateDTO;

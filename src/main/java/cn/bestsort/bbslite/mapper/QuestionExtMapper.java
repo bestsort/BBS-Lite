@@ -1,5 +1,6 @@
 package cn.bestsort.bbslite.mapper;
 
+import cn.bestsort.bbslite.dto.QuestionQueryDto;
 import cn.bestsort.bbslite.pojo.model.Question;
 
 import java.util.List;
@@ -15,5 +16,5 @@ import java.util.List;
  */
 
 public interface QuestionExtMapper {
-    List<Question> listBySearch(String search,String order);
+    List<Question> listBySearch(QuestionQueryDto questionQueryDto);
 }

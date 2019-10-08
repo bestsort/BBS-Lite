@@ -4,7 +4,6 @@ import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.pojo.model.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.session.RowBounds;
 
 public interface UserMapper {
     long countByExample(UserExample example);
@@ -16,8 +15,6 @@ public interface UserMapper {
     int insert(User record);
 
     int insertSelective(User record);
-
-    List<User> selectByExampleWithRowbounds(UserExample example, RowBounds rowBounds);
 
     List<User> selectByExample(UserExample example);
 

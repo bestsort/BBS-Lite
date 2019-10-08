@@ -4,7 +4,6 @@ import cn.bestsort.bbslite.pojo.model.Comment;
 import cn.bestsort.bbslite.pojo.model.CommentExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.session.RowBounds;
 
 public interface CommentMapper {
     long countByExample(CommentExample example);
@@ -16,8 +15,6 @@ public interface CommentMapper {
     int insert(Comment record);
 
     int insertSelective(Comment record);
-
-    List<Comment> selectByExampleWithRowbounds(CommentExample example, RowBounds rowBounds);
 
     List<Comment> selectByExample(CommentExample example);
 

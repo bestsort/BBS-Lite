@@ -1,18 +1,20 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.pojo.dto.CommentDto;
-import cn.bestsort.bbslite.pojo.dto.ResultDto;
-import cn.bestsort.bbslite.pojo.vo.QuestionInfoVo;
+import cn.bestsort.bbslite.dto.CommentDto;
+import cn.bestsort.bbslite.dto.QuestionQueryDto;
+import cn.bestsort.bbslite.dto.ResultDto;
+import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.service.CommentService;
-import cn.bestsort.bbslite.service.CountService;
 import cn.bestsort.bbslite.service.FollowService;
 import cn.bestsort.bbslite.service.QuestionService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -30,18 +32,20 @@ public class QuestionController {
     private CommentService commentService;
     @Autowired
     private FollowService followService;
-    @Autowired
-    private CountService countService;
     @GetMapping("/question/{id}")
     public String question(@PathVariable("id") Long id,
                            Model model){
 
+/*
         QuestionInfoVo questionInfoVo = questionService.getVoByQuestionId(id);
+*/
         //TODO fix bug: countService.incQuestionView(id);
 
         List<CommentDto> comments = commentService.listByQuestionId(id);
         model.addAttribute("comments",comments);
+/*
         model.addAttribute("questionInfoVo",questionInfoVo);
+*/
         return "question";
     }
 
@@ -49,6 +53,6 @@ public class QuestionController {
     @ResponseBody
     @RequestMapping(value = "/question/{id}",method = RequestMethod.POST)
     public Object post(@PathVariable(name = "id") Long id){
-        return ResultDto.okOf();
+        return new ResultDto().okOf();
     }
 }

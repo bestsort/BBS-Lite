@@ -13,6 +13,10 @@ public class User {
 
     private String bio;
 
+    private Long fansCount;
+
+    private Byte authenticated;
+
     private String avatarUrl;
 
     private String password;
@@ -71,6 +75,22 @@ public class User {
         this.bio = bio == null ? null : bio.trim();
     }
 
+    public Long getFansCount() {
+        return fansCount;
+    }
+
+    public void setFansCount(Long fansCount) {
+        this.fansCount = fansCount;
+    }
+
+    public Byte getAuthenticated() {
+        return authenticated;
+    }
+
+    public void setAuthenticated(Byte authenticated) {
+        this.authenticated = authenticated;
+    }
+
     public String getAvatarUrl() {
         return avatarUrl;
     }
@@ -123,6 +143,8 @@ public class User {
         sb.append(", name=").append(name);
         sb.append(", token=").append(token);
         sb.append(", bio=").append(bio);
+        sb.append(", fansCount=").append(fansCount);
+        sb.append(", authenticated=").append(authenticated);
         sb.append(", avatarUrl=").append(avatarUrl);
         sb.append(", password=").append(password);
         sb.append(", htmlUrl=").append(htmlUrl);
