@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.bestsort.bbslite.mapper.QuestionExtMapper">
-    <resultMap id="question_user_map" type="cn.bestsort.bbslite.pojo.model.Question">
+    <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Question">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="title" jdbcType="VARCHAR" property="title" />
         <result column="creator" jdbcType="BIGINT" property="creator" />
@@ -9,27 +9,12 @@
         <result column="top" jdbcType="TINYINT" property="top" />
         <result column="topic" jdbcType="VARCHAR" property="topic" />
         <result column="category" jdbcType="VARCHAR" property="category" />
+        <result column="user_avatar_url" jdbcType="VARCHAR" property="userAvatarUrl" />
         <result column="user_name" jdbcType="VARCHAR" property="userName" />
-        <result column="user_avatar" jdbcType="VARCHAR" property="userAvatar" />
         <result column="follow_count" jdbcType="BIGINT" property="followCount" />
         <result column="view_count" jdbcType="BIGINT" property="viewCount" />
         <result column="like_count" jdbcType="BIGINT" property="likeCount" />
-        <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
-        <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
-    </resultMap>
-
-    <resultMap id="question_user_map_userid" type="cn.bestsort.bbslite.pojo.model.User">
-        <id column="id" jdbcType="BIGINT" property="id" />
-        <result column="account_id" jdbcType="VARCHAR" property="accountId" />
-        <result column="email" jdbcType="VARCHAR" property="email" />
-        <result column="name" jdbcType="VARCHAR" property="name" />
-        <result column="token" jdbcType="VARCHAR" property="token" />
-        <result column="bio" jdbcType="VARCHAR" property="bio" />
-        <result column="fans_count" jdbcType="BIGINT" property="fansCount" />
-        <result column="authenticated" jdbcType="TINYINT" property="authenticated" />
-        <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
-        <result column="password" jdbcType="VARCHAR" property="password" />
-        <result column="html_url" jdbcType="VARCHAR" property="htmlUrl" />
+        <result column="status" jdbcType="TINYINT" property="status" />
         <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
         <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     </resultMap>
@@ -37,17 +22,23 @@
     <select id="listBySearch" resultType="cn.bestsort.bbslite.pojo.model.Question">
         select *
         from question
-        where status = 1
-        <if test="category!=null and category!=''">
-            and category = #{category}
-        </if>
-        <if test="search!=null and search!=''">
-            and title = #{title}
-        </if>
-        <if test="tag!=null and tag!=''">
-            and tag regexp #{tag}
-        </if>
-        order by gmt_create DESC
+        <where>
+            status = 1
+            <if test="category!=null and category!=''">
+                and category = #{category}
+            </if>
+            <if test="topic != null and topic != ''">
+                and topic = #{topic}
+            </if>
+            <if test="tag!=null and tag!=''">
+                and tag = #{tag}
+            </if>
+            <if test="search!=null and search!=''">
+                and title regexp #{search}
+            </if>
+
+            order by gmt_create DESC
+        </where>
     </select>
 
 </mapper>

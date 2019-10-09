@@ -194,3 +194,9 @@ body, html {
     left: 20px;
     bottom: 1px;
 }
+
+/* 首页问题列表边框 */
+.bbs-question-list-item{
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}

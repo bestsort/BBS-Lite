@@ -7,14 +7,10 @@ import cn.bestsort.bbslite.service.QuestionService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 /**
  * @ClassName IndexController
@@ -31,16 +27,15 @@ public class IndexController {
     private QuestionService questionService;
 
     /**
-     * @Description 获取问题列表
-     * @param sort
-     * @param search
-     * @param topic
-     * @param tag
-     * @param size
-     * @param page
-     * @param categoryVal
-     * @param request
-     * @return
+     * @Description 获取问题列表(可根据搜索内容/话题/分类筛选结果)
+     * @param sort 排序关键字
+     * @param search 搜索关键字(根据正则搜索标题)
+     * @param topic 话题
+     * @param tag 标签(根据正则搜索标签)
+     * @param size 页面大小(一页所容纳的问题数)
+     * @param page 第几页
+     * @param categoryVal 话题分类
+     * @return 根据条件筛选并进行分页后的问题列表
      */
     @ResponseBody
     @GetMapping("/loadQuestionList")
@@ -48,10 +43,9 @@ public class IndexController {
                                      @RequestParam(name = "search",required = false) String search,
                                      @RequestParam(name = "topic",defaultValue = "0") Integer topic,
                                      @RequestParam(name = "tag",required = false) String tag,
-                                     @RequestParam(name = "size",defaultValue = "10") Integer size,
-                                     @RequestParam(name = "page",defaultValue = "1") Integer page,
-                                     @RequestParam(name = "category",defaultValue = "0") Integer categoryVal,
-                                     HttpServletRequest request){
+                                     @RequestParam(name = "pageSize",defaultValue = "10") Integer size,
+                                     @RequestParam(name = "pageNo",defaultValue = "1") Integer page,
+                                     @RequestParam(name = "category",defaultValue = "0") Integer categoryVal){
         QuestionQueryDto queryDto = QuestionQueryDto.builder()
                 .search(search).category(categoryVal).pageNo(page)
                 .tag(tag).pageSize(size).topic(topic).build();
@@ -61,13 +55,7 @@ public class IndexController {
 
 
     @RequestMapping("/")
-    public String index(@RequestParam(value = "tag", required = false) String tag,
-                        @RequestParam(value = "search", required = false) String search,
-                        @RequestParam(value = "category", defaultValue = "0") String category,
-                        Map<String, Object> map) {
-        map.put("tag", tag);
-        map.put("search", search);
-        map.put("category", category);
+    public String index() {
         return "index";
     }
 }

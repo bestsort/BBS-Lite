@@ -21,7 +21,7 @@
     </div>
         <div class="row">
                 <div class="item topic-width" th:each="topic : ${topics}">
-                    <a th:href="${'/topic/' + topic.id}">
+                    <a th:href="${'/?topic=' + topic.id}">
                         <div class="box">
                             <div style="padding-top: 10%">
                                 <img th:src="${topic.avatarUrl}" class=" media-topic">

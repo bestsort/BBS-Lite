@@ -86,7 +86,7 @@ public class QuestionService {
     }
 
     public PageInfo<Question> getPageBySearch(QuestionQueryDto queryDto) {
-        List<Question> questions = new LinkedList<>();
+        List<Question> questions;
         PageHelper.startPage(queryDto.getPageNo(),queryDto.getPageSize());
         questions = questionExtMapper.listBySearch(queryDto);
         return new PageInfo<>(questions);
