@@ -6,7 +6,10 @@ import cn.bestsort.bbslite.mapper.CommentMapper;
 import cn.bestsort.bbslite.dto.CommentDto;
 import cn.bestsort.bbslite.pojo.model.Comment;
 import cn.bestsort.bbslite.pojo.model.CommentExample;
+import cn.bestsort.bbslite.enums.SortBy;
 import cn.bestsort.bbslite.pojo.model.User;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -63,20 +66,20 @@ public class CommentService {
     }
 
     @Cacheable(keyGenerator = "myKeyGenerator")
-    public List<CommentDto> listByQuestionId(Long questionId) {
+    public PageInfo<CommentDto> listByQuestionId(Long questionId, Integer page, Integer size) {
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria()
                 .andQuestionIdEqualTo(questionId);
-        commentExample.setOrderByClause("gmt_create desc");
-
+        commentExample.setOrderByClause(SortBy.DEAFULT_ORDER);
+        PageHelper.startPage(page,size);
         List<Comment> comments = commentMapper.selectByExample(commentExample);
+
         if (comments.isEmpty()) {
-            return new ArrayList<>();
+            return new PageInfo<>();
         }
 
         //将comments 先按照评论分级排序再按照时间排序
         comments.sort(new CommentComparator());
-
 
         //将 comment 转为 commentDTO
         HashMap<Long, CommentDto> dtoHashMap = new HashMap<>(10);
@@ -98,7 +101,7 @@ public class CommentService {
                         .add(commentDTO);
             }
         }
-        return commentDtos;
+        return new PageInfo<>(commentDtos);
     }
     private static class CommentComparator implements Comparator<Comment>{
         @Override

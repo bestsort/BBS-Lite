@@ -1,16 +1,15 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
-import cn.bestsort.bbslite.dto.CommentCreateDto;
+import cn.bestsort.bbslite.dto.CommentDto;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.pojo.model.Comment;
+import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.CommentService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @ClassName CommentController
@@ -25,19 +24,9 @@ public class CommentController {
     CommentService commentService;
 
     @ResponseBody
-    @RequestMapping(value = "/comment",method = RequestMethod.POST)
-    public Object post(CommentCreateDto commentCreateDTO,
-                       HttpSession session){
-
-        User user = (User)session.getAttribute("user");
-        if (user == null) {
-            return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
-        }
-        Comment comment = new Comment();
-        BeanUtils.copyProperties(commentCreateDTO,comment);
-        comment.setGmtCreate(System.currentTimeMillis());
-        comment.setGmtModified(comment.getGmtCreate());
-        commentService.insert(comment);
+    @RequestMapping(value = "/loadComment",method = RequestMethod.GET)
+    public ResultDto get(@RequestParam(name = "id") Long id){
+        List<CommentDto> commentDtos = commentService.listByQuestionId(id);
         return new ResultDto().okOf();
     }
 

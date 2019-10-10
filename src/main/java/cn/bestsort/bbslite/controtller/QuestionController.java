@@ -1,21 +1,16 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dto.CommentDto;
 import cn.bestsort.bbslite.dto.QuestionQueryDto;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.pojo.model.Question;
-import cn.bestsort.bbslite.service.CommentService;
+import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.FollowService;
 import cn.bestsort.bbslite.service.QuestionService;
+import cn.bestsort.bbslite.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * @ClassName QuestionController
@@ -29,30 +24,54 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
     @Autowired
-    private CommentService commentService;
+    private UserService userService;
     @Autowired
     private FollowService followService;
+
     @GetMapping("/question/{id}")
-    public String question(@PathVariable("id") Long id,
-                           Model model){
-
-/*
-        QuestionInfoVo questionInfoVo = questionService.getVoByQuestionId(id);
-*/
-        //TODO fix bug: countService.incQuestionView(id);
-
-        List<CommentDto> comments = commentService.listByQuestionId(id);
-        model.addAttribute("comments",comments);
-/*
-        model.addAttribute("questionInfoVo",questionInfoVo);
-*/
+    public String question(@PathVariable("id") Long id){
         return "question";
     }
 
-    @Transactional
+    /**
+     * @Description 获取问题列表(可根据搜索内容/话题/分类筛选结果)
+     * @param sort 排序关键字
+     * @param search 搜索关键字(根据正则搜索标题)
+     * @param topic 话题
+     * @param tag 标签(根据正则搜索标签)
+     * @param size 页面大小(一页所容纳的问题数)
+     * @param page 第几页
+     * @param categoryVal 话题分类
+     * @return 根据条件筛选并进行分页后的问题列表
+     */
     @ResponseBody
-    @RequestMapping(value = "/question/{id}",method = RequestMethod.POST)
-    public Object post(@PathVariable(name = "id") Long id){
-        return new ResultDto().okOf();
+    @GetMapping("/loadQuestionList")
+    public ResultDto getQuestionList(@RequestParam(name = "sortby",defaultValue = "ALL") String sort,
+                                     @RequestParam(name = "search",required = false) String search,
+                                     @RequestParam(name = "topic",defaultValue = "0") Integer topic,
+                                     @RequestParam(name = "tag",required = false) String tag,
+                                     @RequestParam(name = "pageSize",defaultValue = "10") Integer size,
+                                     @RequestParam(name = "pageNo",defaultValue = "1") Integer page,
+                                     @RequestParam(name = "category",defaultValue = "0") Integer categoryVal){
+        QuestionQueryDto queryDto = QuestionQueryDto.builder()
+                .search(search).category(categoryVal).pageNo(page)
+                .tag(tag).pageSize(size).topic(topic).build();
+        PageInfo<Question> pageInfo = questionService.getPageBySearch(queryDto);
+        return new ResultDto().okOf().addMsg("page",pageInfo);
+    }
+
+    /**
+     * 加载问题详情(包括选项栏,问题,发起人信息)
+     * @param id 问题id
+     * @return 问题详情
+     */
+    @ResponseBody
+    @RequestMapping(value = "/loadQuestionDetail",method = RequestMethod.GET)
+    public ResultDto get(@RequestParam(name = "id") Long id){
+        Question question = questionService.getQuestionDetail(id);
+        User user = userService.getSimpleInfoById(question.getCreator());
+        return new ResultDto().okOf()
+                .addMsg("question",question)
+                .addMsg("user",user);
     }
 }

@@ -28,14 +28,14 @@ function build_page_nav(data) {
     $(".pagination").empty();
     //$('.page_info-area').append("当前第" + page.pageNum + "页,共" + page.pages + "页,共" + page.total + "条记录")
     //分页导航
-    var nav = $(".pagination");
-    var firstLi = $("<li class='page-item'></li>")
+    let nav = $(".pagination");
+    let firstLi = $("<li class='page-item'></li>")
         .append($("<a class='page-link'>首页</a>")
-        .attr("href", "#"));
+            .attr("href", "#"));
 
-    var prli = $("<li class='page-item'></li>")
+    let prli = $("<li class='page-item'></li>")
         .append($("<a class='page-link' aria-label='Previous'><span aria-hidden='true'>上一页</span></a>")
-        .attr("href", "#"));
+            .attr("href", "#"));
     //首页
     firstLi.click(function () {
         to_page(1);
@@ -46,9 +46,9 @@ function build_page_nav(data) {
         target = target == 0 ? 1 : target;
         to_page(target);
     });
-    var lastLi = $("<li class='page-item'></li>")
+    let lastLi = $("<li class='page-item'></li>")
         .append($("<a class='page-link'>尾页</a>").attr("href", "#"));
-    var nextli = $("<li class='page-item'></li>")
+    let nextli = $("<li class='page-item'></li>")
         .append($("<a class='page-link' aria-label='Next'><span aria-hidden='true'>下一页</span></a>").attr("href", "#"));
     //末页
     lastLi.click(function () {
@@ -70,7 +70,7 @@ function build_page_nav(data) {
     }
 
     $.each(data.extend.page.navigatepageNums, function (index, item) {
-        var li = $("<li class='page-item'></li>");
+        const li = $("<li class='page-item'></li>");
         if (data.extend.page.pageNum == item) {
             li.addClass("active");
             li.append($("<span class='page-link'>" + item + "</span>").attr("href", "#"));
@@ -107,12 +107,14 @@ function to_page(pageno) {
     /**
      * 加载完成之后,发送请求到服务器,拿到json数据,构建列表数据
      */
-    var url = "/loadQuestionList";
-    var sortBy = getParam("sortBy");
-    var jsonData = {};
-    jsonData["pageNo"] = pageno;
-    jsonData["contentType"] = "application/json;charset=UTF-8";
-    var array = ["search","tag","sortBy","category","topic"];
+    const url = "/loadQuestionList";
+    const sortBy = getParam("sortBy");
+    let jsonData = {
+        "pageNo": pageno,
+        "contentType": "application/json;charset=UTF-8"
+    };
+
+    const array = ["search", "tag", "sortBy", "category", "topic"];
     for (let i in array) {
         var val = getParam(array[i]);
         if(typeof(val) != 'undefined'){
@@ -122,15 +124,7 @@ function to_page(pageno) {
     $.ajax({
         type: "GET",
         url: url,
-        data: jsonData
-        /*{
-            "pageNo": pageno,
-            "tag": getParam("tag"),
-            "search": getParam("search"),
-            "sortby": getParam("sortBy"),
-            "category": getParam("category"),
-            contentType: "application/json;charset=UTF-8"
-        }*/,
+        data: jsonData,
         beforeSend: function () {
             //loadingIndex = layer.msg('加载数据~~', {icon: 16});
         },
@@ -167,7 +161,7 @@ function to_page(pageno) {
 function build_question_list(data) {
     //清空
     $("#question_wrapper").empty();
-    var questions = data.extend.page.list;
+    const questions = data.extend.page.list;
     $.each(questions, function (index, item) {
 
         const question = $('<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 bbs-question-list-item"' +

@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 /**
@@ -58,5 +59,14 @@ public class UserService {
             save2Db.setGmtModified(System.currentTimeMillis());
             userMapper.updateByPrimaryKeySelective(save2Db);
         }
+    }
+
+    public User getSimpleInfoById(Long id) {
+        User user = getById(id);
+        if(user != null){
+            user.setPassword(null);
+            user.setToken(null);
+        }
+        return user;
     }
 }

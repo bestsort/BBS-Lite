@@ -7,6 +7,7 @@ import cn.bestsort.bbslite.mapper.QuestionExtMapper;
 import cn.bestsort.bbslite.mapper.QuestionMapper;
 import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.pojo.model.QuestionExample;
+import cn.bestsort.bbslite.enums.SortBy;
 import cn.bestsort.bbslite.pojo.model.Topic;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -15,7 +16,6 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -38,11 +38,10 @@ public class QuestionService {
     @Autowired
     private QuestionExtMapper questionExtMapper;
 
-    private static String DEAFULT_ORDER = "gmt_create desc";
 
     public PageInfo<Question> findQuestionListByCategory(int page,int size,int category){
         QuestionExample example = new QuestionExample();
-        example.setOrderByClause(DEAFULT_ORDER);
+        example.setOrderByClause(SortBy.DEAFULT_ORDER);
 
         PageHelper.startPage(page,size);
         List<Question> questions = questionMapper.selectByExample(example);
@@ -90,5 +89,9 @@ public class QuestionService {
         PageHelper.startPage(queryDto.getPageNo(),queryDto.getPageSize());
         questions = questionExtMapper.listBySearch(queryDto);
         return new PageInfo<>(questions);
+    }
+
+    public Question getQuestionDetail(Long id) {
+        return questionMapper.selectByPrimaryKey(id);
     }
 }
