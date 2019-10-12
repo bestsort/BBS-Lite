@@ -1,5 +1,6 @@
 package cn.bestsort.bbslite.controtller;
 
+import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.TopicMapper;
@@ -8,15 +9,15 @@ import cn.bestsort.bbslite.pojo.model.Topic;
 import cn.bestsort.bbslite.pojo.model.TopicExample;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.QuestionService;
+import cn.bestsort.bbslite.service.TopicService;
+import cn.bestsort.bbslite.vo.PublishVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -33,31 +34,32 @@ public class PublishController {
     private TopicMapper topicMapper;
     @Autowired
     private QuestionService questionService;
-
+    @Autowired
+    private TopicService topicService;
     @GetMapping("/publish")
     public String publish(Model model){
-        topicAttribute(model);
         return "publish";
     }
 
-    @GetMapping("/publish/{id}")
-    public String edit(@PathVariable(name = "id") Long id,
-                       Model model,
-                       HttpServletRequest request){
-
-       /* Question question = questionService.getByQuestionId(id);*/
-        User user = (User)request.getSession().getAttribute("user");
-        /*if(!question.getCreator().equals(user.getId())){
-            throw new CustomizeException(CustomizeErrorCodeEnum.USER_ERROR);
+    @ResponseBody
+    @GetMapping("/getPublishInfo")
+    public ResultDto getPublishInfo(@RequestParam(name = "id",required = false) Long id,
+                                    HttpSession session){
+        User user = (User)session.getAttribute("user");
+        ResultDto resultDto;
+        /*if(!questionService.getQuestionDetail(id).getCreator().equals(user.getId())){
+            resultDto = new ResultDto().errorOf(CustomizeErrorCodeEnum.USER_ERROR);
         }
-
-        topicAttribute(model);
-        model.addAttribute("title",question.getTitle())
-                .addAttribute("tag",question.getTag())
-                .addAttribute("description",question.getDescription())
-                .addAttribute("id",question.getId())
-                .addAttribute("topic",question.getTopic());*/
-        return "publish";
+        else {
+ */         resultDto = new ResultDto().okOf();
+        PublishVo publishVo = new PublishVo();
+        publishVo.setTopics(topicService.getAll());
+        if (id != null) {
+            publishVo.setQuestion(questionService.getQuestionDetail(id));
+        }
+        resultDto.addMsg("publishInfo",publishVo);
+        //}
+        return resultDto;
     }
 
     /**
@@ -94,9 +96,5 @@ public class PublishController {
         }
         questionService.createOrUpdate(question);
         return "redirect:/";
-    }
-    private void topicAttribute(Model model){
-        List<Topic> topics = topicMapper.selectByExample(new TopicExample());
-        model.addAttribute("topic_info",topics);
     }
 }

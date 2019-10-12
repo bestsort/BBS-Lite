@@ -6,6 +6,7 @@ import cn.bestsort.bbslite.pojo.model.Comment;
 import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.CommentService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class CommentController {
     @ResponseBody
     @RequestMapping(value = "/loadComment",method = RequestMethod.GET)
     public ResultDto get(@RequestParam(name = "id") Long id){
-        List<CommentDto> commentDtos = commentService.listByQuestionId(id);
+        PageInfo<CommentDto> commentDtos = commentService.listByQuestionId(id,1,5);
         return new ResultDto().okOf();
     }
 

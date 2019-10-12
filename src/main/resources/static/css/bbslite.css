@@ -1,3 +1,40 @@
+.alert-info {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 500px;
+    max-width: 1000px;
+    transform: translate(-50%,-50%);
+    z-index: 99999;
+    text-align: center;
+    padding: 15px;
+    border-radius: 3px;
+}
+
+.alert-info-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-info-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.alert-info-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.alert-info-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
 body, html {
     width: 100%;
     padding: 0;
@@ -95,7 +132,9 @@ body, html {
     outline:none;
     color: #5f8e99;
 }
-
+.push-input{
+    margin: 10px 0;
+}
 /* error返回主菜单按钮 */
 .bbs-jumbotron{
     margin: 50px;

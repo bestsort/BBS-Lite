@@ -3,56 +3,69 @@
 <head>
     <title>发布</title>
     <head th:insert="common/import"></head>
+    <script src="//cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+    <script src="/js/publish-data.js"></script>
+    <style type="text/css">
+        .toolbar {
+            border: 1px solid rgba(33, 37, 41, 0.1);
+        }
+        .text {
+            border: 1px solid rgba(33, 37, 41, 0.1);
+            min-height: 600px;
+        }
+    </style>
 </head>
 
 <body>
 <div th:insert="common/navgation"></div>
 
-<div th:if="${error!=null}">
-    <div class="alert alert-danger text-center" th:text="${error}"></div>
-</div>
-
 <div class="container main">
-
-    <div class="row">
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
-
-            <form action="/publish" method="post">
-                <input type="hidden" name="id" th:value="${id}">
-                <div class="form-group">
-                    <label for="title">问题标题(简单扼要)</label>
-                    <input name="title" type="text" class="form-control"
-                           placeholder="问题标题__" th:value="${title}" id="title" >
-                </div>
-
-                <div class="form-group">
-                    <label for="description">问题描述</label>
-                    <textarea name="description" class="form-control"
-                              id="description" cols="30" rows="10" th:text="${description}"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="tag">添加标签:</label>
-                    <input name="tag" type="text" class="form-control" placeholder="输入标签,以逗号分割"
-                           th:value="${tag}" id="tag" >
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6" style="float: left;padding-left: 0">
-                <select type="text" class="form-control" id="topic" name="topic">
-                    <option value="0" selected="">加入话题</option>
-                    <option th:each="info : ${topic_info}" th:value="${info.name}" th:text="${info.name}"></option>
-                </select>
-                </div>
-                    <button type="submit" class="btn btn-success btn-publish" value="发布">发布</button>
-            </form>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
+        <h2 class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><i class="fas fa-paint-brush"></i>发起</h2>
+        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group" style="align-items: center">
+            <h5>标题(简单扼要)</h5>
+            <input id="title" type="text" class="form-control">
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-            <h3>无序列表</h3>
-            <ul>
-                <li>第一条</li>
-                <li>第二条</li>
-                <li>第三条</li>
-                <li>第四条</li>
-            </ul>
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- 模态框头部 -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">请确保您的文章满足以下条件</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- 模态框主体 -->
+                    <div class="modal-body" id="modal-body">
+                          1.<br>
+                          2.<br>
+                    </div>
+                    <!-- 模态框底部 -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">确定</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+            <div id = "wangEditorToolbar" class="toolbar"></div>
+            <div id = "wangEditorText" class="text"></div>
+        </div>
+        <div id="show_tag" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2">标签:</span>
+            <input id="tag" type="text" class="form-control push-input" placeholder="输入标签,以回车分割">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="float: left;padding-left: 0">
+            <span class="col-lg-4 col-md-4 col-sm-4 col-xs-4">话题:</span>
+            <select class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-control push-input"
+                    id="topicType" type="text"></select>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+            <button id="push" class="btn btn-success btn-publish" style="margin-top: 20px">发布</button>
         </div>
     </div>
 </div>

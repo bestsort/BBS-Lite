@@ -4,7 +4,6 @@
   <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Comment">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="pid" jdbcType="BIGINT" property="pid" />
-    <result column="user_avatar_url" jdbcType="VARCHAR" property="userAvatarUrl" />
     <result column="question_id" jdbcType="BIGINT" property="questionId" />
     <result column="commentator" jdbcType="BIGINT" property="commentator" />
     <result column="level" jdbcType="TINYINT" property="level" />
@@ -72,8 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, pid, user_avatar_url, question_id, commentator, level, gmt_modified, gmt_create, 
-    content, like_count
+    id, pid, question_id, commentator, level, gmt_modified, gmt_create, content, like_count
   </sql>
   <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.CommentExample" resultMap="BaseResultMap">
     select
@@ -106,14 +104,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
-    insert into comment (id, pid, user_avatar_url, 
-      question_id, commentator, level, 
-      gmt_modified, gmt_create, content, 
-      like_count)
-    values (#{id,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT}, #{userAvatarUrl,jdbcType=VARCHAR}, 
-      #{questionId,jdbcType=BIGINT}, #{commentator,jdbcType=BIGINT}, #{level,jdbcType=TINYINT}, 
-      #{gmtModified,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
-      #{likeCount,jdbcType=BIGINT})
+    insert into comment (id, pid, question_id, 
+      commentator, level, gmt_modified, 
+      gmt_create, content, like_count
+      )
+    values (#{id,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT}, #{questionId,jdbcType=BIGINT}, 
+      #{commentator,jdbcType=BIGINT}, #{level,jdbcType=TINYINT}, #{gmtModified,jdbcType=BIGINT}, 
+      #{gmtCreate,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, #{likeCount,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
     insert into comment
@@ -123,9 +121,6 @@
       </if>
       <if test="pid != null">
         pid,
-      </if>
-      <if test="userAvatarUrl != null">
-        user_avatar_url,
       </if>
       <if test="questionId != null">
         question_id,
@@ -155,9 +150,6 @@
       </if>
       <if test="pid != null">
         #{pid,jdbcType=BIGINT},
-      </if>
-      <if test="userAvatarUrl != null">
-        #{userAvatarUrl,jdbcType=VARCHAR},
       </if>
       <if test="questionId != null">
         #{questionId,jdbcType=BIGINT},
@@ -197,9 +189,6 @@
       <if test="record.pid != null">
         pid = #{record.pid,jdbcType=BIGINT},
       </if>
-      <if test="record.userAvatarUrl != null">
-        user_avatar_url = #{record.userAvatarUrl,jdbcType=VARCHAR},
-      </if>
       <if test="record.questionId != null">
         question_id = #{record.questionId,jdbcType=BIGINT},
       </if>
@@ -230,7 +219,6 @@
     update comment
     set id = #{record.id,jdbcType=BIGINT},
       pid = #{record.pid,jdbcType=BIGINT},
-      user_avatar_url = #{record.userAvatarUrl,jdbcType=VARCHAR},
       question_id = #{record.questionId,jdbcType=BIGINT},
       commentator = #{record.commentator,jdbcType=BIGINT},
       level = #{record.level,jdbcType=TINYINT},
@@ -247,9 +235,6 @@
     <set>
       <if test="pid != null">
         pid = #{pid,jdbcType=BIGINT},
-      </if>
-      <if test="userAvatarUrl != null">
-        user_avatar_url = #{userAvatarUrl,jdbcType=VARCHAR},
       </if>
       <if test="questionId != null">
         question_id = #{questionId,jdbcType=BIGINT},
@@ -278,7 +263,6 @@
   <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
     update comment
     set pid = #{pid,jdbcType=BIGINT},
-      user_avatar_url = #{userAvatarUrl,jdbcType=VARCHAR},
       question_id = #{questionId,jdbcType=BIGINT},
       commentator = #{commentator,jdbcType=BIGINT},
       level = #{level,jdbcType=TINYINT},

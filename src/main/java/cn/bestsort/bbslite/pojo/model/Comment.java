@@ -5,8 +5,6 @@ public class Comment {
 
     private Long pid;
 
-    private String userAvatarUrl;
-
     private Long questionId;
 
     private Long commentator;
@@ -35,14 +33,6 @@ public class Comment {
 
     public void setPid(Long pid) {
         this.pid = pid;
-    }
-
-    public String getUserAvatarUrl() {
-        return userAvatarUrl;
-    }
-
-    public void setUserAvatarUrl(String userAvatarUrl) {
-        this.userAvatarUrl = userAvatarUrl == null ? null : userAvatarUrl.trim();
     }
 
     public Long getQuestionId() {
@@ -109,7 +99,6 @@ public class Comment {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", pid=").append(pid);
-        sb.append(", userAvatarUrl=").append(userAvatarUrl);
         sb.append(", questionId=").append(questionId);
         sb.append(", commentator=").append(commentator);
         sb.append(", level=").append(level);

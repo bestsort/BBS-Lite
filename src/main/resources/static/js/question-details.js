@@ -2,7 +2,6 @@
 $(function () {
     // 加载问题详情
     //TODO 非法访问限制
-    debugger
     build_page();
     //build_right_list();
 });
