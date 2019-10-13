@@ -48,28 +48,22 @@ public class QuestionService {
         return new PageInfo<>(questions);
     }
 
-    public void createOrUpdate(Question question) {
+    public Long createOrUpdate(Question question) {
         question.setGmtModified(System.currentTimeMillis());
-        if(questionMapper.selectByPrimaryKey(question.getId()) == null){
+        Long result = null;
+        if(question.getId() == null){
             question.setGmtCreate(question.getGmtModified());
-            questionMapper.insertSelective(question);
-            QuestionExample example = new QuestionExample();
-            example.createCriteria()
-                    .andGmtCreateEqualTo(question.getGmtCreate())
-                    .andCreatorEqualTo(question.getCreator())
-                    .andTitleEqualTo(question.getTitle())
-                    .andTagEqualTo(question.getTag());
 
-            Question question1 = questionMapper.selectByExample(example).get(0);
+            result = questionExtMapper.insertQuestionExt(question);
         }else {
             int updated = questionMapper.updateByPrimaryKeySelective(question);
             if(updated != 1) {
                 throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
             }
-            Topic topic = new Topic();
-            topic.setName(question.getTopic());
+
             //topicExtMapper.incQuestion(topic);
         }
+        return result;
     }
 
     @Cacheable(keyGenerator = "myKeyGenerator")

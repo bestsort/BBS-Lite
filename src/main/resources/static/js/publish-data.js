@@ -1,5 +1,5 @@
 var E = window.wangEditor;
-var editor = new E("#wangEditorToolbar","#wangEditorText");
+var editor = new E("#wangEditorToolbar");
 
 $(function () {
 
@@ -49,11 +49,15 @@ $(function () {
     }
     $("#push").click(function () {
         let json_data = {
+            contentType: "application/json;charset=UTF-8",
             "description":editor.txt.html(),
             "tag":$("#tag").val(),
             "title":$("#title").val(),
-            "topic":$("#topicType").val()
+            "topic":$("#topicType").val(),
         };
+        if(getParam("id") != null){
+            json_data["id"] = getParam("id");
+        }
         let juge = jude_not_null(json_data);
         if(juge.length === 0){
             push_question(json_data);
@@ -64,17 +68,20 @@ $(function () {
     load_topic_option();
 });
 function push_question(json_data){
-    success_prompt("发布成功");
+
     $.ajax({
-        type: "GET",
-        url: "/pushQuestion",
+        type: "POST",
+        url: "/publish",
         data: json_data,
         success: function (data) {
             if(data.code == "200"){
                 success_prompt("发布成功");
+                setTimeout(function () {
+                    location.href = "/question/" + data.extend.id;
+                },1500)
             }
             else{
-                success_prompt(data.message);
+                fail_prompt(data.message);
             }
         }
     })
@@ -93,9 +100,9 @@ function show_topic_option(data) {
     let html = "";
     $.each(topicInfos,function (index,item) {
         if (item.id == selectTopic) {
-            html += '<option value="' + item.id + '" selected>' + item.name + '</option>'
+            html += '<option_item value="' + item.id + '" selected>' + item.name + '</option_item>'
         } else {
-            html += ('<option value="' + item.id + '">' + item.name + '</option>');
+            html += ('<option_item value="' + item.id + '">' + item.name + '</option_item>');
         }
     });
     $("#topicType").append(html);

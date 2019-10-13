@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("cn.bestsort.bbslite.mapper")
 @SpringBootApplication
 //@EnableCaching
-public class CommunityApplication {
+public class BBSLiteApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CommunityApplication.class, args);
+        SpringApplication.run(BBSLiteApplication.class, args);
     }
 }

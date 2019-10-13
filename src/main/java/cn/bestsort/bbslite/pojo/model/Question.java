@@ -31,6 +31,8 @@ public class Question {
 
     private Long gmtModified;
 
+    private Long commentCount;
+
     private String description;
 
     public Long getId() {
@@ -153,6 +155,14 @@ public class Question {
         this.gmtModified = gmtModified;
     }
 
+    public Long getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Long commentCount) {
+        this.commentCount = commentCount;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -182,6 +192,7 @@ public class Question {
         sb.append(", status=").append(status);
         sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", gmtModified=").append(gmtModified);
+        sb.append(", commentCount=").append(commentCount);
         sb.append(", description=").append(description);
         sb.append("]");
         return sb.toString();

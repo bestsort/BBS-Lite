@@ -32,6 +32,12 @@ public class TopicService {
     public List<Topic> getAll(){
         return topicMapper.selectByExample(new TopicExample());
     }
+    @Cacheable(keyGenerator = "myKeyGenerator")
+    public List<Topic> getAllWithoutDefault(){
+        List<Topic>topics = topicMapper.selectByExample(new TopicExample());
+        topics.remove(0);
+        return topics;
+    }
 
     @Cacheable(keyGenerator = "myKeyGenerator")
     public Topic getById(long id){

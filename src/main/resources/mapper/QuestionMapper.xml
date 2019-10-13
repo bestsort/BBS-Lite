@@ -17,6 +17,7 @@
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+    <result column="comment_count" jdbcType="BIGINT" property="commentCount" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.bestsort.bbslite.pojo.model.Question">
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
@@ -81,7 +82,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, title, creator, tag, top, topic, category, user_avatar_url, user_name, follow_count, 
-    view_count, like_count, status, gmt_create, gmt_modified
+    view_count, like_count, status, gmt_create, gmt_modified, comment_count
   </sql>
   <sql id="Blob_Column_List">
     description
@@ -139,14 +140,14 @@
       tag, top, topic, category, 
       user_avatar_url, user_name, follow_count, 
       view_count, like_count, status, 
-      gmt_create, gmt_modified, description
-      )
+      gmt_create, gmt_modified, comment_count, 
+      description)
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{creator,jdbcType=BIGINT}, 
       #{tag,jdbcType=VARCHAR}, #{top,jdbcType=TINYINT}, #{topic,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
       #{userAvatarUrl,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{followCount,jdbcType=BIGINT}, 
       #{viewCount,jdbcType=BIGINT}, #{likeCount,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, 
-      #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, #{description,jdbcType=LONGVARCHAR}
-      )
+      #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, #{commentCount,jdbcType=BIGINT}, 
+      #{description,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Question">
     insert into question
@@ -195,6 +196,9 @@
       </if>
       <if test="gmtModified != null">
         gmt_modified,
+      </if>
+      <if test="commentCount != null">
+        comment_count,
       </if>
       <if test="description != null">
         description,
@@ -245,6 +249,9 @@
       </if>
       <if test="gmtModified != null">
         #{gmtModified,jdbcType=BIGINT},
+      </if>
+      <if test="commentCount != null">
+        #{commentCount,jdbcType=BIGINT},
       </if>
       <if test="description != null">
         #{description,jdbcType=LONGVARCHAR},
@@ -305,6 +312,9 @@
       <if test="record.gmtModified != null">
         gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       </if>
+      <if test="record.commentCount != null">
+        comment_count = #{record.commentCount,jdbcType=BIGINT},
+      </if>
       <if test="record.description != null">
         description = #{record.description,jdbcType=LONGVARCHAR},
       </if>
@@ -330,6 +340,7 @@
       status = #{record.status,jdbcType=TINYINT},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+      comment_count = #{record.commentCount,jdbcType=BIGINT},
       description = #{record.description,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -351,7 +362,8 @@
       like_count = #{record.likeCount,jdbcType=BIGINT},
       status = #{record.status,jdbcType=TINYINT},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{record.gmtModified,jdbcType=BIGINT}
+      gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+      comment_count = #{record.commentCount,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -401,6 +413,9 @@
       <if test="gmtModified != null">
         gmt_modified = #{gmtModified,jdbcType=BIGINT},
       </if>
+      <if test="commentCount != null">
+        comment_count = #{commentCount,jdbcType=BIGINT},
+      </if>
       <if test="description != null">
         description = #{description,jdbcType=LONGVARCHAR},
       </if>
@@ -423,6 +438,7 @@
       status = #{status,jdbcType=TINYINT},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
       gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      comment_count = #{commentCount,jdbcType=BIGINT},
       description = #{description,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -441,7 +457,8 @@
       like_count = #{likeCount,jdbcType=BIGINT},
       status = #{status,jdbcType=TINYINT},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{gmtModified,jdbcType=BIGINT}
+      gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      comment_count = #{commentCount,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

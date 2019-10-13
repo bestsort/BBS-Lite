@@ -1,59 +1,54 @@
-@-webkit-keyframes hvr-icon-hang {
+/* Hang */
+@-webkit-keyframes show_more_comment {
     0% {
-        -webkit-transform: translateY(6px);
-        transform: translateY(6px);
+        -webkit-transform: translateY(8px);
+        transform: translateY(8px);
     }
     50% {
-        -webkit-transform: translateY(2px);
-        transform: translateY(2px);
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
     }
     100% {
-        -webkit-transform: translateY(6px);
-        transform: translateY(6px);
+        -webkit-transform: translateY(8px);
+        transform: translateY(8px);
     }
 }
-@keyframes hvr-icon-hang {
+@keyframes show_more_comment {
     0% {
-        -webkit-transform: translateY(6px);
-        transform: translateY(6px);
+        -webkit-transform: translateY(8px);
+        transform: translateY(8px);
     }
     50% {
-        -webkit-transform: translateY(2px);
-        transform: translateY(2px);
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
     }
     100% {
-        -webkit-transform: translateY(6px);
-        transform: translateY(6px);
+        -webkit-transform: translateY(8px);
+        transform: translateY(8px);
     }
 }
-@-webkit-keyframes hvr-icon-hang-sink {
+@-webkit-keyframes show_more_comment-sink {
     100% {
-        -webkit-transform: translateY(6px);
-        transform: translateY(6px);
+        -webkit-transform: translateY(8px);
+        transform: translateY(8px);
     }
 }
-@keyframes hvr-icon-hang-sink {
+@keyframes show_more_comment-sink {
     100% {
-        -webkit-transform: translateY(6px);
-        transform: translateY(6px);
+        -webkit-transform: translateY(8px);
+        transform: translateY(8px);
     }
 }
-.hvr-icon-hang {
+#show_more_comment {
     display: inline-block;
     vertical-align: middle;
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
 }
-.hvr-icon-hang .hvr-icon {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-}
-.hvr-icon-hang:hover .hvr-icon, .hvr-icon-hang:focus .hvr-icon, .hvr-icon-hang:active .hvr-icon {
-    -webkit-animation-name: hvr-icon-hang-sink, hvr-icon-hang;
-    animation-name: hvr-icon-hang-sink, hvr-icon-hang;
+#show_more_comment:hover, #show_more_comment:focus, #show_more_comment:active {
+    -webkit-animation-name: show_more_comment-sink, show_more_comment;
+    animation-name: show_more_comment-sink, show_more_comment;
     -webkit-animation-duration: .3s, 1.5s;
     animation-duration: .3s, 1.5s;
     -webkit-animation-delay: 0s, .3s;

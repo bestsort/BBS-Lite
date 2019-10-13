@@ -40,5 +40,108 @@
             order by gmt_create DESC
         </where>
     </select>
+    <insert id="insertQuestionExt" keyProperty="id" parameterType="cn.bestsort.bbslite.pojo.model.Question">
+        insert into question
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="tag != null">
+                tag,
+            </if>
+            <if test="top != null">
+                top,
+            </if>
+            <if test="topic != null">
+                topic,
+            </if>
+            <if test="category != null">
+                category,
+            </if>
+            <if test="userAvatarUrl != null">
+                user_avatar_url,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="followCount != null">
+                follow_count,
+            </if>
+            <if test="viewCount != null">
+                view_count,
+            </if>
+            <if test="likeCount != null">
+                like_count,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=BIGINT},
+            </if>
+            <if test="tag != null">
+                #{tag,jdbcType=VARCHAR},
+            </if>
+            <if test="top != null">
+                #{top,jdbcType=TINYINT},
+            </if>
+            <if test="topic != null">
+                #{topic,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null">
+                #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="userAvatarUrl != null">
+                #{userAvatarUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="followCount != null">
+                #{followCount,jdbcType=BIGINT},
+            </if>
+            <if test="viewCount != null">
+                #{viewCount,jdbcType=BIGINT},
+            </if>
+            <if test="likeCount != null">
+                #{likeCount,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=BIGINT},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=BIGINT},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
 
 </mapper>

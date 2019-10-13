@@ -111,7 +111,7 @@ function to_page(pageno) {
     const sortBy = getParam("sortBy");
     let jsonData = {
         "pageNo": pageno,
-        "contentType": "application/json;charset=UTF-8"
+         contentType: "application/json;charset=UTF-8"
     };
 
     const array = ["search", "tag", "sortBy", "category", "topic"];

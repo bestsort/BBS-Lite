@@ -20,7 +20,8 @@
             </form>
             </div>
         <!-- 登录按钮 -->
-        <a th:if="${session.user == null}" class="btn btn-light action-button" role="button" href="https://github.com/login/oauth/authorize?client_id=08b076ae3cf904cf324c&redirect_uri=http://localhost:8080/callback&scope=user&state=1&&allow_signup=true">登录</a>
+        <a th:if="${session.user == null}" class="btn btn-light action-button"
+           role="button" href="https://github.com/login/oauth/authorize?client_id=08b076ae3cf904cf324c&redirect_uri=http://localhost:8080/callback&scope=user&state=1&&allow_signup=true">登录</a>
 
         <!-- 注册 -->
         <div th:if="${session.user == null}" class="nav-item">

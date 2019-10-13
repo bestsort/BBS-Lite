@@ -1,22 +1,45 @@
-
 $(function () {
     // 加载问题详情
     //TODO 非法访问限制
-    build_page();
-    //build_right_list();
-});
-
-
-
-/**
- * 根据 id 查询问题详情
- */
-function build_page() {
     $("#question_detail").empty();
     const url = "/loadQuestionDetail";
     const jsonData = {
         "id": getQuestionId(),
-        "contentType": "application/json;charset=UTF-8"
+        contentType: "application/json;charset=UTF-8"
+    };
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: jsonData,
+        beforeSend: function () {
+            //loadingIndex = layer.msg('加载数据~~', {icon: 16});
+        },
+        success: function (data) {
+            debugger;
+            if (data.code == "200") {
+                load_question_info(data.extend.question);
+                if(data.extend.question.commentCount > 5)
+                    show_more_comment();
+                load_question_detail_right(data.extend);
+                $("html,body").animate({scrollTop: 0}, 0);//回到顶端
+            } else {
+            }
+        },
+    });
+    //build_right_list();
+});
+
+/**
+ * 加载可交互选项信息(编辑/点赞/收藏等)
+ * @param creator
+ * @param questionId
+ */
+function load_question_option(creator, {followCount: questionFollow, id: questionId, likeCount: questionThumb}) {
+    const url = "/loadQuestionOption";
+    const jsonData = {
+        "questionId": questionId,
+        "userId": creator,
+        contentType: "application/json;charset=UTF-8"
     };
 
     $.ajax({
@@ -27,21 +50,37 @@ function build_page() {
             //loadingIndex = layer.msg('加载数据~~', {icon: 16});
         },
         success: function (data) {
+            debugger
             if (data.code == "200") {
-                load_question_detail(data);
-                show_comment_btn();
-                load_question_detail_right(data);
-
-                $("html,body").animate({scrollTop: 0}, 0);//回到顶端
+                let options = data.extend.options;
+                add_option(questionThumb,"点赞","icon-zan",options.isThumbUpQuestion,true);
+                add_option(questionFollow,"关注","icon-shoucang",options.isFollowQuestion,true);
+                add_option(null,"评论","icon-xiaoxi",false,false);
+                add_option(null,"编辑问题","icon-bianji",options.isCreator,false);
             } else {
-                alert("error");
             }
         },
     });
 }
-function show_comment_btn() {
+
+function add_option(count,show,icon,isActive,show_count) {
+    if(isActive != null) {
+        debugger
+        if (show_count){
+            show += '(' + count + ')';
+        }
+        let html = '<span class="option ' + (isActive ? 'on' : '') + '" id="'
+            + icon + '"><i class="iconfont ' + icon +  '"></i>' +
+            (isActive ? '已' : '') + show + '</span>';
+        $("#option_item").append(html);
+    }
+}
+
+function show_more_comment() {
+
     let show_more = $("<div class='col-lg-12 col-md-12 col-xs-12 col-sm-12' style='text-align: center'></div>");
-    show_more.append($("<a href='#' class='hvr-icon-hang' >查看评论 <i class='fa fa-chevron-down hvr-icon'></i></a>"));
+    show_more.append($("<span href='#' style='cursor: pointer;color: #03658c' id='show_more_comment'>" +
+        "查看评论 <i class='iconfont icon-xiangxia'></i></span>"));
     show_more.click(function () {
         show_more.empty();
         load_comment_info();
@@ -66,7 +105,6 @@ function load_comment_info(){
             if (data.code == "200") {
 
             } else {
-                alert("error");
             }
         },
     });
@@ -78,7 +116,8 @@ function load_comment_info(){
  * @param data question详情
  */
 function load_question_detail_right(data) {
-    const userInfo = data.extend.user;
+
+    const userInfo = data.user;
     let userSimpleInfo = '\n' +
         '            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">\n' +
         '                <small style="color: #333">发起人</small>\n' +
@@ -87,17 +126,6 @@ function load_question_detail_right(data) {
         '                    <a href="/">\n' +
         '                        <img class="media-min img-circle" src="' + userInfo.avatarUrl + '">\n' +
         '                    </a>\n' +
-        /*'                    <form action="/follow" method="post" name="follow" target="targetIfr2">\n' +
-        '                        <input type="hidden" name="followBy"\n' +
-        '                               th:if="${questionInfoVo.user != null}" th:value="${questionInfoVo.user.id}">\n' +
-        '                        <input type="hidden" name="followTo" th:value="${questionInfoVo.question.creator}">\n' +
-        '\n' +
-        '                        <button th:text="${\'关注|\' + questionInfoVo.user.name}"\n' +
-        '                                class="btn btn-outline-success btn-sm"\n' +
-        '                                style="margin-top: 13%;margin-left: 200%; width: 100%"\n' +
-        '                                name="type" value="user" type="submit"></button>\n' +
-        '                    </form>\n' +
-        '                    <iframe name="targetIfr2" id="targetIfr2" style="display:none"></iframe>\n' +*/
         '                </div>\n' +
         '\n' +
         '                <hr>\n' +
@@ -128,12 +156,9 @@ function load_question_detail_right(data) {
         '            </div>\n';
         $("#question_detail_right").append(userSimpleInfo);
 }
-/**
- * 构建HTML页面
- * @param data question详情
- */
-function load_question_detail(data) {
-    const questionInfo = data.extend.question;
+
+
+function load_question_info(questionInfo) {
     const tags = questionInfo.tag.split(' ');
     let questionDetail = '<h3>' +
         '                   <span>' + questionInfo.title + '</span></h3>\n' +
@@ -142,25 +167,26 @@ function load_question_detail(data) {
         '                      <span>' + questionInfo.likeCount + ' 人点赞 • </span>\n' +
         '                      <span> 发表于' + formatTimestamp(questionInfo.gmtCreate) + '</span>\n' +
         '                   </span><br>\n';
+
     $.each(tags,function (index, item) {
-        debugger
         const tagInfo =
             '<span class="label label-tag">\n' +
             '  <a href="/?tag=' +  item + '" target="_parent" style="color: #fff;cursor: pointer;text-decoration: none;">\n' +
-            '      <i class="fas fa-tags"></i>\n' +
+            '      <i class="iconfont icon-biaoqian1"></i>\n' +
             '      <span>' + item + '</span>\n' +
             '  </a>\n' +
             '</span>\n';
         questionDetail += tagInfo;
     });
     questionDetail +=
-    '<hr class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
-    '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">\n' + questionInfo.description +
-    '    <hr class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
-    '</div>';
+        '<hr class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
+        '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">\n' + questionInfo.description +
+        '<br><div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="option_item"></div>' +
+        '    <hr class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
+        '</div><br>';
     $("#question_detail").append(questionDetail);
+    load_question_option(questionInfo.creator,questionInfo);
 }
-
 /**
  * 根据请求的url返回id值
  * @returns {string} id

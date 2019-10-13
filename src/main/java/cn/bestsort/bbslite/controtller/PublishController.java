@@ -2,11 +2,8 @@ package cn.bestsort.bbslite.controtller;
 
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
-import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.TopicMapper;
 import cn.bestsort.bbslite.pojo.model.Question;
-import cn.bestsort.bbslite.pojo.model.Topic;
-import cn.bestsort.bbslite.pojo.model.TopicExample;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.QuestionService;
 import cn.bestsort.bbslite.service.TopicService;
@@ -16,9 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * @ClassName PublishController
@@ -65,36 +60,37 @@ public class PublishController {
     /**
      * TODO 部分字段为空时须进行前端校验
      **/
+    @ResponseBody
     @PostMapping("/publish")
-    public String doPublish(
+    public ResultDto doPublish(
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("tag") String tag,
-            @RequestParam("id") Long id,
+            @RequestParam(value = "id",required = false) Long id,
             @RequestParam("topic") String topic,
-            HttpServletRequest request,
-            Model model){
-        model.addAttribute("title",title)
-                 .addAttribute("tag",tag)
-                 .addAttribute("description",description)
-                 .addAttribute(topic);
-        User user = (User)request.getSession().getAttribute("user");
+            HttpSession session){
+
+        User user = (User)session.getAttribute("user");
         if(user == null){
-            model.addAttribute("error", CustomizeErrorCodeEnum.NO_LOGIN);
-            return "publish";
+            return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
 
-        String defaltTopic = "加入话题";
         Question question = new Question();
         question.setTitle(title);
         question.setTag(tag);
         question.setDescription(description);
         question.setCreator(user.getId());
-        question.setId(id);
-        if (!defaltTopic.equals(topic)){
-            question.setTopic(topic);
+        question.setUserAvatarUrl(user.getAvatarUrl());
+        question.setUserName(user.getName());
+        question.setTopic(topic);
+        if (id != null) {
+            question.setId(id);
         }
-        questionService.createOrUpdate(question);
-        return "redirect:/";
+        question.setTopic(topic);
+        Long newId = questionService.createOrUpdate(question);
+        if(newId == null){
+            newId = id;
+        }
+        return new ResultDto().okOf().addMsg("id",newId);
     }
 }

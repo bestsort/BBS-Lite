@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 /**
@@ -47,7 +48,7 @@ public class AuthorizeController {
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
-                           HttpServletRequest request,
+                           HttpSession session,
                            HttpServletResponse response){
         AccessTokenDto accessTokenDTO = new AccessTokenDto();
         accessTokenDTO.setClient_id(clientId);
@@ -68,7 +69,7 @@ public class AuthorizeController {
 
             userService.createOrUpdate(user);
 
-            request.getSession().setAttribute("user",user);
+            session.setAttribute("user",user);
             response.addCookie(new Cookie("token",token));
         }else {
             log.error("callback post github error,{}",githubUser);
@@ -78,9 +79,9 @@ public class AuthorizeController {
 
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request,
+    public String logout(HttpSession session,
                          HttpServletResponse response){
-        request.getSession().removeAttribute("user");
+        session.removeAttribute("user");
         //删除 Cookie
         Cookie cookie = new Cookie("token", "");
         cookie.setMaxAge(0);

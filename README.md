@@ -66,7 +66,7 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 - Bootstrap4(前端框架)
 - Druid(数据库连接池)
 - Maven(包管理)
-- Font Awesome(图标库)
+- wangEditor3(轻量级web富文本编辑器)
 - Log4j(日志记录)
 
 ---

@@ -18,7 +18,7 @@ import java.util.Map;
 public class ResultDto {
     private Integer code;
     private String message;
-    private Map<String,Object> extend=new HashMap<>();
+    private Map<String,Object> extend=new HashMap<>(2);
     public ResultDto errorOf(Integer code, String message){
         ResultDto resultDTO = new ResultDto();
         resultDTO.setCode(code);

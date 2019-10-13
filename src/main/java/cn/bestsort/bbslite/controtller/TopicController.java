@@ -27,7 +27,7 @@ public class TopicController {
 
     @GetMapping("/topic")
     public String topic(Model model){
-        List<Topic> topics = topicService.getAll();
+        List<Topic> topics = topicService.getAllWithoutDefault();
         model.addAttribute("topics",topics);
         return "topic";
     }

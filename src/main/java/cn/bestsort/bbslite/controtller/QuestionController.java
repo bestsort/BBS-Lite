@@ -4,13 +4,15 @@ import cn.bestsort.bbslite.dto.QuestionQueryDto;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.FollowService;
 import cn.bestsort.bbslite.service.QuestionService;
 import cn.bestsort.bbslite.service.UserService;
+import cn.bestsort.bbslite.vo.QuestionDetailOptionVo;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * @ClassName QuestionController
@@ -25,9 +27,6 @@ public class QuestionController {
     private QuestionService questionService;
     @Autowired
     private UserService userService;
-    @Autowired
-    private FollowService followService;
-
     @GetMapping("/question/{id}")
     public String question(@PathVariable("id") Long id){
         return "question";
@@ -61,17 +60,33 @@ public class QuestionController {
     }
 
     /**
-     * 加载问题详情(包括选项栏,问题,发起人信息)
+     * 加载问题详情
      * @param id 问题id
      * @return 问题详情
      */
     @ResponseBody
-    @RequestMapping(value = "/loadQuestionDetail",method = RequestMethod.GET)
-    public ResultDto get(@RequestParam(name = "id") Long id){
+    @GetMapping("/loadQuestionDetail")
+    public ResultDto getQuestionDetail(@RequestParam(name = "id") Long id){
         Question question = questionService.getQuestionDetail(id);
         User user = userService.getSimpleInfoById(question.getCreator());
         return new ResultDto().okOf()
                 .addMsg("question",question)
                 .addMsg("user",user);
+    }
+
+    @ResponseBody
+    @GetMapping("/loadQuestionOption")
+    public ResultDto getQuestionOption(@RequestParam(name = "questionId") Long questionId,
+                                       @RequestParam(name = "userId") Long userId,
+                                       HttpSession session){
+        QuestionDetailOptionVo questionDetailOptionVo = new QuestionDetailOptionVo();
+        User user = (User)session.getAttribute("user");
+        if(user != null && user.getId().equals(userId)){
+            questionDetailOptionVo.setIsCreator(false);
+        }
+        questionDetailOptionVo.setIsFollowQuestion(false);
+        questionDetailOptionVo.setIsThumbUpQuestion(true);
+
+        return new ResultDto().okOf().addMsg("options",questionDetailOptionVo);
     }
 }
