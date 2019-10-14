@@ -51,7 +51,7 @@ public class FollowService {
         example.createCriteria()
                 .andFollowByEqualTo(by)
                 .andFollowToEqualTo(to)
-                .andTypeEqualTo(item.getCode().byteValue())
+                .andTypeEqualTo(FunctionItem.getCode(item))
                 .andStatusEqualTo((byte) 1);
         List<Follow> follows = followMapper.selectByExample(example);
         return !follows.isEmpty();

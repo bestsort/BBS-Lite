@@ -85,7 +85,7 @@ public class QuestionController {
             questionDetailOptionVo.setIsCreator(false);
         }
         questionDetailOptionVo.setIsFollowQuestion(false);
-        questionDetailOptionVo.setIsThumbUpQuestion(true);
+        questionDetailOptionVo.setIsThumbUpQuestion(false);
 
         return new ResultDto().okOf().addMsg("options",questionDetailOptionVo);
     }

@@ -3,7 +3,6 @@ package cn.bestsort.bbslite.controtller;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.enums.FunctionItem;
-import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.QuestionService;
 import cn.bestsort.bbslite.service.ThumbUpService;
@@ -38,9 +37,8 @@ public class ThumbQuestion {
         if (user == null){
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
-        thumbUpService.setThumbUpCount(id,user.getId(), FunctionItem.QUESTION);
+        boolean active = thumbUpService.setThumbUpCount(id,user.getId(), FunctionItem.QUESTION,isActive);
         return new ResultDto().okOf()
-                .addMsg("count",123)
-                .addMsg("isActive",false);
+                .addMsg("isActive",active);
     }
 }

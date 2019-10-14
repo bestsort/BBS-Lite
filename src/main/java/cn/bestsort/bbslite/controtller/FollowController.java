@@ -41,7 +41,7 @@ public class FollowController {
         Follow follow = new Follow();
         follow.setFollowTo(id);
         follow.setFollowBy(user.getId());
-        follow.setType(Objects.requireNonNull(FunctionItem.getKeyByValue(typeEnum)).byteValue());
+        follow.setType(Objects.requireNonNull(FunctionItem.getCode(FunctionItem.getItem(typeEnum))));
         if(1==followService.insertOrUpdate(follow)){
             return new ResultDto().okOf();
         }

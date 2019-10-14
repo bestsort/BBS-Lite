@@ -7,43 +7,36 @@ package cn.bestsort.bbslite.enums;
  * @Date 19-9-29 下午2:52
  * @Version 1.0
  */
-public enum FunctionItem implements MessageInterface {
-    COMMENT(4,"comment"),
-    TOPIC(3,"topic"),
-    USER(2,"user"),
-    QUESTION(1,"question");
-    private String name;
-    private Integer code;
 
-    FunctionItem(Integer code, String name){
-        this.name = name;
-        this.code = code;
-    }
-    public static Integer getKeyByValue(String name)
-    {
-        for(FunctionItem i : FunctionItem.values()){
-            if(i.name.equals(name)) {
-                return i.code;
+public enum FunctionItem{
+    COMMENT,TOPIC,USER,QUESTION;
+
+    public static FunctionItem getItem(String str){
+        for(FunctionItem i:FunctionItem.values()){
+            if (FunctionItem.valueOf(str) == i){
+                return i;
             }
         }
         return null;
     }
-    public static String getValByKey(Integer code){
-        for(FunctionItem i : FunctionItem.values()){
-            if(i.getCode().intValue() == code) {
-                return i.getName();
+    public static FunctionItem getByCode(Byte code){
+        byte byt = 0;
+        for(FunctionItem i:FunctionItem.values()){
+            if(byt == code) {
+                return i;
             }
+            byt++;
         }
         return null;
     }
-
-    @Override
-    public String getName() {
-        return this.name;
-    }
-
-    @Override
-    public Integer getCode() {
-        return this.code;
+    public static Byte getCode(FunctionItem item){
+        byte byt = 0;
+        for(FunctionItem i:FunctionItem.values()){
+            if(i == item) {
+                return byt;
+            }
+            byt++;
+        }
+        return null;
     }
 }

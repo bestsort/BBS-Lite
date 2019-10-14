@@ -101,7 +101,6 @@ function show_topic_option(data) {
     if(selectTopic == null)
         selectTopic = 0;
     let topicInfos = data.extend.publishInfo.topics;
-    debugger
     let html = "";
     $.each(topicInfos,function (index,item) {
         if (item.id == selectTopic) {

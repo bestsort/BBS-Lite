@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.bestsort.bbslite.mapper.ThumbUpExtMapper">
+
     <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.ThumbUp">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="thumb_up_to" jdbcType="BIGINT" property="thumbUpTo" />
@@ -8,7 +9,19 @@
         <result column="type" jdbcType="TINYINT" property="type" />
         <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
         <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
-        <result column="status" jdbcType="TINYINT" property="status" />
+        <result column="status" jdbcType="TINYINT" property="status"/>
     </resultMap>
-    <update id="setThumbUpCount"></update>
+    <update id="setThumbUpCount">
+        update thumb_up
+        set
+            status = #{status,jdbcType=TINYINT},
+            gmt_modified = #{gmtModified, jdbcType=BIGINT}
+        where
+            thumb_up_by = #{thumbUpBy,jdbcType=BIGINT}
+          and
+            thumb_up_to = #{thumbUpTo,jdbcType=BIGINT}
+          and
+            type = #{type,jdbcType=TINYINT}
+
+    </update>
 </mapper>

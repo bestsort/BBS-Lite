@@ -1,6 +1,7 @@
 package cn.bestsort.bbslite.service;
 
 import cn.bestsort.bbslite.enums.FunctionItem;
+import cn.bestsort.bbslite.mapper.ThumbUpExtMapper;
 import cn.bestsort.bbslite.mapper.ThumbUpMapper;
 import cn.bestsort.bbslite.pojo.model.ThumbUp;
 import cn.bestsort.bbslite.pojo.model.ThumbUpExample;
@@ -25,22 +26,42 @@ import java.util.List;
 public class ThumbUpService {
     @Autowired
     ThumbUpMapper thumbUpMapper;
+    @Autowired
+    ThumbUpExtMapper thumbUpExtMapper;
     public Boolean getQuestionThumbUpByUser(Long userId,Long questionId){
         ThumbUpExample example = new ThumbUpExample();
         example.createCriteria()
                 .andThumbUpByEqualTo(userId)
                 .andThumbUpToEqualTo(questionId)
-                .andTypeEqualTo(FunctionItem.QUESTION.getCode().byteValue())
+                .andTypeEqualTo(FunctionItem.getCode(FunctionItem.QUESTION))
                 .andStatusEqualTo((byte) 1);
         List<ThumbUp> thumbUps = thumbUpMapper.selectByExample(example);
 
         return !thumbUps.isEmpty();
     }
 
-    public Boolean setThumbUpCount(Long questionId, Long useId,FunctionItem item) {
-        if(item == FunctionItem.COMMENT){
-
+    public Boolean setThumbUpCount(Long questionId, Long useId,FunctionItem item,Boolean isActive) {
+        isActive = !isActive;
+        ThumbUp thumbUp = new ThumbUp();
+        thumbUp.setThumbUpBy(useId);
+        thumbUp.setThumbUpTo(questionId);
+        thumbUp.setStatus((byte)(isActive?1:0));
+        thumbUp.setGmtModified(System.currentTimeMillis());
+        thumbUp.setType(FunctionItem.getCode(item));
+        ThumbUpExample example = new ThumbUpExample();
+        example.createCriteria().andThumbUpByEqualTo(useId)
+                .andThumbUpToEqualTo(questionId)
+                .andTypeEqualTo(FunctionItem.getCode(item));
+        if(item == FunctionItem.QUESTION){
+            if(thumbUpMapper.countByExample(example) != 0) {
+                thumbUpExtMapper.setThumbUpCount(thumbUp);
+            }
+            else{
+                thumbUp.setGmtCreate(thumbUp.getGmtModified());
+                thumbUpMapper.insertSelective(thumbUp);
+            }
+            return isActive;
         }
-        return null;
+        return !isActive;
     }
 }

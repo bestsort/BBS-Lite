@@ -1,5 +1,7 @@
 package cn.bestsort.bbslite.mapper;
 
+import cn.bestsort.bbslite.pojo.model.ThumbUp;
+
 public interface ThumbUpExtMapper {
-    public Boolean setThumbUpCount(Long by,Long to);
+    Boolean setThumbUpCount(ThumbUp recore);
 }

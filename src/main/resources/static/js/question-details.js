@@ -15,7 +15,6 @@ $(function () {
             //loadingIndex = layer.msg('加载数据~~', {icon: 16});
         },
         success: function (data) {
-            debugger;
             if (data.code == "200") {
                 load_question_info(data.extend.question);
                 if(data.extend.question.commentCount > 5)
@@ -58,8 +57,9 @@ function thumb_up_question() {
         },
         success: function (data) {
             if (data.code == "200") {
+
                 let info = data.extend;
-                add_option(info.count,"点赞",icon,info.isActive,true);
+                add_option(info.count + (info.isActive?1:-1),"点赞",icon,info.isActive,true);
             }
         },
     });
@@ -67,16 +67,23 @@ function thumb_up_question() {
 
 function add_option(count,show,icon,isActive,show_count) {
     if(isActive != null) {
-        if (show_count) {
-            show += '(' + count + ')';
-        }
         let html = '<span class="option ' + (isActive ? 'on' : '') + '" value="' + isActive + '" id="'
-            + icon + '"><i class="iconfont ' + icon + '"></i>' +
-            (isActive ? '已' : '') + show + '</span>';
+            + icon + '"><i class="iconfont ' + icon + '"></i>' + (isActive ? '已' : '');
 
         if($("#"+icon).length > 0) {
+            debugger;
+            let count2 = $("#"+icon).text().replace(/[^\d]/g, '');
+            count2 = parseInt(count2) + (isActive?1:-1);
+            if (show_count) {
+                show += '(' + count2 + ')';
+            }
+            html += show + '</span>';
             $("#"+icon).replaceWith(html);
         }else {
+            if (show_count) {
+                show += '(' + count + ')';
+            }
+            html += show + '</span>';
             $("#option_item").append(html);
         }
     }
@@ -102,7 +109,6 @@ function load_question_option(creator, {followCount: questionFollow, id: questio
             //loadingIndex = layer.msg('加载数据~~', {icon: 16});
         },
         success: function (data) {
-            debugger
             if (data.code == "200") {
                 let options = data.extend.options;
                 add_option(questionThumb,"点赞","icon-zan",options.isThumbUpQuestion,true);
@@ -117,7 +123,6 @@ function load_question_option(creator, {followCount: questionFollow, id: questio
 
 
 function show_more_comment() {
-
     let show_more = $("<div class='col-lg-12 col-md-12 col-xs-12 col-sm-12' style='text-align: center'></div>");
     show_more.append($("<span href='#' style='cursor: pointer;color: #03658c' id='show_more_comment'>" +
         "查看更多评论 <i class='iconfont icon-xiangxia'></i></span>"));
