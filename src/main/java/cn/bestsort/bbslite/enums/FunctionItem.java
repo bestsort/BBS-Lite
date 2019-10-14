@@ -8,6 +8,7 @@ package cn.bestsort.bbslite.enums;
  * @Version 1.0
  */
 public enum FunctionItem implements MessageInterface {
+    COMMENT(4,"comment"),
     TOPIC(3,"topic"),
     USER(2,"user"),
     QUESTION(1,"question");

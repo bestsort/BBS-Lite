@@ -13,11 +13,10 @@
             <property name="javaFileEncoding" value="UTF-8"/>
         </commentGenerator>
 
-        <!--Your Database Config-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost/bbs_lite?serverTimezone=UTC"
-                        userId="bestsort"
-                        password="ce8YChPDJ5GRFOUE">
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.user}"
+                        password="${jdbc.passwd}">
             <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
 

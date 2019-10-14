@@ -43,8 +43,15 @@
 git clone https://github.com/bestsort/BBS-Lite.git
 cd BBS-lite
 ```
-将该项目导入到 IDEA 或者其他的IDE中,并配置`/src/main/resources/application.yml`
-和`/src/main/resources/generatorConfig.xml`和`pom.xml`中`build`标签中的数据库信息为自己的数据库配置然后执行以下命令
+将该项目导入到 IDEA 或者其他的IDE中,并配置`pom.xml`中11-13行的数据库信息为自己的数据库配置.
+
+请确认您的数据库字符编码为**`utf8m4`**.参考如下:
+```xml
+<jdbc.url>jdbc:mysql://localhost:3306/bbs_lite?serverTimezone=UTC</jdbc.url>
+<jdbc.user>bestsort</jdbc.user>
+<jdbc.passwd>ce8YChPDJ5GRFOUE</jdbc.passwd>
+```
+然后执行以下命令
 ```bash
 mvn package
 mvn flyway:migrate

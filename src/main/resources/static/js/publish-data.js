@@ -37,13 +37,18 @@ $(function () {
             type: "GET",
             data:jsondata,
             success: function (data) {
-                let question =  data.extend.publishInfo.question;
-                if(question != null) {
-                    $("#title").val(question.title);
-                    $("#tag").val(question.tag);
-                    editor.txt.html('<p>' + question.description + '</p>');
+                if(data.code === 200) {
+                    let question = data.extend.publishInfo.question;
+                    if (question != null) {
+                        $("#title").val(question.title);
+                        $("#tag").val(question.tag);
+                        editor.txt.html('<p>' + question.description + '</p>');
+                    }
+                    show_topic_option(data);
                 }
-                show_topic_option(data);
+                else{
+
+                }
             },
         });
     }
@@ -100,9 +105,9 @@ function show_topic_option(data) {
     let html = "";
     $.each(topicInfos,function (index,item) {
         if (item.id == selectTopic) {
-            html += '<option_item value="' + item.id + '" selected>' + item.name + '</option_item>'
+            html += '<option value="' + item.id + '" selected>' + item.name + '</option>'
         } else {
-            html += ('<option_item value="' + item.id + '">' + item.name + '</option_item>');
+            html += '<option value="' + item.id + '">' + item.name + '</option>';
         }
     });
     $("#topicType").append(html);

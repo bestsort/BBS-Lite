@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.beans.Transient;
 import java.util.List;
 
 /**
@@ -34,5 +35,12 @@ public class ThumbUpService {
         List<ThumbUp> thumbUps = thumbUpMapper.selectByExample(example);
 
         return !thumbUps.isEmpty();
+    }
+
+    public Boolean setThumbUpCount(Long questionId, Long useId,FunctionItem item) {
+        if(item == FunctionItem.COMMENT){
+
+        }
+        return null;
     }
 }

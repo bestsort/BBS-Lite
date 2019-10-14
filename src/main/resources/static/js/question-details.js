@@ -26,9 +26,61 @@ $(function () {
             }
         },
     });
+
+
+    $("#icon-bianji").click(function () {
+
+    });
+
+    $("#icon-shoucang").click(function () {
+
+    });
+
+    $("#icon-pinglun").click(function () {
+
+    });
     //build_right_list();
 });
 
+function click_options() {
+    $(document).on('click', "#icon-zan", function () {
+        thumb_up_question();
+    });
+}
+function thumb_up_question() {
+    let icon = "icon-zan";
+    $.ajax({
+        type: "POST",
+        url: "/thumbUpQuestion",
+        data: {
+            "id":getQuestionId(),
+            "isActive":$("#"+icon).hasClass("on")
+        },
+        success: function (data) {
+            if (data.code == "200") {
+                let info = data.extend;
+                add_option(info.count,"点赞",icon,info.isActive,true);
+            }
+        },
+    });
+}
+
+function add_option(count,show,icon,isActive,show_count) {
+    if(isActive != null) {
+        if (show_count) {
+            show += '(' + count + ')';
+        }
+        let html = '<span class="option ' + (isActive ? 'on' : '') + '" value="' + isActive + '" id="'
+            + icon + '"><i class="iconfont ' + icon + '"></i>' +
+            (isActive ? '已' : '') + show + '</span>';
+
+        if($("#"+icon).length > 0) {
+            $("#"+icon).replaceWith(html);
+        }else {
+            $("#option_item").append(html);
+        }
+    }
+}
 /**
  * 加载可交互选项信息(编辑/点赞/收藏等)
  * @param creator
@@ -55,32 +107,20 @@ function load_question_option(creator, {followCount: questionFollow, id: questio
                 let options = data.extend.options;
                 add_option(questionThumb,"点赞","icon-zan",options.isThumbUpQuestion,true);
                 add_option(questionFollow,"关注","icon-shoucang",options.isFollowQuestion,true);
-                add_option(null,"评论","icon-xiaoxi",false,false);
+                add_option(null,"评论","icon-pinglun",false,false);
                 add_option(null,"编辑问题","icon-bianji",options.isCreator,false);
-            } else {
+                click_options();
             }
         },
     });
 }
 
-function add_option(count,show,icon,isActive,show_count) {
-    if(isActive != null) {
-        debugger
-        if (show_count){
-            show += '(' + count + ')';
-        }
-        let html = '<span class="option ' + (isActive ? 'on' : '') + '" id="'
-            + icon + '"><i class="iconfont ' + icon +  '"></i>' +
-            (isActive ? '已' : '') + show + '</span>';
-        $("#option_item").append(html);
-    }
-}
 
 function show_more_comment() {
 
     let show_more = $("<div class='col-lg-12 col-md-12 col-xs-12 col-sm-12' style='text-align: center'></div>");
     show_more.append($("<span href='#' style='cursor: pointer;color: #03658c' id='show_more_comment'>" +
-        "查看评论 <i class='iconfont icon-xiangxia'></i></span>"));
+        "查看更多评论 <i class='iconfont icon-xiangxia'></i></span>"));
     show_more.click(function () {
         show_more.empty();
         load_comment_info();
