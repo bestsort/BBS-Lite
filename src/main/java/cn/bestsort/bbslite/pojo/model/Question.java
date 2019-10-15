@@ -25,13 +25,13 @@ public class Question {
 
     private Long likeCount;
 
+    private Long commentCount;
+
     private Byte status;
 
     private Long gmtCreate;
 
     private Long gmtModified;
-
-    private Long commentCount;
 
     private String description;
 
@@ -131,6 +131,14 @@ public class Question {
         this.likeCount = likeCount;
     }
 
+    public Long getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Long commentCount) {
+        this.commentCount = commentCount;
+    }
+
     public Byte getStatus() {
         return status;
     }
@@ -153,14 +161,6 @@ public class Question {
 
     public void setGmtModified(Long gmtModified) {
         this.gmtModified = gmtModified;
-    }
-
-    public Long getCommentCount() {
-        return commentCount;
-    }
-
-    public void setCommentCount(Long commentCount) {
-        this.commentCount = commentCount;
     }
 
     public String getDescription() {
@@ -189,10 +189,10 @@ public class Question {
         sb.append(", followCount=").append(followCount);
         sb.append(", viewCount=").append(viewCount);
         sb.append(", likeCount=").append(likeCount);
+        sb.append(", commentCount=").append(commentCount);
         sb.append(", status=").append(status);
         sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", gmtModified=").append(gmtModified);
-        sb.append(", commentCount=").append(commentCount);
         sb.append(", description=").append(description);
         sb.append("]");
         return sb.toString();

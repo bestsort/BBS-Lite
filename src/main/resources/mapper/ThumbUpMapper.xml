@@ -6,9 +6,9 @@
     <result column="thumb_up_to" jdbcType="BIGINT" property="thumbUpTo" />
     <result column="thumb_up_by" jdbcType="BIGINT" property="thumbUpBy" />
     <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="status" jdbcType="TINYINT" property="status" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
-    <result column="status" jdbcType="TINYINT" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, thumb_up_to, thumb_up_by, type, gmt_create, gmt_modified, status
+    id, thumb_up_to, thumb_up_by, type, status, gmt_create, gmt_modified
   </sql>
   <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.ThumbUpExample" resultMap="BaseResultMap">
     select
@@ -103,11 +103,11 @@
   </delete>
   <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.ThumbUp">
     insert into thumb_up (id, thumb_up_to, thumb_up_by, 
-      type, gmt_create, gmt_modified, 
-      status)
+      type, status, gmt_create, 
+      gmt_modified)
     values (#{id,jdbcType=BIGINT}, #{thumbUpTo,jdbcType=BIGINT}, #{thumbUpBy,jdbcType=BIGINT}, 
-      #{type,jdbcType=TINYINT}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
-      #{status,jdbcType=TINYINT})
+      #{type,jdbcType=TINYINT}, #{status,jdbcType=TINYINT}, #{gmtCreate,jdbcType=BIGINT}, 
+      #{gmtModified,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.ThumbUp">
     insert into thumb_up
@@ -124,14 +124,14 @@
       <if test="type != null">
         type,
       </if>
+      <if test="status != null">
+        status,
+      </if>
       <if test="gmtCreate != null">
         gmt_create,
       </if>
       <if test="gmtModified != null">
         gmt_modified,
-      </if>
-      <if test="status != null">
-        status,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -147,14 +147,14 @@
       <if test="type != null">
         #{type,jdbcType=TINYINT},
       </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=BIGINT},
       </if>
       <if test="gmtModified != null">
         #{gmtModified,jdbcType=BIGINT},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -179,14 +179,14 @@
       <if test="record.type != null">
         type = #{record.type,jdbcType=TINYINT},
       </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
       <if test="record.gmtCreate != null">
         gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       </if>
       <if test="record.gmtModified != null">
         gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
-      </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=TINYINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -199,9 +199,9 @@
       thumb_up_to = #{record.thumbUpTo,jdbcType=BIGINT},
       thumb_up_by = #{record.thumbUpBy,jdbcType=BIGINT},
       type = #{record.type,jdbcType=TINYINT},
+      status = #{record.status,jdbcType=TINYINT},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
-      status = #{record.status,jdbcType=TINYINT}
+      gmt_modified = #{record.gmtModified,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -218,14 +218,14 @@
       <if test="type != null">
         type = #{type,jdbcType=TINYINT},
       </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
       <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=BIGINT},
       </if>
       <if test="gmtModified != null">
         gmt_modified = #{gmtModified,jdbcType=BIGINT},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=TINYINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -235,9 +235,9 @@
     set thumb_up_to = #{thumbUpTo,jdbcType=BIGINT},
       thumb_up_by = #{thumbUpBy,jdbcType=BIGINT},
       type = #{type,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
-      gmt_modified = #{gmtModified,jdbcType=BIGINT},
-      status = #{status,jdbcType=TINYINT}
+      gmt_modified = #{gmtModified,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

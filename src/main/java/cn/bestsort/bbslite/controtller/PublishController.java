@@ -69,7 +69,6 @@ public class PublishController {
             @RequestParam(value = "id",required = false) Long id,
             @RequestParam("topic") String topic,
             HttpSession session){
-
         User user = (User)session.getAttribute("user");
         if(user == null){
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);

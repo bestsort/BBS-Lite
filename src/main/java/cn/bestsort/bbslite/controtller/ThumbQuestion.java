@@ -37,6 +37,7 @@ public class ThumbQuestion {
         if (user == null){
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
+        questionService.incQuestionLike(id,isActive?-1L:1L);
         boolean active = thumbUpService.setThumbUpCount(id,user.getId(), FunctionItem.QUESTION,isActive);
         return new ResultDto().okOf()
                 .addMsg("isActive",active);

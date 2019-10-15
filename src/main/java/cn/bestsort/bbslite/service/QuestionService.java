@@ -48,6 +48,10 @@ public class QuestionService {
         return new PageInfo<>(questions);
     }
 
+    public Boolean incQuestionLike(Long questionId,Long val){
+        return questionExtMapper.incQuestionLike(questionId,val);
+    }
+
     public Long createOrUpdate(Question question) {
         question.setGmtModified(System.currentTimeMillis());
         Long result = null;

@@ -40,6 +40,13 @@
             order by gmt_create DESC
         </where>
     </select>
+    <update id="incQuestionLike">
+        update question
+        set
+            like_count = like_count + #{val,jdbcType=BIGINT}
+        where
+            id = #{id,jdbcType=BIGINT}
+    </update>
     <insert id="insertQuestionExt" keyProperty="id" parameterType="cn.bestsort.bbslite.pojo.model.Question">
         insert into question
         <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -19,4 +19,5 @@ import java.util.List;
 public interface QuestionExtMapper {
     List<Question> listBySearch(QuestionQueryDto questionQueryDto);
     Long insertQuestionExt(Question question);
+    Boolean incQuestionLike(Long id,Long val);
 }

@@ -64,4 +64,13 @@ public class ThumbUpService {
         }
         return !isActive;
     }
+
+    public Boolean getStatusByUser(Long questionId, Long id) {
+        ThumbUpExample example = new ThumbUpExample();
+        example.createCriteria()
+                .andThumbUpByEqualTo(id)
+                .andThumbUpToEqualTo(questionId)
+                .andStatusEqualTo((byte)1);
+        return thumbUpMapper.countByExample(example)!=0;
+    }
 }

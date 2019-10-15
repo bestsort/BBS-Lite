@@ -1,3 +1,5 @@
+let question_dianzan_count;
+let question_shoucang_count;
 $(function () {
     // 加载问题详情
     //TODO 非法访问限制
@@ -57,9 +59,9 @@ function thumb_up_question() {
         },
         success: function (data) {
             if (data.code == "200") {
-
                 let info = data.extend;
-                add_option(info.count + (info.isActive?1:-1),"点赞",icon,info.isActive,true);
+                question_dianzan_count += (info.isActive?1:-1);
+                add_option(question_dianzan_count,"点赞",icon,info.isActive,true);
             }
         },
     });
@@ -204,6 +206,8 @@ function load_question_detail_right(data) {
 
 
 function load_question_info(questionInfo) {
+    question_dianzan_count = questionInfo.likeCount;
+    question_shoucang_count = questionInfo.followCount;
     const tags = questionInfo.tag.split(' ');
     let questionDetail = '<h3>' +
         '                   <span>' + questionInfo.title + '</span></h3>\n' +

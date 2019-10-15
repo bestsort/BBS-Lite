@@ -3,8 +3,10 @@ package cn.bestsort.bbslite.controtller;
 import cn.bestsort.bbslite.dto.QuestionQueryDto;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.pojo.model.Question;
+import cn.bestsort.bbslite.pojo.model.ThumbUpExample;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.QuestionService;
+import cn.bestsort.bbslite.service.ThumbUpService;
 import cn.bestsort.bbslite.service.UserService;
 import cn.bestsort.bbslite.vo.QuestionDetailOptionVo;
 import com.github.pagehelper.PageInfo;
@@ -27,6 +29,8 @@ public class QuestionController {
     private QuestionService questionService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ThumbUpService thumbUpService;
     @GetMapping("/question/{id}")
     public String question(@PathVariable("id") Long id){
         return "question";
@@ -85,8 +89,12 @@ public class QuestionController {
             questionDetailOptionVo.setIsCreator(false);
         }
         questionDetailOptionVo.setIsFollowQuestion(false);
-        questionDetailOptionVo.setIsThumbUpQuestion(false);
-
+        if(user != null) {
+            questionDetailOptionVo.setIsThumbUpQuestion(
+                    thumbUpService.getStatusByUser(questionId, user.getId()));
+        }else {
+            questionDetailOptionVo.setIsThumbUpQuestion(false);
+        }
         return new ResultDto().okOf().addMsg("options",questionDetailOptionVo);
     }
 }

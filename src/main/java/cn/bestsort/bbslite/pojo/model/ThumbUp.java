@@ -9,11 +9,11 @@ public class ThumbUp {
 
     private Byte type;
 
+    private Byte status;
+
     private Long gmtCreate;
 
     private Long gmtModified;
-
-    private Byte status;
 
     public Long getId() {
         return id;
@@ -47,6 +47,14 @@ public class ThumbUp {
         this.type = type;
     }
 
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
+
     public Long getGmtCreate() {
         return gmtCreate;
     }
@@ -63,14 +71,6 @@ public class ThumbUp {
         this.gmtModified = gmtModified;
     }
 
-    public Byte getStatus() {
-        return status;
-    }
-
-    public void setStatus(Byte status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -81,9 +81,9 @@ public class ThumbUp {
         sb.append(", thumbUpTo=").append(thumbUpTo);
         sb.append(", thumbUpBy=").append(thumbUpBy);
         sb.append(", type=").append(type);
+        sb.append(", status=").append(status);
         sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", gmtModified=").append(gmtModified);
-        sb.append(", status=").append(status);
         sb.append("]");
         return sb.toString();
     }
