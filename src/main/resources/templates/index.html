@@ -5,17 +5,6 @@
     <head th:insert="common/import"></head>
     <script src="/js/indexdata.js"></script>
 </head>
-
-<script>
-    window.onload = function () {
-        var  closable = window.localStorage.getItem("closable");
-        if(closable === "true"){
-            window.close();
-            window.localStorage.removeItem("closable");
-        }
-    }
-
-</script>
 <body>
 <div th:insert="common/navgation"></div>
 

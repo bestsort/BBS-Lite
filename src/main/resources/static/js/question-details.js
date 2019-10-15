@@ -1,5 +1,7 @@
 let question_dianzan_count;
 let question_shoucang_count;
+let thumb_up = "icon-zan";
+let follow = "icon-shoucang";
 $(function () {
     // 加载问题详情
     //TODO 非法访问限制
@@ -13,25 +15,29 @@ $(function () {
         type: "GET",
         url: url,
         data: jsonData,
-        beforeSend: function () {
-            //loadingIndex = layer.msg('加载数据~~', {icon: 16});
-        },
+        beforeSend: open_loading(),
         success: function (data) {
             if (data.code === 200) {
+                document.title = data.extend.question.title;
                 load_question_info(data.extend.question);
                 if(data.extend.question.commentCount > 5)
                     show_more_comment();
                 load_question_detail_right(data.extend);
                 $("html,body").animate({scrollTop: 0}, 0);//回到顶端
             } else {
+                fail_prompt(data.message);
+                setTimeout(function () {
+                    location.href = "/";
+                },1500)
             }
         },
+        complete: close_loading()
     });
 
 
 
 
-    $("#icon-shoucang").click(function () {
+    $("#"+follow).click(function () {
 
     });
 
@@ -42,18 +48,19 @@ $(function () {
 });
 
 function click_options() {
-    $(document).on('click', "#icon-zan", function () {
-        like_or_follow_question("/thumbUpQuestion","icon-zan","点赞",question_dianzan_count);
+    $(document).on('click', "#"+thumb_up, function () {
+        like_or_follow_question("/thumbUpQuestion",thumb_up,"点赞",question_dianzan_count);
     });
     $(document).on('click',"#icon-bianji",function () {
         location.href = "/publish?id=" + getQuestionId();
     });
-    $(document).on('click',"#icon-shoucang",function () {
-        like_or_follow_question("/followQuestion","icon-shoucang","收藏",question_shoucang_count);
+    $(document).on('click',"#"+follow,function () {
+        like_or_follow_question("/followQuestion",follow,"收藏",question_shoucang_count);
     });
 }
 
 function like_or_follow_question(url,icon,show,count) {
+    debugger
     $.ajax({
         type: "POST",
         url: url,
@@ -66,6 +73,9 @@ function like_or_follow_question(url,icon,show,count) {
                 let info = data.extend;
                 count += (info.isActive?1:-1);
                 add_option(count,show,icon,info.isActive,true);
+            }
+            else {
+                fail_prompt(data.message);
             }
         },
     });
@@ -117,8 +127,8 @@ function load_question_option(creator, {followCount: questionFollow, id: questio
         success: function (data) {
             if (data.code == "200") {
                 let options = data.extend.options;
-                add_option(questionThumb,"点赞","icon-zan",options.isThumbUpQuestion,true);
-                add_option(questionFollow,"收藏","icon-shoucang",options.isFollowQuestion,true);
+                add_option(questionThumb,"点赞",thumb_up,options.isThumbUpQuestion,true);
+                add_option(questionFollow,"收藏",follow,options.isFollowQuestion,true);
                 add_option(null,"评论","icon-pinglun",false,false);
                 add_option(null,"编辑问题","icon-bianji",options.isCreator,false);
                 click_options();

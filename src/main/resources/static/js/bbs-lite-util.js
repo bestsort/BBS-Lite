@@ -81,3 +81,17 @@ var info_prompt = function(message, time)
 {
     prompt(message, 'alert-info-info', time);
 };
+
+var open_loading = function(){
+    let loadding = '<div id="loading" class="loader"><div class="loading">' +
+        '<div></div>' +
+        '<div></div>' +
+        '<div></div>' +
+        '<div></div>' +
+        '<div></div>' +
+        '</div></div>';
+    $("body").append(loadding);
+};
+var close_loading = function () {
+    $("#loading").empty();
+}

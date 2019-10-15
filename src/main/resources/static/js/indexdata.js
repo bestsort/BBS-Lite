@@ -125,9 +125,7 @@ function to_page(pageno) {
         type: "GET",
         url: url,
         data: jsonData,
-        beforeSend: function () {
-            //loadingIndex = layer.msg('加载数据~~', {icon: 16});
-        },
+        beforeSend: open_loading(),
         success: function (data) {
             if (data.code == "200") {
                 if(data.extend.page.total>0){
@@ -145,10 +143,11 @@ function to_page(pageno) {
                 }
                 $("html,body").animate({scrollTop: 0}, 0);//回到顶端
             } else {
-                layer.msg(data.extend.msg, {time: 2000, icon: 5, shift: 6}, function () {
-                });
+                fail_prompt(data.message);
+
             }
         },
+        complete: close_loading()
     });
 
 }

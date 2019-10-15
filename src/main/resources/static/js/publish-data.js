@@ -2,7 +2,6 @@ var E = window.wangEditor;
 var editor = new E("#wangEditorToolbar");
 
 $(function () {
-
     editor.customConfig.menus = [
         'head',  // 标题
         'bold',  // 粗体
@@ -36,6 +35,7 @@ $(function () {
             url: "/getPublishInfo",
             type: "GET",
             data:jsondata,
+            beforeSend: open_loading(),
             success: function (data) {
                 if(data.code === 200) {
                     let question = data.extend.publishInfo.question;
@@ -53,6 +53,7 @@ $(function () {
                     },1200)
                 }
             },
+            complete:close_loading()
         });
     }
     $("#push").click(function () {
@@ -80,6 +81,7 @@ function push_question(json_data){
         type: "POST",
         url: "/publish",
         data: json_data,
+        beforeSend:open_loading(),
         success: function (data) {
             if(data.code == "200"){
                 success_prompt("发布成功");
@@ -89,8 +91,12 @@ function push_question(json_data){
             }
             else{
                 fail_prompt(data.message);
+                setTimeout(function () {
+                    location.href = "/";
+                },1500)
             }
-        }
+        },
+        complete: close_loading()
     })
 }
 

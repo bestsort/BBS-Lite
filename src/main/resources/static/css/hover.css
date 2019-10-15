@@ -91,3 +91,55 @@
     -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
     transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }
+
+.loader {
+    width: 200px;
+    height: 200px;
+    float: left;
+    display: -webkit-flex;/*safari弹性布局*/
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+@-webkit-keyframes loader21 {
+    0% {
+        -webkit-transform: scale(1, 1);
+    }
+    100% {
+        -webkit-transform: scale(1, 0.3);
+    }
+}
+.loading div {
+    width: 5px;
+    height: 50px;
+    background: rgb(86, 198, 198);
+    border-radius: 2px;
+    display: inline-block;
+}
+.loading div{
+    margin:3px;
+}
+.loading div:nth-child(1) {
+    -webkit-animation: loader21 0.5s -0.3s ease-in-out infinite alternate;
+}
+.loading div:nth-child(2) {
+    -webkit-animation: loader21 0.5s -0.15s ease-in-out infinite alternate;
+}
+.loading div:nth-child(3) {
+    -webkit-animation: loader21 0.5s 0s ease-in-out infinite alternate;
+}
+.loading div:nth-child(4) {
+    -webkit-animation: loader21 0.5s -0.15s ease-in-out infinite alternate;
+}
+.loading div:nth-child(5) {
+    -webkit-animation: loader21 0.5s -0.4s ease-in-out infinite alternate;
+}

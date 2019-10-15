@@ -9,6 +9,18 @@
     text-align: center;
     padding: 15px;
     border-radius: 3px;
+    -webkit-animation: fadeinout 1.2s linear forwards;
+    animation: fadeinout 1.2s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+    0% { opacity: 0; }
+    30% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+    0%{ opacity: 0}
+    30% { opacity: 1; }
 }
 
 .alert-info-success {
