@@ -22,6 +22,5 @@
             thumb_up_to = #{thumbUpTo,jdbcType=BIGINT}
           and
             type = #{type,jdbcType=TINYINT}
-
     </update>
 </mapper>

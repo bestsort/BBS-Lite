@@ -20,4 +20,5 @@ public interface QuestionExtMapper {
     List<Question> listBySearch(QuestionQueryDto questionQueryDto);
     Long insertQuestionExt(Question question);
     Boolean incQuestionLike(Long id,Long val);
+    Boolean incQuestionFollow(Long id, Long val);
 }

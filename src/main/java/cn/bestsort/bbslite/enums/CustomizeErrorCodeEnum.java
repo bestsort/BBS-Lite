@@ -1,6 +1,7 @@
 package cn.bestsort.bbslite.enums;
 
 public enum CustomizeErrorCodeEnum  implements MessageInterface {
+    NO_WAY(9,"听话,不要乱跑哟!"),
     USER_EXITED(8,"该账户已存在"),
     USER_ERROR(7,"你请求姿势有问题,换一个试试?"),
     COMMENT_NOT_FOUND(6,"你操作的评论不存在了,换一个试试?"),

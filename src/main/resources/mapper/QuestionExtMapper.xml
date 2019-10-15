@@ -47,6 +47,13 @@
         where
             id = #{id,jdbcType=BIGINT}
     </update>
+    <update id="incQuestionFollow">
+        update question
+        set
+            follow_count = follow_count + #{val,jdbcType=BIGINT}
+        where
+            id = #{id,jdbcType=BIGINT}
+    </update>
     <insert id="insertQuestionExt" keyProperty="id" parameterType="cn.bestsort.bbslite.pojo.model.Question">
         insert into question
         <trim prefix="(" suffix=")" suffixOverrides=",">

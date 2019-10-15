@@ -47,7 +47,10 @@ $(function () {
                     show_topic_option(data);
                 }
                 else{
-
+                    fail_prompt(data.message);
+                    setTimeout(function () {
+                        location.href = "/";
+                    },1200)
                 }
             },
         });
@@ -73,7 +76,6 @@ $(function () {
     load_topic_option();
 });
 function push_question(json_data){
-
     $.ajax({
         type: "POST",
         url: "/publish",

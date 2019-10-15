@@ -1,6 +1,7 @@
 package cn.bestsort.bbslite.service;
 
 import cn.bestsort.bbslite.enums.FunctionItem;
+import cn.bestsort.bbslite.mapper.FollowExtMapper;
 import cn.bestsort.bbslite.mapper.FollowMapper;
 import cn.bestsort.bbslite.pojo.model.Follow;
 import cn.bestsort.bbslite.pojo.model.FollowExample;
@@ -23,46 +24,44 @@ import java.util.List;
 public class FollowService {
     @Autowired
     private FollowMapper followMapper;
+    @Autowired
+    private FollowExtMapper followExtMapper;
     public Integer getFollowById(){
         return null;
     }
     @Transactional(rollbackFor = Exception.class)
-    public Integer insertOrUpdate(Follow follow) {
+    public Boolean setFollowCount(Long questionId,Long userId,FunctionItem item,Boolean isActive) {
+        Follow follow = new Follow();
+        isActive = !isActive;
+        follow.setFollowBy(userId);
+        follow.setStatus((byte)(isActive?1:0));
+        follow.setFollowTo(questionId);
+        follow.setType(FunctionItem.getCode(FunctionItem.QUESTION));
         FollowExample followExample = new FollowExample();
         followExample.createCriteria()
-                .andFollowByEqualTo(follow.getFollowBy())
-                .andFollowToEqualTo(follow.getFollowTo())
+                .andFollowByEqualTo(userId)
+                .andFollowToEqualTo(questionId)
                 .andTypeEqualTo(follow.getType());
-        List<Follow> follows = followMapper.selectByExample(followExample);
-
         follow.setGmtModified(System.currentTimeMillis());
-        long val = 1;
-        if (follows.isEmpty()) {
-            follow.setGmtCreate(follow.getGmtModified());
-            return followMapper.insertSelective(follow);
-        } else {
-            follow = follows.get(0);
-            val = flipStatus(follow);
-            return followMapper.updateByPrimaryKeySelective(follow);
+
+        if(item == FunctionItem.QUESTION) {
+            if (followMapper.countByExample(followExample) == 0) {
+                follow.setGmtCreate(follow.getGmtModified());
+                followMapper.insertSelective(follow);
+            } else {
+                followExtMapper.setFollowCount(follow);
+            }
+            return isActive;
         }
+        return !isActive;
     }
-    public  Boolean isFollowed(Long by, Long to, FunctionItem item){
+    public  Boolean getStatusByUser(Long to, Long by, FunctionItem item){
         FollowExample example = new FollowExample();
         example.createCriteria()
                 .andFollowByEqualTo(by)
                 .andFollowToEqualTo(to)
                 .andTypeEqualTo(FunctionItem.getCode(item))
                 .andStatusEqualTo((byte) 1);
-        List<Follow> follows = followMapper.selectByExample(example);
-        return !follows.isEmpty();
-    }
-    private long flipStatus(Follow follow){
-        if (follow.getStatus() != null && follow.getStatus() > 0){
-            follow.setStatus((byte)0);
-            return -1;
-        }else{
-            follow.setStatus((byte)1);
-            return 1;
-        }
+        return followMapper.countByExample(example) != 0;
     }
 }

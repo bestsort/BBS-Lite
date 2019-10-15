@@ -92,4 +92,8 @@ public class QuestionService {
     public Question getQuestionDetail(Long id) {
         return questionMapper.selectByPrimaryKey(id);
     }
+
+    public void incQuestionFollow(Long id, long val) {
+        questionExtMapper.incQuestionFollow(id,val);
+    }
 }

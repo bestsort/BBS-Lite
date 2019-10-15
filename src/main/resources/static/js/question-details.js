@@ -17,7 +17,7 @@ $(function () {
             //loadingIndex = layer.msg('加载数据~~', {icon: 16});
         },
         success: function (data) {
-            if (data.code == "200") {
+            if (data.code === 200) {
                 load_question_info(data.extend.question);
                 if(data.extend.question.commentCount > 5)
                     show_more_comment();
@@ -29,9 +29,7 @@ $(function () {
     });
 
 
-    $("#icon-bianji").click(function () {
 
-    });
 
     $("#icon-shoucang").click(function () {
 
@@ -45,14 +43,20 @@ $(function () {
 
 function click_options() {
     $(document).on('click', "#icon-zan", function () {
-        thumb_up_question();
+        like_or_follow_question("/thumbUpQuestion","icon-zan","点赞",question_dianzan_count);
+    });
+    $(document).on('click',"#icon-bianji",function () {
+        location.href = "/publish?id=" + getQuestionId();
+    });
+    $(document).on('click',"#icon-shoucang",function () {
+        like_or_follow_question("/followQuestion","icon-shoucang","收藏",question_shoucang_count);
     });
 }
-function thumb_up_question() {
-    let icon = "icon-zan";
+
+function like_or_follow_question(url,icon,show,count) {
     $.ajax({
         type: "POST",
-        url: "/thumbUpQuestion",
+        url: url,
         data: {
             "id":getQuestionId(),
             "isActive":$("#"+icon).hasClass("on")
@@ -60,8 +64,8 @@ function thumb_up_question() {
         success: function (data) {
             if (data.code == "200") {
                 let info = data.extend;
-                question_dianzan_count += (info.isActive?1:-1);
-                add_option(question_dianzan_count,"点赞",icon,info.isActive,true);
+                count += (info.isActive?1:-1);
+                add_option(count,show,icon,info.isActive,true);
             }
         },
     });
@@ -114,7 +118,7 @@ function load_question_option(creator, {followCount: questionFollow, id: questio
             if (data.code == "200") {
                 let options = data.extend.options;
                 add_option(questionThumb,"点赞","icon-zan",options.isThumbUpQuestion,true);
-                add_option(questionFollow,"关注","icon-shoucang",options.isFollowQuestion,true);
+                add_option(questionFollow,"收藏","icon-shoucang",options.isFollowQuestion,true);
                 add_option(null,"评论","icon-pinglun",false,false);
                 add_option(null,"编辑问题","icon-bianji",options.isCreator,false);
                 click_options();

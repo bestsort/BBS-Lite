@@ -2,9 +2,10 @@ package cn.bestsort.bbslite.controtller;
 
 import cn.bestsort.bbslite.dto.QuestionQueryDto;
 import cn.bestsort.bbslite.dto.ResultDto;
+import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.pojo.model.Question;
-import cn.bestsort.bbslite.pojo.model.ThumbUpExample;
 import cn.bestsort.bbslite.pojo.model.User;
+import cn.bestsort.bbslite.service.FollowService;
 import cn.bestsort.bbslite.service.QuestionService;
 import cn.bestsort.bbslite.service.ThumbUpService;
 import cn.bestsort.bbslite.service.UserService;
@@ -12,7 +13,10 @@ import cn.bestsort.bbslite.vo.QuestionDetailOptionVo;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -31,6 +35,8 @@ public class QuestionController {
     private UserService userService;
     @Autowired
     private ThumbUpService thumbUpService;
+    @Autowired
+    private FollowService followService;
     @GetMapping("/question/{id}")
     public String question(@PathVariable("id") Long id){
         return "question";
@@ -88,12 +94,17 @@ public class QuestionController {
         if(user != null && user.getId().equals(userId)){
             questionDetailOptionVo.setIsCreator(false);
         }
-        questionDetailOptionVo.setIsFollowQuestion(false);
+
         if(user != null) {
             questionDetailOptionVo.setIsThumbUpQuestion(
-                    thumbUpService.getStatusByUser(questionId, user.getId()));
+                    thumbUpService.getStatusByUser(questionId, user.getId())
+            );
+            questionDetailOptionVo.setIsFollowQuestion(
+                    followService.getStatusByUser(questionId,user.getId(), FunctionItem.QUESTION)
+            );
         }else {
             questionDetailOptionVo.setIsThumbUpQuestion(false);
+            questionDetailOptionVo.setIsFollowQuestion(false);
         }
         return new ResultDto().okOf().addMsg("options",questionDetailOptionVo);
     }

@@ -10,8 +10,10 @@ import cn.bestsort.bbslite.service.TopicService;
 import cn.bestsort.bbslite.vo.PublishVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -32,31 +34,32 @@ public class PublishController {
     @Autowired
     private TopicService topicService;
     @GetMapping("/publish")
-    public String publish(Model model){
+    public String publish(){
         return "publish";
     }
 
     @ResponseBody
     @GetMapping("/getPublishInfo")
     public ResultDto getPublishInfo(@RequestParam(name = "id",required = false) Long id,
-                                    HttpSession session){
-        User user = (User)session.getAttribute("user");
+                                    HttpSession session) {
+        User user = (User) session.getAttribute("user");
         ResultDto resultDto;
-        /*if(!questionService.getQuestionDetail(id).getCreator().equals(user.getId())){
-            resultDto = new ResultDto().errorOf(CustomizeErrorCodeEnum.USER_ERROR);
+        if(user == null){
+            resultDto = new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
-        else {
- */         resultDto = new ResultDto().okOf();
-        PublishVo publishVo = new PublishVo();
-        publishVo.setTopics(topicService.getAll());
-        if (id != null) {
-            publishVo.setQuestion(questionService.getQuestionDetail(id));
+        else if (id != null && !questionService.getQuestionDetail(id).getCreator().equals(user.getId())) {
+            resultDto = new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_WAY);
+        } else {
+            resultDto = new ResultDto().okOf();
+            PublishVo publishVo = new PublishVo();
+            publishVo.setTopics(topicService.getAll());
+            if (id != null) {
+                publishVo.setQuestion(questionService.getQuestionDetail(id));
+            }
+            resultDto.addMsg("publishInfo", publishVo);
         }
-        resultDto.addMsg("publishInfo",publishVo);
-        //}
         return resultDto;
     }
-
     /**
      * TODO 部分字段为空时须进行前端校验
      **/
