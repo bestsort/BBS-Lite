@@ -45,7 +45,7 @@ cd BBS-lite
 ```
 将该项目导入到 IDEA 或者其他的IDE中,并配置`pom.xml`中11-13行的数据库信息为自己的数据库配置.
 
-请确认您的数据库字符编码为**`utf8m4`**.参考如下:
+请确认您的数据库字符编码为**utf8m4**.参考如下:
 ```xml
 <jdbc.url>jdbc:mysql://localhost:3306/bbs_lite?serverTimezone=UTC</jdbc.url>
 <jdbc.user>bestsort</jdbc.user>
