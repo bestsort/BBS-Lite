@@ -260,7 +260,10 @@ body, html {
 .comment-post {
     position: absolute;
     top: 0;
-    right: 0;
+    float: right;
+    margin-top: 12px;
+    font-size: 14px;
+    right: -15px;
 }
 /*评论位置*/
 .comment-postion {

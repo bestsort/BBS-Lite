@@ -45,7 +45,7 @@ body {
 }
 
 .comments-list {
-    margin-top: 30px;
+    margin-top: 50px;
     position: relative;
 }
 
@@ -58,7 +58,7 @@ body {
     height: 100%;
     background: #c7cacb;
     position: absolute;
-    left: 32px;
+    left: 28px;
     top: 0;
 }
 
@@ -149,7 +149,8 @@ body {
  * Caja del Comentario
  ---------------------------*/
 .comments-list .comment-box {
-    width: 725px;
+    width: 720px;
+    margin-top: 10px;
     float: right;
     position: relative;
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
@@ -177,7 +178,8 @@ body {
 }
 
 .reply-list .comment-box {
-    width: 680px;
+    width: 670px;
+    margin-top: 10px;
 }
 .comment-box .comment-head {
     background:#f7f7f7;
@@ -217,8 +219,8 @@ body {
     color: #283035;
 }
 
-.comment-box .comment-head span {
-    float: left;
+.comment-box .comment-content span {
+    float: right;
     color: #999;
     font-size: 13px;
     position: relative;
@@ -237,8 +239,8 @@ body {
 
 .comment-box .comment-name.by-author, .comment-box .comment-name.by-author a {color: #03658c;}
 .comment-box .comment-name.by-author:after {
-    content: 'autor';
-    background: #03658c;
+    content: '作者';
+    background: #17a2b8;
     color: #f9f9f9;
     font-size: 12px;
     padding: 3px 5px;

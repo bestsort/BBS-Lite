@@ -24,12 +24,12 @@
 - [ ] 个人资料
 
 ## Demo
+![](img/question.png)
 
 ![](img/main.png)
 
 ![](img/topic.png)
 
-![](img/question.png)
 ## 快速开始
 ### 依赖
 在使用前,请确保电脑中已配置好以下环境:

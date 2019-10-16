@@ -5,7 +5,6 @@
  */
 function formatTimestamp( timestamp ) {
     var dateObj = new Date( timestamp );
-
     var year = dateObj.getYear() + 1900;
     var month = dateObj.getMonth() + 1;
     var theDate = dateObj.getDate();
@@ -83,15 +82,19 @@ var info_prompt = function(message, time)
 };
 
 var open_loading = function(){
-    let loadding = '<div id="loading" class="loader"><div class="loading">' +
-        '<div></div>' +
-        '<div></div>' +
-        '<div></div>' +
-        '<div></div>' +
-        '<div></div>' +
-        '</div></div>';
-    $("body").append(loadding);
+    if($("#loading").length === 0) {
+        let loading = '<div id="loading" class="loader"><div class="loading">' +
+            '<div></div>' +
+            '<div></div>' +
+            '<div></div>' +
+            '<div></div>' +
+            '<div></div>' +
+            '</div></div>';
+        $("body").append(loading);
+    }else {
+        $("#loading").removeClass("hide-all");
+    }
 };
 var close_loading = function () {
-    $("#loading").empty();
-}
+    $("#loading").addClass("hide-all");
+};

@@ -2,6 +2,7 @@ let question_dianzan_count;
 let question_shoucang_count;
 let thumb_up = "icon-zan";
 let follow = "icon-shoucang";
+let comment = "icon-pinglun";
 $(function () {
     // 加载问题详情
     //TODO 非法访问限制
@@ -20,8 +21,7 @@ $(function () {
             if (data.code === 200) {
                 document.title = data.extend.question.title;
                 load_question_info(data.extend.question);
-                if(data.extend.question.commentCount > 5)
-                    show_more_comment();
+                show_more_comment();
                 load_question_detail_right(data.extend);
                 $("html,body").animate({scrollTop: 0}, 0);//回到顶端
             } else {
@@ -41,9 +41,7 @@ $(function () {
 
     });
 
-    $("#icon-pinglun").click(function () {
 
-    });
     //build_right_list();
 });
 
@@ -57,10 +55,29 @@ function click_options() {
     $(document).on('click',"#"+follow,function () {
         like_or_follow_question("/followQuestion",follow,"收藏",question_shoucang_count);
     });
+    $(document).on('click',"#"+comment, function(){
+        if($("#comment_input").length === 0){
+            $("#question_detail").append(
+                '<div id="comment_input" class="col-lg-12 col-md-12 col-xs-12 col-sm-12 collapse" style="padding-right: 0">' +
+                '<textarea class="form-control" rows="5"></textarea>' +
+                '<button class="btn btn-info right" id="commit_comment" style="' +
+                'margin: 10px 0;' +
+                'float: right;' +
+                '">发布</button></div>'
+            )
+        }
+        $(".collapse").collapse('toggle');
+    });
+    $(document).on('click',"#commit_comment",function () {
+        commit_comment();
+    });
+}
+
+function commit_comment() {
+    alert("click");
 }
 
 function like_or_follow_question(url,icon,show,count) {
-    debugger
     $.ajax({
         type: "POST",
         url: url,
@@ -84,10 +101,11 @@ function like_or_follow_question(url,icon,show,count) {
 function add_option(count,show,icon,isActive,show_count) {
     if(isActive != null) {
         let html = '<span class="option ' + (isActive ? 'on' : '') + '" value="' + isActive + '" id="'
-            + icon + '"><i class="iconfont ' + icon + '"></i>' + (isActive ? '已' : '');
+            + icon + '"' +
+            (icon===comment?' data-toggle="collapse" aria-expanded="false" aria-controls="comment_input"':'') +
+            '><i class="iconfont ' + icon + '"></i>' + (isActive ? '已' : '');
 
         if($("#"+icon).length > 0) {
-            debugger;
             let count2 = $("#"+icon).text().replace(/[^\d]/g, '');
             count2 = parseInt(count2) + (isActive?1:-1);
             if (show_count) {
@@ -99,6 +117,7 @@ function add_option(count,show,icon,isActive,show_count) {
             if (show_count) {
                 show += '(' + count + ')';
             }
+
             html += show + '</span>';
             $("#option_item").append(html);
         }
@@ -129,7 +148,7 @@ function load_question_option(creator, {followCount: questionFollow, id: questio
                 let options = data.extend.options;
                 add_option(questionThumb,"点赞",thumb_up,options.isThumbUpQuestion,true);
                 add_option(questionFollow,"收藏",follow,options.isFollowQuestion,true);
-                add_option(null,"评论","icon-pinglun",false,false);
+                add_option(null,"评论",comment,false,false);
                 add_option(null,"编辑问题","icon-bianji",options.isCreator,false);
                 click_options();
             }
@@ -140,8 +159,8 @@ function load_question_option(creator, {followCount: questionFollow, id: questio
 
 function show_more_comment() {
     let show_more = $("<div class='col-lg-12 col-md-12 col-xs-12 col-sm-12' style='text-align: center'></div>");
-    show_more.append($("<span href='#' style='cursor: pointer;color: #03658c' id='show_more_comment'>" +
-        "查看更多评论 <i class='iconfont icon-xiangxia'></i></span>"));
+    show_more.append($("<span href='#' style='cursor: pointer;color: #155faa;font-size: 14px;' id='show_more_comment'>" +
+        "查看评论 <i class='iconfont icon-xiangxia'></i></span>"));
     show_more.click(function () {
         show_more.empty();
         load_comment_info();
@@ -159,15 +178,14 @@ function load_comment_info(){
         type: "GET",
         url: url,
         data: jsonData,
-        beforeSend: function () {
-            //loadingIndex = layer.msg('加载数据~~', {icon: 16});
-        },
+        beforeSend: open_loading(),
         success: function (data) {
             if (data.code == "200") {
-
+                load_comments(data);
             } else {
             }
         },
+        complete: close_loading()
     });
 }
 
@@ -243,10 +261,10 @@ function load_question_info(questionInfo) {
     });
     questionDetail +=
         '<hr class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
-        '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">\n' + questionInfo.description +
-        '<br><div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="option_item"></div>' +
+        '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">\n' + questionInfo.description +'</div>'+
+        '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="option_item"></div>' +
         '    <hr class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
-        '</div><br>';
+        '</div>';
     $("#question_detail").append(questionDetail);
     load_question_option(questionInfo.creator,questionInfo);
 }
@@ -256,4 +274,65 @@ function load_question_info(questionInfo) {
  */
 function getQuestionId() {
     return document.location.pathname.replace("/question/", "");
+}
+
+function load_comments(data) {
+    let comments = data.extend.comments;
+    let view = '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
+        '    <ul id="comments-list" class="comments-list">\n' +
+        '    </ul>\n' +
+        '</div>';
+    $("#question_comment").append(view);
+    $.each(comments,function (index,item) {
+        debugger
+        load_comment_html(item);
+    })
+}
+function load_comment_html(comment) {
+    let html =
+        '        <li style="margin: 0">\n' +
+        '            <div class="comment-main-level">\n' +
+        '                <div class="comment-avatar"><img src="' + comment.user.avatarUrl + '" alt=""></div>\n' +
+        '                <div class="comment-box">\n' +
+        '                    <div class="comment-head">\n' +
+        '                        <h6 class="comment-name ' + (comment.isAuthor?'by-author':'') + '">\n' +
+        '                            <a href="'+ comment.user.htmlUrl + '">'+ comment.user.name + '</a>\n' +
+        '                        </h6>\n' +
+        '                        <span class="comment-post" style="float: right">\n' +
+        '                                        <a href="/"><i class="fa fa-reply"></i>评论</a>\n' +
+        '                                        <a href="/"><i class="fa fa-heart"></i>点赞</a>\n' +
+        '                                    </span>\n' +
+        '\n' +
+        '                    </div>\n' +
+        '                    <div class="comment-content">' + comment.content +
+        '                        <span> ' + formatTimestamp(comment.gmtCreate) + '</span>\n' +
+        '</div>\n' +
+        '                </div>\n' +
+        '            </div>\n';
+
+        $.each(comment.son,function (index,item) {
+            debugger
+            html +=
+                '            <!-- Respuestas de los comentarios -->\n' +
+                '            <ul class="comments-list reply-list">\n' +
+                '                <li>\n' +
+                '                    <!-- Avatar -->\n' +
+                '                    <div class="comment-avatar"><img src="' + item.user.avatarUrl + '" alt=""></div>\n' +
+                '                    <!-- Contenedor del Comentario -->\n' +
+                '                    <div class="comment-box">\n' +
+                '                        <div class="comment-head">\n' +
+                '                            <h6 class="comment-name"><a href="'+ item.user.htmlUrl + '">'+ item.user.name + '</a></h6>\n' +
+                '                            <span class="comment-post pull-right">\n' +
+                '                                        <a href="/"><i class="fa fa-reply"></i>评论</a>\n' +
+                '                                        <a href="/"><i class="fa fa-heart"></i>点赞</a>\n' +
+                '                                        </span>\n' +
+                '                        </div>\n' +
+                '                        <div class="comment-content">'+ item.content +
+                '                            <span>' + formatTimestamp(item.gmtCreate) + '</span>\n' +
+                '                    </div></div>\n' +
+                '                </li>\n' +
+                '            </ul>\n' +
+                '        </li>\n';
+        });
+        $("#comments-list").append(html);
 }

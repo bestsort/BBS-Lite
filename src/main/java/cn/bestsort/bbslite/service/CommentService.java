@@ -3,12 +3,11 @@ package cn.bestsort.bbslite.service;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.CommentMapper;
-import cn.bestsort.bbslite.dto.CommentDto;
+import cn.bestsort.bbslite.vo.CommentVo;
 import cn.bestsort.bbslite.pojo.model.Comment;
 import cn.bestsort.bbslite.pojo.model.CommentExample;
 import cn.bestsort.bbslite.enums.SortBy;
 import cn.bestsort.bbslite.pojo.model.User;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,7 @@ public class CommentService {
         if (comment.getPid() == null || comment.getPid()==0) {
             throw new CustomizeException(CustomizeErrorCodeEnum.TARGET_PAI_NOT_FOUND);
         }
-        if(comment.getLevel() <= 1){
+        if(comment.getPid() == 0L){
             //回复问题
             /*Question question = questionService.getByQuestionId(comment.getQuestionId());
             if (question == null){
@@ -66,12 +65,14 @@ public class CommentService {
     }
 
     @Cacheable(keyGenerator = "myKeyGenerator")
-    public PageInfo<CommentDto> listByQuestionId(Long questionId, Integer page, Integer size) {
+    public PageInfo<CommentVo> listByQuestionId(Long questionId, Integer page, Integer size) {
+        Long creator = questionService.getQuestionDetail(questionId).getCreator();
+
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria()
                 .andQuestionIdEqualTo(questionId);
         commentExample.setOrderByClause(SortBy.DEAFULT_ORDER);
-        PageHelper.startPage(page,size);
+        //PageHelper.startPage(page,size);
         List<Comment> comments = commentMapper.selectByExample(commentExample);
 
         if (comments.isEmpty()) {
@@ -82,38 +83,40 @@ public class CommentService {
         comments.sort(new CommentComparator());
 
         //将 comment 转为 commentDTO
-        HashMap<Long, CommentDto> dtoHashMap = new HashMap<>(10);
-        List<CommentDto> commentDtos = new ArrayList<>(10);
+        HashMap<Long, CommentVo> dtoHashMap = new HashMap<>(10);
+        List<CommentVo> commentVos = new ArrayList<>(10);
         for(Comment comment:comments){
-            CommentDto commentDTO = new CommentDto();
-            BeanUtils.copyProperties(comment,commentDTO);
-            User user = userServicel.getById(comment.getCommentator());
-            commentDTO.setUser(user);
-            if(comment.getLevel() <= 1) {
+            CommentVo commentVo = new CommentVo();
+            BeanUtils.copyProperties(comment,commentVo);
+            User user = userServicel.getSimpleInfoById(comment.getCommentator());
+            commentVo.setUser(user);
+            commentVo.setIsAuthor(creator.equals(commentVo.getUser().getId()));
+            if(comment.getPid() == 0) {
+                commentVo.setSon(new ArrayList<>());
                 // 如果为父评论则将其加入到 commentDTOList 并在 map 中标记
-                dtoHashMap.put(comment.getId(), commentDTO);
-                commentDtos.add(commentDTO);
+                dtoHashMap.put(comment.getId(), commentVo);
+                commentVos.add(commentVo);
             }
             else{
                 // 否则就将评论装入到对应的父评论下
                 dtoHashMap.get(comment.getPid())
-                        .getSecondaryComment()
-                        .add(commentDTO);
+                        .getSon()
+                        .add(commentVo);
             }
         }
-        return new PageInfo<>(commentDtos);
+        return new PageInfo<>(commentVos);
     }
     private static class CommentComparator implements Comparator<Comment>{
         @Override
         public int compare(Comment o1, Comment o2) {
             long res;
-            if(!o1.getLevel().equals(o2.getLevel())){
+            if(!o1.getPid().equals(o2.getPid())){
                 //level 不相等则按照level排序
-                res = o2.getLevel()-o1.getLevel();
+                res = o1.getPid()-o2.getPid();
             }
             else{
                 //否则按照时间先后排序
-                res = o1.getGmtCreate()-o2.getGmtCreate();
+                res = o2.getGmtCreate() - o1.getGmtCreate();
             }
             return (int)res;
         }

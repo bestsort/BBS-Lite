@@ -284,6 +284,126 @@ public class CommentExample {
             return (Criteria) this;
         }
 
+        public Criteria andCommentToIsNull() {
+            addCriterion("comment_to is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentToIsNotNull() {
+            addCriterion("comment_to is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentToEqualTo(Long value) {
+            addCriterion("comment_to =", value, "commentTo");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentToNotEqualTo(Long value) {
+            addCriterion("comment_to <>", value, "commentTo");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentToGreaterThan(Long value) {
+            addCriterion("comment_to >", value, "commentTo");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentToGreaterThanOrEqualTo(Long value) {
+            addCriterion("comment_to >=", value, "commentTo");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentToLessThan(Long value) {
+            addCriterion("comment_to <", value, "commentTo");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentToLessThanOrEqualTo(Long value) {
+            addCriterion("comment_to <=", value, "commentTo");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentToIn(List<Long> values) {
+            addCriterion("comment_to in", values, "commentTo");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentToNotIn(List<Long> values) {
+            addCriterion("comment_to not in", values, "commentTo");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentToBetween(Long value1, Long value2) {
+            addCriterion("comment_to between", value1, value2, "commentTo");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentToNotBetween(Long value1, Long value2) {
+            addCriterion("comment_to not between", value1, value2, "commentTo");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentByIsNull() {
+            addCriterion("comment_by is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentByIsNotNull() {
+            addCriterion("comment_by is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentByEqualTo(Long value) {
+            addCriterion("comment_by =", value, "commentBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentByNotEqualTo(Long value) {
+            addCriterion("comment_by <>", value, "commentBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentByGreaterThan(Long value) {
+            addCriterion("comment_by >", value, "commentBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentByGreaterThanOrEqualTo(Long value) {
+            addCriterion("comment_by >=", value, "commentBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentByLessThan(Long value) {
+            addCriterion("comment_by <", value, "commentBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentByLessThanOrEqualTo(Long value) {
+            addCriterion("comment_by <=", value, "commentBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentByIn(List<Long> values) {
+            addCriterion("comment_by in", values, "commentBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentByNotIn(List<Long> values) {
+            addCriterion("comment_by not in", values, "commentBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentByBetween(Long value1, Long value2) {
+            addCriterion("comment_by between", value1, value2, "commentBy");
+            return (Criteria) this;
+        }
+
+        public Criteria andCommentByNotBetween(Long value1, Long value2) {
+            addCriterion("comment_by not between", value1, value2, "commentBy");
+            return (Criteria) this;
+        }
+
         public Criteria andCommentatorIsNull() {
             addCriterion("commentator is null");
             return (Criteria) this;
@@ -341,66 +461,6 @@ public class CommentExample {
 
         public Criteria andCommentatorNotBetween(Long value1, Long value2) {
             addCriterion("commentator not between", value1, value2, "commentator");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelIsNull() {
-            addCriterion("level is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelIsNotNull() {
-            addCriterion("level is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelEqualTo(Byte value) {
-            addCriterion("level =", value, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelNotEqualTo(Byte value) {
-            addCriterion("level <>", value, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelGreaterThan(Byte value) {
-            addCriterion("level >", value, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelGreaterThanOrEqualTo(Byte value) {
-            addCriterion("level >=", value, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelLessThan(Byte value) {
-            addCriterion("level <", value, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelLessThanOrEqualTo(Byte value) {
-            addCriterion("level <=", value, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelIn(List<Byte> values) {
-            addCriterion("level in", values, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelNotIn(List<Byte> values) {
-            addCriterion("level not in", values, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelBetween(Byte value1, Byte value2) {
-            addCriterion("level between", value1, value2, "level");
-            return (Criteria) this;
-        }
-
-        public Criteria andLevelNotBetween(Byte value1, Byte value2) {
-            addCriterion("level not between", value1, value2, "level");
             return (Criteria) this;
         }
 

@@ -1,9 +1,9 @@
-package cn.bestsort.bbslite.dto;
+package cn.bestsort.bbslite.vo;
 
 import cn.bestsort.bbslite.pojo.model.User;
 import lombok.Data;
 
-import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @ClassName CommentDto
@@ -14,14 +14,15 @@ import java.util.LinkedList;
  */
 
 @Data
-public class CommentDto {
+public class CommentVo {
     private Long id;
     private Long pid;
-    private Byte level;
-    private Long commentator;
+    private Long commentTo;
+    private Long commentBy;
+    private Boolean isAuthor;
     private Long gmtCreate;
     private Long likeCount;
     private String content;
     private User user;
-    private LinkedList<CommentDto> secondaryComment;
+    private List<CommentVo> son;
 }

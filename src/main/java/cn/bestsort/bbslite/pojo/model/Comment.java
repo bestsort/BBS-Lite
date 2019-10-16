@@ -7,9 +7,11 @@ public class Comment {
 
     private Long questionId;
 
-    private Long commentator;
+    private Long commentTo;
 
-    private Byte level;
+    private Long commentBy;
+
+    private Long commentator;
 
     private Long gmtModified;
 
@@ -43,20 +45,28 @@ public class Comment {
         this.questionId = questionId;
     }
 
+    public Long getCommentTo() {
+        return commentTo;
+    }
+
+    public void setCommentTo(Long commentTo) {
+        this.commentTo = commentTo;
+    }
+
+    public Long getCommentBy() {
+        return commentBy;
+    }
+
+    public void setCommentBy(Long commentBy) {
+        this.commentBy = commentBy;
+    }
+
     public Long getCommentator() {
         return commentator;
     }
 
     public void setCommentator(Long commentator) {
         this.commentator = commentator;
-    }
-
-    public Byte getLevel() {
-        return level;
-    }
-
-    public void setLevel(Byte level) {
-        this.level = level;
     }
 
     public Long getGmtModified() {
@@ -100,8 +110,9 @@ public class Comment {
         sb.append(", id=").append(id);
         sb.append(", pid=").append(pid);
         sb.append(", questionId=").append(questionId);
+        sb.append(", commentTo=").append(commentTo);
+        sb.append(", commentBy=").append(commentBy);
         sb.append(", commentator=").append(commentator);
-        sb.append(", level=").append(level);
         sb.append(", gmtModified=").append(gmtModified);
         sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", content=").append(content);
