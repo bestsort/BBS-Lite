@@ -21,4 +21,5 @@ public interface QuestionExtMapper {
     Long insertQuestionExt(Question question);
     Boolean incQuestionLike(Long id,Long val);
     Boolean incQuestionFollow(Long id, Long val);
+    Boolean incQuestionComment(Long id,Long val);
 }

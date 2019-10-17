@@ -3,15 +3,9 @@ package cn.bestsort.bbslite.pojo.model;
 public class Comment {
     private Long id;
 
-    private Long pid;
-
-    private Long questionId;
-
     private Long commentTo;
 
     private Long commentBy;
-
-    private Long commentator;
 
     private Long gmtModified;
 
@@ -21,28 +15,14 @@ public class Comment {
 
     private Long likeCount;
 
+    private Long pid;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getPid() {
-        return pid;
-    }
-
-    public void setPid(Long pid) {
-        this.pid = pid;
-    }
-
-    public Long getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(Long questionId) {
-        this.questionId = questionId;
     }
 
     public Long getCommentTo() {
@@ -59,14 +39,6 @@ public class Comment {
 
     public void setCommentBy(Long commentBy) {
         this.commentBy = commentBy;
-    }
-
-    public Long getCommentator() {
-        return commentator;
-    }
-
-    public void setCommentator(Long commentator) {
-        this.commentator = commentator;
     }
 
     public Long getGmtModified() {
@@ -101,6 +73,14 @@ public class Comment {
         this.likeCount = likeCount;
     }
 
+    public Long getPid() {
+        return pid;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -108,15 +88,13 @@ public class Comment {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", pid=").append(pid);
-        sb.append(", questionId=").append(questionId);
         sb.append(", commentTo=").append(commentTo);
         sb.append(", commentBy=").append(commentBy);
-        sb.append(", commentator=").append(commentator);
         sb.append(", gmtModified=").append(gmtModified);
         sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", content=").append(content);
         sb.append(", likeCount=").append(likeCount);
+        sb.append(", pid=").append(pid);
         sb.append("]");
         return sb.toString();
     }

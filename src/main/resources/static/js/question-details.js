@@ -1,8 +1,10 @@
 let question_dianzan_count;
 let question_shoucang_count;
+let question_comment_count;
 let thumb_up = "icon-zan";
 let follow = "icon-shoucang";
 let comment = "icon-pinglun";
+let select_comment = ">.comment-box>.comment-head>.comment-name>a";
 $(function () {
     // 加载问题详情
     //TODO 非法访问限制
@@ -21,7 +23,10 @@ $(function () {
             if (data.code === 200) {
                 document.title = data.extend.question.title;
                 load_question_info(data.extend.question);
-                show_more_comment();
+                debugger;
+                if(data.extend.question.commentCount > 0) {
+                    show_more_comment();
+                }
                 load_question_detail_right(data.extend);
                 $("html,body").animate({scrollTop: 0}, 0);//回到顶端
             } else {
@@ -33,16 +38,6 @@ $(function () {
         },
         complete: close_loading()
     });
-
-
-
-
-    $("#"+follow).click(function () {
-
-    });
-
-
-    //build_right_list();
 });
 
 function click_options() {
@@ -69,12 +64,39 @@ function click_options() {
         $(".collapse").collapse('toggle');
     });
     $(document).on('click',"#commit_comment",function () {
-        commit_comment();
+        commit_comment(0);
+    });
+    $(document).on('click',".comment-post>a:odd",function () {
+        alert("click odd");
+    });
+    $(document).on('click',".comment-post>a:even",function () {
+        alert("click even");
     });
 }
 
-function commit_comment() {
-    alert("click");
+function commit_comment(val) {
+    let jsonData = {
+        "questionId":getQuestionId(),
+        "pid":0,
+        "content":$("#commit_comment").prev().val(),
+        contentType:"application/json;charset=UTF-8"
+    };
+    $.ajax({
+        type: "POST",
+        url: "/commitComment",
+        data: jsonData,
+        beforeSend: open_loading(),
+        success: function (data) {
+            if (data.code !== 200) {
+                fail_prompt(data.message);
+                setTimeout(function () {
+                    location.href = "/";
+                },1500)
+            }
+            load_comment_info();
+        },
+        complete:close_loading()
+    });
 }
 
 function like_or_follow_question(url,icon,show,count) {
@@ -86,7 +108,7 @@ function like_or_follow_question(url,icon,show,count) {
             "isActive":$("#"+icon).hasClass("on")
         },
         success: function (data) {
-            if (data.code == "200") {
+            if (data.code === 200) {
                 let info = data.extend;
                 count += (info.isActive?1:-1);
                 add_option(count,show,icon,info.isActive,true);
@@ -98,6 +120,14 @@ function like_or_follow_question(url,icon,show,count) {
     });
 }
 
+/**
+ * 添加问题下方按钮(点赞/收藏/评论/编辑)
+ * @param count 计数信息(点赞/收藏等)
+ * @param show  展示的文字
+ * @param icon  图标信息(class)
+ * @param isActive 是否选中
+ * @param show_count 是否展示计数信息
+ */
 function add_option(count,show,icon,isActive,show_count) {
     if(isActive != null) {
         let html = '<span class="option ' + (isActive ? 'on' : '') + '" value="' + isActive + '" id="'
@@ -128,7 +158,7 @@ function add_option(count,show,icon,isActive,show_count) {
  * @param creator
  * @param questionId
  */
-function load_question_option(creator, {followCount: questionFollow, id: questionId, likeCount: questionThumb}) {
+function load_question_option(creator, {commentCount:questionComment,followCount: questionFollow, id: questionId, likeCount: questionThumb}) {
     const url = "/loadQuestionOption";
     const jsonData = {
         "questionId": questionId,
@@ -140,9 +170,6 @@ function load_question_option(creator, {followCount: questionFollow, id: questio
         type: "GET",
         url: url,
         data: jsonData,
-        beforeSend: function () {
-            //loadingIndex = layer.msg('加载数据~~', {icon: 16});
-        },
         success: function (data) {
             if (data.code == "200") {
                 let options = data.extend.options;
@@ -162,12 +189,13 @@ function show_more_comment() {
     show_more.append($("<span href='#' style='cursor: pointer;color: #155faa;font-size: 14px;' id='show_more_comment'>" +
         "查看评论 <i class='iconfont icon-xiangxia'></i></span>"));
     show_more.click(function () {
-        show_more.empty();
         load_comment_info();
     });
     $("#question_detail").append(show_more);
 }
 function load_comment_info(){
+    $("#show_more_comment").empty();
+    $("#question_comment").empty();
     const url = "/loadComment";
     const jsonData = {
         "id": getQuestionId(),
@@ -240,6 +268,7 @@ function load_question_detail_right(data) {
 function load_question_info(questionInfo) {
     question_dianzan_count = questionInfo.likeCount;
     question_shoucang_count = questionInfo.followCount;
+    question_comment_count = questionInfo.commentCount;
     const tags = questionInfo.tag.split(' ');
     let questionDetail = '<h3>' +
         '                   <span>' + questionInfo.title + '</span></h3>\n' +
@@ -284,7 +313,6 @@ function load_comments(data) {
         '</div>';
     $("#question_comment").append(view);
     $.each(comments,function (index,item) {
-        debugger
         load_comment_html(item);
     })
 }
@@ -298,12 +326,11 @@ function load_comment_html(comment) {
         '                        <h6 class="comment-name ' + (comment.isAuthor?'by-author':'') + '">\n' +
         '                            <a href="'+ comment.user.htmlUrl + '">'+ comment.user.name + '</a>\n' +
         '                        </h6>\n' +
-        '                        <span class="comment-post" style="float: right">\n' +
-        '                                        <a href="/"><i class="fa fa-reply"></i>评论</a>\n' +
-        '                                        <a href="/"><i class="fa fa-heart"></i>点赞</a>\n' +
-        '                                    </span>\n' +
-        '\n' +
-        '                    </div>\n' +
+        '                        <span class="comment-post pull-right" > \n' +
+        '                            <input value="' + comment.user.id + '" hidden="true">' +
+        '                                 <span class="option"><i class="iconfont icon-dianzan" ></i>评论</span>\n' +
+        '                                 <span class="option" style="margin-right: 25px"><i class="iconfont icon-shoucang" ></i>点赞</a></span>\n' +
+        '                    </span></div>\n' +
         '                    <div class="comment-content">' + comment.content +
         '                        <span> ' + formatTimestamp(comment.gmtCreate) + '</span>\n' +
         '</div>\n' +
@@ -311,7 +338,6 @@ function load_comment_html(comment) {
         '            </div>\n';
 
         $.each(comment.son,function (index,item) {
-            debugger
             html +=
                 '            <!-- Respuestas de los comentarios -->\n' +
                 '            <ul class="comments-list reply-list">\n' +
@@ -323,9 +349,10 @@ function load_comment_html(comment) {
                 '                        <div class="comment-head">\n' +
                 '                            <h6 class="comment-name"><a href="'+ item.user.htmlUrl + '">'+ item.user.name + '</a></h6>\n' +
                 '                            <span class="comment-post pull-right">\n' +
-                '                                        <a href="/"><i class="fa fa-reply"></i>评论</a>\n' +
-                '                                        <a href="/"><i class="fa fa-heart"></i>点赞</a>\n' +
-                '                                        </span>\n' +
+                '                            <input value="' + item.user.id + '" hidden="true">' +
+                '                                 <span class="option"><i class="iconfont icon-dianzan"></i>评论</span>\n' +
+                '                                 <span class="option" style="margin-right: 25px"><i class="iconfont icon-shoucang"></i>点赞</a></span>\n' +
+                '                            </span>\n' +
                 '                        </div>\n' +
                 '                        <div class="comment-content">'+ item.content +
                 '                            <span>' + formatTimestamp(item.gmtCreate) + '</span>\n' +

@@ -192,8 +192,6 @@ body {
 }
 
 .comment-box .comment-head i {
-    float: right;
-    margin-left: 14px;
     position: relative;
     top: 2px;
     color: #A6A6A6;
@@ -203,9 +201,6 @@ body {
     transition: color 0.3s ease;
 }
 
-.comment-box .comment-head i:hover {
-    color: #03658c;
-}
 
 .comment-box .comment-name {
     color: #283035;
