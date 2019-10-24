@@ -2,13 +2,32 @@
 ######################################################################
 #####                Your GitHub OAuth Config                    #####
 ######################################################################
-github:
-  client:
-    id: 08b076ae3cf904cf324c
-    secret: 09c5129c5e0ff8b3284adbc7ae8031fe3ea04af3
-  redurect:
-    uri: http://localhost:8080/callback
-
+bbs:
+  url: localhost:8080
+  mail:
+    title: "氢论坛---邮件通知"
+  github:
+    client:
+      id: 08b076ae3cf904cf324c
+      secret: 09c5129c5e0ff8b3284adbc7ae8031fe3ea04af3
+  encryption:
+    seed: 0x3f2a3c7e
+spring:
+  mail:
+    host: smtp.exmail.qq.com
+    port: 465
+    username: no-reply@mail.bestsort.cn
+    password: nfNHVYBwXYWNHUsd
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+          auth: true
+          starttls:
+            enable: true
+            required: true
 
 ######################################################################
 #####                    Please make sure                        #####
@@ -19,7 +38,6 @@ github:
 #####                       Default Config                       #####
 ######################################################################
 
-spring:
   datasource:
     url: '@jdbc.url@'
     username: '@jdbc.user@'
@@ -34,7 +52,9 @@ spring:
           log-slow-sql: true
           slow-sql-millis: 2000
       filters:  stat,wall
-      aop-patterns: cn.bestsort.bbslite.service.*
+      aop-patterns:
+        - cn.bestsort.bbslite.service.*
+        - cn.bestsort.bbslite.manager.*
     redis:
       # redis数据库索引（默认为0），我们使用索引为3的数据库，避免和其他数据库冲突
       database: 0

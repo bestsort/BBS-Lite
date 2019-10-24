@@ -1,7 +1,7 @@
 create table user
 (
     id bigint auto_increment primary key not null,
-    account_id varchar(20),
+    account_id varchar(20) unique ,
     email varchar(30),
     name varchar(14) default 'none',
     token varchar(36) default '',

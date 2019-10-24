@@ -2,13 +2,12 @@ package cn.bestsort.bbslite.service;
 
 import cn.bestsort.bbslite.dto.QuestionQueryDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
+import cn.bestsort.bbslite.enums.SortBy;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.QuestionExtMapper;
 import cn.bestsort.bbslite.mapper.QuestionMapper;
 import cn.bestsort.bbslite.pojo.model.Question;
 import cn.bestsort.bbslite.pojo.model.QuestionExample;
-import cn.bestsort.bbslite.enums.SortBy;
-import cn.bestsort.bbslite.pojo.model.Topic;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,13 @@
 package cn.bestsort.bbslite.util;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 public class MurmursHash {
+    @Value("bbs.encryption.seed")
+    private static int seed;
     private static String hash(byte[] key,int seed){
         ByteBuffer buf = ByteBuffer.wrap(key);
 
@@ -37,8 +41,7 @@ public class MurmursHash {
         return String.valueOf(h);
     }
     private static String hash(byte[] key) {
-        int defaultSeed = 0x3f2a3c7e;
-        return hash(key,defaultSeed);
+        return hash(key,seed);
     }
 
     public static String hashUnsigned(String key) {

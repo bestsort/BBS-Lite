@@ -6,7 +6,7 @@
  * @Version 1.0
  */
 
-package cn.bestsort.bbslite.util.provider;
+package cn.bestsort.bbslite.manager;
 
 
 import cn.bestsort.bbslite.dto.AccessTokenDto;

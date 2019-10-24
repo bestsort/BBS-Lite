@@ -1,5 +1,6 @@
-package cn.bestsort.bbslite.cache;
+package cn.bestsort.bbslite.config;
 
+import cn.bestsort.bbslite.cache.FastJson2JsonRedisSerializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;

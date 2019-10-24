@@ -7,4 +7,5 @@ public class UserCreateVo {
     String password;
     String accountId;
     String email;
+    String token;
 }

@@ -1,10 +1,10 @@
 package cn.bestsort.bbslite.controtller;
 
 import cn.bestsort.bbslite.dto.AccessTokenDto;
-import cn.bestsort.bbslite.vo.GithubUserVo;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.util.provider.GithubProvider;
 import cn.bestsort.bbslite.service.UserService;
+import cn.bestsort.bbslite.manager.GithubProvider;
+import cn.bestsort.bbslite.vo.GithubUserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.UUID;
@@ -33,13 +32,13 @@ public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
 
-    @Value("${github.client.id}")
+    @Value("${bbs.github.client.id}")
     private String clientId;
 
-    @Value("${github.client.secret}")
+    @Value("${bbs.github.client.secret}")
     private String secret;
 
-    @Value("${github.redurect.uri}")
+    @Value("${bbs.url}" + "/callback")
     private String uri;
     @Autowired
     private UserService userService;

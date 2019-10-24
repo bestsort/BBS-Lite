@@ -86,7 +86,7 @@ function push_question(json_data){
             if(data.code == "200"){
                 success_prompt("发布成功");
                 setTimeout(function () {
-                    location.href = "/question/" + data.extend.id;
+                    location.href = "/";
                 },1500)
             }
             else{

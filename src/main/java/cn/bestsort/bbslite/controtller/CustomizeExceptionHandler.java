@@ -1,4 +1,4 @@
-package cn.bestsort.bbslite.util.advice;
+package cn.bestsort.bbslite.controtller;
 
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
