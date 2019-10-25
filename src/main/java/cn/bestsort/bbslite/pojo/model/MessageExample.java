@@ -3,14 +3,14 @@ package cn.bestsort.bbslite.pojo.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommentExample {
+public class MessageExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public CommentExample() {
+    public MessageExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -164,243 +164,303 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andCommentToIsNull() {
-            addCriterion("comment_to is null");
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
             return (Criteria) this;
         }
 
-        public Criteria andCommentToIsNotNull() {
-            addCriterion("comment_to is not null");
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCommentToEqualTo(Long value) {
-            addCriterion("comment_to =", value, "commentTo");
+        public Criteria andTypeEqualTo(Byte value) {
+            addCriterion("type =", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andCommentToNotEqualTo(Long value) {
-            addCriterion("comment_to <>", value, "commentTo");
+        public Criteria andTypeNotEqualTo(Byte value) {
+            addCriterion("type <>", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andCommentToGreaterThan(Long value) {
-            addCriterion("comment_to >", value, "commentTo");
+        public Criteria andTypeGreaterThan(Byte value) {
+            addCriterion("type >", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andCommentToGreaterThanOrEqualTo(Long value) {
-            addCriterion("comment_to >=", value, "commentTo");
+        public Criteria andTypeGreaterThanOrEqualTo(Byte value) {
+            addCriterion("type >=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andCommentToLessThan(Long value) {
-            addCriterion("comment_to <", value, "commentTo");
+        public Criteria andTypeLessThan(Byte value) {
+            addCriterion("type <", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andCommentToLessThanOrEqualTo(Long value) {
-            addCriterion("comment_to <=", value, "commentTo");
+        public Criteria andTypeLessThanOrEqualTo(Byte value) {
+            addCriterion("type <=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andCommentToIn(List<Long> values) {
-            addCriterion("comment_to in", values, "commentTo");
+        public Criteria andTypeIn(List<Byte> values) {
+            addCriterion("type in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andCommentToNotIn(List<Long> values) {
-            addCriterion("comment_to not in", values, "commentTo");
+        public Criteria andTypeNotIn(List<Byte> values) {
+            addCriterion("type not in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andCommentToBetween(Long value1, Long value2) {
-            addCriterion("comment_to between", value1, value2, "commentTo");
+        public Criteria andTypeBetween(Byte value1, Byte value2) {
+            addCriterion("type between", value1, value2, "type");
             return (Criteria) this;
         }
 
-        public Criteria andCommentToNotBetween(Long value1, Long value2) {
-            addCriterion("comment_to not between", value1, value2, "commentTo");
+        public Criteria andTypeNotBetween(Byte value1, Byte value2) {
+            addCriterion("type not between", value1, value2, "type");
             return (Criteria) this;
         }
 
-        public Criteria andCommentByIsNull() {
-            addCriterion("comment_by is null");
+        public Criteria andSendByIsNull() {
+            addCriterion("send_by is null");
             return (Criteria) this;
         }
 
-        public Criteria andCommentByIsNotNull() {
-            addCriterion("comment_by is not null");
+        public Criteria andSendByIsNotNull() {
+            addCriterion("send_by is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCommentByEqualTo(Long value) {
-            addCriterion("comment_by =", value, "commentBy");
+        public Criteria andSendByEqualTo(Long value) {
+            addCriterion("send_by =", value, "sendBy");
             return (Criteria) this;
         }
 
-        public Criteria andCommentByNotEqualTo(Long value) {
-            addCriterion("comment_by <>", value, "commentBy");
+        public Criteria andSendByNotEqualTo(Long value) {
+            addCriterion("send_by <>", value, "sendBy");
             return (Criteria) this;
         }
 
-        public Criteria andCommentByGreaterThan(Long value) {
-            addCriterion("comment_by >", value, "commentBy");
+        public Criteria andSendByGreaterThan(Long value) {
+            addCriterion("send_by >", value, "sendBy");
             return (Criteria) this;
         }
 
-        public Criteria andCommentByGreaterThanOrEqualTo(Long value) {
-            addCriterion("comment_by >=", value, "commentBy");
+        public Criteria andSendByGreaterThanOrEqualTo(Long value) {
+            addCriterion("send_by >=", value, "sendBy");
             return (Criteria) this;
         }
 
-        public Criteria andCommentByLessThan(Long value) {
-            addCriterion("comment_by <", value, "commentBy");
+        public Criteria andSendByLessThan(Long value) {
+            addCriterion("send_by <", value, "sendBy");
             return (Criteria) this;
         }
 
-        public Criteria andCommentByLessThanOrEqualTo(Long value) {
-            addCriterion("comment_by <=", value, "commentBy");
+        public Criteria andSendByLessThanOrEqualTo(Long value) {
+            addCriterion("send_by <=", value, "sendBy");
             return (Criteria) this;
         }
 
-        public Criteria andCommentByIn(List<Long> values) {
-            addCriterion("comment_by in", values, "commentBy");
+        public Criteria andSendByIn(List<Long> values) {
+            addCriterion("send_by in", values, "sendBy");
             return (Criteria) this;
         }
 
-        public Criteria andCommentByNotIn(List<Long> values) {
-            addCriterion("comment_by not in", values, "commentBy");
+        public Criteria andSendByNotIn(List<Long> values) {
+            addCriterion("send_by not in", values, "sendBy");
             return (Criteria) this;
         }
 
-        public Criteria andCommentByBetween(Long value1, Long value2) {
-            addCriterion("comment_by between", value1, value2, "commentBy");
+        public Criteria andSendByBetween(Long value1, Long value2) {
+            addCriterion("send_by between", value1, value2, "sendBy");
             return (Criteria) this;
         }
 
-        public Criteria andCommentByNotBetween(Long value1, Long value2) {
-            addCriterion("comment_by not between", value1, value2, "commentBy");
+        public Criteria andSendByNotBetween(Long value1, Long value2) {
+            addCriterion("send_by not between", value1, value2, "sendBy");
             return (Criteria) this;
         }
 
-        public Criteria andPidIsNull() {
-            addCriterion("pid is null");
+        public Criteria andSendToIsNull() {
+            addCriterion("send_to is null");
             return (Criteria) this;
         }
 
-        public Criteria andPidIsNotNull() {
-            addCriterion("pid is not null");
+        public Criteria andSendToIsNotNull() {
+            addCriterion("send_to is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPidEqualTo(Long value) {
-            addCriterion("pid =", value, "pid");
+        public Criteria andSendToEqualTo(Long value) {
+            addCriterion("send_to =", value, "sendTo");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotEqualTo(Long value) {
-            addCriterion("pid <>", value, "pid");
+        public Criteria andSendToNotEqualTo(Long value) {
+            addCriterion("send_to <>", value, "sendTo");
             return (Criteria) this;
         }
 
-        public Criteria andPidGreaterThan(Long value) {
-            addCriterion("pid >", value, "pid");
+        public Criteria andSendToGreaterThan(Long value) {
+            addCriterion("send_to >", value, "sendTo");
             return (Criteria) this;
         }
 
-        public Criteria andPidGreaterThanOrEqualTo(Long value) {
-            addCriterion("pid >=", value, "pid");
+        public Criteria andSendToGreaterThanOrEqualTo(Long value) {
+            addCriterion("send_to >=", value, "sendTo");
             return (Criteria) this;
         }
 
-        public Criteria andPidLessThan(Long value) {
-            addCriterion("pid <", value, "pid");
+        public Criteria andSendToLessThan(Long value) {
+            addCriterion("send_to <", value, "sendTo");
             return (Criteria) this;
         }
 
-        public Criteria andPidLessThanOrEqualTo(Long value) {
-            addCriterion("pid <=", value, "pid");
+        public Criteria andSendToLessThanOrEqualTo(Long value) {
+            addCriterion("send_to <=", value, "sendTo");
             return (Criteria) this;
         }
 
-        public Criteria andPidIn(List<Long> values) {
-            addCriterion("pid in", values, "pid");
+        public Criteria andSendToIn(List<Long> values) {
+            addCriterion("send_to in", values, "sendTo");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotIn(List<Long> values) {
-            addCriterion("pid not in", values, "pid");
+        public Criteria andSendToNotIn(List<Long> values) {
+            addCriterion("send_to not in", values, "sendTo");
             return (Criteria) this;
         }
 
-        public Criteria andPidBetween(Long value1, Long value2) {
-            addCriterion("pid between", value1, value2, "pid");
+        public Criteria andSendToBetween(Long value1, Long value2) {
+            addCriterion("send_to between", value1, value2, "sendTo");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotBetween(Long value1, Long value2) {
-            addCriterion("pid not between", value1, value2, "pid");
+        public Criteria andSendToNotBetween(Long value1, Long value2) {
+            addCriterion("send_to not between", value1, value2, "sendTo");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedIsNull() {
-            addCriterion("gmt_modified is null");
+        public Criteria andStatusIsNull() {
+            addCriterion("status is null");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedIsNotNull() {
-            addCriterion("gmt_modified is not null");
+        public Criteria andStatusIsNotNull() {
+            addCriterion("status is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedEqualTo(Long value) {
-            addCriterion("gmt_modified =", value, "gmtModified");
+        public Criteria andStatusEqualTo(Byte value) {
+            addCriterion("status =", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedNotEqualTo(Long value) {
-            addCriterion("gmt_modified <>", value, "gmtModified");
+        public Criteria andStatusNotEqualTo(Byte value) {
+            addCriterion("status <>", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedGreaterThan(Long value) {
-            addCriterion("gmt_modified >", value, "gmtModified");
+        public Criteria andStatusGreaterThan(Byte value) {
+            addCriterion("status >", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedGreaterThanOrEqualTo(Long value) {
-            addCriterion("gmt_modified >=", value, "gmtModified");
+        public Criteria andStatusGreaterThanOrEqualTo(Byte value) {
+            addCriterion("status >=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedLessThan(Long value) {
-            addCriterion("gmt_modified <", value, "gmtModified");
+        public Criteria andStatusLessThan(Byte value) {
+            addCriterion("status <", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedLessThanOrEqualTo(Long value) {
-            addCriterion("gmt_modified <=", value, "gmtModified");
+        public Criteria andStatusLessThanOrEqualTo(Byte value) {
+            addCriterion("status <=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedIn(List<Long> values) {
-            addCriterion("gmt_modified in", values, "gmtModified");
+        public Criteria andStatusIn(List<Byte> values) {
+            addCriterion("status in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedNotIn(List<Long> values) {
-            addCriterion("gmt_modified not in", values, "gmtModified");
+        public Criteria andStatusNotIn(List<Byte> values) {
+            addCriterion("status not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedBetween(Long value1, Long value2) {
-            addCriterion("gmt_modified between", value1, value2, "gmtModified");
+        public Criteria andStatusBetween(Byte value1, Byte value2) {
+            addCriterion("status between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedNotBetween(Long value1, Long value2) {
-            addCriterion("gmt_modified not between", value1, value2, "gmtModified");
+        public Criteria andStatusNotBetween(Byte value1, Byte value2) {
+            addCriterion("status not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadIsNull() {
+            addCriterion("is_read is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadIsNotNull() {
+            addCriterion("is_read is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadEqualTo(Byte value) {
+            addCriterion("is_read =", value, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadNotEqualTo(Byte value) {
+            addCriterion("is_read <>", value, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadGreaterThan(Byte value) {
+            addCriterion("is_read >", value, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadGreaterThanOrEqualTo(Byte value) {
+            addCriterion("is_read >=", value, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadLessThan(Byte value) {
+            addCriterion("is_read <", value, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadLessThanOrEqualTo(Byte value) {
+            addCriterion("is_read <=", value, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadIn(List<Byte> values) {
+            addCriterion("is_read in", values, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadNotIn(List<Byte> values) {
+            addCriterion("is_read not in", values, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadBetween(Byte value1, Byte value2) {
+            addCriterion("is_read between", value1, value2, "isRead");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsReadNotBetween(Byte value1, Byte value2) {
+            addCriterion("is_read not between", value1, value2, "isRead");
             return (Criteria) this;
         }
 
@@ -464,133 +524,63 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andContentIsNull() {
-            addCriterion("content is null");
+        public Criteria andGmtModifiedIsNull() {
+            addCriterion("gmt_modified is null");
             return (Criteria) this;
         }
 
-        public Criteria andContentIsNotNull() {
-            addCriterion("content is not null");
+        public Criteria andGmtModifiedIsNotNull() {
+            addCriterion("gmt_modified is not null");
             return (Criteria) this;
         }
 
-        public Criteria andContentEqualTo(String value) {
-            addCriterion("content =", value, "content");
+        public Criteria andGmtModifiedEqualTo(Long value) {
+            addCriterion("gmt_modified =", value, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andContentNotEqualTo(String value) {
-            addCriterion("content <>", value, "content");
+        public Criteria andGmtModifiedNotEqualTo(Long value) {
+            addCriterion("gmt_modified <>", value, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andContentGreaterThan(String value) {
-            addCriterion("content >", value, "content");
+        public Criteria andGmtModifiedGreaterThan(Long value) {
+            addCriterion("gmt_modified >", value, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andContentGreaterThanOrEqualTo(String value) {
-            addCriterion("content >=", value, "content");
+        public Criteria andGmtModifiedGreaterThanOrEqualTo(Long value) {
+            addCriterion("gmt_modified >=", value, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andContentLessThan(String value) {
-            addCriterion("content <", value, "content");
+        public Criteria andGmtModifiedLessThan(Long value) {
+            addCriterion("gmt_modified <", value, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andContentLessThanOrEqualTo(String value) {
-            addCriterion("content <=", value, "content");
+        public Criteria andGmtModifiedLessThanOrEqualTo(Long value) {
+            addCriterion("gmt_modified <=", value, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andContentLike(String value) {
-            addCriterion("content like", value, "content");
+        public Criteria andGmtModifiedIn(List<Long> values) {
+            addCriterion("gmt_modified in", values, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andContentNotLike(String value) {
-            addCriterion("content not like", value, "content");
+        public Criteria andGmtModifiedNotIn(List<Long> values) {
+            addCriterion("gmt_modified not in", values, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andContentIn(List<String> values) {
-            addCriterion("content in", values, "content");
+        public Criteria andGmtModifiedBetween(Long value1, Long value2) {
+            addCriterion("gmt_modified between", value1, value2, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andContentNotIn(List<String> values) {
-            addCriterion("content not in", values, "content");
-            return (Criteria) this;
-        }
-
-        public Criteria andContentBetween(String value1, String value2) {
-            addCriterion("content between", value1, value2, "content");
-            return (Criteria) this;
-        }
-
-        public Criteria andContentNotBetween(String value1, String value2) {
-            addCriterion("content not between", value1, value2, "content");
-            return (Criteria) this;
-        }
-
-        public Criteria andLikeCountIsNull() {
-            addCriterion("like_count is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLikeCountIsNotNull() {
-            addCriterion("like_count is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLikeCountEqualTo(Long value) {
-            addCriterion("like_count =", value, "likeCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andLikeCountNotEqualTo(Long value) {
-            addCriterion("like_count <>", value, "likeCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andLikeCountGreaterThan(Long value) {
-            addCriterion("like_count >", value, "likeCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andLikeCountGreaterThanOrEqualTo(Long value) {
-            addCriterion("like_count >=", value, "likeCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andLikeCountLessThan(Long value) {
-            addCriterion("like_count <", value, "likeCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andLikeCountLessThanOrEqualTo(Long value) {
-            addCriterion("like_count <=", value, "likeCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andLikeCountIn(List<Long> values) {
-            addCriterion("like_count in", values, "likeCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andLikeCountNotIn(List<Long> values) {
-            addCriterion("like_count not in", values, "likeCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andLikeCountBetween(Long value1, Long value2) {
-            addCriterion("like_count between", value1, value2, "likeCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andLikeCountNotBetween(Long value1, Long value2) {
-            addCriterion("like_count not between", value1, value2, "likeCount");
+        public Criteria andGmtModifiedNotBetween(Long value1, Long value2) {
+            addCriterion("gmt_modified not between", value1, value2, "gmtModified");
             return (Criteria) this;
         }
     }

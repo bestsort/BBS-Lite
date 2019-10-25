@@ -4,7 +4,6 @@ let question_comment_count;
 let thumb_up = "icon-zan";
 let follow = "icon-shoucang";
 let comment = "icon-pinglun";
-let select_comment = ">.comment-box>.comment-head>.comment-name>a";
 $(function () {
     // 加载问题详情
     //TODO 非法访问限制
@@ -53,7 +52,7 @@ function click_options() {
     $(document).on('click',"#"+comment, function(){
         if($("#comment_input").length === 0){
             $("#question_detail").append(
-                '<div id="comment_input" class="col-lg-12 col-md-12 col-xs-12 col-sm-12 collapse" style="padding-right: 0">' +
+                '<div id="comment_input" class="col-lg-12 col-md-12 col-xs-12 col-sm-12 collapse" style="padding-right: 0;padding-bottom: 50px">' +
                 '<textarea class="form-control" rows="5"></textarea>' +
                 '<button class="btn btn-info right" id="commit_comment" style="' +
                 'margin: 10px 0;' +
@@ -66,10 +65,10 @@ function click_options() {
     $(document).on('click',"#commit_comment",function () {
         commit_comment(0);
     });
-    $(document).on('click',".comment-post>a:odd",function () {
+    $(document).on('click',".comment-post>span:odd",function () {
         alert("click odd");
     });
-    $(document).on('click',".comment-post>a:even",function () {
+    $(document).on('click',".comment-post>span:even",function () {
         alert("click even");
     });
 }
@@ -79,6 +78,7 @@ function commit_comment(val) {
         "questionId":getQuestionId(),
         "pid":0,
         "content":$("#commit_comment").prev().val(),
+        "commentTo":"",
         contentType:"application/json;charset=UTF-8"
     };
     $.ajax({
@@ -194,7 +194,7 @@ function show_more_comment() {
     $("#question_detail").append(show_more);
 }
 function load_comment_info(){
-    $("#show_more_comment").empty();
+    $("#show_more_comment").parent("div").hide();
     $("#question_comment").empty();
     const url = "/loadComment";
     const jsonData = {

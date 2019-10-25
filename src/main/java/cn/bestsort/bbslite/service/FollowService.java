@@ -5,12 +5,9 @@ import cn.bestsort.bbslite.mapper.FollowExtMapper;
 import cn.bestsort.bbslite.mapper.FollowMapper;
 import cn.bestsort.bbslite.pojo.model.Follow;
 import cn.bestsort.bbslite.pojo.model.FollowExample;
-import cn.bestsort.bbslite.pojo.model.ThumbUp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * @ClassName FollowService
@@ -26,9 +23,6 @@ public class FollowService {
     private FollowMapper followMapper;
     @Autowired
     private FollowExtMapper followExtMapper;
-    public Integer getFollowById(){
-        return null;
-    }
     @Transactional(rollbackFor = Exception.class)
     public Boolean setFollowCount(Long questionId,Long userId,FunctionItem item,Boolean isActive) {
         Follow follow = new Follow();

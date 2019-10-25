@@ -68,12 +68,10 @@ public class MailService {
     }
     public String generatorSignUpMail(String token,String account) {
         Context context = new Context();
-        String activeUrl = "http://" + homeUrl + "/activate?"+
+        String activeUrl = homeUrl + "/activate?"+
                 "token="+token+ "&" +
                 "account="+account;
-        if (!homeUrl.matches("http")){
-            homeUrl = "http://" + homeUrl;
-        }
+
         context.setVariable("homeUrl", homeUrl);
         context.setVariable("activeUrl", activeUrl);
         context.setVariable("userAccount", account);

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.bestsort.bbslite.mapper.CommentMapper">
-  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Comment">
+<mapper namespace="cn.bestsort.bbslite.mapper.MessageMapper">
+  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Message">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="comment_to" jdbcType="BIGINT" property="commentTo" />
-    <result column="comment_by" jdbcType="BIGINT" property="commentBy" />
-    <result column="pid" jdbcType="BIGINT" property="pid" />
-    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="send_by" jdbcType="BIGINT" property="sendBy" />
+    <result column="send_to" jdbcType="BIGINT" property="sendTo" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_read" jdbcType="TINYINT" property="isRead" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="like_count" jdbcType="BIGINT" property="likeCount" />
+    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,15 +70,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, comment_to, comment_by, pid, gmt_modified, gmt_create, content, like_count
+    id, type, send_by, send_to, status, is_read, gmt_create, gmt_modified
   </sql>
-  <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.CommentExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.MessageExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from comment
+    from message
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -89,114 +89,114 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from comment
+    from message
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from comment
+    delete from message
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.pojo.model.CommentExample">
-    delete from comment
+  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.pojo.model.MessageExample">
+    delete from message
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
-    insert into comment (id, comment_to, comment_by, 
-      pid, gmt_modified, gmt_create, 
-      content, like_count)
-    values (#{id,jdbcType=BIGINT}, #{commentTo,jdbcType=BIGINT}, #{commentBy,jdbcType=BIGINT}, 
-      #{pid,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, 
-      #{content,jdbcType=VARCHAR}, #{likeCount,jdbcType=BIGINT})
+  <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Message">
+    insert into message (id, type, send_by, 
+      send_to, status, is_read, 
+      gmt_create, gmt_modified)
+    values (#{id,jdbcType=BIGINT}, #{type,jdbcType=TINYINT}, #{sendBy,jdbcType=BIGINT}, 
+      #{sendTo,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{isRead,jdbcType=TINYINT}, 
+      #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
-    insert into comment
+  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Message">
+    insert into message
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="commentTo != null">
-        comment_to,
+      <if test="type != null">
+        type,
       </if>
-      <if test="commentBy != null">
-        comment_by,
+      <if test="sendBy != null">
+        send_by,
       </if>
-      <if test="pid != null">
-        pid,
+      <if test="sendTo != null">
+        send_to,
       </if>
-      <if test="gmtModified != null">
-        gmt_modified,
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isRead != null">
+        is_read,
       </if>
       <if test="gmtCreate != null">
         gmt_create,
       </if>
-      <if test="content != null">
-        content,
-      </if>
-      <if test="likeCount != null">
-        like_count,
+      <if test="gmtModified != null">
+        gmt_modified,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="commentTo != null">
-        #{commentTo,jdbcType=BIGINT},
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
       </if>
-      <if test="commentBy != null">
-        #{commentBy,jdbcType=BIGINT},
+      <if test="sendBy != null">
+        #{sendBy,jdbcType=BIGINT},
       </if>
-      <if test="pid != null">
-        #{pid,jdbcType=BIGINT},
+      <if test="sendTo != null">
+        #{sendTo,jdbcType=BIGINT},
       </if>
-      <if test="gmtModified != null">
-        #{gmtModified,jdbcType=BIGINT},
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isRead != null">
+        #{isRead,jdbcType=TINYINT},
       </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=BIGINT},
       </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="likeCount != null">
-        #{likeCount,jdbcType=BIGINT},
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.bestsort.bbslite.pojo.model.CommentExample" resultType="java.lang.Long">
-    select count(*) from comment
+  <select id="countByExample" parameterType="cn.bestsort.bbslite.pojo.model.MessageExample" resultType="java.lang.Long">
+    select count(*) from message
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update comment
+    update message
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.commentTo != null">
-        comment_to = #{record.commentTo,jdbcType=BIGINT},
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=TINYINT},
       </if>
-      <if test="record.commentBy != null">
-        comment_by = #{record.commentBy,jdbcType=BIGINT},
+      <if test="record.sendBy != null">
+        send_by = #{record.sendBy,jdbcType=BIGINT},
       </if>
-      <if test="record.pid != null">
-        pid = #{record.pid,jdbcType=BIGINT},
+      <if test="record.sendTo != null">
+        send_to = #{record.sendTo,jdbcType=BIGINT},
       </if>
-      <if test="record.gmtModified != null">
-        gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.isRead != null">
+        is_read = #{record.isRead,jdbcType=TINYINT},
       </if>
       <if test="record.gmtCreate != null">
         gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=VARCHAR},
-      </if>
-      <if test="record.likeCount != null">
-        like_count = #{record.likeCount,jdbcType=BIGINT},
+      <if test="record.gmtModified != null">
+        gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -204,55 +204,55 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update comment
+    update message
     set id = #{record.id,jdbcType=BIGINT},
-      comment_to = #{record.commentTo,jdbcType=BIGINT},
-      comment_by = #{record.commentBy,jdbcType=BIGINT},
-      pid = #{record.pid,jdbcType=BIGINT},
-      gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+      type = #{record.type,jdbcType=TINYINT},
+      send_by = #{record.sendBy,jdbcType=BIGINT},
+      send_to = #{record.sendTo,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=TINYINT},
+      is_read = #{record.isRead,jdbcType=TINYINT},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
-      content = #{record.content,jdbcType=VARCHAR},
-      like_count = #{record.likeCount,jdbcType=BIGINT}
+      gmt_modified = #{record.gmtModified,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
-    update comment
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.pojo.model.Message">
+    update message
     <set>
-      <if test="commentTo != null">
-        comment_to = #{commentTo,jdbcType=BIGINT},
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
       </if>
-      <if test="commentBy != null">
-        comment_by = #{commentBy,jdbcType=BIGINT},
+      <if test="sendBy != null">
+        send_by = #{sendBy,jdbcType=BIGINT},
       </if>
-      <if test="pid != null">
-        pid = #{pid,jdbcType=BIGINT},
+      <if test="sendTo != null">
+        send_to = #{sendTo,jdbcType=BIGINT},
       </if>
-      <if test="gmtModified != null">
-        gmt_modified = #{gmtModified,jdbcType=BIGINT},
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isRead != null">
+        is_read = #{isRead,jdbcType=TINYINT},
       </if>
       <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=BIGINT},
       </if>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="likeCount != null">
-        like_count = #{likeCount,jdbcType=BIGINT},
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
-    update comment
-    set comment_to = #{commentTo,jdbcType=BIGINT},
-      comment_by = #{commentBy,jdbcType=BIGINT},
-      pid = #{pid,jdbcType=BIGINT},
-      gmt_modified = #{gmtModified,jdbcType=BIGINT},
+  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.pojo.model.Message">
+    update message
+    set type = #{type,jdbcType=TINYINT},
+      send_by = #{sendBy,jdbcType=BIGINT},
+      send_to = #{sendTo,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
+      is_read = #{isRead,jdbcType=TINYINT},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
-      content = #{content,jdbcType=VARCHAR},
-      like_count = #{likeCount,jdbcType=BIGINT}
+      gmt_modified = #{gmtModified,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

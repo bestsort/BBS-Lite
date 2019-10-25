@@ -31,13 +31,9 @@ public class SignUpController {
     private UserService userService;
     @Autowired
     private MailService mail;
-    @RequestMapping("/sign_up")
-    public String signUp(){
-        return "sign_up";
-    }
-
     @ResponseBody
-    @PostMapping("/sign_up")
+
+    @PostMapping("/sign-up")
     public ResultDto post(@RequestBody UserBuffer user){
 
         if (!userService.hasCreateUser(user)){

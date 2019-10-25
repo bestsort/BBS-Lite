@@ -45,5 +45,6 @@
         <table tableName="follow" domainObjectName="Follow"/>
         <table tableName="fans" domainObjectName="Fans"/>
         <table tableName="user_buffer" domainObjectName="UserBuffer"/>
+        <table tableName="message" domainObjectName="Message" />
     </context>
 </generatorConfiguration>

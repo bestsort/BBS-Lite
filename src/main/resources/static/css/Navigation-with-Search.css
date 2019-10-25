@@ -82,6 +82,15 @@
 .navigation-clean-search .action-button:hover, .navigation-clean-search .action-button:focus {
     background: #66d7d7;
 }
+.sign-button{
+    color: #333 !important;
+    background: none;
+    border-radius: 2px;
+}
+
+.sign-button:focus{
+    background: #e3e3e3;
+}
 
 .navigation-clean-search .form-inline label {
     color: #ccc;

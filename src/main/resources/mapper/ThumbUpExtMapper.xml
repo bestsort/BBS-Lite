@@ -7,9 +7,9 @@
         <result column="thumb_up_to" jdbcType="BIGINT" property="thumbUpTo" />
         <result column="thumb_up_by" jdbcType="BIGINT" property="thumbUpBy" />
         <result column="type" jdbcType="TINYINT" property="type" />
+        <result column="status" jdbcType="TINYINT" property="status" />
         <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
         <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
-        <result column="status" jdbcType="TINYINT" property="status"/>
     </resultMap>
     <update id="setThumbUpCount">
         update thumb_up

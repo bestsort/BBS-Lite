@@ -7,10 +7,8 @@ import cn.bestsort.bbslite.pojo.model.ThumbUp;
 import cn.bestsort.bbslite.pojo.model.ThumbUpExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.beans.Transient;
 import java.util.List;
 
 /**

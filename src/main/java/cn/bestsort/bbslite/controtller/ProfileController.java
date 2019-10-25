@@ -1,13 +1,19 @@
 package cn.bestsort.bbslite.controtller;
 
+import cn.bestsort.bbslite.dto.ResultDto;
+import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
+import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.pojo.model.User;
+import com.sun.org.glassfish.external.statistics.annotations.Reset;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,29 +25,24 @@ import java.util.Map;
  * @Version 1.0
  */
 
-@Controller
+@RestController
 public class ProfileController{
 
     @GetMapping("/profile/{action}")
-    public String profile(@PathVariable(name = "action") String action,
-                          HttpServletRequest request,
-                          Model model,
-                          @RequestParam(name="page",defaultValue = "1") Integer page,
-                          @RequestParam(name="size",defaultValue = "5") Integer size){
-        User user = (User)request.getSession().getAttribute("user");
+    public ResultDto profile(@PathVariable(name = "action") String action,
+                             @RequestParam(name="page",defaultValue = "1") Integer page,
+                             @RequestParam(name="size",defaultValue = "5") Integer size,
+                             HttpSession session){
+        User user = (User)session.getAttribute("user");
         if(user == null){
-            return "redirect:/";
+            throw new CustomizeException(CustomizeErrorCodeEnum.USER_ERROR);
         }
 
         Map<String,String> item = new HashMap<String, String>(4){{
             put("questions","我的提问");
             put("replies","我的回复");
+            put("follow","我的收藏");
         }};
-        /*PagInationVo pagInationDTO = questionService.getPagInationList(page,size, QuestionService.USER,user.getId());
-        model.addAttribute("section",action)
-            .addAttribute("sectionName",item.get(action))
-            .addAttribute("user",user)
-            .addAttribute("pagination",pagInationDTO);*/
-        return "profile";
+        return null;
     }
 }

@@ -25,12 +25,17 @@
 
         <!-- 注册 -->
         <div th:if="${session.user == null}" class="nav-item">
-            <a class="nav-link" style="color: #465765" href="/sign_up">注册</a>
+            <a id="sign-up-link" class="nav-link" style="color: #465765" href="#">注册</a>
         </div>
 
         <!-- 发布按钮 -->
         <div th:if="${session.user != null}" class="nav-item">
-            <a class="nav-link" style="color: #465765" href="/publish">发布</a>
+            <a class="nav-link" style="padding:0 5px;color: #465765" href="/publish">
+                <i class="iconfont icon-fabu"></i>发布</a>
+        </div>
+        <div th:if="${session.user != null}" class="nav-item">
+            <a class="nav-link" style="padding:0 5px;color: #465765" href="/message">
+                <i class="iconfont icon-tongzhi1"></i>消息</a>
         </div>
         <!-- 登录后个人下拉菜单-->
         <div th:if="${session.user != null}" class="dropdown" style="color: #465765">

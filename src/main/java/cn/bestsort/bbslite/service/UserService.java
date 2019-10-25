@@ -59,9 +59,15 @@ public class UserService {
         List<User> dbUser = userMapper.selectByExample(userExample);
 
         if (dbUser.isEmpty()){
-            user.setBio(defaultBio);
-            user.setAvatarUrl(defaultAvatarUrl);
-            user.setName(defaultNickname);
+            if(user.getBio() == null) {
+                user.setBio(defaultBio);
+            }
+            if (user.getAvatarUrl() == null) {
+                user.setAvatarUrl(defaultAvatarUrl);
+            }
+            if (user.getName() == null) {
+                user.setName(defaultNickname);
+            }
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             userMapper.insertSelective(user);

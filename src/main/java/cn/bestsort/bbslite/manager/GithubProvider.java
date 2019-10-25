@@ -12,12 +12,13 @@ package cn.bestsort.bbslite.manager;
 import cn.bestsort.bbslite.dto.AccessTokenDto;
 import cn.bestsort.bbslite.vo.GithubUserVo;
 import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Objects;
-
+@Slf4j
 @Component
 public class GithubProvider {
     public String getAccessToken(AccessTokenDto accessTokenDTO){
@@ -45,9 +46,10 @@ public class GithubProvider {
         try {
             Response response = client.newCall(request).execute();
             String str = Objects.requireNonNull(response.body()).string();
+            log.info("GitHub user info : {}",JSON.parseObject(str,GithubUserVo.class));
             return JSON.parseObject(str, GithubUserVo.class);
-        }catch (IOException ignored){
-            ignored.printStackTrace();
+        }catch (IOException e){
+            log.error("GitHub IO token:{} \n error:{}",accessToken,e.getMessage());
         }
         return null;
     }

@@ -7,6 +7,8 @@ public class Comment {
 
     private Long commentBy;
 
+    private Long pid;
+
     private Long gmtModified;
 
     private Long gmtCreate;
@@ -14,8 +16,6 @@ public class Comment {
     private String content;
 
     private Long likeCount;
-
-    private Long pid;
 
     public Long getId() {
         return id;
@@ -39,6 +39,14 @@ public class Comment {
 
     public void setCommentBy(Long commentBy) {
         this.commentBy = commentBy;
+    }
+
+    public Long getPid() {
+        return pid;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
     }
 
     public Long getGmtModified() {
@@ -73,14 +81,6 @@ public class Comment {
         this.likeCount = likeCount;
     }
 
-    public Long getPid() {
-        return pid;
-    }
-
-    public void setPid(Long pid) {
-        this.pid = pid;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -90,11 +90,11 @@ public class Comment {
         sb.append(", id=").append(id);
         sb.append(", commentTo=").append(commentTo);
         sb.append(", commentBy=").append(commentBy);
+        sb.append(", pid=").append(pid);
         sb.append(", gmtModified=").append(gmtModified);
         sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", content=").append(content);
         sb.append(", likeCount=").append(likeCount);
-        sb.append(", pid=").append(pid);
         sb.append("]");
         return sb.toString();
     }
