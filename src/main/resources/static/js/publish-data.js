@@ -58,7 +58,6 @@ $(function () {
     }
     $("#push").click(function () {
         let json_data = {
-            contentType: "application/json;charset=UTF-8",
             "description":editor.txt.html(),
             "tag":$("#tag").val(),
             "title":$("#title").val(),

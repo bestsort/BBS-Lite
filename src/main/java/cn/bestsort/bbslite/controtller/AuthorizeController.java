@@ -39,10 +39,17 @@ public class AuthorizeController {
     private String secret;
 
     @Value("${bbs.url}" + "/callback")
-    private String uri;
+    private String redirectUri;
     @Autowired
     private UserService userService;
-
+    @GetMapping("github-login")
+    public String githubLogin(){
+        String url = "https://github.com/login/oauth/authorize?"+
+                "client_id=" + clientId + "&" +
+                "redirect_uri=" + redirectUri +
+                "&scope=user&state=1&&allow_signup=true";
+        return "redirect:" + url;
+    }
 
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
@@ -53,7 +60,7 @@ public class AuthorizeController {
         accessTokenDTO.setClient_id(clientId);
         accessTokenDTO.setClient_secret(secret);
         accessTokenDTO.setCode(code);
-        accessTokenDTO.setRedirect_uri(uri);
+        accessTokenDTO.setRedirect_uri(redirectUri);
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GithubUserVo githubUser = githubProvider.getUser(accessToken);

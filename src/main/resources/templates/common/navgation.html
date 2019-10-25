@@ -27,6 +27,63 @@
         <div th:if="${session.user == null}" class="nav-item">
             <a id="sign-up-link" class="nav-link" style="color: #465765" href="#">注册</a>
         </div>
+        <div class="modal fade" id="sign-up-link-modal" tabindex="-1" role="dialog" aria-hidden="true" style="text-align: center">
+            <div class="modal-dialog modal-dialog-centered sign-form" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="margin: auto">新用户注册</h5>
+                    </div>
+                    <div class="row col-lg-12 col-md-12 col-xs-12 col-sm-12" style="left: 15px;">
+                        <div class="modal-body col-lg-7 col-md-7 col-xs-7 col-sm-12" style="border-right: 1px solid #dee2e6">
+                            <form method="post" id="sign-up-form">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="iconfont icon-zhanghao"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" name="sign_accountId" placeholder="账号,为6-12位">
+                                    <!-- 检查账号是否已被使用 -->
+                                    <!--<div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button">检测</button>
+                                    </div>-->
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="iconfont icon-mima1"></i></span>
+                                    </div>
+                                    <input type="password" name="sign_password" class="form-control" placeholder="密码,6-18位数字或字母">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="iconfont icon-zhongfumima"></i></span>
+                                    </div>
+                                    <input type="password" name="sign_confirm_password" class="form-control" placeholder="确认密码,和密码一致">
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="iconfont icon-MailFilled"></i></span>
+                                    </div>
+                                    <input type="email" name="sign_email" class="form-control" placeholder="用于激活账号的Email地址">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-xs-5 col-sm-12">
+                            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="margin-top: 20px;">你也可以用以下方式直接登录(部分暂时无法使用)</div>
+                            <button id="github-login" class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-dark third-login-button"><i class="iconfont icon-git margin-center"></i>GitHub</button>
+                            <button id="baidu-login" class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-primary third-login-button" disabled><i class="iconfont icon-baidu margin-center"></i>Baidu</button>
+                            <button id="wechat-login" class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-success third-login-button" disabled><i class="iconfont icon-weixin margin-center"></i>WeChat</button>
+                            <button id="qq-login" class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info third-login-button" disabled><i class="iconfont icon-QQ margin-center"></i>QQ</button>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer" style="margin: auto">
+                        <button type="button" id="send-sign-up-button" class="btn btn-primary" style="margin-right: 20px">注册</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- 发布按钮 -->
         <div th:if="${session.user != null}" class="nav-item">

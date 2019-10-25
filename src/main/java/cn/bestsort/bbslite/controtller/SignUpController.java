@@ -32,11 +32,15 @@ public class SignUpController {
     @Autowired
     private MailService mail;
     @ResponseBody
-
     @PostMapping("/sign-up")
-    public ResultDto post(@RequestBody UserBuffer user){
-
-        if (!userService.hasCreateUser(user)){
+    public ResultDto post(@RequestParam("accountId") String accountId,
+                          @RequestParam("password") String password,
+                          @RequestParam("email") String email){
+        UserBuffer user = new UserBuffer();
+        user.setAccountId(accountId);
+        user.setEmail(email);
+        user.setPassword(password);
+        if (userService.hasCreateUser(user)){
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.USER_EXITED);
         }
         String token = UUID.randomUUID().toString();

@@ -12,7 +12,13 @@
     -webkit-animation: fadeinout 1.2s linear forwards;
     animation: fadeinout 1.2s linear forwards;
 }
-
+.third-login-button{
+    margin-top: 30px;
+    padding: 3px 18px 3px 15px;
+}
+.sign-form{
+    max-width: 700px;
+}
 @-webkit-keyframes fadeinout {
     0% { opacity: 0; }
     30% { opacity: 1; }
@@ -168,6 +174,10 @@ body, html {
 }
 .push-input{
     margin: 10px 0;
+}
+
+.margin-center{
+    margin: auto 5px auto auto;
 }
 /* error返回主菜单按钮 */
 .bbs-jumbotron{

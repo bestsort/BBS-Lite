@@ -4,13 +4,13 @@
  * @returns {string}
  */
 function formatTimestamp( timestamp ) {
-    var dateObj = new Date( timestamp );
-    var year = dateObj.getYear() + 1900;
-    var month = dateObj.getMonth() + 1;
-    var theDate = dateObj.getDate();
-    var hour = dateObj.getHours();
-    var minute = dateObj.getMinutes();
-    var second = dateObj.getSeconds();
+    let dateObj = new Date( timestamp );
+    let year = dateObj.getYear() + 1900;
+    let month = dateObj.getMonth() + 1;
+    let theDate = dateObj.getDate();
+    let hour = dateObj.getHours();
+    let minute = dateObj.getMinutes();
+    let second = dateObj.getSeconds();
     return year +"-"+ month +"-" + theDate + " "+ hour +":"+ minute +":"+ second;
 }
 
@@ -20,10 +20,10 @@ function formatTimestamp( timestamp ) {
  * @returns {*}
  */
 var getParam = function(name){
-    var search = document.location.search;
-    var pattern = new RegExp("[?&]"+name+"\=([^&]+)", "g");
-    var matcher = pattern.exec(search);
-    var items = null;
+    let search = document.location.search;
+    let pattern = new RegExp("[?&]"+name+"\=([^&]+)", "g");
+    let matcher = pattern.exec(search);
+    let items = null;
     if(null != matcher){
         try{
             items = decodeURIComponent(decodeURIComponent(matcher[1]));

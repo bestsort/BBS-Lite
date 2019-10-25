@@ -111,7 +111,6 @@ function to_page(pageno) {
     const sortBy = getParam("sortBy");
     let jsonData = {
         "pageNo": pageno,
-         contentType: "application/json;charset=UTF-8"
     };
 
     const array = ["search", "tag", "sortBy", "category", "topic"];
@@ -181,7 +180,8 @@ function build_question_list(data) {
             '                            <span>' + item.userName + ' • </span>\n' +
             '                            <span>' + item.viewCount + '次浏览 • </span>\n' +
             //'                            <span>' + item.commentCount + '个回复 • ></span>\n' +
-            '                            <span>' + item.likeCount + '人点赞</span>\n' +
+            '                            <span>' + item.likeCount + '人点赞 • </span>\n' +
+            '                            <span>' + item.commentCount + '人评论</span>\n' +
             '                            <span style="float:right">发表于 ' + formatTimestamp(item.gmtCreate) + '</span>\n' +
             '                        </span>\n' +
             '            </div>\n' +

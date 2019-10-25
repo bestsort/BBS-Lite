@@ -1,6 +1,7 @@
-let question_dianzan_count;
-let question_shoucang_count;
+let question_like_count;
+let question_follow_count;
 let question_comment_count;
+let question_view_count;
 let thumb_up = "icon-zan";
 let follow = "icon-shoucang";
 let comment = "icon-pinglun";
@@ -11,7 +12,6 @@ $(function () {
     const url = "/loadQuestionDetail";
     const jsonData = {
         "id": getQuestionId(),
-        contentType: "application/json;charset=UTF-8"
     };
     $.ajax({
         type: "GET",
@@ -22,7 +22,6 @@ $(function () {
             if (data.code === 200) {
                 document.title = data.extend.question.title;
                 load_question_info(data.extend.question);
-                debugger;
                 if(data.extend.question.commentCount > 0) {
                     show_more_comment();
                 }
@@ -41,13 +40,13 @@ $(function () {
 
 function click_options() {
     $(document).on('click', "#"+thumb_up, function () {
-        like_or_follow_question("/thumbUpQuestion",thumb_up,"点赞",question_dianzan_count);
+        like_or_follow_question("/thumbUpQuestion",thumb_up,"点赞",question_like_count);
     });
     $(document).on('click',"#icon-bianji",function () {
         location.href = "/publish?id=" + getQuestionId();
     });
     $(document).on('click',"#"+follow,function () {
-        like_or_follow_question("/followQuestion",follow,"收藏",question_shoucang_count);
+        like_or_follow_question("/followQuestion",follow,"收藏",question_follow_count);
     });
     $(document).on('click',"#"+comment, function(){
         if($("#comment_input").length === 0){
@@ -79,7 +78,6 @@ function commit_comment(val) {
         "pid":0,
         "content":$("#commit_comment").prev().val(),
         "commentTo":"",
-        contentType:"application/json;charset=UTF-8"
     };
     $.ajax({
         type: "POST",
@@ -163,7 +161,6 @@ function load_question_option(creator, {commentCount:questionComment,followCount
     const jsonData = {
         "questionId": questionId,
         "userId": creator,
-        contentType: "application/json;charset=UTF-8"
     };
 
     $.ajax({
@@ -187,7 +184,7 @@ function load_question_option(creator, {commentCount:questionComment,followCount
 function show_more_comment() {
     let show_more = $("<div class='col-lg-12 col-md-12 col-xs-12 col-sm-12' style='text-align: center'></div>");
     show_more.append($("<span href='#' style='cursor: pointer;color: #155faa;font-size: 14px;' id='show_more_comment'>" +
-        "查看评论 <i class='iconfont icon-xiangxia'></i></span>"));
+        "查看评论( " + question_comment_count +" )  <i class='iconfont icon-xiangxia'></i></span>"));
     show_more.click(function () {
         load_comment_info();
     });
@@ -199,7 +196,6 @@ function load_comment_info(){
     const url = "/loadComment";
     const jsonData = {
         "id": getQuestionId(),
-        "contentType": "application/json;charset=UTF-8"
     };
 
     $.ajax({
@@ -266,15 +262,17 @@ function load_question_detail_right(data) {
 
 
 function load_question_info(questionInfo) {
-    question_dianzan_count = questionInfo.likeCount;
-    question_shoucang_count = questionInfo.followCount;
+    question_view_count = questionInfo.viewCount;
+    question_like_count = questionInfo.likeCount;
+    question_follow_count = questionInfo.followCount;
     question_comment_count = questionInfo.commentCount;
     const tags = questionInfo.tag.split(' ');
     let questionDetail = '<h3>' +
         '                   <span>' + questionInfo.title + '</span></h3>\n' +
         '                      <span class="aw-question-content">\n' +
-        '                      <span>' + questionInfo.viewCount + ' 次浏览 • </span>\n' +
-        '                      <span>' + questionInfo.likeCount + ' 人点赞 • </span>\n' +
+        '                      <span>' + question_view_count + ' 次浏览 • </span>\n' +
+        '                      <span>' + question_like_count + ' 人点赞 • </span>\n' +
+        '                      <span>' + question_comment_count + ' 人评论 • </span>\n' +
         '                      <span> 发表于' + formatTimestamp(questionInfo.gmtCreate) + '</span>\n' +
         '                   </span><br>\n';
 

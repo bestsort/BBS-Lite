@@ -30,21 +30,21 @@ public class RegularlyWork {
 
     @Scheduled(cron="0 0 3 * * ?")
     public void clearUserDatabase(){
-        log.debug("清理未完成激活的用户共计: {}人", userService.clearUnActivateUser());
+        log.debug("A total of {} cleaned inactive accounts", userService.clearUnActivateUser());
     }
     @Scheduled(cron = "0 0/3 * * * ?")
     public void resendMail(){
         int lenth = MailService.failMail.size();
         if(lenth != 0) {
-            log.debug("开始发送失败邮件");
+            log.debug("Start sending failed messages");
             for (int i = 0; i < lenth; i++) {
                 MailVo mail = MailService.failMail.poll();
                 Objects.requireNonNull(mail).setTimes(mail.getTimes() - 1);
                 if (mail.getTimes() > 0) {
-                    log.info("重新发送邮件 -> {}", mail.sendTo);
+                    log.info("Resend mail  -> {}", mail.sendTo);
                     mailService.sendSignUpMail(mail);
                 } else {
-                    log.error("邮件连续三次发送失败,请检查 -> {} ", mail.sendTo);
+                    log.error("The mail failed to be sent three times in a row, please check it-> {} ", mail.sendTo);
                 }
             }
         }

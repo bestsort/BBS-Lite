@@ -14,6 +14,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @ClassName SessionInterceptor
@@ -31,6 +32,7 @@ public class SessionInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) {
+
         if(request.getSession().getAttribute("user") != null){
             return true;
         }
@@ -41,7 +43,8 @@ public class SessionInterceptor implements HandlerInterceptor {
                     String token = cookie.getValue();
                     User user = userService.getByToken(token);
                      if (user != null) {
-                         //点赞允许匿名用户,所以需要将user信息写入servlet中
+                         response.addCookie(new Cookie("user_id",user.getId().toString()));
+                         response.addCookie(new Cookie("account_id",user.getAccountId()));
                          request.setAttribute("user", user);
                          //写入Session便于持久化登录
                          request.getSession().setAttribute("user", user);

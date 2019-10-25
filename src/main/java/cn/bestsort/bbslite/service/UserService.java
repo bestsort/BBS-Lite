@@ -6,12 +6,15 @@ import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.pojo.model.UserBuffer;
 import cn.bestsort.bbslite.pojo.model.UserBufferExample;
 import cn.bestsort.bbslite.pojo.model.UserExample;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -21,6 +24,7 @@ import java.util.List;
  * @Date 19-9-1 上午6:48
  * @Version 1.0
  */
+@Slf4j
 @Service
 @CacheConfig(cacheNames = "userCache")
 public class UserService {
@@ -91,7 +95,10 @@ public class UserService {
     public boolean hasCreateUser(UserBuffer userCreateVo){
         UserExample example = new UserExample();
         example.createCriteria().andAccountIdEqualTo(userCreateVo.getAccountId());
-        return userMapper.selectByExample(example) != null;
+        UserBufferExample bufferExample = new UserBufferExample();
+        bufferExample.createCriteria().andAccountIdEqualTo(userCreateVo.getAccountId());
+        return !(userMapper.selectByExample(example).isEmpty()
+                &&userBufferMapper.selectByExample(bufferExample).isEmpty());
     }
     public User activateUser(String token, String account){
         UserBufferExample example = new UserBufferExample();
@@ -103,7 +110,9 @@ public class UserService {
         user.setAccountId(buffer.getAccountId());
         user.setToken(buffer.getToken());
         user.setEmail(buffer.getEmail());
-        return createOrUpdate(user);
+        user = createOrUpdate(user);
+        log.info("User activation succeeded,The account information is: {}",user);
+        return user;
     }
     public int clearUnActivateUser(){
         return userBufferMapper.deleteByExample(new UserBufferExample());
