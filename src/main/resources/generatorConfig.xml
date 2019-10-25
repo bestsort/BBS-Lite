@@ -44,5 +44,6 @@
         <table tableName="thumb_up" domainObjectName="ThumbUp"/>
         <table tableName="follow" domainObjectName="Follow"/>
         <table tableName="fans" domainObjectName="Fans"/>
+        <table tableName="user_buffer" domainObjectName="UserBuffer"/>
     </context>
 </generatorConfiguration>

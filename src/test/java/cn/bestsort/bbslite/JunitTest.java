@@ -1,6 +1,6 @@
 package cn.bestsort.bbslite;
 
-import cn.bestsort.bbslite.service.MailService;
+import cn.bestsort.bbslite.manager.MailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

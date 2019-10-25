@@ -1,15 +1,20 @@
 package cn.bestsort.bbslite.enums;
 
+/**
+ * @author bestsort
+ */
+
 public enum CustomizeErrorCodeEnum  implements MessageInterface {
-    NO_WAY(9,"听话,不要乱跑哟!"),
-    USER_EXITED(8,"该账户已存在"),
-    USER_ERROR(7,"你请求姿势有问题,换一个试试?"),
-    COMMENT_NOT_FOUND(6,"你操作的评论不存在了,换一个试试?"),
-    TYPE_PARAM_WRONG(5,"评论类型错误或不存在"),
-    NO_LOGIN(4,"你还没有登录呢"),
-    TARGET_PAI_NOT_FOUND(3,"未选中任何问题或回复进行评论"),
-    QUESTION_NOT_FOUND(2,"问题不见了,换一个试试?"),
-    SYS_ERROR(1,"出 BUG 啦,要不杀个程序员祭天吧?"),
+    COMMENT_NOT_FOUND(404,"你操作的评论不存在了,换一个试试?"),
+    TYPE_PARAM_WRONG(404,"评论类型错误或不存在"),
+    TARGET_PAI_NOT_FOUND(404,"未选中任何问题或回复进行评论"),
+    QUESTION_NOT_FOUND(404,"问题不见了,换一个试试?"),
+    USER_EXITED(403,"该账户已存在"),
+    NO_WAY(403,"听话,不要乱跑哟!"),
+    NO_LOGIN(401,"你还没有登录呢"),
+    USER_ERROR(400,"你请求姿势有问题,换一个试试?"),
+
+    SYS_ERROR(502,"出 BUG 啦,要不杀个程序员祭天吧?")
     ;
     private String name;
     private Integer code;

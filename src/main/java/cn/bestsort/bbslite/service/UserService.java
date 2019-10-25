@@ -1,16 +1,17 @@
 package cn.bestsort.bbslite.service;
 
+import cn.bestsort.bbslite.mapper.UserBufferMapper;
 import cn.bestsort.bbslite.mapper.UserMapper;
 import cn.bestsort.bbslite.pojo.model.User;
+import cn.bestsort.bbslite.pojo.model.UserBuffer;
+import cn.bestsort.bbslite.pojo.model.UserBufferExample;
 import cn.bestsort.bbslite.pojo.model.UserExample;
-import cn.bestsort.bbslite.util.MurmursHash;
-import cn.bestsort.bbslite.vo.UserCreateVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 /**
@@ -23,9 +24,18 @@ import java.util.List;
 @Service
 @CacheConfig(cacheNames = "userCache")
 public class UserService {
+    @Value("${bbs.user.default.avatar-url}")
+    String defaultAvatarUrl;
+    @Value("${bbs.user.default.bio}")
+    String defaultBio;
+    @Value("${bbs.user.default.nickname}")
+    String defaultNickname;
+
+
     @Autowired
     private UserMapper userMapper;
-
+    @Autowired
+    private UserBufferMapper userBufferMapper;
 
     @Cacheable(keyGenerator = "myKeyGenerator")
     public User getById(long id){
@@ -49,6 +59,9 @@ public class UserService {
         List<User> dbUser = userMapper.selectByExample(userExample);
 
         if (dbUser.isEmpty()){
+            user.setBio(defaultBio);
+            user.setAvatarUrl(defaultAvatarUrl);
+            user.setName(defaultNickname);
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             userMapper.insertSelective(user);
@@ -66,25 +79,28 @@ public class UserService {
         userExample.createCriteria().andAccountIdEqualTo(user.getAccountId());
         return userMapper.selectByExample(userExample).get(0);
     }
-
-    public boolean hasCreateUser(UserCreateVo userCreateVo){
+    public void signUpUser(UserBuffer userBuffer){
+        userBufferMapper.insertSelective(userBuffer);
+    }
+    public boolean hasCreateUser(UserBuffer userCreateVo){
         UserExample example = new UserExample();
         example.createCriteria().andAccountIdEqualTo(userCreateVo.getAccountId());
         return userMapper.selectByExample(example) != null;
     }
-    public User activateUser(String token, String account) throws Exception{
-        UserExample example = new UserExample();
-        example.createCriteria().andTokenEqualTo(token).andAccountIdEqualTo(account);
-        User user = userMapper.selectByExample(example).get(0);
-        assert user.getToken().equals(MurmursHash.hashUnsigned(token));
-        user.setAuthenticated((byte)1);
-        userMapper.updateByPrimaryKey(user);
-        return user;
+    public User activateUser(String token, String account){
+        UserBufferExample example = new UserBufferExample();
+        example.createCriteria().andAccountIdEqualTo(account)
+                .andTokenEqualTo(token);
+        UserBuffer buffer = userBufferMapper.selectByExample(example).get(0);
+        User user = new User();
+        user.setPassword(buffer.getPassword());
+        user.setAccountId(buffer.getAccountId());
+        user.setToken(buffer.getToken());
+        user.setEmail(buffer.getEmail());
+        return createOrUpdate(user);
     }
     public int clearUnActivateUser(){
-        UserExample example = new UserExample();
-        example.createCriteria().andAuthenticatedEqualTo((byte)0);
-        return userMapper.deleteByExample(example);
+        return userBufferMapper.deleteByExample(new UserBufferExample());
     }
     public User getSimpleInfoById(Long id) {
         User user = getById(id);

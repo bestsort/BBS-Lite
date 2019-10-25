@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @ClassName ThumbQuestion
- * @Description TODO
+ * @Description
  * @Author bestsort
  * @Date 2019/10/14 下午2:17
  * @Version 1.0

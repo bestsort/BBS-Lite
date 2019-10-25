@@ -574,66 +574,6 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andAuthenticatedIsNull() {
-            addCriterion("authenticated is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAuthenticatedIsNotNull() {
-            addCriterion("authenticated is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAuthenticatedEqualTo(Byte value) {
-            addCriterion("authenticated =", value, "authenticated");
-            return (Criteria) this;
-        }
-
-        public Criteria andAuthenticatedNotEqualTo(Byte value) {
-            addCriterion("authenticated <>", value, "authenticated");
-            return (Criteria) this;
-        }
-
-        public Criteria andAuthenticatedGreaterThan(Byte value) {
-            addCriterion("authenticated >", value, "authenticated");
-            return (Criteria) this;
-        }
-
-        public Criteria andAuthenticatedGreaterThanOrEqualTo(Byte value) {
-            addCriterion("authenticated >=", value, "authenticated");
-            return (Criteria) this;
-        }
-
-        public Criteria andAuthenticatedLessThan(Byte value) {
-            addCriterion("authenticated <", value, "authenticated");
-            return (Criteria) this;
-        }
-
-        public Criteria andAuthenticatedLessThanOrEqualTo(Byte value) {
-            addCriterion("authenticated <=", value, "authenticated");
-            return (Criteria) this;
-        }
-
-        public Criteria andAuthenticatedIn(List<Byte> values) {
-            addCriterion("authenticated in", values, "authenticated");
-            return (Criteria) this;
-        }
-
-        public Criteria andAuthenticatedNotIn(List<Byte> values) {
-            addCriterion("authenticated not in", values, "authenticated");
-            return (Criteria) this;
-        }
-
-        public Criteria andAuthenticatedBetween(Byte value1, Byte value2) {
-            addCriterion("authenticated between", value1, value2, "authenticated");
-            return (Criteria) this;
-        }
-
-        public Criteria andAuthenticatedNotBetween(Byte value1, Byte value2) {
-            addCriterion("authenticated not between", value1, value2, "authenticated");
-            return (Criteria) this;
-        }
-
         public Criteria andAvatarUrlIsNull() {
             addCriterion("avatar_url is null");
             return (Criteria) this;

@@ -40,7 +40,7 @@ public class QuestionService {
 
     public PageInfo<Question> findQuestionListByCategory(int page,int size,int category){
         QuestionExample example = new QuestionExample();
-        example.setOrderByClause(SortBy.DEAFULT_ORDER);
+        example.setOrderByClause(SortBy.DEFAULT_ORDER);
 
         PageHelper.startPage(page,size);
         List<Question> questions = questionMapper.selectByExample(example);

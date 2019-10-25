@@ -1,6 +1,6 @@
 package cn.bestsort.bbslite.util;
 
-import cn.bestsort.bbslite.service.MailService;
+import cn.bestsort.bbslite.manager.MailService;
 import cn.bestsort.bbslite.service.UserService;
 import cn.bestsort.bbslite.vo.MailVo;
 import lombok.extern.slf4j.Slf4j;

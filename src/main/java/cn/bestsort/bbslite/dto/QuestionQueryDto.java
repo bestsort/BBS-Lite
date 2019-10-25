@@ -6,7 +6,7 @@ import lombok.Getter;
 
 /**
  * @ClassName QuestionQueryDto
- * @Description TODO
+ * @Description
  * @Author bestsort
  * @Date 2019/10/7 下午12:03
  * @Version 1.0

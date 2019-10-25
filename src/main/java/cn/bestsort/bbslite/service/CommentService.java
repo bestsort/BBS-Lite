@@ -19,7 +19,6 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -76,9 +75,8 @@ public class CommentService {
         Long creator = questionMapper.selectByPrimaryKey(questionId).getCreator();
 
         CommentExample commentExample = new CommentExample();
-        commentExample.createCriteria()
-                .andCommentToEqualTo(questionId);
-        commentExample.setOrderByClause(SortBy.DEAFULT_ORDER);
+        commentExample.createCriteria().andCommentToEqualTo(questionId);
+        commentExample.setOrderByClause(SortBy.DEFAULT_ORDER);
         //PageHelper.startPage(page,size);
         List<Comment> comments = commentMapper.selectByExample(commentExample);
 

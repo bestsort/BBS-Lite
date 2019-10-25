@@ -3,12 +3,11 @@ package cn.bestsort.bbslite.controtller;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.MailService;
+import cn.bestsort.bbslite.pojo.model.UserBuffer;
+import cn.bestsort.bbslite.manager.MailService;
 import cn.bestsort.bbslite.service.UserService;
 import cn.bestsort.bbslite.util.MurmursHash;
-import cn.bestsort.bbslite.vo.UserCreateVo;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -39,21 +38,16 @@ public class SignUpController {
 
     @ResponseBody
     @PostMapping("/sign_up")
-    public ResultDto post(@RequestBody UserCreateVo userCreateDTO){
+    public ResultDto post(@RequestBody UserBuffer user){
 
-        if (!userService.hasCreateUser(userCreateDTO)){
+        if (!userService.hasCreateUser(user)){
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.USER_EXITED);
         }
-
-        User user = new User();
         String token = UUID.randomUUID().toString();
-        BeanUtils.copyProperties(userCreateDTO,user);
-        user.setGmtModified(System.currentTimeMillis());
-        user.setGmtCreate(user.getGmtModified());
+        user.setToken(token);
         user.setPassword(MurmursHash.hashUnsigned(user.getPassword()+user.getAccountId()));
         user.setToken(token);
-        user = userService.createOrUpdate(user);
-        userCreateDTO.setToken(user.getToken());
+        userService.signUpUser(user);
         mail.sendMail(user.getToken(),user.getAccountId(),user.getEmail());
         return new ResultDto().okOf();
     }
