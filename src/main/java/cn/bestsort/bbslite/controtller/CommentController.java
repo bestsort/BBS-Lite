@@ -1,5 +1,7 @@
 package cn.bestsort.bbslite.controtller;
 
+import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
+import cn.bestsort.bbslite.pojo.model.Comment;
 import cn.bestsort.bbslite.vo.CommentVo;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.pojo.model.User;
@@ -42,9 +44,18 @@ public class CommentController {
     @PostMapping("/commitComment")
     public ResultDto commitComment(@RequestParam(name = "questionId") Long questionId,
                                    @RequestParam(name = "content") String content,
-
+                                   @RequestParam(name = "pid") Long pid,
                                    HttpSession session){
-
-        return null;
+        User user = (User)session.getAttribute("user");
+        if (user == null){
+            return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
+        }
+        Comment comment = new Comment();
+        comment.setCommentBy(user.getId());
+        comment.setCommentTo(questionId);
+        comment.setContent(content);
+        comment.setPid(pid);
+        commentService.insert(comment);
+        return new ResultDto().okOf();
     }
 }

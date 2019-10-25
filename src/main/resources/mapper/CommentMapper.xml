@@ -3,15 +3,13 @@
 <mapper namespace="cn.bestsort.bbslite.mapper.CommentMapper">
   <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Comment">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="pid" jdbcType="BIGINT" property="pid" />
-    <result column="question_id" jdbcType="BIGINT" property="questionId" />
     <result column="comment_to" jdbcType="BIGINT" property="commentTo" />
     <result column="comment_by" jdbcType="BIGINT" property="commentBy" />
-    <result column="commentator" jdbcType="BIGINT" property="commentator" />
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="like_count" jdbcType="BIGINT" property="likeCount" />
+    <result column="pid" jdbcType="BIGINT" property="pid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,8 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, pid, question_id, comment_to, comment_by, commentator, gmt_modified, gmt_create, 
-    content, like_count
+    id, comment_to, comment_by, gmt_modified, gmt_create, content, like_count, pid
   </sql>
   <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.CommentExample" resultMap="BaseResultMap">
     select
@@ -106,14 +103,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
-    insert into comment (id, pid, question_id, 
-      comment_to, comment_by, commentator, 
+    insert into comment (id, comment_to, comment_by, 
       gmt_modified, gmt_create, content, 
-      like_count)
-    values (#{id,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT}, #{questionId,jdbcType=BIGINT}, 
-      #{commentTo,jdbcType=BIGINT}, #{commentBy,jdbcType=BIGINT}, #{commentator,jdbcType=BIGINT}, 
+      like_count, pid)
+    values (#{id,jdbcType=BIGINT}, #{commentTo,jdbcType=BIGINT}, #{commentBy,jdbcType=BIGINT}, 
       #{gmtModified,jdbcType=BIGINT}, #{gmtCreate,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
-      #{likeCount,jdbcType=BIGINT})
+      #{likeCount,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
     insert into comment
@@ -121,20 +116,11 @@
       <if test="id != null">
         id,
       </if>
-      <if test="pid != null">
-        pid,
-      </if>
-      <if test="questionId != null">
-        question_id,
-      </if>
       <if test="commentTo != null">
         comment_to,
       </if>
       <if test="commentBy != null">
         comment_by,
-      </if>
-      <if test="commentator != null">
-        commentator,
       </if>
       <if test="gmtModified != null">
         gmt_modified,
@@ -148,25 +134,19 @@
       <if test="likeCount != null">
         like_count,
       </if>
+      <if test="pid != null">
+        pid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
-      </if>
-      <if test="pid != null">
-        #{pid,jdbcType=BIGINT},
-      </if>
-      <if test="questionId != null">
-        #{questionId,jdbcType=BIGINT},
       </if>
       <if test="commentTo != null">
         #{commentTo,jdbcType=BIGINT},
       </if>
       <if test="commentBy != null">
         #{commentBy,jdbcType=BIGINT},
-      </if>
-      <if test="commentator != null">
-        #{commentator,jdbcType=BIGINT},
       </if>
       <if test="gmtModified != null">
         #{gmtModified,jdbcType=BIGINT},
@@ -179,6 +159,9 @@
       </if>
       <if test="likeCount != null">
         #{likeCount,jdbcType=BIGINT},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -194,20 +177,11 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.pid != null">
-        pid = #{record.pid,jdbcType=BIGINT},
-      </if>
-      <if test="record.questionId != null">
-        question_id = #{record.questionId,jdbcType=BIGINT},
-      </if>
       <if test="record.commentTo != null">
         comment_to = #{record.commentTo,jdbcType=BIGINT},
       </if>
       <if test="record.commentBy != null">
         comment_by = #{record.commentBy,jdbcType=BIGINT},
-      </if>
-      <if test="record.commentator != null">
-        commentator = #{record.commentator,jdbcType=BIGINT},
       </if>
       <if test="record.gmtModified != null">
         gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
@@ -221,6 +195,9 @@
       <if test="record.likeCount != null">
         like_count = #{record.likeCount,jdbcType=BIGINT},
       </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -229,15 +206,13 @@
   <update id="updateByExample" parameterType="map">
     update comment
     set id = #{record.id,jdbcType=BIGINT},
-      pid = #{record.pid,jdbcType=BIGINT},
-      question_id = #{record.questionId,jdbcType=BIGINT},
       comment_to = #{record.commentTo,jdbcType=BIGINT},
       comment_by = #{record.commentBy,jdbcType=BIGINT},
-      commentator = #{record.commentator,jdbcType=BIGINT},
       gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
       gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
       content = #{record.content,jdbcType=VARCHAR},
-      like_count = #{record.likeCount,jdbcType=BIGINT}
+      like_count = #{record.likeCount,jdbcType=BIGINT},
+      pid = #{record.pid,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -245,20 +220,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
     update comment
     <set>
-      <if test="pid != null">
-        pid = #{pid,jdbcType=BIGINT},
-      </if>
-      <if test="questionId != null">
-        question_id = #{questionId,jdbcType=BIGINT},
-      </if>
       <if test="commentTo != null">
         comment_to = #{commentTo,jdbcType=BIGINT},
       </if>
       <if test="commentBy != null">
         comment_by = #{commentBy,jdbcType=BIGINT},
-      </if>
-      <if test="commentator != null">
-        commentator = #{commentator,jdbcType=BIGINT},
       </if>
       <if test="gmtModified != null">
         gmt_modified = #{gmtModified,jdbcType=BIGINT},
@@ -272,20 +238,21 @@
       <if test="likeCount != null">
         like_count = #{likeCount,jdbcType=BIGINT},
       </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.pojo.model.Comment">
     update comment
-    set pid = #{pid,jdbcType=BIGINT},
-      question_id = #{questionId,jdbcType=BIGINT},
-      comment_to = #{commentTo,jdbcType=BIGINT},
+    set comment_to = #{commentTo,jdbcType=BIGINT},
       comment_by = #{commentBy,jdbcType=BIGINT},
-      commentator = #{commentator,jdbcType=BIGINT},
       gmt_modified = #{gmtModified,jdbcType=BIGINT},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
       content = #{content,jdbcType=VARCHAR},
-      like_count = #{likeCount,jdbcType=BIGINT}
+      like_count = #{likeCount,jdbcType=BIGINT},
+      pid = #{pid,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
