@@ -39,12 +39,11 @@
 
         <table tableName="user" domainObjectName="User" />
         <table tableName="question" domainObjectName="Question" />
-        <table tableName="comment" domainObjectName="Comment" />
         <table tableName="topic" domainObjectName="Topic"/>
         <table tableName="thumb_up" domainObjectName="ThumbUp"/>
         <table tableName="follow" domainObjectName="Follow"/>
         <table tableName="fans" domainObjectName="Fans"/>
         <table tableName="user_buffer" domainObjectName="UserBuffer"/>
-        <table tableName="message" domainObjectName="Message" />
+        <table tableName="message" domainObjectName="Message"/>
     </context>
 </generatorConfiguration>

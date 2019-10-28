@@ -1,11 +1,13 @@
 package cn.bestsort.bbslite.service;
 
 import cn.bestsort.bbslite.mapper.UserBufferMapper;
+import cn.bestsort.bbslite.mapper.UserExtMapper;
 import cn.bestsort.bbslite.mapper.UserMapper;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.pojo.model.UserBuffer;
 import cn.bestsort.bbslite.pojo.model.UserBufferExample;
 import cn.bestsort.bbslite.pojo.model.UserExample;
+import cn.bestsort.bbslite.util.MurmursHash;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +37,8 @@ public class UserService {
     @Value("${bbs.user.default.nickname}")
     String defaultNickname;
 
-
+    @Autowired
+    private UserExtMapper userExtMapper;
     @Autowired
     private UserMapper userMapper;
     @Autowired
@@ -100,6 +103,17 @@ public class UserService {
         return !(userMapper.selectByExample(example).isEmpty()
                 &&userBufferMapper.selectByExample(bufferExample).isEmpty());
     }
+    public User loginByAccount(String account,String password){
+        UserExample example = new UserExample();
+        example.createCriteria().andAccountIdEqualTo(account)
+                .andPasswordEqualTo(MurmursHash.hashUnsigned(password+account));
+        List<User> users = userMapper.selectByExample(example);
+        if (users.isEmpty()){
+            return null;
+        }
+        return userMapper.selectByExample(example).get(0);
+    }
+
     public User activateUser(String token, String account){
         UserBufferExample example = new UserBufferExample();
         example.createCriteria().andAccountIdEqualTo(account)
@@ -118,11 +132,6 @@ public class UserService {
         return userBufferMapper.deleteByExample(new UserBufferExample());
     }
     public User getSimpleInfoById(Long id) {
-        User user = getById(id);
-        if(user != null){
-            user.setPassword(null);
-            user.setToken(null);
-        }
-        return user;
+        return userExtMapper.selectSimpleInfoById(id);
     }
 }

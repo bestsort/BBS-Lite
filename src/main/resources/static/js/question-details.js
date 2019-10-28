@@ -2,9 +2,7 @@ let question_like_count;
 let question_follow_count;
 let question_comment_count;
 let question_view_count;
-let thumb_up = "icon-zan";
-let follow = "icon-shoucang";
-let comment = "icon-pinglun";
+
 $(function () {
     // 加载问题详情
     //TODO 非法访问限制
@@ -39,17 +37,18 @@ $(function () {
 });
 
 function click_options() {
-    $(document).on('click', "#"+thumb_up, function () {
-        like_or_follow_question("/thumbUpQuestion",thumb_up,"点赞",question_like_count);
+    $(document).on('click', "#"+thumb_up_icon, function () {
+        like_or_follow_question("/thumbUpQuestion",thumb_up_icon,"点赞",question_like_count);
     });
     $(document).on('click',"#icon-bianji",function () {
         location.href = "/publish?id=" + getQuestionId();
     });
-    $(document).on('click',"#"+follow,function () {
-        like_or_follow_question("/followQuestion",follow,"收藏",question_follow_count);
+    $(document).on('click',"#"+follow_icon,function () {
+        like_or_follow_question("/followQuestion",follow_icon,"收藏",question_follow_count);
     });
-    $(document).on('click',"#"+comment, function(){
-        if($("#comment_input").length === 0){
+    $(document).on('click',"#"+comment_icon, function(){
+        let val = "#comment_input";
+        if($(val).length === 0){
             $("#question_detail").append(
                 '<div id="comment_input" class="col-lg-12 col-md-12 col-xs-12 col-sm-12 collapse" style="padding-right: 0;padding-bottom: 50px">' +
                 '<textarea class="form-control" rows="5"></textarea>' +
@@ -59,25 +58,43 @@ function click_options() {
                 '">发布</button></div>'
             )
         }
-        $(".collapse").collapse('toggle');
+        $(val).collapse('toggle');
     });
     $(document).on('click',"#commit_comment",function () {
-        commit_comment(0);
+        commit_comment();
     });
     $(document).on('click',".comment-post>span:odd",function () {
-        alert("click odd");
+        success_prompt("click follow");
+
     });
-    $(document).on('click',".comment-post>span:even",function () {
-        alert("click even");
+    $(document).on('click',".comment-post>span",function () {
+        /**
+         * 子评论
+         */
+        if ($(this).parents("li").length === 2){
+            alert("click kid comment,the val is " + $(this).prevAll("input").val()+
+                  ";\n and the pid val is " + $($(this).parents("li")[1]).val());
+        }
+        /**
+         * 父评论
+         */
+        else {
+            if ($(this).next().length === 0){
+                alert("click parent comment,the val is " + $(this).prevAll("input").val());
+            }
+            else{
+                alert("click parent thumb up,the val is " + $(this).prevAll("input").val());
+            }
+        }
+        success_prompt("click thumb up");
     });
 }
 
 function commit_comment(val) {
     let jsonData = {
         "questionId":getQuestionId(),
-        "pid":0,
+        "pid":val,
         "content":$("#commit_comment").prev().val(),
-        "commentTo":"",
     };
     $.ajax({
         type: "POST",
@@ -88,11 +105,15 @@ function commit_comment(val) {
             if (data.code !== 200) {
                 fail_prompt(data.message);
                 setTimeout(function () {
-                    location.href = "/";
+                    location.reload();
                 },1500)
+            }else {
+                success_prompt("成功");
+                setTimeout(function () {
+                    load_comment_info();
+                },1200);
             }
-            load_comment_info();
-        },
+            },
         complete:close_loading()
     });
 }
@@ -130,7 +151,7 @@ function add_option(count,show,icon,isActive,show_count) {
     if(isActive != null) {
         let html = '<span class="option ' + (isActive ? 'on' : '') + '" value="' + isActive + '" id="'
             + icon + '"' +
-            (icon===comment?' data-toggle="collapse" aria-expanded="false" aria-controls="comment_input"':'') +
+            (icon===comment_icon?' data-toggle="collapse" aria-expanded="false" aria-controls="comment_input"':'') +
             '><i class="iconfont ' + icon + '"></i>' + (isActive ? '已' : '');
 
         if($("#"+icon).length > 0) {
@@ -170,9 +191,9 @@ function load_question_option(creator, {commentCount:questionComment,followCount
         success: function (data) {
             if (data.code == "200") {
                 let options = data.extend.options;
-                add_option(questionThumb,"点赞",thumb_up,options.isThumbUpQuestion,true);
-                add_option(questionFollow,"收藏",follow,options.isFollowQuestion,true);
-                add_option(null,"评论",comment,false,false);
+                add_option(questionThumb,"点赞",thumb_up_icon,options.isThumbUpQuestion,true);
+                add_option(questionFollow,"收藏",follow_icon,options.isFollowQuestion,true);
+                add_option(null,"评论",comment_icon,false,false);
                 add_option(null,"编辑问题","icon-bianji",options.isCreator,false);
                 click_options();
             }
@@ -194,19 +215,16 @@ function load_comment_info(){
     $("#show_more_comment").parent("div").hide();
     $("#question_comment").empty();
     const url = "/loadComment";
-    const jsonData = {
-        "id": getQuestionId(),
-    };
-
     $.ajax({
         type: "GET",
         url: url,
-        data: jsonData,
+        data: {"id": getQuestionId()},
         beforeSend: open_loading(),
         success: function (data) {
             if (data.code == "200") {
                 load_comments(data);
             } else {
+                fail_prompt(data.message,2000);
             }
         },
         complete: close_loading()
@@ -315,19 +333,20 @@ function load_comments(data) {
     })
 }
 function load_comment_html(comment) {
+    let byUser = comment.commentByUser;
     let html =
-        '        <li style="margin: 0">\n' +
+        '        <li style="margin: 0" value="' + comment.id + '">\n' +
         '            <div class="comment-main-level">\n' +
-        '                <div class="comment-avatar"><img src="' + comment.user.avatarUrl + '" alt=""></div>\n' +
+        '                <div class="comment-avatar"><img src="' + byUser.avatarUrl + '" alt=""></div>\n' +
         '                <div class="comment-box">\n' +
         '                    <div class="comment-head">\n' +
         '                        <h6 class="comment-name ' + (comment.isAuthor?'by-author':'') + '">\n' +
-        '                            <a href="'+ comment.user.htmlUrl + '">'+ comment.user.name + '</a>\n' +
+        '                            <a href="'+ byUser.htmlUrl + '">'+ byUser.name + '</a>\n' +
         '                        </h6>\n' +
-        '                        <span class="comment-post pull-right" > \n' +
-        '                            <input value="' + comment.user.id + '" hidden="true">' +
-        '                                 <span class="option"><i class="iconfont icon-dianzan" ></i>评论</span>\n' +
-        '                                 <span class="option" style="margin-right: 25px"><i class="iconfont icon-shoucang" ></i>点赞</a></span>\n' +
+        '                        <span class="comment-post pull-right" style="top: 0;"> \n' +
+        '                            <input name="commentId" value="' + comment.id + '" hidden="true">' +
+        '                            <span class="option"><i class="iconfont icon-zan" >点赞(' + comment.likeCount + ')</i></span>\n' +
+        '                            <span class="option" style="margin-right: 25px"><i class="iconfont icon-fenxiang" ></i>评论</span>\n' +
         '                    </span></div>\n' +
         '                    <div class="comment-content">' + comment.content +
         '                        <span> ' + formatTimestamp(comment.gmtCreate) + '</span>\n' +
@@ -336,20 +355,20 @@ function load_comment_html(comment) {
         '            </div>\n';
 
         $.each(comment.son,function (index,item) {
+            let bySonUser = item.commentByUser;
             html +=
                 '            <!-- Respuestas de los comentarios -->\n' +
                 '            <ul class="comments-list reply-list">\n' +
                 '                <li>\n' +
                 '                    <!-- Avatar -->\n' +
-                '                    <div class="comment-avatar"><img src="' + item.user.avatarUrl + '" alt=""></div>\n' +
+                '                    <div class="comment-avatar"><img src="' + bySonUser.avatarUrl + '" alt=""></div>\n' +
                 '                    <!-- Contenedor del Comentario -->\n' +
                 '                    <div class="comment-box">\n' +
                 '                        <div class="comment-head">\n' +
-                '                            <h6 class="comment-name"><a href="'+ item.user.htmlUrl + '">'+ item.user.name + '</a></h6>\n' +
+                '                            <h6 class="comment-name"><a href="'+ bySonUser.htmlUrl + '">'+ bySonUser.name + '</a></h6>\n' +
                 '                            <span class="comment-post pull-right">\n' +
-                '                            <input value="' + item.user.id + '" hidden="true">' +
-                '                                 <span class="option"><i class="iconfont icon-dianzan"></i>评论</span>\n' +
-                '                                 <span class="option" style="margin-right: 25px"><i class="iconfont icon-shoucang"></i>点赞</a></span>\n' +
+                '                            <input value="' + bySonUser.id + '" hidden="true">' +
+                '                                 <span class="option"  style="margin-right: 25px;top: 0"><i class="iconfont icon-fenxiang"></i>评论</span>\n' +
                 '                            </span>\n' +
                 '                        </div>\n' +
                 '                        <div class="comment-content">'+ item.content +

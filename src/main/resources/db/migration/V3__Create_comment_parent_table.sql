@@ -1,9 +1,8 @@
-create table comment
+create table comment_parent
 (
     id bigint auto_increment primary key ,
-    comment_to bigint,
-    comment_by bigint,
-    pid bigint,
+    comment_by_id bigint,
+    question_id bigint,
     gmt_modified bigint,
     gmt_create bigint,
     content varchar(255),

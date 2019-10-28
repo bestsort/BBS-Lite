@@ -3,7 +3,7 @@ create table user
     id bigint auto_increment primary key not null,
     account_id varchar(20) unique ,
     email varchar(30),
-    name varchar(14),
+    name varchar(20),
     token varchar(36),
     bio varchar(256),
     fans_count bigint default 0,

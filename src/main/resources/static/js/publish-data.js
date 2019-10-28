@@ -121,6 +121,7 @@ function show_topic_option(data) {
 
 function jude_not_null(json_data) {
     let result = [];
+
     for(let key in json_data){
         if (json_data[key] === "") {
             result.push(key);

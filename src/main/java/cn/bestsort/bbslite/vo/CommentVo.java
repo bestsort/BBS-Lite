@@ -1,5 +1,6 @@
 package cn.bestsort.bbslite.vo;
 
+import cn.bestsort.bbslite.pojo.model.CommentKid;
 import cn.bestsort.bbslite.pojo.model.User;
 import lombok.Data;
 
@@ -16,13 +17,11 @@ import java.util.List;
 @Data
 public class CommentVo {
     private Long id;
-    private Long pid;
-    private Long commentTo;
-    private Long commentBy;
+    private User commentToUser;
+    private User commentByUser;
     private Boolean isAuthor;
     private Long gmtCreate;
     private Long likeCount;
     private String content;
-    private User user;
     private List<CommentVo> son;
 }

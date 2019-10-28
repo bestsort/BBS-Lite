@@ -87,7 +87,7 @@ body, html {
     margin: 5px;
 }
 .main {
-    min-height: 850px;
+    min-height: 800px;
     background-color: #fff;
     border-radius: 10px;
     padding-top: 20px;
@@ -145,6 +145,14 @@ body, html {
     font-size: 14px;
     border: none;
     background: none;
+}
+.link-color{
+    color: #155faa;
+}
+
+.modal-button{
+    margin: auto;
+    border-top:none
 }
 .bbs-menu:focus{
     outline:none;

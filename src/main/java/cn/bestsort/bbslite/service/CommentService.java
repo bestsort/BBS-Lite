@@ -1,28 +1,22 @@
 package cn.bestsort.bbslite.service;
 
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
-import cn.bestsort.bbslite.enums.SortBy;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.CommentMapper;
 import cn.bestsort.bbslite.mapper.QuestionExtMapper;
 import cn.bestsort.bbslite.mapper.QuestionMapper;
 import cn.bestsort.bbslite.mapper.UserMapper;
-import cn.bestsort.bbslite.pojo.model.Comment;
-import cn.bestsort.bbslite.pojo.model.CommentExample;
-import cn.bestsort.bbslite.pojo.model.User;
+import cn.bestsort.bbslite.pojo.model.*;
 import cn.bestsort.bbslite.vo.CommentVo;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName CommentService
@@ -45,87 +39,90 @@ public class CommentService {
     private CommentMapper commentMapper;
 
     @CachePut(keyGenerator = "myKeyGenerator")
-    public void insert(Comment comment) {
-        if (comment.getCommentTo() == null) {
-            throw new CustomizeException(CustomizeErrorCodeEnum.TARGET_PAI_NOT_FOUND);
-        }
-        if(comment.getPid() == 0L){
-            if (questionMapper.selectByPrimaryKey(comment.getCommentTo()) == null){
+    public void insert(Comment comment,Long id,boolean isParent) {
+        if(isParent){
+            CommentParent commentParent = (CommentParent) comment;
+            commentParent.setQuestionId(id);
+            if (questionMapper.selectByPrimaryKey(id) == null){
                 throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
             }
-            comment.setGmtCreate(System.currentTimeMillis());
-            comment.setGmtModified(comment.getGmtCreate());
-            commentMapper.insertSelective(comment);
-        }else if (comment.getPid() == 1L){
+            commentParent.setGmtCreate(System.currentTimeMillis());
+            commentParent.setGmtModified(commentParent.getGmtCreate());
+            commentMapper.insertCommentParent(commentParent);
+            questionExtMapper.incQuestionComment(id,1L);
+        }else{
             //回复评论
-            Comment dbComment =commentMapper.selectByPrimaryKey(comment.getCommentTo());
-            if (dbComment == null) {
+            CommentParent parent = commentMapper.getCommentParent(id);
+            if(parent == null)
+            {
                 throw new CustomizeException(CustomizeErrorCodeEnum.COMMENT_NOT_FOUND);
             }
-            commentMapper.insertSelective(comment);
+            CommentKid kid = (CommentKid)comment;
+            kid.setPid(id);
+            commentMapper.insertCommentKid(kid);
+            questionExtMapper.incQuestionComment(parent.getQuestionId(),1L);
         }
-        else {
-            throw new CustomizeException(CustomizeErrorCodeEnum.USER_ERROR);
-        }
-        questionExtMapper.incQuestionComment(comment.getCommentTo(),1L);
     }
 
     @Cacheable(keyGenerator = "myKeyGenerator")
     public PageInfo<CommentVo> listByQuestionId(Long questionId, Integer page, Integer size) {
         Long creator = questionMapper.selectByPrimaryKey(questionId).getCreator();
 
-        CommentExample commentExample = new CommentExample();
-        commentExample.createCriteria().andCommentToEqualTo(questionId);
-        commentExample.setOrderByClause(SortBy.DEFAULT_ORDER);
         //PageHelper.startPage(page,size);
-        List<Comment> comments = commentMapper.selectByExample(commentExample);
-
+        List<CommentParent> comments = commentMapper.listComment(questionId);
         if (comments.isEmpty()) {
             return new PageInfo<>();
         }
 
-        //将comments 先按照评论分级排序再按照时间排序
-        comments.sort(new CommentComparator());
-
-        //将 comment 转为 commentDTO
-        HashMap<Long, CommentVo> dtoHashMap = new HashMap<>(10);
+        //将 comment 转为 commentVO
+        HashMap<Long, CommentVo> isFather = new HashMap<>(10);
         List<CommentVo> commentVos = new ArrayList<>(10);
-        for(Comment comment:comments){
-            CommentVo commentVo = new CommentVo();
-            BeanUtils.copyProperties(comment,commentVo);
-            User user = userMapper.selectByPrimaryKey(comment.getCommentBy());
-            user.setPassword(null);
-            user.setToken(null);
-            commentVo.setUser(user);
-            commentVo.setIsAuthor(creator.equals(commentVo.getUser().getId()));
-            if(comment.getPid() == 0) {
-                commentVo.setSon(new ArrayList<>());
-                // 如果为父评论则将其加入到 commentDTOList 并在 map 中标记
-                dtoHashMap.put(comment.getId(), commentVo);
-                commentVos.add(commentVo);
-            }
-            else{
-                // 否则就将评论装入到对应的父评论下
-                dtoHashMap.get(comment.getCommentTo())
-                        .getSon()
-                        .add(commentVo);
+        Map<Long,User> users = getUserMap(comments);
+        /*
+              如果为父评论则将其加入到 commentVOList 并在 map 中标记
+              否则就将评论装入到对应的父评论下
+         */
+        for(CommentParent parent:comments){
+            CommentVo commentVo = cloneParent2Vo(parent,users,creator);
+            commentVos.add(commentVo);
+            isFather.put(parent.getId(), commentVo);
+            for(CommentKid kid:parent.getKids()) {
+                isFather.get(kid.getPid()).getSon().add(cloneKid2Vo(kid,users,creator));
             }
         }
         return new PageInfo<>(commentVos);
     }
-    private static class CommentComparator implements Comparator<Comment>{
-        @Override
-        public int compare(Comment o1, Comment o2) {
-            long res;
-            if(!o1.getPid().equals(o2.getPid())){
-                //level 不相等则按照level排序
-                res = o1.getPid()-o2.getPid();
+    private CommentVo cloneParent2Vo(CommentParent parent,Map<Long,User>userMap,Long creator){
+        CommentVo commentVo = new CommentVo();
+        commentVo.setIsAuthor(parent.getCommentById().equals(creator));
+        commentVo.setContent(parent.getContent());
+        commentVo.setCommentByUser(userMap.get(parent.getCommentById()));
+        commentVo.setGmtCreate(parent.getGmtCreate());
+        commentVo.setLikeCount(parent.getLikeCount());
+        commentVo.setSon(new LinkedList<>());
+        commentVo.setId(parent.getId());
+        return commentVo;
+    }
+    private CommentVo cloneKid2Vo(CommentKid kid,Map<Long,User>userMap,Long creator){
+        CommentVo commentVo = new CommentVo();
+        commentVo.setIsAuthor(kid.getCommentById().equals(creator));
+        commentVo.setContent(kid.getContent());
+        commentVo.setCommentByUser(userMap.get(kid.getCommentById()));
+        commentVo.setGmtCreate(kid.getGmtCreate());
+        return commentVo;
+    }
+    private Map<Long, User> getUserMap(List<CommentParent> comments){
+        UserExample example = new UserExample();
+        Set<Long> userIds = new HashSet<>();
+        for (CommentParent parent:comments){
+            for (CommentKid kid :parent.getKids()){
+                userIds.add(kid.getCommentById());
             }
-            else{
-                //否则按照时间先后排序
-                res = o2.getGmtCreate() - o1.getGmtCreate();
-            }
-            return (int)res;
+            userIds.add(parent.getCommentById());
         }
+        example.createCriteria().andIdIn(new LinkedList<>(userIds));
+        List<User>users = userMapper.selectByExample(example);
+        //TODO 敏感数据置空
+        return users.stream().collect(Collectors.toMap(User::getId, user->user));
     }
 }

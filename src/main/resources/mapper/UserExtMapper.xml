@@ -11,16 +11,31 @@
         <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
         <result column="password" jdbcType="VARCHAR" property="password" />
         <result column="html_url" jdbcType="VARCHAR" property="htmlUrl" />
-        <result column="thumb_up" jdbcType="INTEGER" property="thumbUp" />
-        <result column="follow_count" jdbcType="BIGINT" property="followCount" />
+       <!-- <result column="thumb_up" jdbcType="INTEGER" property="thumbUp" />
+        <result column="follow_count" jdbcType="BIGINT" property="followCount" />-->
         <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
         <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     </resultMap>
-
-    <insert id="updateFollowCount" parameterType="cn.bestsort.bbslite.pojo.model.User">
+    <resultMap id="user_simple_info" type="cn.bestsort.bbslite.pojo.model.User">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="account_id" jdbcType="VARCHAR" property="accountId" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="bio" jdbcType="VARCHAR" property="bio" />
+        <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+        <result column="html_url" jdbcType="VARCHAR" property="htmlUrl" />
+    </resultMap>
+<!--    <insert id="updateFollowCount" parameterType="cn.bestsort.bbslite.pojo.model.User">
         insert into user (id,follow_count)
         values (#{id,jdbcType=BIGINT}, 1)
         on duplicate key update follow_count = follow_count+#{followCount,jdbcType=BIGINT};
-    </insert>
-
+    </insert>-->
+    <select id="selectSimpleInfoById" parameterType="long" resultMap="user_simple_info">
+        select
+            id,account_id,email,name,bio,avatar_url,html_url
+        from
+             user
+        where
+              id = #{id,jdbcType=BIGINT}
+    </select>
 </mapper>

@@ -11,6 +11,7 @@ public enum CustomizeErrorCodeEnum  implements MessageInterface {
     QUESTION_NOT_FOUND(404,"问题不见了,换一个试试?"),
     USER_EXITED(403,"该账户已存在"),
     NO_WAY(403,"听话,不要乱跑哟!"),
+    ACCOUNT_OR_PASSWORD_ERROR(403,"账号或密码有误, 请检查"),
     NO_LOGIN(401,"你还没有登录呢"),
     USER_ERROR(400,"你请求姿势有问题,换一个试试?"),
 
