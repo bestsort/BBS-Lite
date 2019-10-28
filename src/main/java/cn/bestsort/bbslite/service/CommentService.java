@@ -1,11 +1,9 @@
 package cn.bestsort.bbslite.service;
 
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
+import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.exception.CustomizeException;
-import cn.bestsort.bbslite.mapper.CommentMapper;
-import cn.bestsort.bbslite.mapper.QuestionExtMapper;
-import cn.bestsort.bbslite.mapper.QuestionMapper;
-import cn.bestsort.bbslite.mapper.UserMapper;
+import cn.bestsort.bbslite.mapper.*;
 import cn.bestsort.bbslite.pojo.model.*;
 import cn.bestsort.bbslite.vo.CommentVo;
 import com.github.pagehelper.PageInfo;
@@ -37,6 +35,8 @@ public class CommentService {
     QuestionMapper questionMapper;
     @Autowired
     private CommentMapper commentMapper;
+    @Autowired
+    private ThumbUpMapper thumbUpMapper;
 
     @CachePut(keyGenerator = "myKeyGenerator")
     public void insert(Comment comment,Long id,boolean isParent) {
@@ -65,7 +65,7 @@ public class CommentService {
     }
 
     @Cacheable(keyGenerator = "myKeyGenerator")
-    public PageInfo<CommentVo> listByQuestionId(Long questionId, Integer page, Integer size) {
+    public PageInfo<CommentVo> listByQuestionId(Long questionId,Long userId, Integer page, Integer size) {
         Long creator = questionMapper.selectByPrimaryKey(questionId).getCreator();
 
         //PageHelper.startPage(page,size);
@@ -77,13 +77,17 @@ public class CommentService {
         //将 comment 转为 commentVO
         HashMap<Long, CommentVo> isFather = new HashMap<>(10);
         List<CommentVo> commentVos = new ArrayList<>(10);
-        Map<Long,User> users = getUserMap(comments);
+        Map<Long,User> users = getUserMapByComments(comments);
         /*
               如果为父评论则将其加入到 commentVOList 并在 map 中标记
               否则就将评论装入到对应的父评论下
          */
+        Map<Long, Boolean> isThumb =new HashMap<>();
+        if(userId != null) {
+            isThumb = getThumbUpMap(comments, userId);
+        }
         for(CommentParent parent:comments){
-            CommentVo commentVo = cloneParent2Vo(parent,users,creator);
+            CommentVo commentVo = cloneParent2Vo(parent,users,creator,isThumb,userId);
             commentVos.add(commentVo);
             isFather.put(parent.getId(), commentVo);
             for(CommentKid kid:parent.getKids()) {
@@ -92,9 +96,10 @@ public class CommentService {
         }
         return new PageInfo<>(commentVos);
     }
-    private CommentVo cloneParent2Vo(CommentParent parent,Map<Long,User>userMap,Long creator){
+    private CommentVo cloneParent2Vo(CommentParent parent,Map<Long,User>userMap,Long creator,Map<Long,Boolean> isThumb,Long userId){
         CommentVo commentVo = new CommentVo();
         commentVo.setIsAuthor(parent.getCommentById().equals(creator));
+        commentVo.setIsActive(isThumb.get(parent.getId())!=null);
         commentVo.setContent(parent.getContent());
         commentVo.setCommentByUser(userMap.get(parent.getCommentById()));
         commentVo.setGmtCreate(parent.getGmtCreate());
@@ -111,7 +116,7 @@ public class CommentService {
         commentVo.setGmtCreate(kid.getGmtCreate());
         return commentVo;
     }
-    private Map<Long, User> getUserMap(List<CommentParent> comments){
+    private Map<Long, User> getUserMapByComments(List<CommentParent> comments){
         UserExample example = new UserExample();
         Set<Long> userIds = new HashSet<>();
         for (CommentParent parent:comments){
@@ -124,6 +129,16 @@ public class CommentService {
         List<User>users = userMapper.selectByExample(example);
         //TODO 敏感数据置空
         return users.stream().collect(Collectors.toMap(User::getId, user->user));
+    }
+    private Map<Long,Boolean> getThumbUpMap(List<CommentParent> comments,Long userId){
+
+        Set<Long> ids = comments.stream().map(CommentParent::getId).collect(Collectors.toSet());
+        ThumbUpExample thumbUpExample = new ThumbUpExample();
+        thumbUpExample.createCriteria().andThumbUpByEqualTo(userId)
+                .andTypeEqualTo(FunctionItem.getCode(FunctionItem.COMMENT))
+                .andStatusEqualTo((byte) 1)
+                .andThumbUpToIn(new LinkedList<>(ids));
+        return thumbUpMapper.selectByExample(thumbUpExample).stream().collect(Collectors.toMap(ThumbUp::getThumbUpTo,thumb->true));
     }
 
     public void incCommentLike(long commentId, long val) {

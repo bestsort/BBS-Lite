@@ -36,9 +36,11 @@ public class CommentController {
     UserService userService;
     @ResponseBody
     @GetMapping("/loadComment")
-    public ResultDto get(@RequestParam(name = "id") Long questionId){
+    public ResultDto get(@RequestParam(name = "id") Long questionId,
+                         HttpSession session){
         try {
-            PageInfo<CommentVo> comments = commentService.listByQuestionId(questionId,1,5);
+            User user = (User)session.getAttribute("user");
+            PageInfo<CommentVo> comments = commentService.listByQuestionId(questionId,user.getId(),1,5);
             List<CommentVo> list = comments.getList();
             return new ResultDto().okOf()
                     .addMsg("comments",list);

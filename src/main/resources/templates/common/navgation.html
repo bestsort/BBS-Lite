@@ -34,9 +34,14 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="iconfont icon-zhanghao"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="sign_accountId" placeholder="账号">
+                                    <input type="text" class="form-control" name="login-account" placeholder="账号">
                                 </div>
-
+                                <div class="input-group mb-3 hide-all" id="mail-login">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="iconfont icon-MailFilled"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" name="login-email" placeholder="邮箱">
+                                </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="iconfont icon-mima1"></i></span>
@@ -44,8 +49,8 @@
                                     <input type="password" name="login_password" class="form-control" placeholder="密码">
                                 </div>
                             </form>
-                            <a href="#" class="bbs-menu link-color">邮箱登录</a>
-                            <a href="#" class="bbs-menu link-color">忘记密码</a>
+                            <a href="#" id="change-login-method" class="bbs-menu link-color">邮箱登录</a>
+                            <a href="#" id="forget-password" class="bbs-menu link-color">忘记密码</a>
                         </div>
                         <div class="col-lg-5 col-md-5 col-xs-5 col-sm-12" name="third-login-button">
                         </div>

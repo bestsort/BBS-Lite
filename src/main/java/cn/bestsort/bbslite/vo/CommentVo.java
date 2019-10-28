@@ -17,6 +17,7 @@ import java.util.List;
 @Data
 public class CommentVo {
     private Long id;
+    private Boolean isActive;
     private User commentToUser;
     private User commentByUser;
     private Boolean isAuthor;

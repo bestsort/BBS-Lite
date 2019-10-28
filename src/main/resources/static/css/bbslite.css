@@ -171,14 +171,18 @@ body, html {
     color: #7c92a9;
     cursor: pointer;
 }
+.nav-item:hover{
+    cursor: pointer;
+}
 #option_item{
     padding: 0;
 }
 .option:hover{
+    cursor:pointer;
     color: #155faa;
 }
 .on{
-    color: #155faa;
+    color: #155faa !important;
 }
 .push-input{
     margin: 10px 0;

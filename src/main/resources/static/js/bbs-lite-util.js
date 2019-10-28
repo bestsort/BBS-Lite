@@ -1,8 +1,37 @@
 /**
- * 提交用户注册表单
+ * 提交用户注册/登录表单
  */
 $(function () {
-
+    $(document).on('click',"#change-login-method",function () {
+        let account_login = $("#account-login");
+        let email_login = $("#mail-login");
+        let link = $("#change-login-method");
+        if (account_login.hasClass("hide-all") === true){
+            account_login.removeClass("hide-all");
+            email_login.addClass("hide-all");
+            link.text("邮箱登录");
+        }else {
+            email_login.removeClass("hide-all");
+            account_login.addClass("hide-all");
+            link.text("账号登录");
+        }
+    });
+    $(document).on('click',"#login-button",function () {
+       let password = $("input[name='login_password']").val();
+       let isAccount = !$("#account-login").hasClass("hide-all");
+       let type = (isAccount?'account':'email');
+       let data = {
+           "account": $("input[name='login-" + type + "']").val(),
+           "password":password,
+           "type": type
+       };
+       ajax_post("/login",data,function () {
+               success_prompt("登录成功");
+               setTimeout(function () {
+                   location.reload();
+               },1500)
+           })
+    });
     $(document).on('click', "button[name='github-login']", function () {
         location.href="/github-login";
     });

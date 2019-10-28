@@ -1,5 +1,7 @@
 package cn.bestsort.bbslite.service;
 
+import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
+import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.UserBufferMapper;
 import cn.bestsort.bbslite.mapper.UserExtMapper;
 import cn.bestsort.bbslite.mapper.UserMapper;
@@ -103,15 +105,23 @@ public class UserService {
         return !(userMapper.selectByExample(example).isEmpty()
                 &&userBufferMapper.selectByExample(bufferExample).isEmpty());
     }
-    public User loginByAccount(String account,String password){
-        UserExample example = new UserExample();
-        example.createCriteria().andAccountIdEqualTo(account)
-                .andPasswordEqualTo(MurmursHash.hashUnsigned(password+account));
-        List<User> users = userMapper.selectByExample(example);
-        if (users.isEmpty()){
-            return null;
+    public User loginByAccount(String account,String password,String type){
+        User user = null;
+        if("email".equals(type)){
+
         }
-        return userMapper.selectByExample(example).get(0);
+        else if ("account".equals(type)) {
+            UserExample example = new UserExample();
+            example.createCriteria().andAccountIdEqualTo(account)
+                    .andPasswordEqualTo(MurmursHash.hashUnsigned(password + account));
+            List<User> users = userMapper.selectByExample(example);
+            if (!users.isEmpty()) {
+                user = userMapper.selectByExample(example).get(0);
+            }
+        }else {
+            throw new CustomizeException(CustomizeErrorCodeEnum.NO_WAY);
+        }
+        return user;
     }
 
     public User activateUser(String token, String account){

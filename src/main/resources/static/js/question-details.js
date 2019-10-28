@@ -55,10 +55,6 @@ function click_options() {
     $(document).on('click',"#commit_comment",function () {
         commit_comment();
     });
-    $(document).on('click',".comment-post>span:odd",function () {
-        success_prompt("click follow");
-
-    });
     $(document).on('click',".comment-post>span",function () {
         /**
          * 子评论
@@ -71,6 +67,7 @@ function click_options() {
          * 父评论
          */
         else {
+            let commentId = $(this).prevAll("input").val();
             /**
              * 评论
              */
@@ -81,10 +78,12 @@ function click_options() {
              * 点赞
              */
             else{
-
+                debugger
+                let count = $(this).children().text().replace(/[^\d]/g, '');
+                let isActive = $(this).children().hasClass("on");
+                thumb_up_comment(commentId,isActive,count,$(this));
             }
         }
-        success_prompt("click thumb up");
     });
 }
 
@@ -109,15 +108,20 @@ function commit_comment(val) {
         }
     );
 }
-function thumb_up_comment(id) {
+function thumb_up_comment(id,isActive,count,e) {
     ajax_post("/thumbUpQuestion",
         {
             "id":id,
-            "isActive": undefined,
+            "isActive": isActive,
             "type":"COMMENT"
         },
         function (data) {
+            let info = data.extend;
+            count = parseInt(count) + (info.isActive?1:-1);
 
+            let html = '<span class="option"><i class="iconfont icon-zan' + (info.isActive?" on ":"") +'">'
+                +(info.isActive?"已":"") + '点赞(' + count + ')</i></span>';
+            e.replaceWith(html);
         });
 }
 function like_or_follow_question(url,icon,show,count) {
@@ -202,7 +206,6 @@ function load_comment_info(){
     $("#show_more_comment").parent("div").hide();
     $("#question_comment").empty();
     const url = "/loadComment";
-    debugger
     ajax_get(url,{"id":getQuestionId()},function (data){
         let comments = data.extend.comments;
         let view = '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
@@ -314,12 +317,12 @@ function load_comment_html(comment) {
         '                <div class="comment-avatar"><img src="' + byUser.avatarUrl + '" alt=""></div>\n' +
         '                <div class="comment-box">\n' +
         '                    <div class="comment-head">\n' +
-        '                        <h6 class="comment-name ' + (comment.isAuthor?'by-author':'') + '">\n' +
+        '                        <h6 class="comment-name ' + (comment.isAuthor?'by-author ':'') + '">\n' +
         '                            <a href="'+ byUser.htmlUrl + '">'+ byUser.name + '</a>\n' +
         '                        </h6>\n' +
         '                        <span class="comment-post pull-right" style="top: 0;"> \n' +
         '                            <input name="commentId" value="' + comment.id + '" hidden="true">' +
-        '                            <span class="option"><i class="iconfont icon-zan" >点赞(' + comment.likeCount + ')</i></span>\n' +
+        '                            <span class="option"><i class="iconfont icon-zan'+ (comment.isActive?" on ":"") + '">'+ (comment.isActive?"已":"") + '点赞(' + comment.likeCount + ')</i></span>\n' +
         '                            <span class="option" style="margin-right: 25px"><i class="iconfont icon-fenxiang" ></i>评论</span>\n' +
         '                    </span></div>\n' +
         '                    <div class="comment-content">' + comment.content +
@@ -339,7 +342,7 @@ function load_comment_html(comment) {
                 '                    <!-- Contenedor del Comentario -->\n' +
                 '                    <div class="comment-box">\n' +
                 '                        <div class="comment-head">\n' +
-                '                            <h6 class="comment-name"><a href="'+ bySonUser.htmlUrl + '">'+ bySonUser.name + '</a></h6>\n' +
+                '                            <h6 class="comment-name ' + (comment.isAuthor?'by-author':'') + '"><a href="'+ bySonUser.htmlUrl + '">'+ bySonUser.name + '</a></h6>\n' +
                 '                            <span class="comment-post pull-right">\n' +
                 '                            <input value="' + bySonUser.id + '" hidden="true">' +
                 '                                 <span class="option"  style="margin-right: 25px;top: 0"><i class="iconfont icon-fenxiang"></i>评论</span>\n' +
