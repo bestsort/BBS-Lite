@@ -26,25 +26,12 @@ $(function () {
                     continue;
                 data[values[index].name.substring(5)] = values[index].value;
             }
-            debugger
-            $.ajax({
-                type:"POST",
-                url:"/sign-up",
-                data:data,
-                beforeSend:open_loading(),
-                success:function (data) {
-                    if(data.code == 200){
-                        success_prompt("注册成功,请前往您的邮箱激活账户",3000);
-                        setTimeout(function () {
-                            location.reload();
-                        },3500)
-                    }
-                    else {
-                        fail_prompt(data.message);
-                    }
-                },
-                complete:close_loading()
-            })
+            ajax_post("sign-up",data,function (data) {
+                success_prompt("注册成功,请前往您的邮箱激活账户",3000);
+                setTimeout(function () {
+                    location.reload();
+                },3500)
+            });
         }
     });
 });
@@ -121,7 +108,7 @@ function formatTimestamp( timestamp ) {
  * @param name
  * @returns {*}
  */
-var getParam = function(name){
+function getParam(name){
     let search = document.location.search;
     let pattern = new RegExp("[?&]"+name+"\=([^&]+)", "g");
     let matcher = pattern.exec(search);
@@ -146,7 +133,7 @@ var getParam = function(name){
  * @param style 提示样式，有alert-info-success、alert-info-danger、alert-info-warning、alert-info-info
  * @param time 消失时间
  */
-var prompt = function (message, style, time)
+function prompt(message, style, time)
 {
     style = (style === undefined) ? 'alert-info-success' : style;
     time = (time === undefined) ? 1200 : time;
@@ -160,30 +147,30 @@ var prompt = function (message, style, time)
 };
 
 // 成功提示
-var success_prompt = function(message, time)
+function success_prompt(message, time)
 {
     prompt(message, 'alert-info-success', time);
 };
 
 // 失败提示
-var fail_prompt = function(message, time)
+function fail_prompt(message, time)
 {
     prompt(message, 'alert-info-danger', time);
 };
 
 // 提醒
-var warning_prompt = function(message, time)
+function warning_prompt(message, time)
 {
     prompt(message, 'alert-info-warning', time);
 };
 
 // 信息提示
-var info_prompt = function(message, time)
+function info_prompt(message, time)
 {
     prompt(message, 'alert-info-info', time);
-};
+}
 
-var open_loading = function(){
+function open_loading(){
     if($("#loading").length === 0) {
         let loading =
             '<div id="loading" class="loader"><div class="loading">' +
@@ -197,12 +184,12 @@ var open_loading = function(){
     }else {
         $("#loading").removeClass("hide-all");
     }
-};
-var close_loading = function () {
+}
+function close_loading() {
     $("#loading").addClass("hide-all");
-};
+}
 
-var init_third_login_button = function init_third_button() {
+function init_third_login_button() {
     let third_login_button =
         '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 aw-question-content" style="margin-top: 20px;font-size: 14px">您可以用以下方式免注册登录<br>(部分暂时无法使用)</div>\n' +
         '                            <button name="github-login" class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-dark third-login-button"><i class="iconfont icon-git margin-center"></i>GitHub</button>\n' +
@@ -212,4 +199,31 @@ var init_third_login_button = function init_third_button() {
     let button = $("div[name='third-login-button']");
     button.empty();
     button.append(third_login_button);
-};
+}
+
+function ajax_function(url,data,success_function,method,fail_function) {
+    $.ajax({
+        type: method,
+        url: url,
+        data: data,
+        beforeSend: open_loading(),
+        success:function (data) {
+            if (data.code === 200){
+                success_function(data);
+            }else {
+                if (fail_function !== undefined){
+                    fail_function(data);
+                }
+                else {fail_prompt(data.message);}
+            }
+        },
+        complete: close_loading()
+    });
+}
+
+function ajax_get(url,data,success,fail) {
+    ajax_function(url,data,success,"GET",fail);
+}
+function ajax_post(url,data,success,fail) {
+    ajax_function(url,data,success,"POST",fail);
+}

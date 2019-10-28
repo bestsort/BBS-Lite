@@ -9,7 +9,16 @@ package cn.bestsort.bbslite.enums;
  */
 
 public enum FunctionItem{
-    COMMENT,TOPIC,USER,QUESTION;
+    /**
+     * COMMENT: 评论
+     * TOPIC: 话题
+     * USER: 用户
+     * QUESTION: 问题
+     */
+    COMMENT,
+    TOPIC,
+    USER,
+    QUESTION;
 
     public static FunctionItem getItem(String str){
         for(FunctionItem i:FunctionItem.values()){

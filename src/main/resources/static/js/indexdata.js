@@ -120,35 +120,22 @@ function to_page(pageno) {
             jsonData[array[i]] = val;
         }
     }
-    $.ajax({
-        type: "GET",
-        url: url,
-        data: jsonData,
-        beforeSend: open_loading(),
-        success: function (data) {
-            if (data.code == "200") {
-                if(data.extend.page.total>0){
-                    //构建问题列表信息
-                    build_question_list(data);
-                    //构建分页信息
-                    build_page_nav(data);
-                }else{
-                    $("#question_wrapper").empty();
-                    $('.page_info-area').empty();
-                    $(".pagination").empty();
-                    $("#no_quetions").css({
-                        display:"block",
-                    });
-                }
-                $("html,body").animate({scrollTop: 0}, 0);//回到顶端
-            } else {
-                fail_prompt(data.message);
-
-            }
-        },
-        complete: close_loading()
+    ajax_get(url,jsonData,function (data) {
+        if(data.extend.page.total>0){
+            //构建问题列表信息
+            build_question_list(data);
+            //构建分页信息
+            build_page_nav(data);
+        }else{
+            $("#question_wrapper").empty();
+            $('.page_info-area').empty();
+            $(".pagination").empty();
+            $("#no_quetions").css({
+                display:"block",
+            });
+        }
+        $("html,body").animate({scrollTop: 0}, 0);//回到顶端
     });
-
 }
 
 

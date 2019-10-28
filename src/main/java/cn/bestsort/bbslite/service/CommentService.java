@@ -125,4 +125,8 @@ public class CommentService {
         //TODO 敏感数据置空
         return users.stream().collect(Collectors.toMap(User::getId, user->user));
     }
+
+    public void incCommentLike(long commentId, long val) {
+        commentMapper.incCommentLike(commentId,val);
+    }
 }

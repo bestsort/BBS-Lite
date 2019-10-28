@@ -8,32 +8,24 @@ $(function () {
     //TODO 非法访问限制
     $("#question_detail").empty();
     const url = "/loadQuestionDetail";
-    const jsonData = {
-        "id": getQuestionId(),
-    };
-    $.ajax({
-        type: "GET",
-        url: url,
-        data: jsonData,
-        beforeSend: open_loading(),
-        success: function (data) {
-            if (data.code === 200) {
-                document.title = data.extend.question.title;
-                load_question_info(data.extend.question);
-                if(data.extend.question.commentCount > 0) {
-                    show_more_comment();
-                }
-                load_question_detail_right(data.extend);
-                $("html,body").animate({scrollTop: 0}, 0);//回到顶端
-            } else {
-                fail_prompt(data.message);
-                setTimeout(function () {
-                    location.href = "/";
-                },1500)
-            }
+    ajax_get(
+        url,
+        {"id": getQuestionId()},
+        function (data) {
+        document.title = data.extend.question.title;
+        load_question_info(data.extend.question);
+        if(data.extend.question.commentCount > 0) {
+            show_more_comment();
+        }
+        load_question_detail_right(data.extend);
+        $("html,body").animate({scrollTop: 0}, 0);//回到顶端
         },
-        complete: close_loading()
-    });
+        function (data) {
+            fail_prompt(data.message);
+            setTimeout(function () {
+                location.href = "/";
+            },1500)
+        });
 });
 
 function click_options() {
@@ -79,11 +71,17 @@ function click_options() {
          * 父评论
          */
         else {
+            /**
+             * 评论
+             */
             if ($(this).next().length === 0){
                 alert("click parent comment,the val is " + $(this).prevAll("input").val());
             }
+            /**
+             * 点赞
+             */
             else{
-                alert("click parent thumb up,the val is " + $(this).prevAll("input").val());
+
             }
         }
         success_prompt("click thumb up");
@@ -96,47 +94,44 @@ function commit_comment(val) {
         "pid":val,
         "content":$("#commit_comment").prev().val(),
     };
-    $.ajax({
-        type: "POST",
-        url: "/commitComment",
-        data: jsonData,
-        beforeSend: open_loading(),
-        success: function (data) {
-            if (data.code !== 200) {
-                fail_prompt(data.message);
-                setTimeout(function () {
-                    location.reload();
-                },1500)
-            }else {
-                success_prompt("成功");
-                setTimeout(function () {
-                    load_comment_info();
-                },1200);
-            }
-            },
-        complete:close_loading()
-    });
-}
+    ajax_post("/comitComment",jsonData,
+        function (data) {
+        success_prompt("成功");
+        setTimeout(function () {
+            load_comment_info();
+        },1200);},
 
+        function (data) {
+            fail_prompt(data.message);
+            setTimeout(function () {
+                location.reload();
+            },1500)
+        }
+    );
+}
+function thumb_up_comment(id) {
+    ajax_post("/thumbUpQuestion",
+        {
+            "id":id,
+            "isActive": undefined,
+            "type":"COMMENT"
+        },
+        function (data) {
+
+        });
+}
 function like_or_follow_question(url,icon,show,count) {
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: {
+    ajax_post(url,
+        {
             "id":getQuestionId(),
-            "isActive":$("#"+icon).hasClass("on")
+            "isActive":$("#"+icon).hasClass("on"),
+            "type":"QUESTION"
         },
-        success: function (data) {
-            if (data.code === 200) {
-                let info = data.extend;
-                count += (info.isActive?1:-1);
-                add_option(count,show,icon,info.isActive,true);
-            }
-            else {
-                fail_prompt(data.message);
-            }
-        },
-    });
+        function(data){
+            let info = data.extend;
+            count += (info.isActive?1:-1);
+            add_option(count,show,icon,info.isActive,true);
+        });
 }
 
 /**
@@ -183,21 +178,13 @@ function load_question_option(creator, {commentCount:questionComment,followCount
         "questionId": questionId,
         "userId": creator,
     };
-
-    $.ajax({
-        type: "GET",
-        url: url,
-        data: jsonData,
-        success: function (data) {
-            if (data.code == "200") {
-                let options = data.extend.options;
-                add_option(questionThumb,"点赞",thumb_up_icon,options.isThumbUpQuestion,true);
-                add_option(questionFollow,"收藏",follow_icon,options.isFollowQuestion,true);
-                add_option(null,"评论",comment_icon,false,false);
-                add_option(null,"编辑问题","icon-bianji",options.isCreator,false);
-                click_options();
-            }
-        },
+    ajax_get(url,jsonData,function (data) {
+        let options = data.extend.options;
+        add_option(questionThumb,"点赞",thumb_up_icon,options.isThumbUpQuestion,true);
+        add_option(questionFollow,"收藏",follow_icon,options.isFollowQuestion,true);
+        add_option(null,"评论",comment_icon,false,false);
+        add_option(null,"编辑问题","icon-bianji",options.isCreator,false);
+        click_options();
     });
 }
 
@@ -215,19 +202,17 @@ function load_comment_info(){
     $("#show_more_comment").parent("div").hide();
     $("#question_comment").empty();
     const url = "/loadComment";
-    $.ajax({
-        type: "GET",
-        url: url,
-        data: {"id": getQuestionId()},
-        beforeSend: open_loading(),
-        success: function (data) {
-            if (data.code == "200") {
-                load_comments(data);
-            } else {
-                fail_prompt(data.message,2000);
-            }
-        },
-        complete: close_loading()
+    debugger
+    ajax_get(url,{"id":getQuestionId()},function (data){
+        let comments = data.extend.comments;
+        let view = '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
+            '    <ul id="comments-list" class="comments-list">\n' +
+            '    </ul>\n' +
+            '</div>';
+        $("#question_comment").append(view);
+        $.each(comments,function (index,item) {
+            load_comment_html(item);
+        })
     });
 }
 
@@ -321,17 +306,6 @@ function getQuestionId() {
     return document.location.pathname.replace("/question/", "");
 }
 
-function load_comments(data) {
-    let comments = data.extend.comments;
-    let view = '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
-        '    <ul id="comments-list" class="comments-list">\n' +
-        '    </ul>\n' +
-        '</div>';
-    $("#question_comment").append(view);
-    $.each(comments,function (index,item) {
-        load_comment_html(item);
-    })
-}
 function load_comment_html(comment) {
     let byUser = comment.commentByUser;
     let html =

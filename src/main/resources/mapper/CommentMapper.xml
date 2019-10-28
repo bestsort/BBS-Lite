@@ -137,5 +137,11 @@
         where
               id=#{id,jdbcType=BIGINT}
     </select>
-
+    <update id="incCommentLike">
+        update comment_parent
+        set
+            like_count = like_count + #{val,jdbcType=BIGINT}
+        where
+            id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

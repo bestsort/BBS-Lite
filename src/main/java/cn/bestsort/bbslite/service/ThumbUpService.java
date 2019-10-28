@@ -50,17 +50,14 @@ public class ThumbUpService {
         example.createCriteria().andThumbUpByEqualTo(useId)
                 .andThumbUpToEqualTo(questionId)
                 .andTypeEqualTo(FunctionItem.getCode(item));
-        if(item == FunctionItem.QUESTION){
-            if(thumbUpMapper.countByExample(example) != 0) {
-                thumbUpExtMapper.setThumbUpCount(thumbUp);
-            }
-            else{
-                thumbUp.setGmtCreate(thumbUp.getGmtModified());
-                thumbUpMapper.insertSelective(thumbUp);
-            }
-            return isActive;
+        if(thumbUpMapper.countByExample(example) != 0) {
+            thumbUpExtMapper.setThumbUpCount(thumbUp);
         }
-        return !isActive;
+        else{
+            thumbUp.setGmtCreate(thumbUp.getGmtModified());
+            thumbUpMapper.insertSelective(thumbUp);
+        }
+        return isActive;
     }
 
     public Boolean getStatusByUser(Long questionId, Long id) {

@@ -31,29 +31,19 @@ $(function () {
         let jsondata = {};
         if(id != null)
             jsondata["id"] = id;
-        $.ajax({
-            url: "/getPublishInfo",
-            type: "GET",
-            data:jsondata,
-            beforeSend: open_loading(),
-            success: function (data) {
-                if(data.code === 200) {
-                    let question = data.extend.publishInfo.question;
-                    if (question != null) {
-                        $("#title").val(question.title);
-                        $("#tag").val(question.tag);
-                        editor.txt.html('<p>' + question.description + '</p>');
-                    }
-                    show_topic_option(data);
-                }
-                else{
-                    fail_prompt(data.message);
-                    setTimeout(function () {
-                        location.href = "/";
-                    },1200)
-                }
-            },
-            complete:close_loading()
+        ajax_get("/getPublishInfo",jsondata,function (data) {
+            let question = data.extend.publishInfo.question;
+            if (question != null) {
+                $("#title").val(question.title);
+                $("#tag").val(question.tag);
+                editor.txt.html('<p>' + question.description + '</p>');
+            }
+            show_topic_option(data);
+        },function (data) {
+            fail_prompt(data.message);
+            setTimeout(function () {
+                location.href = "/";
+            },1200)
         });
     }
     $("#push").click(function () {
@@ -76,27 +66,12 @@ $(function () {
     load_topic_option();
 });
 function push_question(json_data){
-    $.ajax({
-        type: "POST",
-        url: "/publish",
-        data: json_data,
-        beforeSend:open_loading(),
-        success: function (data) {
-            if(data.code == "200"){
-                success_prompt("发布成功");
-                setTimeout(function () {
-                    location.href = "/";
-                },1500)
-            }
-            else{
-                fail_prompt(data.message);
-                setTimeout(function () {
-                    location.href = "/";
-                },1500)
-            }
-        },
-        complete: close_loading()
-    })
+    ajax_post("/publish",json_data,function () {
+        success_prompt("发布成功");
+        setTimeout(function () {
+            location.href = "/";
+        },1500)
+    });
 }
 
 function show_topic_option(data) {
