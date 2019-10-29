@@ -4,15 +4,11 @@ import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.pojo.model.User;
-import com.sun.org.glassfish.external.statistics.annotations.Reset;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +26,7 @@ public class ProfileController{
 
     @GetMapping("/profile/{action}")
     public ResultDto profile(@PathVariable(name = "action") String action,
+                             @RequestParam(name = "id") Long id,
                              @RequestParam(name="page",defaultValue = "1") Integer page,
                              @RequestParam(name="size",defaultValue = "5") Integer size,
                              HttpSession session){
@@ -37,12 +34,13 @@ public class ProfileController{
         if(user == null){
             throw new CustomizeException(CustomizeErrorCodeEnum.USER_ERROR);
         }
-
         Map<String,String> item = new HashMap<String, String>(4){{
             put("questions","我的提问");
             put("replies","我的回复");
             put("follow","我的收藏");
+            put("user","关于我");
         }};
+
         return null;
     }
 }

@@ -58,6 +58,8 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCodeEnum.COMMENT_NOT_FOUND);
             }
             CommentKid kid = (CommentKid)comment;
+            kid.setGmtCreate(System.currentTimeMillis());
+            kid.setGmtModified(kid.getGmtCreate());
             kid.setPid(id);
             commentMapper.insertCommentKid(kid);
             questionExtMapper.incQuestionComment(parent.getQuestionId(),1L);
@@ -98,7 +100,6 @@ public class CommentService {
     }
     private CommentVo cloneParent2Vo(CommentParent parent,Map<Long,User>userMap,Long creator,Map<Long,Boolean> isThumb,Long userId){
         CommentVo commentVo = new CommentVo();
-        commentVo.setIsAuthor(parent.getCommentById().equals(creator));
         commentVo.setIsActive(isThumb.get(parent.getId())!=null);
         commentVo.setContent(parent.getContent());
         commentVo.setCommentByUser(userMap.get(parent.getCommentById()));
@@ -110,7 +111,6 @@ public class CommentService {
     }
     private CommentVo cloneKid2Vo(CommentKid kid,Map<Long,User>userMap,Long creator){
         CommentVo commentVo = new CommentVo();
-        commentVo.setIsAuthor(kid.getCommentById().equals(creator));
         commentVo.setContent(kid.getContent());
         commentVo.setCommentByUser(userMap.get(kid.getCommentById()));
         commentVo.setGmtCreate(kid.getGmtCreate());

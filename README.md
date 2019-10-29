@@ -30,13 +30,6 @@
 
 ![](img/topic.png)
 
-## 快速开始
-### 依赖
-在使用前,请确保电脑中已配置好以下环境:
-- maven
-- redis
-- mysql
-- jdk-8
 
 ### 开始
 ```bash
@@ -47,6 +40,7 @@ cd BBS-lite
 
 请确认您的数据库字符编码为**utf8m4**.参考如下:
 ```xml
+<jdbc.url>jdbc:mysql://localhost:3306/bbs_lite?serverTimezone=UTC</jdbc.url>
 <jdbc.url>jdbc:mysql://localhost:3306/bbs_lite?serverTimezone=UTC</jdbc.url>
 <jdbc.user>bestsort</jdbc.user>
 <jdbc.passwd>ce8YChPDJ5GRFOUE</jdbc.passwd>

@@ -29,6 +29,18 @@ $(function () {
 });
 
 function click_options() {
+    $(document).on('click',"#send-reply",function () {
+        let content = $("#reply-text").val();
+        ajax_post("/commitComment",{
+            questionId:getQuestionId(),
+            pid:$("#reply-to-id").val(),
+            content:content},
+            function () {
+
+                $("#reply").modal('hide');
+                load_comment_info();
+            })
+    });
     $(document).on('click', "#"+thumb_up_icon, function () {
         like_or_follow_question("/thumbUpQuestion",thumb_up_icon,"点赞",question_like_count);
     });
@@ -60,8 +72,9 @@ function click_options() {
          * 子评论
          */
         if ($(this).parents("li").length === 2){
-            alert("click kid comment,the val is " + $(this).prevAll("input").val()+
-                  ";\n and the pid val is " + $($(this).parents("li")[1]).val());
+            let own = $(this).prevAll("input");
+            let pid = $(this).parents("li")[1];
+            reply_comment(own,pid);
         }
         /**
          * 父评论
@@ -72,13 +85,12 @@ function click_options() {
              * 评论
              */
             if ($(this).next().length === 0){
-                alert("click parent comment,the val is " + $(this).prevAll("input").val());
+                reply_comment($(this).prevAll("input"));
             }
             /**
              * 点赞
              */
             else{
-                debugger
                 let count = $(this).children().text().replace(/[^\d]/g, '');
                 let isActive = $(this).children().hasClass("on");
                 thumb_up_comment(commentId,isActive,count,$(this));
@@ -87,25 +99,31 @@ function click_options() {
     });
 }
 
+function reply_comment(kid,parent) {
+    /**
+     * 回复父评论
+     */
+    let reply_to = '@' + kid.parent().prev().children().text();
+    if (parent === undefined){
+        $("#reply-to-id").val(kid.val());
+    }else {
+        $("#reply-to-id").val($(parent).val());
+    }
+    $("#reply-label").val(reply_to);
+    $("#reply").modal('show');
+}
 function commit_comment(val) {
     let jsonData = {
         "questionId":getQuestionId(),
         "pid":val,
         "content":$("#commit_comment").prev().val(),
     };
-    ajax_post("/comitComment",jsonData,
+    ajax_post("/commitComment",jsonData,
         function (data) {
         success_prompt("成功");
         setTimeout(function () {
             load_comment_info();
-        },1200);},
-
-        function (data) {
-            fail_prompt(data.message);
-            setTimeout(function () {
-                location.reload();
-            },1500)
-        }
+        },1200);}
     );
 }
 function thumb_up_comment(id,isActive,count,e) {
@@ -148,7 +166,7 @@ function like_or_follow_question(url,icon,show,count) {
  */
 function add_option(count,show,icon,isActive,show_count) {
     if(isActive != null) {
-        let html = '<span class="option ' + (isActive ? 'on' : '') + '" value="' + isActive + '" id="'
+        let html = '<span class="option hover-point ' + (isActive ? 'on' : '') + '" value="' + isActive + '" id="'
             + icon + '"' +
             (icon===comment_icon?' data-toggle="collapse" aria-expanded="false" aria-controls="comment_input"':'') +
             '><i class="iconfont ' + icon + '"></i>' + (isActive ? '已' : '');
@@ -202,22 +220,6 @@ function show_more_comment() {
     });
     $("#question_detail").append(show_more);
 }
-function load_comment_info(){
-    $("#show_more_comment").parent("div").hide();
-    $("#question_comment").empty();
-    const url = "/loadComment";
-    ajax_get(url,{"id":getQuestionId()},function (data){
-        let comments = data.extend.comments;
-        let view = '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
-            '    <ul id="comments-list" class="comments-list">\n' +
-            '    </ul>\n' +
-            '</div>';
-        $("#question_comment").append(view);
-        $.each(comments,function (index,item) {
-            load_comment_html(item);
-        })
-    });
-}
 
 
 /**
@@ -232,26 +234,24 @@ function load_question_detail_right(data) {
         '                <small style="color: #333">发起人</small>\n' +
         '                <hr>\n' +
         '                <div class="media media-left" style="width: 120%">\n' +
-        '                    <a href="/">\n' +
-        '                        <img class="media-min img-circle" src="' + userInfo.avatarUrl + '">\n' +
-        '                    </a>\n' +
+        '                <img class="media-min img-circle" src="' + userInfo.avatarUrl + '">\n' +
         '                </div>\n' +
         '\n' +
         '                <hr>\n' +
         '                <small style="font-size: 12px;color: #1f1f1f;">\n' +
         '                    昵称:\n' +
         '                    <!-- TODO 跳转到个人主页 -->\n' +
-        '                    <a href="#" style="color: #155faa">' + userInfo.name + '</a>\n' +
+        '                    <a href="/profile/user?id='+ userInfo.id + '" style="color: #155faa">' + userInfo.name + '</a>\n' +
         '                    <br>\n';
 
-        if (userInfo.htmlUrl !== "null") {
+        if (userInfo.htmlUrl !== null) {
             userSimpleInfo +=
                 '                    <span>\n' +
                 '                        网址:<a target="_blank" href="' + userInfo.htmlUrl + '" style="color: #155faa">\n' +
                 '                        ' + userInfo.htmlUrl + '</a>\n' +
                 '                    </span>\n<br>';
         }
-        if (userInfo.bio !== "null") {
+        if (userInfo.bio !== null) {
             userSimpleInfo +=
                 '                    <span>\n' +
                 '                        简介:<span style="color: #155faa">'+ userInfo.bio + '</span>\n' +
@@ -284,7 +284,7 @@ function load_question_info(questionInfo) {
 
     $.each(tags,function (index, item) {
         const tagInfo =
-            '<span class="label label-tag">\n' +
+            '<span class="label label-tag hover-point">\n' +
             '  <a href="/?tag=' +  item + '" target="_parent" style="color: #fff;cursor: pointer;text-decoration: none;">\n' +
             '      <i class="iconfont icon-biaoqian1"></i>\n' +
             '      <span>' + item + '</span>\n' +
@@ -308,8 +308,26 @@ function load_question_info(questionInfo) {
 function getQuestionId() {
     return document.location.pathname.replace("/question/", "");
 }
+function load_comment_info(){
+    const url = "/loadComment";
+    ajax_get(url,{"id":getQuestionId()},function (data){
+        let question = $("#question_comment");
+        $("#show_more_comment").parent("div").hide();
+        question.empty();
+        let comments = data.extend.comments;
+        let question_creator = data.extend.creator;
+        let view = '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
+            '    <ul id="comments-list" class="comments-list">\n' +
+            '    </ul>\n' +
+            '</div>';
+        question.append(view);
+        $.each(comments,function (index,item) {
+            load_comment_html(item,question_creator);
+        })
+    });
+}
 
-function load_comment_html(comment) {
+function load_comment_html(comment,creator) {
     let byUser = comment.commentByUser;
     let html =
         '        <li style="margin: 0" value="' + comment.id + '">\n' +
@@ -317,43 +335,40 @@ function load_comment_html(comment) {
         '                <div class="comment-avatar"><img src="' + byUser.avatarUrl + '" alt=""></div>\n' +
         '                <div class="comment-box">\n' +
         '                    <div class="comment-head">\n' +
-        '                        <h6 class="comment-name ' + (comment.isAuthor?'by-author ':'') + '">\n' +
+        '                        <h6 class="comment-name ' + (byUser.id==creator?'by-author ':'') + '">\n' +
         '                            <a href="'+ byUser.htmlUrl + '">'+ byUser.name + '</a>\n' +
         '                        </h6>\n' +
         '                        <span class="comment-post pull-right" style="top: 0;"> \n' +
         '                            <input name="commentId" value="' + comment.id + '" hidden="true">' +
-        '                            <span class="option"><i class="iconfont icon-zan'+ (comment.isActive?" on ":"") + '">'+ (comment.isActive?"已":"") + '点赞(' + comment.likeCount + ')</i></span>\n' +
-        '                            <span class="option" style="margin-right: 25px"><i class="iconfont icon-fenxiang" ></i>评论</span>\n' +
+        '                            <span class="option hover-point"><i class="iconfont icon-zan'+ (comment.isActive?" on ":"") + '">'+ (comment.isActive?"已":"") + '点赞(' + comment.likeCount + ')</i></span>\n' +
+        '                            <span class="option hover-point" style="margin-right: 25px"><i class="iconfont icon-fenxiang" ></i>评论</span>\n' +
         '                    </span></div>\n' +
         '                    <div class="comment-content">' + comment.content +
         '                        <span> ' + formatTimestamp(comment.gmtCreate) + '</span>\n' +
         '</div>\n' +
         '                </div>\n' +
-        '            </div>\n';
-
+        '            </div>\n<!-- Respuestas de los comentarios -->\n' +
+        '            <ul class="comments-list reply-list">\n';
         $.each(comment.son,function (index,item) {
             let bySonUser = item.commentByUser;
             html +=
-                '            <!-- Respuestas de los comentarios -->\n' +
-                '            <ul class="comments-list reply-list">\n' +
                 '                <li>\n' +
                 '                    <!-- Avatar -->\n' +
                 '                    <div class="comment-avatar"><img src="' + bySonUser.avatarUrl + '" alt=""></div>\n' +
                 '                    <!-- Contenedor del Comentario -->\n' +
                 '                    <div class="comment-box">\n' +
                 '                        <div class="comment-head">\n' +
-                '                            <h6 class="comment-name ' + (comment.isAuthor?'by-author':'') + '"><a href="'+ bySonUser.htmlUrl + '">'+ bySonUser.name + '</a></h6>\n' +
+                '                            <h6 class="comment-name ' + (bySonUser.id==creator?'by-author':'') + '"><a href="'+ bySonUser.htmlUrl + '">'+ bySonUser.name + '</a></h6>\n' +
                 '                            <span class="comment-post pull-right">\n' +
                 '                            <input value="' + bySonUser.id + '" hidden="true">' +
-                '                                 <span class="option"  style="margin-right: 25px;top: 0"><i class="iconfont icon-fenxiang"></i>评论</span>\n' +
+                '                                 <span class="option hover-point"  style="margin-right: 25px;top: 0"><i class="iconfont icon-fenxiang"></i>评论</span>\n' +
                 '                            </span>\n' +
                 '                        </div>\n' +
                 '                        <div class="comment-content">'+ item.content +
                 '                            <span>' + formatTimestamp(item.gmtCreate) + '</span>\n' +
                 '                    </div></div>\n' +
-                '                </li>\n' +
-                '            </ul>\n' +
-                '        </li>\n';
+                '                </li>\n';
         });
-        $("#comments-list").append(html);
+        html +=                 '        </ul>\n';
+    $("#comments-list").append(html);
 }

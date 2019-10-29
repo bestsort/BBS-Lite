@@ -22,8 +22,10 @@ bbs:
       # 用户昵称
       nickname: "无名氏"
   encryption:
-    # 加密种子,主要用于对用户密码的加密.为int范围的整数
+    # 加密种子,主要用于加密.为int范围的整数
     seed: 0x3f2a3c7e
+    # 盐值,用于user表密码加密,字符串推荐长度>3
+    salt: "xzcawx"
 spring:
   # 邮件,用于通知/用户注册,默认使用SSL加密
   mail:

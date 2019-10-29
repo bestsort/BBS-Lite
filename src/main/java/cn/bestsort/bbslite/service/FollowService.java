@@ -23,7 +23,6 @@ public class FollowService {
     private FollowMapper followMapper;
     @Autowired
     private FollowExtMapper followExtMapper;
-    @Transactional(rollbackFor = Exception.class)
     public Boolean setFollowCount(Long questionId,Long userId,FunctionItem item,Boolean isActive) {
         Follow follow = new Follow();
         isActive = !isActive;

@@ -8,6 +8,15 @@ import java.nio.ByteOrder;
 public class MurmursHash {
     @Value("bbs.encryption.seed")
     private static int seed;
+    @Value("bbs.encryption.salt")
+    private static String salt;
+    public static String hashUnsignedWithSalt(String key){return hash((key+salt).getBytes());}
+    public static String hashUnsigned(String key) {
+        return hash(key.getBytes());
+    }
+    public static String hashUnsigned(String key,int seed) {
+        return hash(key.getBytes(),seed);
+    }
     private static String hash(byte[] key,int seed){
         ByteBuffer buf = ByteBuffer.wrap(key);
 
@@ -42,13 +51,6 @@ public class MurmursHash {
     }
     private static String hash(byte[] key) {
         return hash(key,seed);
-    }
-
-    public static String hashUnsigned(String key) {
-        return hash(key.getBytes());
-    }
-    public static String hashUnsigned(String key,int seed) {
-        return hash(key.getBytes(),seed);
     }
 }
 

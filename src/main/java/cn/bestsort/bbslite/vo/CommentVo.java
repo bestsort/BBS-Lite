@@ -20,7 +20,6 @@ public class CommentVo {
     private Boolean isActive;
     private User commentToUser;
     private User commentByUser;
-    private Boolean isAuthor;
     private Long gmtCreate;
     private Long likeCount;
     private String content;

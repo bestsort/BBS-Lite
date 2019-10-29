@@ -45,7 +45,7 @@ public class SignUpController {
         }
         String token = UUID.randomUUID().toString();
         user.setToken(token);
-        user.setPassword(MurmursHash.hashUnsigned(user.getPassword()+user.getAccountId()));
+        user.setPassword(MurmursHash.hashUnsignedWithSalt(user.getPassword()));
         user.setToken(token);
         userService.signUpUser(user);
         mail.sendMail(user.getToken(),user.getAccountId(),user.getEmail());

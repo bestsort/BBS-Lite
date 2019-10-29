@@ -7,6 +7,7 @@ import cn.bestsort.bbslite.pojo.model.CommentKid;
 import cn.bestsort.bbslite.pojo.model.CommentParent;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.CommentService;
+import cn.bestsort.bbslite.service.QuestionService;
 import cn.bestsort.bbslite.service.UserService;
 import cn.bestsort.bbslite.vo.CommentVo;
 import com.github.pagehelper.PageInfo;
@@ -34,16 +35,21 @@ public class CommentController {
     CommentService commentService;
     @Autowired
     UserService userService;
+    @Autowired
+    QuestionService questionService;
     @ResponseBody
     @GetMapping("/loadComment")
     public ResultDto get(@RequestParam(name = "id") Long questionId,
                          HttpSession session){
         try {
             User user = (User)session.getAttribute("user");
-            PageInfo<CommentVo> comments = commentService.listByQuestionId(questionId,user.getId(),1,5);
+            Long userId = user==null?null:user.getId();
+            PageInfo<CommentVo> comments = commentService.listByQuestionId(questionId,userId,1,5);
+            Long creator = questionService.getQuestionDetail(questionId).getCreator();
             List<CommentVo> list = comments.getList();
             return new ResultDto().okOf()
-                    .addMsg("comments",list);
+                    .addMsg("comments",list)
+                    .addMsg("creator",creator);
         }catch (Exception e){
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.SYS_ERROR);
         }

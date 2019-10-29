@@ -15,6 +15,33 @@
             <!-- 问题正文 -->
             <div id="question_detail" class="col-lg-12 col-md-12 col-xs-12 col-sm-12"></div>
             <div id="question_comment"></div>
+            <!-- modal 框,用于回复功能-->
+            <div class="modal fade" id="reply" tabindex="-1" role="dialog" aria-labelledby="replyLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="replyLabel">评论</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input id="reply-to-id" hidden>
+                                <fieldset disabled style="margin-bottom: 20px">
+                                    <input id="reply-label" class="form-control">
+                                </fieldset>
+                                <textarea class="form-control" id="reply-text"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="send-reply" type="button" class="btn btn-primary">评论</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- 右侧栏 -->

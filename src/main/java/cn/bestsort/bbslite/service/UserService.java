@@ -17,8 +17,6 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -107,19 +105,20 @@ public class UserService {
     }
     public User loginByAccount(String account,String password,String type){
         User user = null;
+        UserExample example = new UserExample();
         if("email".equals(type)){
-
+            example.createCriteria().andEmailEqualTo(account)
+                    .andPasswordEqualTo(MurmursHash.hashUnsignedWithSalt(password));
         }
         else if ("account".equals(type)) {
-            UserExample example = new UserExample();
             example.createCriteria().andAccountIdEqualTo(account)
-                    .andPasswordEqualTo(MurmursHash.hashUnsigned(password + account));
-            List<User> users = userMapper.selectByExample(example);
-            if (!users.isEmpty()) {
-                user = userMapper.selectByExample(example).get(0);
-            }
+                    .andPasswordEqualTo(MurmursHash.hashUnsignedWithSalt(password));
         }else {
             throw new CustomizeException(CustomizeErrorCodeEnum.NO_WAY);
+        }
+        List<User> users = userMapper.selectByExample(example);
+        if (!users.isEmpty()) {
+            user = userMapper.selectByExample(example).get(0);
         }
         return user;
     }

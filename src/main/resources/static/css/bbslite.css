@@ -169,16 +169,12 @@ body, html {
     font-size: 14px;
     margin-right: 10px;
     color: #7c92a9;
-    cursor: pointer;
 }
-.nav-item:hover{
-    cursor: pointer;
-}
+
 #option_item{
     padding: 0;
 }
 .option:hover{
-    cursor:pointer;
     color: #155faa;
 }
 .on{
@@ -220,7 +216,6 @@ body, html {
     margin-right: 6px;
     margin-top: 5px;
     font-size: 14px;
-    cursor: pointer;
 
 }
 .comment-menu .icon:hover{
@@ -249,13 +244,65 @@ body, html {
     padding-top: 15px;
     border-radius: 10px;
 }
+.flex-text-wrap {
+    position: relative;
 
+    *zoom: 1;
+}
+
+textarea,
+.flex-text-wrap {
+    outline: 0;
+    margin: 0;
+    border: none;
+    padding: 0;
+
+    *padding-bottom: 0 !important;
+}
+
+.flex-text-wrap textarea,
+.flex-text-wrap pre {
+    white-space: pre-wrap;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    *white-space: pre;
+    *word-wrap: break-word;
+}
+
+.flex-text-wrap textarea {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    resize: none;
+
+    /* IE7 box-sizing fudge factor */
+    *height: 94%;
+    *width: 94%;
+}
+
+.flex-text-wrap pre {
+    display: block;
+    visibility: hidden;
+}
+
+textarea,
+.flex-text-wrap pre {
+    /*
+     * Add custom styling here
+     * Ensure that typography, padding, border-width (and optionally min-height) are identical across textarea & pre
+     */
+}
 .label-tag{
     background-color: #6ddeba;
     margin: 2px;
     border-radius: 10px;
     font-size: 12px;
-    cursor: pointer;
     padding: 4px;
     text-decoration: none;
     font-weight: 700;
@@ -264,6 +311,9 @@ body, html {
     background-color: #5bc0de;
 }
 
+.hover-point:hover{
+    cursor: pointer;
+}
 .tag-herf{
     margin: 3px;
     color: #999999;

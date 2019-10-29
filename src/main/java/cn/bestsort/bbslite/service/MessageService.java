@@ -1,6 +1,9 @@
 package cn.bestsort.bbslite.service;
 
+import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.enums.FunctionItem;
+import cn.bestsort.bbslite.enums.MessageEnum;
+import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.*;
 import cn.bestsort.bbslite.pojo.model.*;
 import cn.bestsort.bbslite.vo.MessageVo;
@@ -21,14 +24,18 @@ public class MessageService {
     private UserMapper userMapper;
     @Autowired
     private QuestionMapper questionMapper;
-    public static int ALL = 0;
-    public static int THUMB_UP = 1;
-    public static int FOLLOW_USER = 2;
-    public static int FOLLOW_QUESTION = 3;
-    public static int COMMENT = 4;
-    public List<MessageVo>getListByUser(long userId,int type){
+    public List<MessageVo>getListByUser(long userId, MessageEnum type){
         MessageExample example = new MessageExample();
-        example.createCriteria().andSendToEqualTo(userId);
+        if (type.equals(MessageEnum.ALL)){
+            example.createCriteria().andSendToEqualTo(userId);
+        }else if (MessageEnum.getCode(type) != null){
+            example.createCriteria().andSendToEqualTo(userId)
+                    .andTypeEqualTo(MessageEnum.getCode(type));
+        }else {
+            throw new CustomizeException(CustomizeErrorCodeEnum.NO_WAY);
+        }
+
+
         List<MessageVo> result = new ArrayList<>();
         List<Message> list = messageMapper.selectByExample(example);
         Set<Long> userIdSet = new HashSet<>();
@@ -55,9 +62,17 @@ public class MessageService {
         Map<Long,Question>questions = questionMapper.selectByExample(questionExample)
                 .stream().collect(Collectors.toMap(Question::getId,question->question));
         for (MessageVo item : result){
-            item.builder().title(questions.get(item.getSendToId()).getTitle());
+            MessageVo.builder()
+                    .title(questions.get(item.getSendToId()).getTitle())
+                    .gmtCreate(item.getGmtCreate())
+                    .isRead(item.isRead())
+                    .sendBy(item.getSendBy())
+                    .item(item.getItem());
         }
-        return null;
+        return result;
+    }
+    public int sendMessage(Message message){
+        return messageMapper.insertSelective(message);
     }
     private String buildMessage(){
         return null;
