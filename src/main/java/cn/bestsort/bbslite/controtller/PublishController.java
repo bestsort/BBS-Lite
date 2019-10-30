@@ -10,10 +10,7 @@ import cn.bestsort.bbslite.service.TopicService;
 import cn.bestsort.bbslite.vo.PublishVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,7 +21,6 @@ import javax.servlet.http.HttpSession;
  * @Date 19-8-26 下午7:53
  * @Version 1.0
  */
-
 @Controller
 public class PublishController {
     @Autowired

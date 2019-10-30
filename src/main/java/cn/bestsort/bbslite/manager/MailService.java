@@ -26,11 +26,11 @@ import java.util.Queue;
 @Slf4j
 @Service
 public class MailService {
-    @Value("${bbs.url}")
+    @Value("${bbs.url:}")
     private String homeUrl;
-    @Value("${spring.mail.username}")
+    @Value("${spring.mail.username:}")
     private String sendBy;
-    @Value("${bbs.mail.title}")
+    @Value("${bbs.mail.title:}")
     private String title;
     @Autowired
     private JavaMailSenderImpl mailSender;

@@ -7,7 +7,7 @@ bbs:
   url: http://localhost:8080
   mail:
     # 邮件标题
-    title: "氢论坛---邮件通知"
+    title: 氢论坛---邮件通知
   github:
     client:
       id: 08b076ae3cf904cf324c
@@ -18,14 +18,26 @@ bbs:
       # 用户头像链接
       avatar-url: https://alicdn.bestsort.cn/icon/default.jpeg
       # 用户简介
-      bio: "这人太懒了,没有留下简介"
+      bio: 这人太懒了,没有留下简介
       # 用户昵称
-      nickname: "无名氏"
+      nickname: 无名氏
   encryption:
     # 加密种子,主要用于加密.为int范围的整数
     seed: 0x3f2a3c7e
     # 盐值,用于user表密码加密,字符串推荐长度>3
-    salt: "xzcawx"
+    salt: xzcawx
+  oss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    #阿里云主账号AccessKey拥有所有API的访问权限，风险很高。
+    #强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
+    accessKeyId: LTAI4FmZkJ4DqPMWsg2CebJK
+    accessKeySecret: iMBREaZQF2qJ6BBZtPBIqpJmtOHwAP
+    bucketName: bbs-bestsort-cn
+    #<yourObjectName>上传文件到OSS时需要指定包含文件后缀在内的完整路径，例如abc/efg/123.jpg。
+    objectName: bbs
+    #回源链接前半部分.需要在阿里云OSS指定域名,否则直接访问链接会变成下载资源
+    callbackUrl: http://bbscdn.bestsort.cn
+
 spring:
   # 邮件,用于通知/用户注册,默认使用SSL加密
   mail:

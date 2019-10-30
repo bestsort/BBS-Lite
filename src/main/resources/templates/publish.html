@@ -3,8 +3,7 @@
 <head>
     <title>发布</title>
     <head th:insert="common/import"></head>
-    <script src="//cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
-    <script src="//unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+    <script src="/js/editor.min.js"></script>
     <script src="/js/publish-data.js"></script>
     <style type="text/css">
         .w-e-text-container {
@@ -53,9 +52,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
-            <div id = "wangEditorToolbar" class="toolbar"></div>
-            <div id = "wangEditorText" class="text"></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="editor-md" style="z-index: 1">
+                <textarea></textarea>
+            </div>
         </div>
         <div id="show_tag" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <span class="col-lg-2 col-md-2 col-sm-2 col-xs-2">标签:</span>

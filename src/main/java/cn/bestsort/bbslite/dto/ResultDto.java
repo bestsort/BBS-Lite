@@ -35,7 +35,12 @@ public class ResultDto {
         resultDTO.setCode(200);
         return resultDTO;
     }
-
+    public ResultDto okOf(Integer code,String message){
+        ResultDto resultDTO = new ResultDto();
+        resultDTO.setMessage(message);
+        resultDTO.setCode(code);
+        return resultDTO;
+    }
     public ResultDto addMsg(String key, Object value){
         this.extend.put(key,value);
         return this;

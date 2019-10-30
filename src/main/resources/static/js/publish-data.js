@@ -1,54 +1,34 @@
-var E = window.wangEditor;
-var editor = new E("#wangEditorToolbar");
+var testEditor;
 
 $(function () {
-    editor.customConfig.menus = [
-        'head',  // 标题
-        'bold',  // 粗体
-        'fontSize',  // 字号
-        'fontName',  // 字体
-        'italic',  // 斜体
-        'underline',  // 下划线
-        'strikeThrough',  // 删除线
-        'foreColor',  // 文字颜色
-        'backColor',  // 背景颜色
-        'link',  // 插入链接
-        'list',  // 列表
-        'justify',  // 对齐方式
-        'quote',  // 引用
-        'emoticon',  // 表情
-        'image',  // 插入图片
-        'table',  // 表格
-        'code',  // 插入代码
-        'redo'  // 重复
-    ];
-    editor.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片
-    editor.customConfig.zIndex = 100;
-    editor.create();
-    // 加载问题详情
-    function load_topic_option() {
-        let id = getParam("id");
-        let jsondata = {};
-        if(id != null)
-            jsondata["id"] = id;
-        ajax_get("/getPublishInfo",jsondata,function (data) {
-            let question = data.extend.publishInfo.question;
-            if (question != null) {
-                $("#title").val(question.title);
-                $("#tag").val(question.tag);
-                editor.txt.html('<p>' + question.description + '</p>');
-            }
-            show_topic_option(data);
-        },function (data) {
-            fail_prompt(data.message);
-            setTimeout(function () {
-                location.href = "/";
-            },1200)
-        });
-    }
+    testEditor = editormd("editor-md", {
+        path: "https://alicdn.bestsort.cn/bbs/editor.md-master/lib/",  // Autoload modules mode, codemirror, marked... dependents libs path
+        width: "100%",
+        placeholder: "此处开始编写您要发布的内容...",
+        emoji: true,
+        taskList: true,
+        flowChart: false,             // 开启流程图支持，默认关闭
+        //sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+        height: "600px",
+        delay: 0,
+        tex: true,
+
+        saveHTMLToTextarea: true, // 保存 HTML 到 Textarea
+        toolbarAutoFixed: true,//工具栏自动固定定位的开启与禁用
+        syncScrolling: true,
+        imageUpload: true,
+        imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+        toolbarIcons: "diy",
+        imageUploadURL: "/upload",
+        //theme : "dark",
+        //previewTheme : "dark",
+        //editorTheme : editormd.editorThemes['3024-night'],
+        watch: false,
+    });
+
     $("#push").click(function () {
         let json_data = {
-            "description":editor.txt.html(),
+            "description": testEditor.getMarkdown(),
             "tag":$("#tag").val(),
             "title":$("#title").val(),
             "topic":$("#topicType").val(),
@@ -63,6 +43,29 @@ $(function () {
             $("#myModal").modal('show');
         }
     });
+
+    // 加载问题详情
+    function load_topic_option() {
+        let id = getParam("id");
+        let jsondata = {};
+        if(id != null)
+            jsondata["id"] = id;
+        ajax_get("/getPublishInfo",jsondata,function (data) {
+            let question = data.extend.publishInfo.question;
+            if (question != null) {
+                $("#title").val(question.title);
+                $("#tag").val(question.tag);
+                testEditor.setValue(question.description);
+            }
+            show_topic_option(data);
+        },function (data) {
+            fail_prompt(data.message);
+            setTimeout(function () {
+                location.href = "/";
+            },1200)
+        });
+    }
+
     load_topic_option();
 });
 function push_question(json_data){

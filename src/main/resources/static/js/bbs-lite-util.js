@@ -2,7 +2,6 @@
  * 提交用户注册/登录表单
  */
 $(function () {
-    $('textarea').flexText();
     $(document).on('click',"#change-login-method",function () {
         let account_login = $("#account-login");
         let email_login = $("#mail-login");

@@ -4,6 +4,8 @@ let question_comment_count;
 let question_view_count;
 
 $(function () {
+
+
     // 加载问题详情
     //TODO 非法访问限制
     $("#question_detail").empty();
@@ -12,13 +14,20 @@ $(function () {
         url,
         {"id": getQuestionId()},
         function (data) {
-        document.title = data.extend.question.title;
-        load_question_info(data.extend.question);
-        if(data.extend.question.commentCount > 0) {
-            show_more_comment();
-        }
-        load_question_detail_right(data.extend);
-        $("html,body").animate({scrollTop: 0}, 0);//回到顶端
+            document.title = data.extend.question.title;
+            load_question_info(data.extend.question);
+            if(data.extend.question.commentCount > 0) {
+                show_more_comment();
+            }
+            load_question_detail_right(data.extend);
+            debugger
+            editormd.markdownToHTML("markdown-text", {
+                htmlDecode      : "style,script,iframe",
+                emoji           : true,
+                taskList        : true,
+                tex             : true
+            });
+            $("html,body").animate({scrollTop: 0}, 0);//回到顶端
         },
         function (data) {
             fail_prompt(data.message);
@@ -294,7 +303,9 @@ function load_question_info(questionInfo) {
     });
     questionDetail +=
         '<hr class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
-        '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">\n' + questionInfo.description +'</div>'+
+        '<div id="markdown-text" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 markdown-body editormd-html-preview">' +
+        '<textarea style="display: none">' + questionInfo.description +'</textarea>' +
+        '</div>'+
         '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="option_item"></div>' +
         '    <hr class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
         '</div>';
