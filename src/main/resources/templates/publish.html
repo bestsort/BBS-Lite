@@ -3,19 +3,10 @@
 <head>
     <title>发布</title>
     <head th:insert="common/import"></head>
-    <script src="/js/editor.min.js"></script>
+    <link rel="stylesheet" href="https://alicdn.bestsort.cn/bbs/editor.md-master/lib/codemirror/addon/dialog/dialog.css"/>
+    <link rel="stylesheet" href="https://alicdn.bestsort.cn/bbs/editor.md-master/css/editormd.css">
+    <script src="/js/editormd.js"></script>
     <script src="/js/publish-data.js"></script>
-    <style type="text/css">
-        .w-e-text-container {
-            border: 1px solid rgba(33, 37, 41, 0.1);
-            min-height: 600px;
-        }
-        /*
-        .text {
-            border: 1px solid rgba(33, 37, 41, 0.1);
-            min-height: 600px;
-        }*/
-    </style>
 </head>
 
 <body>
@@ -54,7 +45,7 @@
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div id="editor-md" style="z-index: 1">
-                <textarea></textarea>
+                <textarea id="question-description" style="display: none"></textarea>
             </div>
         </div>
         <div id="show_tag" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">

@@ -179,46 +179,46 @@
             }
         },
         toolbarCustomIcons   : {               // using html tag create toolbar icon, unused default <a> tag.
-            lowercase        : "<a href=\"javascript:;\" title=\"Lowercase\" unselectable=\"on\"><i class=\"iconfont iconzimuzhuanxiaoxie\" name=\"lowercase\" style=\"font-size:16px;margin-top: -10px;\"></i></a>",
+            lowercase        : "<a href=\"javascript:;\" title=\"Lowercase\" unselectable=\"on\"><i class=\"iconfont icon-zimuzhuanxiaoxie\" name=\"lowercase\" style=\"font-size:16px;margin-top: -10px;\"></i></a>",
             "ucwords"        : "<a href=\"javascript:;\" title=\"ucwords\" unselectable=\"on\"><i class=\"iconfont\" name=\"ucwords\" style=\"font-size:20px;margin-top: -3px;\">Aa</i></a>"
         },
         toolbarIconsClass    : {
-            undo             : "iconchexiao",
-            redo             : "iconzhongzuo",
-            bold             : "iconcuti",
-            del              : "iconshanchuxian",
-            italic           : "iconxieti",
-            quote            : "iconyinyong1",
-            uppercase        : "iconzimuzhuandaxie",
+            undo             : "icon-chexiao",
+            redo             : "icon-zhongzuo",
+            bold             : "icon-cuti",
+            del              : "icon-shanchuxian",
+            italic           : "icon-xieti",
+            quote            : "icon-yinyong1",
+            uppercase        : "icon-zimuzhuandaxie",
             h1               : editormd.classPrefix + "bold",
             h2               : editormd.classPrefix + "bold",
             h3               : editormd.classPrefix + "bold",
             h4               : editormd.classPrefix + "bold",
             h5               : editormd.classPrefix + "bold",
             h6               : editormd.classPrefix + "bold",
-            "list-ul"        : "iconwuxuliebiao",
-            "list-ol"        : "iconyouxuliebiao",
-            hr               : "iconfengexian",
-            link             : "iconlianjie",
-            "reference-link" : "iconmao-shi",
-            image            : "icontupian",
-            code             : "iconai-code",
-            "preformatted-text" : "icondaimakuai",
-            "code-block"     : "icondaimakuai",
-            table            : "iconbiaoge",
-            datetime         : "iconshijian",
-            emoji            : "iconbiaoqing",
-            "html-entities"  : "iconhtml5",
-            pagebreak        : "iconchaifenyemian",
-            "goto-line"      : "iconterminal", // fa-crosshairs
-            watch            : "iconai-eye",
-            unwatch          : "iconyulan1",
-            preview          : "iconxianshiqi",
-            search           : "iconfangdajing",
-            fullscreen       : "iconquanping",
-            clear            : "iconxiangpica",
-            help             : "iconyiwen",
-            info             : "iconxinxi"
+            "list-ul"        : "icon-wuxuliebiao",
+            "list-ol"        : "icon-youxuliebiao",
+            hr               : "icon-fengexian",
+            link             : "icon-lianjie",
+            "reference-link" : "icon-mao-shi",
+            image            : "icon-tupian",
+            code             : "icon-ai-code",
+            "preformatted-text" : "icon-daimakuai",
+            "code-block"     : "icon-daimakuai",
+            table            : "icon-biaoge",
+            datetime         : "icon-shijian",
+            emoji            : "icon-biaoqing",
+            "html-entities"  : "icon-html5",
+            pagebreak        : "icon-chaifenyemian",
+            "goto-line"      : "icon-terminal", // fa-crosshairs
+            watch            : "icon-ai-eye",
+            unwatch          : "icon-yulan1",
+            preview          : "icon-xianshiqi",
+            search           : "icon-fangdajing",
+            fullscreen       : "icon-quanping",
+            clear            : "icon-xiangpica",
+            help             : "icon-yiwen",
+            info             : "icon-xinxi"
         },
         toolbarIconTexts     : {},
 
@@ -411,7 +411,7 @@
             }
 
             var appendElements = [
-                (!settings.readOnly) ? "<a href=\"javascript:;\" class=\"iconfont iconguanbi " + classPrefix + "preview-close-btn\"></a>" : "",
+                (!settings.readOnly) ? "<a href=\"javascript:;\" class=\"iconfont icon-guanbi " + classPrefix + "preview-close-btn\"></a>" : "",
                 ( (settings.saveHTMLToTextarea) ? "<textarea class=\"" + classNames.textarea.html + "\" name=\"" + id + "-html-code\"></textarea>" : "" ),
                 "<div class=\"" + classPrefix + "preview\"><div class=\"markdown-body " + classPrefix + "preview-container\"></div></div>",
                 "<div class=\"" + classPrefix + "container-mask\" style=\"display:block;\"></div>",
@@ -1313,7 +1313,7 @@
                 "<p style=\"margin: 10px 0 20px 0;\"><a href=\"" + editormd.homePage + "\" target=\"_blank\">" + editormd.homePage + " <i class=\"fa fa-external-link\"></i></a></p>",
                 "<p style=\"font-size: 0.85em;\">Copyright &copy; 2015 <a href=\"https://github.com/pandao\" target=\"_blank\" class=\"hover-link\">Pandao</a>, The <a href=\"https://github.com/pandao/editor.md/blob/master/LICENSE\" target=\"_blank\" class=\"hover-link\">MIT</a> License.</p>",
                 "</div>",
-                "<a href=\"javascript:;\" class=\"iconfont iconguanbi" + classPrefix + "dialog-close\"></a>",
+                "<a href=\"javascript:;\" class=\"iconfont icon-guanbi" + classPrefix + "dialog-close\"></a>",
                 "</div>"
             ].join("\n");
 
@@ -4256,7 +4256,7 @@
 
         if (options.closed)
         {
-            html += "<a href=\"javascript:;\" class=\"iconfont iconguanbi " + classPrefix + "dialog-close\"></a>";
+            html += "<a href=\"javascript:;\" class=\"iconfont icon-guanbi " + classPrefix + "dialog-close\"></a>";
         }
 
         html += "<div class=\"" + classPrefix + "dialog-container\">" + options.content;

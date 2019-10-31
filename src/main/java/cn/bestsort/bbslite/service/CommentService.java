@@ -37,7 +37,9 @@ public class CommentService {
     private CommentMapper commentMapper;
     @Autowired
     private ThumbUpMapper thumbUpMapper;
-
+    public List<Comment> listByUserId(Long id){
+        return commentMapper.listCommentByUserId(id);
+    }
     @CachePut(keyGenerator = "myKeyGenerator")
     public void insert(Comment comment,Long id,boolean isParent) {
         if(isParent){

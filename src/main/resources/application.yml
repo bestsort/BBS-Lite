@@ -9,9 +9,8 @@ bbs:
     # 邮件标题
     title: 氢论坛---邮件通知
   github:
-    client:
-      id: 08b076ae3cf904cf324c
-      secret: 09c5129c5e0ff8b3284adbc7ae8031fe3ea04af3
+    id: 08b076ae3cf904cf324c
+    secret: 09c5129c5e0ff8b3284adbc7ae8031fe3ea04af3
   user:
     # 默认用户信息
     default:
@@ -26,12 +25,14 @@ bbs:
     seed: 0x3f2a3c7e
     # 盐值,用于user表密码加密,字符串推荐长度>3
     salt: xzcawx
+
+  # 阿里云OSS,用于存储用户发布时上传的图片.如无图片上传需求可不填
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com
     #阿里云主账号AccessKey拥有所有API的访问权限，风险很高。
-    #强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
-    accessKeyId: LTAI4FmZkJ4DqPMWsg2CebJK
-    accessKeySecret: iMBREaZQF2qJ6BBZtPBIqpJmtOHwAP
+    #强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号
+    accessKeyId: LTAI4FqQKcwNokbjvdqrr3xb
+    accessKeySecret: YqLF8HLVkR8n1LN7ZJwAssj6WPjvgO
     bucketName: bbs-bestsort-cn
     #<yourObjectName>上传文件到OSS时需要指定包含文件后缀在内的完整路径，例如abc/efg/123.jpg。
     objectName: bbs

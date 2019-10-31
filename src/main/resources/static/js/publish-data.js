@@ -12,7 +12,6 @@ $(function () {
         height: "600px",
         delay: 0,
         tex: true,
-
         saveHTMLToTextarea: true, // 保存 HTML 到 Textarea
         toolbarAutoFixed: true,//工具栏自动固定定位的开启与禁用
         syncScrolling: true,
@@ -55,7 +54,7 @@ $(function () {
             if (question != null) {
                 $("#title").val(question.title);
                 $("#tag").val(question.tag);
-                testEditor.setValue(question.description);
+                $("#question-description").val(question.description);
             }
             show_topic_option(data);
         },function (data) {
@@ -65,7 +64,6 @@ $(function () {
             },1200)
         });
     }
-
     load_topic_option();
 });
 function push_question(json_data){

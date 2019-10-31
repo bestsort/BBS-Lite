@@ -6,6 +6,7 @@ import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,5 +37,16 @@ public class LogInController {
         session.setAttribute("user",user);
         response.addCookie(new Cookie("token",user.getToken()));
         return new ResultDto().okOf();
+    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session,
+                         HttpServletResponse response){
+        session.removeAttribute("user");
+        //删除 Cookie
+        Cookie cookie = new Cookie("token", "");
+        cookie.setMaxAge(0);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        return "redirect:/";
     }
 }

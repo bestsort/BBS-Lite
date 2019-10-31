@@ -14,12 +14,13 @@ public enum FunctionItem{
      * TOPIC: 话题
      * USER: 用户
      * QUESTION: 问题
+     * REPLY: 回复
      */
     COMMENT,
     TOPIC,
     USER,
-    QUESTION;
-
+    QUESTION,
+    REPLY;
     public static FunctionItem getItem(String str){
         for(FunctionItem i:FunctionItem.values()){
             if (FunctionItem.valueOf(str) == i){

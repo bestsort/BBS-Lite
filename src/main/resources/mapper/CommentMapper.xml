@@ -18,6 +18,16 @@
             <result column="kid_gmt_modified" jdbcType="BIGINT" property="gmtModified" />
         </collection>
     </resultMap>
+    <resultMap id="comment_parent_list" type="cn.bestsort.bbslite.pojo.model.CommentParent">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="comment_by_id" jdbcType="BIGINT" property="commentById"/>
+        <result column="question_id" jdbcType="BIGINT" property="questionId"/>
+        <result column="like_count" jdbcType="BIGINT" property="likeCount" />
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+    </resultMap>
+
     <sql id="Base_Parent_Column_List">
         id, comment_by_id, question_id, gmt_modified, content, like_count
     </sql>
@@ -136,6 +146,14 @@
              comment_parent
         where
               id=#{id,jdbcType=BIGINT}
+    </select>
+    <select id="listCommentByUserId" resultMap="comment_parent_list">
+        select
+            <include refid="Base_Parent_Column_List"/>
+        from
+            comment_parent
+        where
+            comment_by_id = #{id,jdbcType=BIGINT}
     </select>
     <update id="incCommentLike">
         update comment_parent

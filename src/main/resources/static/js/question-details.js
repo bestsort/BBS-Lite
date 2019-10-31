@@ -20,7 +20,6 @@ $(function () {
                 show_more_comment();
             }
             load_question_detail_right(data.extend);
-            debugger
             editormd.markdownToHTML("markdown-text", {
                 htmlDecode      : "style,script,iframe",
                 emoji           : true,
@@ -223,7 +222,7 @@ function load_question_option(creator, {commentCount:questionComment,followCount
 function show_more_comment() {
     let show_more = $("<div class='col-lg-12 col-md-12 col-xs-12 col-sm-12' style='text-align: center'></div>");
     show_more.append($("<span href='#' style='cursor: pointer;color: #155faa;font-size: 14px;' id='show_more_comment'>" +
-        "查看评论( " + question_comment_count +" )  <i class='iconfont icon-xiangxia'></i></span>"));
+        "查看评论( " + question_comment_count +" ) </span>"));
     show_more.click(function () {
         load_comment_info();
     });

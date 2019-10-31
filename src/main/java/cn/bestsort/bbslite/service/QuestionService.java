@@ -37,6 +37,11 @@ public class QuestionService {
     @Autowired
     private QuestionExtMapper questionExtMapper;
 
+    public List<Question> listQuestionByUserId(Long id){
+        QuestionExample example = new QuestionExample();
+        example.createCriteria().andCreatorEqualTo(id);
+        return questionMapper.selectByExample(example);
+    }
 
     public PageInfo<Question> findQuestionListByCategory(int page,int size,int category){
         QuestionExample example = new QuestionExample();

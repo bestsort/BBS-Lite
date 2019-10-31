@@ -1,6 +1,8 @@
 package cn.bestsort.bbslite.controtller;
 
 import cn.bestsort.bbslite.dto.AccessTokenDto;
+import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
+import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.UserService;
 import cn.bestsort.bbslite.manager.GithubProvider;
@@ -32,18 +34,21 @@ public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
 
-    @Value("${bbs.github.client.id}")
+    @Value("${bbs.github.id:}")
     private String clientId;
-
-    @Value("${bbs.github.client.secret}")
+    @Value("${bbs.github.secret:}")
     private String secret;
-
-    @Value("${bbs.url}" + "/callback")
+    @Value("${bbs.url:}" + "/callback")
     private String redirectUri;
     @Autowired
     private UserService userService;
+
     @GetMapping("github-login")
     public String githubLogin(){
+        if (secret.length() + clientId.length() == 0){
+            throw new CustomizeException(CustomizeErrorCodeEnum.URL_NOT_FOUND);
+        }
+
         String url = "https://github.com/login/oauth/authorize?"+
                 "client_id=" + clientId + "&" +
                 "redirect_uri=" + redirectUri +
@@ -78,19 +83,6 @@ public class AuthorizeController {
         }else {
             log.error("callback post github error,{}",githubUser);
         }
-        return "redirect:/";
-    }
-
-
-    @GetMapping("/logout")
-    public String logout(HttpSession session,
-                         HttpServletResponse response){
-        session.removeAttribute("user");
-        //删除 Cookie
-        Cookie cookie = new Cookie("token", "");
-        cookie.setMaxAge(0);
-        cookie.setPath("/");
-        response.addCookie(cookie);
         return "redirect:/";
     }
 }
