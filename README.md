@@ -9,50 +9,35 @@
 
 > 这是一个基于 Spring Boot 搭建的轻论坛
 
-## TODO
 
-- [x] 发布问题
-- [x] 修改问题
-- [x] 查看我的问题
-- [x] 评论
-- [x] 文章搜索
-- [ ] 多级评论
-- [ ] 查看最新评论
-- [ ] 标签分类
-- [ ] 热门推荐
-- [ ] 文章排序
-- [ ] 个人资料
 
-## Demo
-![](img/question.png)
-
-![](img/main.png)
-
-![](img/topic.png)
-
+## 项目示例
 
 ### 开始
 ```bash
-git clone https://github.com/bestsort/BBS-Lite.git
+git clone https://github.com/bestsort/BBS-Lite.git --depth=1
 cd BBS-lite
 ```
 将该项目导入到 IDEA 或者其他的IDE中,并配置`pom.xml`中11-13行的数据库信息为自己的数据库配置.
 
 请确认您的数据库字符编码为**utf8m4**.参考如下:
 ```xml
-<jdbc.url>jdbc:mysql://localhost:3306/bbs_lite?serverTimezone=UTC</jdbc.url>
-<jdbc.url>jdbc:mysql://localhost:3306/bbs_lite?serverTimezone=UTC</jdbc.url>
-<jdbc.user>bestsort</jdbc.user>
-<jdbc.passwd>ce8YChPDJ5GRFOUE</jdbc.passwd>
+<jdbc.url>jdbc:mysql://{ip}:{port}/{database}?serverTimezone=UTC</jdbc.url>
+<!-- <jdbc.url>jdbc:mysql://localhost:3306/bbs_lite?serverTimezone=UTC</jdbc.url> -->
+<jdbc.user>{user}</jdbc.user>
+<!--<jdbc.user>bestsort</jdbc.user>-->
+<jdbc.passwd>{password}</jdbc.passwd>
+<!--<jdbc.passwd>ce8YChPDJ5GRFOUE</jdbc.passwd>-->
+
+
+
 ```
 然后执行以下命令
 ```bash
-mvn package
 mvn flyway:migrate
-mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+mvn spring-boot:run
 ```
-最后,配置好 Tomcat 即可启动项目
-
+即可启动.需要后台运行 也可自行打包为 **jar** 或者 **war** 后部署到 Tomcat .
 ## 采用技术及工具
 
 - Spring Boot(快速构建应用)
