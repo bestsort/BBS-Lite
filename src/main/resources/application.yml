@@ -118,3 +118,5 @@ server:
   servlet:
     session:
       timeout: 15552000
+  address: 0.0.0.0
+  port: 60030
