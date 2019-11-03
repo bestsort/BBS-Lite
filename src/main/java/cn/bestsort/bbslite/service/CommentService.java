@@ -41,20 +41,23 @@ public class CommentService {
         return commentMapper.listCommentByUserId(id);
     }
     @CachePut(keyGenerator = "myKeyGenerator")
-    public void insert(Comment comment,Long id,boolean isParent) {
+    public void insert(Comment comment,Long pid,boolean isParent,Long userId) {
         if(isParent){
             CommentParent commentParent = (CommentParent) comment;
-            commentParent.setQuestionId(id);
-            if (questionMapper.selectByPrimaryKey(id) == null){
+            commentParent.setQuestionId(pid);
+            if (questionMapper.selectByPrimaryKey(pid) == null){
                 throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
             }
             commentParent.setGmtCreate(System.currentTimeMillis());
             commentParent.setGmtModified(commentParent.getGmtCreate());
             commentMapper.insertCommentParent(commentParent);
-            questionExtMapper.incQuestionComment(id,1L);
+            questionExtMapper.incQuestionComment(pid,1L);
         }else{
+            if (userMapper.selectByPrimaryKey(userId) == null){
+                throw new CustomizeException(CustomizeErrorCodeEnum.URL_NOT_FOUND);
+            }
             //回复评论
-            CommentParent parent = commentMapper.getCommentParent(id);
+            CommentParent parent = commentMapper.getCommentParent(pid);
             if(parent == null)
             {
                 throw new CustomizeException(CustomizeErrorCodeEnum.COMMENT_NOT_FOUND);
@@ -62,7 +65,8 @@ public class CommentService {
             CommentKid kid = (CommentKid)comment;
             kid.setGmtCreate(System.currentTimeMillis());
             kid.setGmtModified(kid.getGmtCreate());
-            kid.setPid(id);
+            kid.setPid(pid);
+            kid.setCommentToUserId(userId);
             commentMapper.insertCommentKid(kid);
             questionExtMapper.incQuestionComment(parent.getQuestionId(),1L);
         }
@@ -100,6 +104,16 @@ public class CommentService {
         }
         return new PageInfo<>(commentVos);
     }
+
+    /**
+     * 将 CommentParent 转换为 CommentVo,并且校验该用户是否为问题的作者
+     * @param parent
+     * @param userMap
+     * @param creator
+     * @param isThumb
+     * @param userId
+     * @return 转换后的 CommentVo
+     */
     private CommentVo cloneParent2Vo(CommentParent parent,Map<Long,User>userMap,Long creator,Map<Long,Boolean> isThumb,Long userId){
         CommentVo commentVo = new CommentVo();
         commentVo.setIsActive(isThumb.get(parent.getId())!=null);
@@ -111,19 +125,35 @@ public class CommentService {
         commentVo.setId(parent.getId());
         return commentVo;
     }
+
+    /**
+     * 将 CommentKid 转换为 CommentVo,并且校验该用户是否为问题的作者
+     * @param kid
+     * @param userMap
+     * @param creator
+     * @return 转换后的 CommentVo
+     */
     private CommentVo cloneKid2Vo(CommentKid kid,Map<Long,User>userMap,Long creator){
         CommentVo commentVo = new CommentVo();
         commentVo.setContent(kid.getContent());
         commentVo.setCommentByUser(userMap.get(kid.getCommentById()));
         commentVo.setGmtCreate(kid.getGmtCreate());
+        commentVo.setCommentToUser(userMap.get(kid.getCommentToUserId()));
         return commentVo;
     }
+
+    /**
+     * 将评论列表中的 user 进行去重处理
+     * @param comments
+     * @return Map: userId <--> userInfo
+     */
     private Map<Long, User> getUserMapByComments(List<CommentParent> comments){
         UserExample example = new UserExample();
         Set<Long> userIds = new HashSet<>();
         for (CommentParent parent:comments){
             for (CommentKid kid :parent.getKids()){
                 userIds.add(kid.getCommentById());
+                userIds.add(kid.getCommentToUserId());
             }
             userIds.add(parent.getCommentById());
         }
@@ -132,6 +162,13 @@ public class CommentService {
         //TODO 敏感数据置空
         return users.stream().collect(Collectors.toMap(User::getId, user->user));
     }
+
+    /**
+     * 判断当前用户是否对某条评论进行点赞
+     * @param comments
+     * @param userId
+     * @return Map: commentId <--> isThumbUp
+     */
     private Map<Long,Boolean> getThumbUpMap(List<CommentParent> comments,Long userId){
 
         Set<Long> ids = comments.stream().map(CommentParent::getId).collect(Collectors.toSet());

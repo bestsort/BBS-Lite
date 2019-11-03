@@ -32,6 +32,11 @@ public class RegularlyWork {
     public void clearUserDatabase(){
         log.debug("A total of {} cleaned inactive accounts", userService.clearUnActivateUser());
     }
+
+    /**
+     * 每隔三分钟检查发送失败的邮件并重新发送
+     * 累计三次失败后记录日志
+     */
     @Scheduled(cron = "0 0/3 * * * ?")
     public void resendMail(){
         int lenth = MailService.failMail.size();
@@ -42,7 +47,7 @@ public class RegularlyWork {
                 Objects.requireNonNull(mail).setTimes(mail.getTimes() - 1);
                 if (mail.getTimes() > 0) {
                     log.info("Resend mail  -> {}", mail.sendTo);
-                    mailService.sendSignUpMail(mail);
+                    mailService.sendMail(mail);
                 } else {
                     log.error("The mail failed to be sent three times in a row, please check it-> {} ", mail.sendTo);
                 }

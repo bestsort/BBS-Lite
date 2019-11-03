@@ -61,6 +61,7 @@ public class CommentController {
     public ResultDto commitComment(@RequestParam(name = "questionId") Long questionId,
                                    @RequestParam(name = "pid",required = false) Long pid,
                                    @RequestParam(name = "content") String content,
+                                   @RequestParam(name = "sendToUser",required = false) Long userId,
                                    HttpSession session){
         User user = (User)session.getAttribute("user");
         if (user == null){
@@ -74,7 +75,7 @@ public class CommentController {
         comment.setContent(content);
         comment.setCommentById(user.getId());
         try {
-            commentService.insert(comment,isParent?questionId:pid,isParent);
+            commentService.insert(comment,isParent?questionId:pid,isParent,userId);
             return new ResultDto().okOf();
         }catch (Exception e){
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.SYS_ERROR);

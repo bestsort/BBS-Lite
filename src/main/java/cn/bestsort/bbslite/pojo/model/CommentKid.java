@@ -7,4 +7,5 @@ import lombok.EqualsAndHashCode;
 @Data
 public class CommentKid extends Comment {
     private Long pid;
+    private Long commentToUserId;
 }

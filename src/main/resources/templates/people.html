@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>个人中心</title>
+    <head th:insert="common/import"></head>
+    <script src="/js/people.js"></script>
+
+    <!--
+        <script src="/js/people.js"></script>
+    -->
+</head>
+<body>
+<div th:insert="common/navgation"></div>
+<div class="container main profile">
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-xs-9 col-sm-12" style="border-right:1px solid #eee">
+            <ul class="nav nav-tabs" id = "people_option">
+                <li class="disabled active"><a id="ALL">问题</a></li>
+                <li>
+                    <a id="VIEW_HOT">评论</a>
+                </li>
+                <li>
+                    <a id="LIKE_HOT">回复</a>
+                </li>
+                <li>
+                    <a id="COMMENT_HOT">评论最多</a>
+                </li>
+                <li>
+                    <a id="WAIT_COMMENT">待回复</a>
+                </li>
+                <li>
+                    <a id="MONTH_HOT">月榜</a>
+                </li>
+
+                <li>
+                    <a id="WEEK_HOT">周榜</a>
+                </li>
+            </ul>
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="people_list">
+
+            </div>
+        </div>
+        <!-- 右侧栏 -->
+        <div id="question_detail_right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
+
+    </div>
+</div>
+</body>
+<div th:insert="common/foot"></div>
+</html>

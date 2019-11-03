@@ -30,7 +30,7 @@ public class MailService {
     private String homeUrl;
     @Value("${spring.mail.username:}")
     private String sendBy;
-    @Value("${bbs.mail.title:}")
+    @Value("${bbs.mail.title:氢论坛---邮件通知}")
     private String title;
     @Autowired
     private JavaMailSenderImpl mailSender;
@@ -38,14 +38,14 @@ public class MailService {
     public static Queue<MailVo> failMail = new LinkedList<>();
 
     @Async
-    public void sendMail(String token ,String account,String mailAddress){
+    public void sendMail(String token , String account, String mailAddress){
         MailVo mailVo = new MailVo();
         mailVo.setSendText(generatorSignUpMail(token,account));
         mailVo.setSendSubject(title);
         mailVo.setSendTo(mailAddress);
-        sendSignUpMail(mailVo);
+        sendMail(mailVo);
     }
-    public void sendSignUpMail(MailVo mail){
+    public void sendMail(MailVo mail){
         try {
             MimeMessagePreparator messagePreparator = mimeMessage -> {
                 MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);

@@ -16,6 +16,7 @@
             <result column="kid_content" jdbcType="VARCHAR" property="content"/>
             <result column="kid_gmt_create" jdbcType="BIGINT" property="gmtCreate" />
             <result column="kid_gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+            <result column="kid_comment_to_user_id" jdbcType="BIGINT" property="commentToUserId" />
         </collection>
     </resultMap>
     <resultMap id="comment_parent_list" type="cn.bestsort.bbslite.pojo.model.CommentParent">
@@ -27,7 +28,9 @@
         <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
         <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     </resultMap>
-
+    <sql id="Base_Kid_Column_List">
+        id, comment_by_id, pid,content,comment_to_user_id, gmt_modified, content, like_count
+    </sql>
     <sql id="Base_Parent_Column_List">
         id, comment_by_id, question_id, gmt_modified, content, like_count
     </sql>
@@ -101,6 +104,9 @@
             <if test="content != null">
                 content,
             </if>
+            <if test="commentToUserId != null">
+                comment_to_user_id,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -121,6 +127,9 @@
             <if test="content != null">
                 #{content,jdbcType=VARCHAR},
             </if>
+            <if test="commentToUserId != null">
+                #{commentToUserId,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
 
@@ -132,7 +141,8 @@
             kid.comment_by_id kid_comment_by_id,
             kid.content kid_content,
             kid.gmt_create kid_gmt_create,
-            kid.gmt_modified kid_gmt_modified
+            kid.gmt_modified kid_gmt_modified,
+            kid.comment_to_user_id kid_comment_to_user_id
         from
             comment_parent left join comment_kid kid on kid.pid = comment_parent.id
         where
@@ -146,6 +156,15 @@
              comment_parent
         where
               id=#{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="getCommentKid" resultType="cn.bestsort.bbslite.pojo.model.CommentKid">
+        select
+        <include refid="Base_Kid_Column_List"/>
+        from
+            comment_kid
+        where
+            id=#{id,jdbcType=BIGINT}
     </select>
     <select id="listCommentByUserId" resultMap="comment_parent_list">
         select

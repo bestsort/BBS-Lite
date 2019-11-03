@@ -10,10 +10,8 @@ import cn.bestsort.bbslite.service.CommentService;
 import cn.bestsort.bbslite.service.QuestionService;
 import cn.bestsort.bbslite.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -28,7 +26,7 @@ import java.util.Map;
  * @Version 1.0
  */
 
-@RestController
+@Controller
 public class PersonalCenterController {
     @Autowired
     private UserService userService;
@@ -37,16 +35,16 @@ public class PersonalCenterController {
     @Autowired
     private CommentService commentService;
 
-    @GetMapping("/persional-center")
-    public ResultDto profile(@RequestParam(name = "action",required = false) FunctionItem item,
+    @RequestMapping("/people")
+    /*public ResultDto profile(@RequestParam(name = "action",required = false) FunctionItem item,
                              @RequestParam(name = "id",required = false) Long id,
                              @RequestParam(name="page",defaultValue = "1") Integer page,
                              @RequestParam(name="size",defaultValue = "5") Integer size,
                              HttpSession session){
-/*        User user = (User)session.getAttribute("user");
+*//*        User user = (User)session.getAttribute("user");
         if(user == null){
             throw new CustomizeException(CustomizeErrorCodeEnum.NO_WAY);
-        }*/
+        }*//*
         switch (item){
             case QUESTION: {
                 return new ResultDto().okOf()
@@ -58,5 +56,8 @@ public class PersonalCenterController {
             }
             default: return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_WAY);
         }
+    }*/
+    public String re(){
+        return  "people";
     }
 }

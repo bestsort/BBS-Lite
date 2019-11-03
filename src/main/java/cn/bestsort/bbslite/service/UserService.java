@@ -30,11 +30,11 @@ import java.util.List;
 @Service
 @CacheConfig(cacheNames = "userCache")
 public class UserService {
-    @Value("${bbs.user.default.avatar-url}")
+    @Value("${bbs.user.default.avatar-url:}")
     String defaultAvatarUrl;
-    @Value("${bbs.user.default.bio}")
+    @Value("${bbs.user.default.bio:这人太懒了,没有留下简介}")
     String defaultBio;
-    @Value("${bbs.user.default.nickname}")
+    @Value("${bbs.user.default.nickname:无名氏}")
     String defaultNickname;
 
     @Autowired

@@ -1,3 +1,6 @@
+body{
+    font-size: 14px;
+}
 .alert-info {
     position: fixed;
     top: 50%;
@@ -16,6 +19,47 @@
     margin-top: 30px;
     padding: 3px 18px 3px 15px;
 }
+.nav-tabs>li>a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+}
+.nav-tabs>li:hover {
+    border-color: #dee2e6;
+    background: #dee2e6;
+}
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+.nav-tabs>li {
+    float: left;
+    margin-bottom: -1px;
+}
+.active{
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #ffffff;
+    border-right: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
+}
+.disabled{
+    pointer-events: none;
+    cursor: default;
+}
+.comment-reply{
+    color: #595959;
+    font-weight: 700;
+}
+.nav>li {
+    border-radius: 8% 8% 0 0;
+    position: relative;
+    display: block;
+    cursor: pointer;
+}
+
+
 .sign-form{
     max-width: 700px;
 }
@@ -28,6 +72,27 @@
     0%{ opacity: 0}
     30% { opacity: 1; }
 }
+
+.fadein-1s{
+    -webkit-animation: fadeinout 4s linear forwards;
+    animation: fadein 1s linear forwards;
+}
+
+.fadein-0_5s{
+    -webkit-animation: fadeinout 4s linear forwards;
+    animation: fadein 0.5s linear forwards;
+}
+
+@-webkit-keyframes fadein {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadein {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 
 .alert-info-success {
     color: #3c763d;
@@ -267,7 +332,6 @@ body, html {
     margin: 3px;
     color: #999999;
 }
-
 .hide-all{
     display: none;
 }
@@ -277,6 +341,7 @@ body, html {
     bottom: 0;
     right: 0;
 }
+
 /*隐藏按钮位置*/
 .comment-post {
     position: absolute;

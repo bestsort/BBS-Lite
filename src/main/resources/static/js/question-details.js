@@ -27,6 +27,7 @@ $(function () {
                 tex             : true
             });
             $("html,body").animate({scrollTop: 0}, 0);//回到顶端
+            load_comment_info();
         },
         function (data) {
             fail_prompt(data.message);
@@ -42,6 +43,7 @@ function click_options() {
         ajax_post("/commitComment",{
             questionId:getQuestionId(),
             pid:$("#reply-to-id").val(),
+            sendToUser:$("#reply-to-user").val(),
             content:content},
             function () {
 
@@ -73,27 +75,39 @@ function click_options() {
         $(val).collapse('toggle');
     });
     $(document).on('click',"#commit_comment",function () {
-        commit_comment();
+        let jsonData = {
+            "questionId":getQuestionId(),
+            "content":$("#commit_comment").prev().val(),
+        };
+        ajax_post("/commitComment",jsonData,
+            function (data) {
+                success_prompt("成功");
+                setTimeout(function () {
+                    load_comment_info();
+                },1200);}
+        );
     });
     $(document).on('click',".comment-post>span",function () {
         /**
          * 子评论
          */
+        let creator = $(this).prevAll("input[name='creator']").val();
+        let ownId = $(this).prevAll("input[name='commentId']");
+
         if ($(this).parents("li").length === 2){
-            let own = $(this).prevAll("input");
             let pid = $(this).parents("li")[1];
-            reply_comment(own,pid);
+            reply_comment(ownId,creator,pid);
         }
         /**
          * 父评论
          */
         else {
-            let commentId = $(this).prevAll("input").val();
+            let commentId = $(this).prevAll("input[name='commentId']").val();
             /**
              * 评论
              */
             if ($(this).next().length === 0){
-                reply_comment($(this).prevAll("input"));
+                reply_comment(ownId, creator);
             }
             /**
              * 点赞
@@ -107,7 +121,7 @@ function click_options() {
     });
 }
 
-function reply_comment(kid,parent) {
+function reply_comment(kid,creator,parent) {
     /**
      * 回复父评论
      */
@@ -117,22 +131,10 @@ function reply_comment(kid,parent) {
     }else {
         $("#reply-to-id").val($(parent).val());
     }
+    $("#reply-to-user").val(creator);
     $("#reply-label").val(reply_to);
     $("#reply").modal('show');
-}
-function commit_comment(val) {
-    let jsonData = {
-        "questionId":getQuestionId(),
-        "pid":val,
-        "content":$("#commit_comment").prev().val(),
-    };
-    ajax_post("/commitComment",jsonData,
-        function (data) {
-        success_prompt("成功");
-        setTimeout(function () {
-            load_comment_info();
-        },1200);}
-    );
+
 }
 function thumb_up_comment(id,isActive,count,e) {
     ajax_post("/thumbUpQuestion",
@@ -327,7 +329,7 @@ function load_comment_info(){
         let comments = data.extend.comments;
         let question_creator = data.extend.creator;
         let view = '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
-            '    <ul id="comments-list" class="comments-list">\n' +
+            '    <ul id="comments-list" class="comments-list fadein-0_5s">\n' +
             '    </ul>\n' +
             '</div>';
         question.append(view);
@@ -349,7 +351,8 @@ function load_comment_html(comment,creator) {
         '                            <a href="'+ byUser.htmlUrl + '">'+ byUser.name + '</a>\n' +
         '                        </h6>\n' +
         '                        <span class="comment-post pull-right" style="top: 0;"> \n' +
-        '                            <input name="commentId" value="' + comment.id + '" hidden="true">' +
+        '                            <input name="commentId" value="' + comment.id + '" hidden>' +
+        '                            <input name="creator" value=" ' + byUser.id +'" hidden>' +
         '                            <span class="option hover-point"><i class="iconfont icon-zan'+ (comment.isActive?" on ":"") + '">'+ (comment.isActive?"已":"") + '点赞(' + comment.likeCount + ')</i></span>\n' +
         '                            <span class="option hover-point" style="margin-right: 25px"><i class="iconfont icon-fenxiang" ></i>评论</span>\n' +
         '                    </span></div>\n' +
@@ -361,6 +364,7 @@ function load_comment_html(comment,creator) {
         '            <ul class="comments-list reply-list">\n';
         $.each(comment.son,function (index,item) {
             let bySonUser = item.commentByUser;
+            let toUser = item.commentToUser;
             html +=
                 '                <li>\n' +
                 '                    <!-- Avatar -->\n' +
@@ -370,11 +374,12 @@ function load_comment_html(comment,creator) {
                 '                        <div class="comment-head">\n' +
                 '                            <h6 class="comment-name ' + (bySonUser.id==creator?'by-author':'') + '"><a href="'+ bySonUser.htmlUrl + '">'+ bySonUser.name + '</a></h6>\n' +
                 '                            <span class="comment-post pull-right">\n' +
-                '                            <input value="' + bySonUser.id + '" hidden="true">' +
-                '                                 <span class="option hover-point"  style="margin-right: 25px;top: 0"><i class="iconfont icon-fenxiang"></i>评论</span>\n' +
+                '                            <input name="commentId" value="' + bySonUser.id + '" hidden>' +
+                '                            <input name="creator" value="' + bySonUser.id + '" hidden>' +
+                '                            <span class="option hover-point"  style="margin-right: 25px;top: 0"><i class="iconfont icon-fenxiang"></i>评论</span>\n' +
                 '                            </span>\n' +
                 '                        </div>\n' +
-                '                        <div class="comment-content">'+ item.content +
+                '                        <div class="comment-content"><a class="comment-reply" href="/people?user='+ toUser.id + '">@'+ toUser.name+': </a>'+ item.content +
                 '                            <span>' + formatTimestamp(item.gmtCreate) + '</span>\n' +
                 '                    </div></div>\n' +
                 '                </li>\n';

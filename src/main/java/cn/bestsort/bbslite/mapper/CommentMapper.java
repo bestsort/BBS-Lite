@@ -12,6 +12,7 @@ public interface CommentMapper {
     boolean insertCommentParent(CommentParent parent);
     boolean insertCommentKid(CommentKid kid);
     CommentParent getCommentParent(Long id);
+    CommentKid getCommentKid(Long id);
 
     long incCommentLike(long id, long val);
 

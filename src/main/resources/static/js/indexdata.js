@@ -148,7 +148,6 @@ function build_question_list(data) {
     $("#question_wrapper").empty();
     const questions = data.extend.page.list;
     $.each(questions, function (index, item) {
-
         const question = $('<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 bbs-question-list-item"' +
             '        <div class="media media-margin" >\n' +
             '            <!-- 头像 -->\n' +
