@@ -139,6 +139,16 @@ body, html {
 .media-heading{
     color: #676767;
 }
+.media-heading-deep{
+    color: #363636;
+}
+.font-bigger{
+    font-size: 18px;
+    font-weight: 700;
+}
+.question-descrption{
+    margin: 0;
+}
 .search{
     border: 1px solid #e6e2e2;
     border-radius: 10px;

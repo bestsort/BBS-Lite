@@ -123,7 +123,7 @@ function to_page(pageno) {
     ajax_get(url,jsonData,function (data) {
         if(data.extend.page.total>0){
             //构建问题列表信息
-            build_question_list(data);
+            build_question_list(data,"#question_wrapper");
             //构建分页信息
             build_page_nav(data);
         }else{
@@ -142,10 +142,11 @@ function to_page(pageno) {
 /**
  * @description 构建问题列表
  * @param data
+ * @param build_to
  */
-function build_question_list(data) {
+function build_question_list(data,build_to) {
     //清空
-    $("#question_wrapper").empty();
+    $(build_to).empty();
     const questions = data.extend.page.list;
     $.each(questions, function (index, item) {
         const question = $('<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 bbs-question-list-item"' +
@@ -172,6 +173,6 @@ function build_question_list(data) {
             '                        </span>\n' +
             '            </div>\n' +
             '        </div>');
-        $("#question_wrapper").append(question);
+        $(build_to).append(question);
     })
 }

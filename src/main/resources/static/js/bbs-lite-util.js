@@ -2,6 +2,19 @@
  * 提交用户注册/登录表单
  */
 $(function () {
+    $('.auto-expand').each(function () {
+        this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+        this.setAttribute('style', 'min-height: 100px;');
+    }).on('input', function () {
+        this.style.height = 'auto';
+        let height = 100;
+        if(this.scrollHeight > 100){
+            height = this.scrollHeight;
+        }
+        debugger
+        this.style.height = (height+5) + 'px';
+    });
+
     $(document).on('click',"#change-login-method",function () {
         let account_login = $("#account-login");
         let email_login = $("#mail-login");

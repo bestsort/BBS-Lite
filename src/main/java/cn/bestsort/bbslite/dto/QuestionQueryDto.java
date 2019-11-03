@@ -16,11 +16,12 @@ import lombok.Getter;
 @Getter
 public class QuestionQueryDto {
     private String search;
+    private String sortBy;
     private Integer topic;
     private String tag;
     private long beginTime;
     private long endTime;
-
+    private Long userId;
     private Integer category;
     private Integer pageSize;
     private Integer pageNo;

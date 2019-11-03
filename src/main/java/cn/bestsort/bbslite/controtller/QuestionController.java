@@ -55,16 +55,23 @@ public class QuestionController {
      */
     @ResponseBody
     @GetMapping("/loadQuestionList")
-    public ResultDto getQuestionList(@RequestParam(name = "sortby",defaultValue = "ALL") String sort,
-                                     @RequestParam(name = "search",required = false) String search,
-                                     @RequestParam(name = "topic",defaultValue = "0") Integer topic,
-                                     @RequestParam(name = "tag",required = false) String tag,
-                                     @RequestParam(name = "pageSize",defaultValue = "10") Integer size,
+    public ResultDto getQuestionList(@RequestParam(name = "pageSize",defaultValue = "10") Integer size,
                                      @RequestParam(name = "pageNo",defaultValue = "1") Integer page,
-                                     @RequestParam(name = "category",defaultValue = "0") Integer categoryVal){
+                                     @RequestParam(name = "sortby",required = false) String sort,
+                                     @RequestParam(name = "search",required = false) String search,
+                                     @RequestParam(name = "topic",required = false) Integer topic,
+                                     @RequestParam(name = "tag",required = false) String tag,
+                                     @RequestParam(name = "userId",required = false) Long userId,
+                                     @RequestParam(name = "category",required = false) Integer categoryVal){
         QuestionQueryDto queryDto = QuestionQueryDto.builder()
-                .search(search).category(categoryVal).pageNo(page)
-                .tag(tag).pageSize(size).topic(topic).build();
+                .search(search)
+                .sortBy(sort)
+                .category(categoryVal)
+                .pageNo(page)
+                .tag(tag)
+                .pageSize(size)
+                .topic(topic)
+                .userId(userId).build();
         PageInfo<Question> pageInfo = questionService.getPageBySearch(queryDto);
         return new ResultDto().okOf().addMsg("page",pageInfo);
     }

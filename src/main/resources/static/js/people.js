@@ -4,12 +4,11 @@ $(function () {
 
 function list_option() {
     $("#people_option").empty();
-    let isFirst = 0;
+    let default_option = undefined;
     $.each(peopel_center_option, function (index, item) {
-        debugger
         let li_optopn;
-        if (isFirst === 0){
-            isFirst++;
+        if (default_option === undefined){
+            default_option = index;
             li_optopn = '<li class="disabled active">\n' +
                 '     <a id="'+ index + '">'+ item +'</a>\n' +
                 '</li>';
@@ -24,35 +23,57 @@ function list_option() {
         });
         $("#people_option").append(li_optopn);
     });
+    eval(default_option)();
 }
 
 
-var QUESTION = function () {
+let QUESTION = function () {
     $("#people_list").empty();
-
-
-
-    let aa='<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 bbs-question-list-item" <div="">\n' +
-    '            <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">\n' +
-    '                        <span>\n' +
-    '                            <a href="/question/4" class="media-heading">爱仕达所</a>\n' +
-    '                        </span>\n' +
-    '                <br>\n' +
-    '                <span class="aw-question-content">\n' +
-    '                            <span>分类 • </span>\n' +
-    '                            <span>0 次浏览・</span>\n' +
-    '                            <span>0 人点赞・</span>\n' +
-    '                            <span>0 人评论</span>\n' +
-    '                            <span style="float:right">发表于 2019-11-3 9:31:25</span>\n' +
-    '                        </span>\n' +
-    '            </div>\n' +
-    '        </div>'
+    ajax_get("/loadQuestionList",{
+        userId:getParam("user")
+    },
+    function (data) {
+    //清空
+        $("#people_list").empty();
+        const questions = data.extend.page.list;
+        $.each(questions, function (index, item) {
+            const question = $('<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 bbs-question-list-item"' +
+                '        <div class="media media-margin" >\n' +
+    /*                '            <!-- 头像 -->\n' +
+                '            <div class="media-left media-left-margin">\n' +
+                '                <a href="#">\n' +
+                '                    <img class="media-min img-rounded" src=' + item.userAvatarUrl + '>\n' +
+                '                </a>\n' +
+                '            </div>\n' +*/
+                '            <!-- 描述 -->\n' +
+                '<a href="/question/' + item.id + '" style="text-decoration:none">'+
+                '            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
+                '                        <span>\n' +
+                '                            <span class="media-heading-deep font-bigger">' + item.title + '</span>\n' +
+                '                        </span>\n' +
+                '                <p class="media-heading question-descrption">' + item.description.substring(1,50) + '</p>' +
+                '                <span class="aw-question-content">\n' +
+                '                            <span>' + item.viewCount + '次浏览 • </span>\n' +
+                '                            <span>' + item.followCount + '人收藏 • </span>\n' +
+                //'                            <span>' + item.commentCount + '个回复 • ></span>\n' +
+                '                            <span>' + item.likeCount + '人点赞 • </span>\n' +
+                '                            <span>' + item.commentCount + '人评论</span>\n' +
+                '                            <span style="float:right">发表于 ' + formatTimestamp(item.gmtCreate) + '</span>\n' +
+                '                        </span>\n' +
+                '            </div></a>\n' +
+                '        </div>');
+            $("#people_list").append(question);
+        })
+    });
 };
 
 var COMMENT = function (str) {
-    alert(str)
+    alert(un_complete)
 };
 
 var FOLLOW = function () {
-
+    alert(un_complete)
+};
+var FANS = function () {
+    alert(un_complete);
 };
