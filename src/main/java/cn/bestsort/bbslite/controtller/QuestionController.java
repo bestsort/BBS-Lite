@@ -85,6 +85,7 @@ public class QuestionController {
     @GetMapping("/loadQuestionDetail")
     public ResultDto getQuestionDetail(@RequestParam(name = "id") Long id){
         Question question = questionService.getQuestionDetail(id);
+        questionService.incQuestionView(id,1L);
         User user = userService.getSimpleInfoById(question.getCreator());
         return new ResultDto().okOf()
                 .addMsg("question",question)

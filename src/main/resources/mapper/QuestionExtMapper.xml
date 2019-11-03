@@ -64,6 +64,13 @@
             id = #{id,jdbcType=BIGINT}
     </update>
 
+    <update id="incQuestionView">
+        update question
+        set
+        view_count = view_count + #{val,jdbcType=BIGINT}
+        where
+        id = #{id,jdbcType=BIGINT}
+    </update>
     <insert id="insertQuestionExt" keyProperty="id" useGeneratedKeys="true" parameterType="cn.bestsort.bbslite.pojo.model.Question">
         insert into question
         <trim prefix="(" suffix=")" suffixOverrides=",">

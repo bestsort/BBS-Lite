@@ -100,4 +100,8 @@ public class QuestionService {
     public void incQuestionFollow(Long id, long val) {
         questionExtMapper.incQuestionFollow(id,val);
     }
+
+    public void incQuestionView(Long id, Long val) {
+        questionExtMapper.incQuestionView(id,val);
+    }
 }
