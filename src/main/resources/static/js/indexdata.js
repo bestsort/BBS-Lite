@@ -158,7 +158,7 @@ function build_question_list(data,build_to) {
             '                </a>\n' +
             '            </div>\n' +
             '            <!-- 描述 -->\n' +
-            '            <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">\n' +
+            '            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
             '                        <span>\n' +
             '                            <a href="/question/' + item.id + '" class="media-heading">' + item.title + '</a>\n' +
             '                        </span>\n' +
