@@ -43,8 +43,6 @@ public class SessionInterceptor implements HandlerInterceptor {
                     String token = cookie.getValue();
                     User user = userService.getByToken(token);
                      if (user != null) {
-                         response.addCookie(new Cookie("user_id",user.getId().toString()));
-                         response.addCookie(new Cookie("account_id",user.getAccountId()));
                          request.setAttribute("user", user);
                          //写入Session便于持久化登录
                          request.getSession().setAttribute("user", user);

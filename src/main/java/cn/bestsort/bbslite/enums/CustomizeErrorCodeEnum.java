@@ -10,6 +10,7 @@ public enum CustomizeErrorCodeEnum  implements MessageInterface {
     TARGET_PAI_NOT_FOUND(404,"未选中任何问题或回复进行评论"),
     ARTICLE_NOT_FOUND(404,"问题不见了,换一个试试?"),
     URL_NOT_FOUND(404,"你访问的链接不在了,换一个试试吧"),
+    USER_NOT_FOUND(404,"查无此人"),
     USER_EXITED(403,"该账户已存在"),
     NO_WAY(403,"听话,不要乱跑哟!"),
     ACCOUNT_OR_PASSWORD_ERROR(403,"账号或密码有误, 请检查"),

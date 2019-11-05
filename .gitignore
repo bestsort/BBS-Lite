@@ -4,7 +4,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 /log/
 /src/log/
-rum.xml
+run.xml
 
 ### STS ###
 .apt_generated

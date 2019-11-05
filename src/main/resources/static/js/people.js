@@ -1,5 +1,6 @@
 $(function () {
     list_option();
+    load_right_without_data();
 });
 
 function list_option() {
@@ -18,12 +19,14 @@ function list_option() {
                 '</li>';
         }
         $(document).on('click',"#"+index,function () {
+            document.title = item;
             let index = this.id;
             eval(index)(index);
         });
         $("#people_option").append(li_optopn);
     });
-    eval(default_option)();
+    document.title = peopel_center_option[default_option];
+    eval(default_option)(default_option);
 }
 
 

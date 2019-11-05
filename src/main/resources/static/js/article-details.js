@@ -10,16 +10,13 @@ $(function () {
     //TODO 非法访问限制
     $("#article_detail").empty();
     const url = "/loadArticleDetail";
+    debugger
     ajax_get(
         url,
         {"id": getArticleId()},
         function (data) {
-            document.title = data.extend.article.title;
+            document.title = data.extend.article.title + " | " + data.extend.user.name;
             load_article_info(data.extend.article);
-            if(data.extend.article.commentCount > 0) {
-                show_more_comment();
-            }
-            load_article_detail_right(data.extend);
             editormd.markdownToHTML("markdown-text", {
                 htmlDecode      : "style,script,iframe",
                 emoji           : true,
@@ -34,6 +31,11 @@ $(function () {
             setTimeout(function () {
                 location.href = "/";
             },1500)
+        },function (data) {
+            if(data.extend.article.commentCount > 0) {
+                show_more_comment();
+            }
+            load_right_with_data(data.extend);
         });
 });
 
@@ -231,50 +233,6 @@ function show_more_comment() {
     $("#article_detail").append(show_more);
 }
 
-
-/**
- * 构建页面右栏
- * @param data article详情
- */
-function load_article_detail_right(data) {
-
-    const userInfo = data.user;
-    let userSimpleInfo = '\n' +
-        '            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">\n' +
-        '                <small style="color: #333">发起人</small>\n' +
-        '                <hr>\n' +
-        '                <div class="media media-left" style="width: 120%">\n' +
-        '                <img class="media-min img-circle" src="' + userInfo.avatarUrl + '">\n' +
-        '                </div>\n' +
-        '\n' +
-        '                <hr>\n' +
-        '                <small style="font-size: 12px;color: #1f1f1f;">\n' +
-        '                    昵称:\n' +
-        '                    <!-- TODO 跳转到个人主页 -->\n' +
-        '                    <a href="/people?user='+ userInfo.id + '" style="color: #155faa">' + userInfo.name + '</a>\n' +
-        '                    <br>\n';
-
-        if (userInfo.htmlUrl !== null) {
-            userSimpleInfo +=
-                '                    <span>\n' +
-                '                        网址:<a target="_blank" href="' + userInfo.htmlUrl + '" style="color: #155faa">\n' +
-                '                        ' + userInfo.htmlUrl + '</a>\n' +
-                '                    </span>\n<br>';
-        }
-        if (userInfo.bio !== null) {
-            userSimpleInfo +=
-                '                    <span>\n' +
-                '                        简介:<span style="color: #155faa">'+ userInfo.bio + '</span>\n' +
-                '                    </span>\n';
-        }
-        userSimpleInfo +=
-        '            </div>\n' +
-        '            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">\n' +
-        '                <hr class="col-lg-11 col-md-11 col-sm-11 col-xs-11">\n' +
-        '                <h4>相关问题</h4>\n' +
-        '            </div>\n';
-        $("#article_detail_right").append(userSimpleInfo);
-}
 
 
 function load_article_info(articleInfo) {

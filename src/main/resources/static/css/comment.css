@@ -22,7 +22,7 @@ ul {
 }
 
 body {
-    font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
+    font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana, serif;
 }
 
 .comments-list {
@@ -128,15 +128,7 @@ body {
 /**
  * Caja del Comentario
  ---------------------------*/
-.comments-list .comment-box {
-    width: 90%;
-    margin-top: 10px;
-    float: right;
-    position: relative;
-    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
-    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
-    box-shadow: 0 1px 1px rgba(0,0,0,0.15);
-}
+
 
 .comments-list .comment-box:before, .comments-list .comment-box:after {
     content: '';
@@ -231,9 +223,28 @@ body {
  ========================*/
 @media only screen and (max-width: 766px) {
     .comments-list .comment-box {
-        width: 90%;
+        width: 85%;
     }
 
+    .reply-list .comment-box {
+        width: 85%;
+    }
+}
+
+.comments-list .comment-box {
+    width: 90%;
+    margin-top: 10px;
+    float: right;
+    position: relative;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+}
+
+@media only screen and (min-width: 767px){
+    .comments-list .comment-box {
+        width: 90%;
+    }
     .reply-list .comment-box {
         width: 90%;
     }

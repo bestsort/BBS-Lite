@@ -80,6 +80,51 @@ $(function () {
 
 
 /**
+ * 构建页面右栏
+ * @param data article详情
+ */
+function load_right_without_data() {
+    ajax_get("/getUserInfo",{id:getParam("user")},
+        function (data) {
+            load_right_with_data(data.extend);
+        })
+}
+function load_right_with_data(data) {
+    const userInfo = data.user;
+    let userSimpleInfo = '\n' +
+        '            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 fadein-1s">\n' +
+        '                <small style="color: #333">用户信息</small>\n' +
+        '                <hr>\n' +
+        '                <div class="media media-left" style="width: 120%">\n' +
+        '                <img class="media-min img-circle" src="' + userInfo.avatarUrl + '">\n' +
+        '                </div>\n' +
+        '\n' +
+        '                <hr>\n' +
+        '                <small style="font-size: 12px;color: #1f1f1f;">\n' +
+        '                    昵称:\n' +
+        '                    <!-- TODO 跳转到个人主页 -->\n' +
+        '                    <a href="/people?user='+ userInfo.id + '" style="color: #155faa">' + userInfo.name + '</a>\n' +
+        '                    <br>\n';
+
+    if (userInfo.htmlUrl !== null) {
+        userSimpleInfo +=
+            '                    <span>\n' +
+            '                        网址:<a target="_blank" href="' + userInfo.htmlUrl + '" style="color: #155faa">\n' +
+            '                        ' + userInfo.htmlUrl + '</a>\n' +
+            '                    </span>\n<br>';
+    }
+    if (userInfo.bio !== null) {
+        userSimpleInfo +=
+            '                    <span>\n' +
+            '                        简介:<span style="color: #155faa">'+ userInfo.bio + '</span>\n' +
+            '                    </span>\n';
+    }
+    $("#article_detail_right").append(userSimpleInfo);
+    return userInfo.name;
+}
+
+
+/**
  * 注册,表单校验
  **/
 
@@ -243,7 +288,7 @@ function init_third_login_button() {
     button.append(third_login_button);
 }
 
-function ajax_function(url,data,success_function,method,fail_function) {
+function ajax_function(url,data,success_function,method,fail_function,complete) {
     $.ajax({
         type: method,
         url: url,
@@ -259,13 +304,18 @@ function ajax_function(url,data,success_function,method,fail_function) {
                 else {fail_prompt(data.message);}
             }
         },
-        complete: close_loading()
+        complete: function (data) {
+            if (complete !== undefined){
+                complete(data.responseJSON);
+            }
+            close_loading();
+        }
     });
 }
 
-function ajax_get(url,data,success,fail) {
-    ajax_function(url,data,success,"GET",fail);
+function ajax_get(url,data,success,fail,complete) {
+    ajax_function(url,data,success,"GET",fail,complete);
 }
-function ajax_post(url,data,success,fail) {
-    ajax_function(url,data,success,"POST",fail);
+function ajax_post(url,data,success,fail,complete) {
+    ajax_function(url,data,success,"POST",fail,complete);
 }

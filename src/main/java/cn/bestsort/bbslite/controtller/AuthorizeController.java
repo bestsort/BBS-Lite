@@ -59,8 +59,7 @@ public class AuthorizeController {
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
-                           HttpSession session,
-                           HttpServletResponse response){
+                           HttpSession session){
         AccessTokenDto accessTokenDTO = new AccessTokenDto();
         accessTokenDTO.setClient_id(clientId);
         accessTokenDTO.setClient_secret(secret);
@@ -79,7 +78,6 @@ public class AuthorizeController {
             userService.createOrUpdate(user);
             user = userService.getByToken(token);
             session.setAttribute("user",user);
-            response.addCookie(new Cookie("token",token));
         }else {
             log.error("callback post github error,{}",githubUser);
         }
