@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <body>
-<div th:fragment="question">
+<div th:fragment="article">
     <!-- 问题列表 -->
-    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" th:each="questionInfo:${pagination.list}">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" th:each="articleInfo:${pagination.list}">
         <div class="media media-margin" >
             <!-- 头像 -->
             <div class="media-left media-left-margin">
                 <a href="#">
-                    <img class="media-min img-rounded" th:src="${questionInfo.userAvatarUrl}">
+                    <img class="media-min img-rounded" th:src="${articleInfo.userAvatarUrl}">
                 </a>
             </div>
             <!-- 描述 -->
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                         <span>
-                            <a th:href="@{'/question/' + ${questionInfo.id}}" class="media-heading"
-                               th:text="${questionInfo.title}"></a>
+                            <a th:href="@{'/article/' + ${articleInfo.id}}" class="media-heading"
+                               th:text="${articleInfo.title}"></a>
                         </span>
                 <br>
-                <span class="aw-question-content">
-                            <span th:text="${questionInfo.userName}"></span> •
-                            <span th:text="${questionInfo.viewCount}"></span>次浏览 •
-                            <span th:text="${questionInfo.commentCount}"></span>个回复
-                            <span style="float:right" th:text="${#dates.format(questionInfo.gmtCreate,'yyyy-MM-dd  HH:mm:ss')}"></span>
+                <span class="aw-article-content">
+                            <span th:text="${articleInfo.userName}"></span> •
+                            <span th:text="${articleInfo.viewCount}"></span>次浏览 •
+                            <span th:text="${articleInfo.commentCount}"></span>个回复
+                            <span style="float:right" th:text="${#dates.format(articleInfo.gmtCreate,'yyyy-MM-dd  HH:mm:ss')}"></span>
                         </span>
 
             </div>

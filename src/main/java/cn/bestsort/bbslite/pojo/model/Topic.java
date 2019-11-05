@@ -9,7 +9,7 @@ public class Topic {
 
     private Long followCount;
 
-    private Long questionCount;
+    private Long articleCount;
 
     public Long getId() {
         return id;
@@ -43,12 +43,12 @@ public class Topic {
         this.followCount = followCount;
     }
 
-    public Long getQuestionCount() {
-        return questionCount;
+    public Long getArticleCount() {
+        return articleCount;
     }
 
-    public void setQuestionCount(Long questionCount) {
-        this.questionCount = questionCount;
+    public void setArticleCount(Long articleCount) {
+        this.articleCount = articleCount;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Topic {
         sb.append(", name=").append(name);
         sb.append(", avatarUrl=").append(avatarUrl);
         sb.append(", followCount=").append(followCount);
-        sb.append(", questionCount=").append(questionCount);
+        sb.append(", articleCount=").append(articleCount);
         sb.append("]");
         return sb.toString();
     }

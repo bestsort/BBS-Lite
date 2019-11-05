@@ -107,7 +107,7 @@ function to_page(pageno) {
     /**
      * 加载完成之后,发送请求到服务器,拿到json数据,构建列表数据
      */
-    const url = "/loadQuestionList";
+    const url = "/loadArticleList";
     const sortBy = getParam("sortBy");
     let jsonData = {
         "pageNo": pageno,
@@ -123,11 +123,11 @@ function to_page(pageno) {
     ajax_get(url,jsonData,function (data) {
         if(data.extend.page.total>0){
             //构建问题列表信息
-            build_question_list(data,"#question_wrapper");
+            build_article_list(data,"#article_wrapper");
             //构建分页信息
             build_page_nav(data);
         }else{
-            $("#question_wrapper").empty();
+            $("#article_wrapper").empty();
             $('.page_info-area').empty();
             $(".pagination").empty();
             $("#no_quetions").css({
@@ -144,12 +144,12 @@ function to_page(pageno) {
  * @param data
  * @param build_to
  */
-function build_question_list(data,build_to) {
+function build_article_list(data,build_to) {
     //清空
     $(build_to).empty();
-    const questions = data.extend.page.list;
-    $.each(questions, function (index, item) {
-        const question = $('<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 bbs-question-list-item"' +
+    const articles = data.extend.page.list;
+    $.each(articles, function (index, item) {
+        const article = $('<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 bbs-article-list-item"' +
             '        <div class="media media-margin" >\n' +
             '            <!-- 头像 -->\n' +
             '            <div class="media-left media-left-margin">\n' +
@@ -160,10 +160,10 @@ function build_question_list(data,build_to) {
             '            <!-- 描述 -->\n' +
             '            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
             '                        <span>\n' +
-            '                            <a href="/question/' + item.id + '" class="media-heading">' + item.title + '</a>\n' +
+            '                            <a href="/article/' + item.id + '" class="media-heading">' + item.title + '</a>\n' +
             '                        </span>\n' +
             '                <br>\n' +
-            '                <span class="aw-question-content">\n' +
+            '                <span class="aw-article-content">\n' +
             '                            <span>' + item.userName + ' • </span>\n' +
             '                            <span>' + item.viewCount + '次浏览 • </span>\n' +
             //'                            <span>' + item.commentCount + '个回复 • ></span>\n' +
@@ -173,6 +173,6 @@ function build_question_list(data,build_to) {
             '                        </span>\n' +
             '            </div>\n' +
             '        </div>');
-        $(build_to).append(question);
+        $(build_to).append(article);
     })
 }

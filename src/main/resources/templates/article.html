@@ -10,7 +10,7 @@
     <script src="//alicdn.bestsort.cn/bbs/editor.md-master/lib/marked.min.js"></script>
     <script src="//alicdn.bestsort.cn/bbs/editor.md-master/lib/prettify.min.js"></script>
     <script src="//alicdn.bestsort.cn/bbs/editor.md-master/editormd.js"></script>
-    <script src="/js/question-details.js"></script>
+    <script src="/js/article-details.js"></script>
 </head>
 <body>
 <div th:insert="common/navgation"></div>
@@ -19,8 +19,8 @@
     <div class="row">
         <div class="col-lg-9 col-md-9 col-xs-9 col-sm-12" style="border-right:1px solid #eee">
             <!-- 问题正文 -->
-            <div id="question_detail" class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="margin-bottom: 50px"></div>
-            <div id="question_comment"></div>
+            <div id="article_detail" class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="margin-bottom: 50px"></div>
+            <div id="article_comment"></div>
             <!-- modal 框,用于回复功能-->
             <div class="modal fade" id="reply" tabindex="-1" role="dialog" aria-labelledby="replyLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -52,7 +52,7 @@
         </div>
 
         <!-- 右侧栏 -->
-        <div id="question_detail_right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
+        <div id="article_detail_right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
 
     </div>
 </div>

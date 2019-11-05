@@ -8,7 +8,7 @@ import cn.bestsort.bbslite.pojo.model.CommentParent;
 import org.apache.ibatis.annotations.Param;
 
 public interface CommentMapper {
-    List<CommentParent> listComment(long questionId);
+    List<CommentParent> listComment(long articleId);
     boolean insertCommentParent(CommentParent parent);
     boolean insertCommentKid(CommentKid kid);
     CommentParent getCommentParent(Long id);

@@ -11,7 +11,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class CommentParent extends Comment{
-    private Long questionId;
+    private Long articleId;
     private Long likeCount;
     private List<CommentKid> kids;
 }

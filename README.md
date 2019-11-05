@@ -9,35 +9,12 @@
 
 > 这是一个基于 Spring Boot 搭建的轻论坛
 
+## 项目演示
+[氢论坛](https://bbs.bestsort.cn/)
 
+## 项目部署
+[关于氢论坛](https://bbs.bestsort.cn/article/1)
 
-## 项目示例
-
-### 开始
-```bash
-git clone https://github.com/bestsort/BBS-Lite.git --depth=1
-cd BBS-lite
-```
-将该项目导入到 IDEA 或者其他的IDE中,并配置`pom.xml`中11-13行的数据库信息为自己的数据库配置.
-
-请确认您的数据库字符编码为**utf8m4**.参考如下:
-```xml
-<jdbc.url>jdbc:mysql://{ip}:{port}/{database}?serverTimezone=UTC</jdbc.url>
-<!-- <jdbc.url>jdbc:mysql://localhost:3306/bbs_lite?serverTimezone=UTC</jdbc.url> -->
-<jdbc.user>{user}</jdbc.user>
-<!--<jdbc.user>bestsort</jdbc.user>-->
-<jdbc.passwd>{password}</jdbc.passwd>
-<!--<jdbc.passwd>ce8YChPDJ5GRFOUE</jdbc.passwd>-->
-
-
-
-```
-然后执行以下命令
-```bash
-mvn flyway:migrate
-mvn spring-boot:run
-```
-即可启动.需要后台运行 也可自行打包为 **jar** 或者 **war** 后部署到 Tomcat .
 ## 采用技术及工具
 
 - Spring Boot(快速构建应用)

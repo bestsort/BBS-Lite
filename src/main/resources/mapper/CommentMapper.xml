@@ -4,7 +4,7 @@
     <resultMap id="comment_list" type="cn.bestsort.bbslite.pojo.model.CommentParent">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="comment_by_id" jdbcType="BIGINT" property="commentById"/>
-        <result column="question_id" jdbcType="BIGINT" property="questionId"/>
+        <result column="article_id" jdbcType="BIGINT" property="articleId"/>
         <result column="like_count" jdbcType="BIGINT" property="likeCount" />
         <result column="content" jdbcType="VARCHAR" property="content"/>
         <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
@@ -22,7 +22,7 @@
     <resultMap id="comment_parent_list" type="cn.bestsort.bbslite.pojo.model.CommentParent">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="comment_by_id" jdbcType="BIGINT" property="commentById"/>
-        <result column="question_id" jdbcType="BIGINT" property="questionId"/>
+        <result column="article_id" jdbcType="BIGINT" property="articleId"/>
         <result column="like_count" jdbcType="BIGINT" property="likeCount" />
         <result column="content" jdbcType="VARCHAR" property="content"/>
         <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
@@ -32,7 +32,7 @@
         id, comment_by_id, pid,content,comment_to_user_id, gmt_modified, content, like_count
     </sql>
     <sql id="Base_Parent_Column_List">
-        id, comment_by_id, question_id, gmt_modified, content, like_count
+        id, comment_by_id, article_id, gmt_modified, content, like_count
     </sql>
     <insert id="insertCommentParent" parameterType="cn.bestsort.bbslite.pojo.model.CommentParent">
         insert into comment_parent
@@ -43,8 +43,8 @@
             <if test="commentById != null">
                 comment_by_id,
             </if>
-            <if test="questionId != null">
-                question_id,
+            <if test="articleId != null">
+                article_id,
             </if>
             <if test="gmtModified != null">
                 gmt_modified,
@@ -66,8 +66,8 @@
             <if test="commentById != null">
                 #{commentById,jdbcType=BIGINT},
             </if>
-            <if test="questionId != null">
-                #{questionId,jdbcType=BIGINT},
+            <if test="articleId != null">
+                #{articleId,jdbcType=BIGINT},
             </if>
             <if test="gmtModified != null">
                 #{gmtModified,jdbcType=BIGINT},
@@ -146,7 +146,7 @@
         from
             comment_parent left join comment_kid kid on kid.pid = comment_parent.id
         where
-            comment_parent.question_id = #{id,jdbcType=BIGINT}
+            comment_parent.article_id = #{id,jdbcType=BIGINT}
         order by gmt_create desc,kid_gmt_create
     </select>
     <select id="getCommentParent" resultType="cn.bestsort.bbslite.pojo.model.CommentParent">

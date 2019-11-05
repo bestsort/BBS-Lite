@@ -1,6 +1,6 @@
 package cn.bestsort.bbslite.pojo.model;
 
-public class Question {
+public class Article {
     private Long id;
 
     private String title;

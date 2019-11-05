@@ -233,7 +233,7 @@ function close_loading() {
 
 function init_third_login_button() {
     let third_login_button =
-        '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 aw-question-content" style="margin-top: 20px;font-size: 14px">您可以用以下方式免注册登录<br>(部分暂时无法使用)</div>\n' +
+        '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 aw-article-content" style="margin-top: 20px;font-size: 14px">您可以用以下方式免注册登录<br>(部分暂时无法使用)</div>\n' +
         '                            <button name="github-login" class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-dark third-login-button"><i class="iconfont icon-git margin-center"></i>GitHub</button>\n' +
         '                            <button name="baidu-login" class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-primary third-login-button" disabled><i class="iconfont icon-baidu margin-center"></i>Baidu</button>\n' +
         '                            <button name="wechat-login" class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-success third-login-button" disabled><i class="iconfont icon-weixin margin-center"></i>WeChat</button>\n' +

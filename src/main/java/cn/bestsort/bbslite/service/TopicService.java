@@ -57,7 +57,7 @@ public class TopicService {
             topic2Db.setFollowCount(topic2Db.getFollowCount()+val);
 
         }else {
-            topic2Db.setQuestionCount(topic2Db.getQuestionCount()+val);
+            topic2Db.setArticleCount(topic2Db.getArticleCount()+val);
         }
         topicMapper.updateByExampleSelective(topic2Db,example);
     }

@@ -1,15 +1,15 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dto.QuestionQueryDto;
+import cn.bestsort.bbslite.dto.ArticleQueryDto;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.FunctionItem;
-import cn.bestsort.bbslite.pojo.model.Question;
+import cn.bestsort.bbslite.pojo.model.Article;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.FollowService;
-import cn.bestsort.bbslite.service.QuestionService;
+import cn.bestsort.bbslite.service.ArticleService;
 import cn.bestsort.bbslite.service.ThumbUpService;
 import cn.bestsort.bbslite.service.UserService;
-import cn.bestsort.bbslite.vo.QuestionDetailOptionVo;
+import cn.bestsort.bbslite.vo.ArticleDetailOptionVo;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,25 +21,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
 /**
- * @ClassName QuestionController
+ * @ClassName ArticleController
  * @Description 问题控制器,用于查询问题列表
  * @Author bestsort
  * @Date 19-8-31 下午8:35
  * @Version 1.0
  */
 @Controller
-public class QuestionController {
+public class ArticleController {
     @Autowired
-    private QuestionService questionService;
+    private ArticleService articleService;
     @Autowired
     private UserService userService;
     @Autowired
     private ThumbUpService thumbUpService;
     @Autowired
     private FollowService followService;
-    @GetMapping("/question/{id}")
-    public String question(@PathVariable("id") Long id){
-        return "question";
+    @GetMapping("/article/{id}")
+    public String article(@PathVariable("id") Long id){
+        return "article";
     }
 
     /**
@@ -54,8 +54,8 @@ public class QuestionController {
      * @return 根据条件筛选并进行分页后的问题列表
      */
     @ResponseBody
-    @GetMapping("/loadQuestionList")
-    public ResultDto getQuestionList(@RequestParam(name = "pageSize",defaultValue = "10") Integer size,
+    @GetMapping("/loadArticleList")
+    public ResultDto getArticleList(@RequestParam(name = "pageSize",defaultValue = "10") Integer size,
                                      @RequestParam(name = "pageNo",defaultValue = "1") Integer page,
                                      @RequestParam(name = "sortby",required = false) String sort,
                                      @RequestParam(name = "search",required = false) String search,
@@ -63,7 +63,7 @@ public class QuestionController {
                                      @RequestParam(name = "tag",required = false) String tag,
                                      @RequestParam(name = "userId",required = false) Long userId,
                                      @RequestParam(name = "category",required = false) Integer categoryVal){
-        QuestionQueryDto queryDto = QuestionQueryDto.builder()
+        ArticleQueryDto queryDto = ArticleQueryDto.builder()
                 .search(search)
                 .sortBy(sort)
                 .category(categoryVal)
@@ -72,7 +72,7 @@ public class QuestionController {
                 .pageSize(size)
                 .topic(topic)
                 .userId(userId).build();
-        PageInfo<Question> pageInfo = questionService.getPageBySearch(queryDto);
+        PageInfo<Article> pageInfo = articleService.getPageBySearch(queryDto);
         return new ResultDto().okOf().addMsg("page",pageInfo);
     }
 
@@ -82,38 +82,38 @@ public class QuestionController {
      * @return 问题详情
      */
     @ResponseBody
-    @GetMapping("/loadQuestionDetail")
-    public ResultDto getQuestionDetail(@RequestParam(name = "id") Long id){
-        Question question = questionService.getQuestionDetail(id);
-        questionService.incQuestionView(id,1L);
-        User user = userService.getSimpleInfoById(question.getCreator());
+    @GetMapping("/loadArticleDetail")
+    public ResultDto getArticleDetail(@RequestParam(name = "id") Long id){
+        Article article = articleService.getArticleDetail(id);
+        articleService.incArticleView(id,1L);
+        User user = userService.getSimpleInfoById(article.getCreator());
         return new ResultDto().okOf()
-                .addMsg("question",question)
+                .addMsg("article",article)
                 .addMsg("user",user);
     }
 
     @ResponseBody
-    @GetMapping("/loadQuestionOption")
-    public ResultDto getQuestionOption(@RequestParam(name = "questionId") Long questionId,
+    @GetMapping("/loadArticleOption")
+    public ResultDto getArticleOption(@RequestParam(name = "articleId") Long articleId,
                                        @RequestParam(name = "userId") Long userId,
                                        HttpSession session){
-        QuestionDetailOptionVo questionDetailOptionVo = new QuestionDetailOptionVo();
+        ArticleDetailOptionVo articleDetailOptionVo = new ArticleDetailOptionVo();
         User user = (User)session.getAttribute("user");
         if(user != null && user.getId().equals(userId)){
-            questionDetailOptionVo.setIsCreator(false);
+            articleDetailOptionVo.setIsCreator(false);
         }
 
         if(user != null) {
-            questionDetailOptionVo.setIsThumbUpQuestion(
-                    thumbUpService.getStatusByUser(questionId, user.getId())
+            articleDetailOptionVo.setIsThumbUpArticle(
+                    thumbUpService.getStatusByUser(articleId, user.getId())
             );
-            questionDetailOptionVo.setIsFollowQuestion(
-                    followService.getStatusByUser(questionId,user.getId(), FunctionItem.QUESTION)
+            articleDetailOptionVo.setIsFollowArticle(
+                    followService.getStatusByUser(articleId,user.getId(), FunctionItem.ARTICLE)
             );
         }else {
-            questionDetailOptionVo.setIsThumbUpQuestion(false);
-            questionDetailOptionVo.setIsFollowQuestion(false);
+            articleDetailOptionVo.setIsThumbUpArticle(false);
+            articleDetailOptionVo.setIsFollowArticle(false);
         }
-        return new ResultDto().okOf().addMsg("options",questionDetailOptionVo);
+        return new ResultDto().okOf().addMsg("options",articleDetailOptionVo);
     }
 }

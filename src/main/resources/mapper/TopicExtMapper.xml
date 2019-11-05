@@ -5,14 +5,14 @@
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
-        <result column="question_count" jdbcType="BIGINT" property="questionCount" />
+        <result column="article_count" jdbcType="BIGINT" property="articleCount" />
         <result column="follow_count" jdbcType="BIGINT" property="followCount" />
     </resultMap>
 
-    <update id="incQuestion" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
+    <update id="incArticle" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
         update topic
         set
-            question_count = question_count + 1
+            article_count = article_count + 1
         where name = #{name}
     </update>
 

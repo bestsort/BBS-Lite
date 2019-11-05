@@ -16,6 +16,6 @@ public class CommentCreateDto {
     private Byte level;
     private Long commentator;
     private String content;
-    private Long questionId;
+    private Long articleId;
     private String userAvatarUrl;
 }

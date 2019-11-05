@@ -37,7 +37,7 @@ $(function () {
         }
         let juge = jude_not_null(json_data);
         if(juge.length === 0){
-            push_question(json_data);
+            push_article(json_data);
         }else{
             $("#myModal").modal('show');
         }
@@ -50,11 +50,11 @@ $(function () {
         if(id != null)
             jsondata["id"] = id;
         ajax_get("/getPublishInfo",jsondata,function (data) {
-            let question = data.extend.publishInfo.question;
-            if (question != null) {
-                $("#title").val(question.title);
-                $("#tag").val(question.tag);
-                $("#question-description").val(question.description);
+            let article = data.extend.publishInfo.article;
+            if (article != null) {
+                $("#title").val(article.title);
+                $("#tag").val(article.tag);
+                $("#article-description").val(article.description);
             }
             show_topic_option(data);
         },function (data) {
@@ -66,7 +66,7 @@ $(function () {
     }
     load_topic_option();
 });
-function push_question(json_data){
+function push_article(json_data){
     ajax_post("/publish",json_data,function () {
         success_prompt("发布成功");
         setTimeout(function () {
@@ -76,10 +76,10 @@ function push_question(json_data){
 }
 
 function show_topic_option(data) {
-    let question = data.extend.publishInfo.question;
+    let article = data.extend.publishInfo.article;
     let selectTopic = null;
-    if(question != null){
-        selectTopic = question.topic;
+    if(article != null){
+        selectTopic = article.topic;
     }
     if(selectTopic == null)
         selectTopic = 0;

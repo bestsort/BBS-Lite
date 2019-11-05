@@ -23,7 +23,7 @@ public class MessageService {
     @Autowired
     private UserMapper userMapper;
     @Autowired
-    private QuestionMapper questionMapper;
+    private ArticleMapper articleMapper;
     public List<MessageVo>getListByUser(long userId, MessageEnum type){
         MessageExample example = new MessageExample();
         if (type.equals(MessageEnum.ALL)){
@@ -39,10 +39,10 @@ public class MessageService {
         List<MessageVo> result = new ArrayList<>();
         List<Message> list = messageMapper.selectByExample(example);
         Set<Long> userIdSet = new HashSet<>();
-        Set<Long> questionSet = new HashSet<>();
+        Set<Long> articleSet = new HashSet<>();
         for (Message item:list){
             userIdSet.add(item.getSendBy());
-            questionSet.add(item.getSendTo());
+            articleSet.add(item.getSendTo());
             MessageVo messageVo = MessageVo.builder()
                     .gmtCreate(item.getGmtCreate())
                     .isRead(item.getIsRead().equals((byte)1))
@@ -57,13 +57,13 @@ public class MessageService {
         Map<Long,User> users = userMapper.selectByExample(userExample)
                 .stream().collect(Collectors.toMap(User::getId, user->user));
 
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.createCriteria().andIdIn(new ArrayList<>(questionSet));
-        Map<Long,Question>questions = questionMapper.selectByExample(questionExample)
-                .stream().collect(Collectors.toMap(Question::getId,question->question));
+        ArticleExample articleExample = new ArticleExample();
+        articleExample.createCriteria().andIdIn(new ArrayList<>(articleSet));
+        Map<Long,Article>articles = articleMapper.selectByExample(articleExample)
+                .stream().collect(Collectors.toMap(Article::getId,article->article));
         for (MessageVo item : result){
             MessageVo.builder()
-                    .title(questions.get(item.getSendToId()).getTitle())
+                    .title(articles.get(item.getSendToId()).getTitle())
                     .gmtCreate(item.getGmtCreate())
                     .isRead(item.isRead())
                     .sendBy(item.getSendBy())

@@ -108,7 +108,6 @@ logging:
   file: log/bbs-lite.log
   level:
     root: info
-    cn.bestsort.bbslite.mapper: debug
     cn.bestsort.bbslite.cache: debug
     cn.bestsort.bbslite.controller: trace
 mybatis:

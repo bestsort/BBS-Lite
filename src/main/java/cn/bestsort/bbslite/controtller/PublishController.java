@@ -3,9 +3,9 @@ package cn.bestsort.bbslite.controtller;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.mapper.TopicMapper;
-import cn.bestsort.bbslite.pojo.model.Question;
+import cn.bestsort.bbslite.pojo.model.Article;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.QuestionService;
+import cn.bestsort.bbslite.service.ArticleService;
 import cn.bestsort.bbslite.service.TopicService;
 import cn.bestsort.bbslite.vo.PublishVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class PublishController {
     @Autowired
     private TopicMapper topicMapper;
     @Autowired
-    private QuestionService questionService;
+    private ArticleService articleService;
     @Autowired
     private TopicService topicService;
     @GetMapping("/publish")
@@ -43,14 +43,14 @@ public class PublishController {
         if(user == null){
             resultDto = new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
-        else if (id != null && !questionService.getQuestionDetail(id).getCreator().equals(user.getId())) {
+        else if (id != null && !articleService.getArticleDetail(id).getCreator().equals(user.getId())) {
             resultDto = new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_WAY);
         } else {
             resultDto = new ResultDto().okOf();
             PublishVo publishVo = new PublishVo();
             publishVo.setTopics(topicService.getAll());
             if (id != null) {
-                publishVo.setQuestion(questionService.getQuestionDetail(id));
+                publishVo.setArticle(articleService.getArticleDetail(id));
             }
             resultDto.addMsg("publishInfo", publishVo);
         }
@@ -73,19 +73,19 @@ public class PublishController {
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
 
-        Question question = new Question();
-        question.setTitle(title);
-        question.setTag(tag);
-        question.setDescription(description);
-        question.setCreator(user.getId());
-        question.setUserAvatarUrl(user.getAvatarUrl());
-        question.setUserName(user.getName());
-        question.setTopic(topic);
+        Article article = new Article();
+        article.setTitle(title);
+        article.setTag(tag);
+        article.setDescription(description);
+        article.setCreator(user.getId());
+        article.setUserAvatarUrl(user.getAvatarUrl());
+        article.setUserName(user.getName());
+        article.setTopic(topic);
         if (id != null) {
-            question.setId(id);
+            article.setId(id);
         }
-        question.setTopic(topic);
-        Long newId = questionService.createOrUpdate(question);
+        article.setTopic(topic);
+        Long newId = articleService.createOrUpdate(article);
         if(newId == null){
             newId = id;
         }

@@ -7,7 +7,7 @@ import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.pojo.model.Comment;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.CommentService;
-import cn.bestsort.bbslite.service.QuestionService;
+import cn.bestsort.bbslite.service.ArticleService;
 import cn.bestsort.bbslite.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +31,7 @@ public class PersonalCenterController {
     @Autowired
     private UserService userService;
     @Autowired
-    private QuestionService questionService;
+    private ArticleService articleService;
     @Autowired
     private CommentService commentService;
     @RequestMapping("/center")

@@ -1,6 +1,6 @@
 package cn.bestsort.bbslite.vo;
 
-import cn.bestsort.bbslite.pojo.model.Question;
+import cn.bestsort.bbslite.pojo.model.Article;
 import cn.bestsort.bbslite.pojo.model.Topic;
 import lombok.Data;
 
@@ -16,6 +16,6 @@ import java.util.List;
 
 @Data
 public class PublishVo {
-    private Question question;
+    private Article article;
     private List<Topic> topics;
 }

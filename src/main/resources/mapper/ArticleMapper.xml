@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.bestsort.bbslite.mapper.QuestionMapper">
-  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Question">
+<mapper namespace="cn.bestsort.bbslite.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Article">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="creator" jdbcType="BIGINT" property="creator" />
@@ -19,7 +19,7 @@
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.bestsort.bbslite.pojo.model.Question">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.bestsort.bbslite.pojo.model.Article">
     <result column="description" jdbcType="LONGVARCHAR" property="description" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -87,7 +87,7 @@
   <sql id="Blob_Column_List">
     description
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="cn.bestsort.bbslite.pojo.model.QuestionExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="cn.bestsort.bbslite.pojo.model.ArticleExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -95,7 +95,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from question
+    from article
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -103,13 +103,13 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.QuestionExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.ArticleExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from question
+    from article
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -122,21 +122,21 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from question
+    from article
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from question
+    delete from article
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.pojo.model.QuestionExample">
-    delete from question
+  <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.pojo.model.ArticleExample">
+    delete from article
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Question">
-    insert into question (id, title, creator, 
+  <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Article">
+    insert into article (id, title, creator,
       tag, top, topic, category, 
       user_avatar_url, user_name, follow_count, 
       view_count, like_count, comment_count, 
@@ -149,8 +149,8 @@
       #{status,jdbcType=TINYINT}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
       #{description,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Question">
-    insert into question
+  <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Article">
+    insert into article
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -258,14 +258,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="cn.bestsort.bbslite.pojo.model.QuestionExample" resultType="java.lang.Long">
-    select count(*) from question
+  <select id="countByExample" parameterType="cn.bestsort.bbslite.pojo.model.ArticleExample" resultType="java.lang.Long">
+    select count(*) from article
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update question
+    update article
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
@@ -324,7 +324,7 @@
     </if>
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
-    update question
+    update article
     set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
       creator = #{record.creator,jdbcType=BIGINT},
@@ -347,7 +347,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update question
+    update article
     set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
       creator = #{record.creator,jdbcType=BIGINT},
@@ -368,8 +368,8 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.pojo.model.Question">
-    update question
+  <update id="updateByPrimaryKeySelective" parameterType="cn.bestsort.bbslite.pojo.model.Article">
+    update article
     <set>
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
@@ -422,8 +422,8 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.bestsort.bbslite.pojo.model.Question">
-    update question
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.bestsort.bbslite.pojo.model.Article">
+    update article
     set title = #{title,jdbcType=VARCHAR},
       creator = #{creator,jdbcType=BIGINT},
       tag = #{tag,jdbcType=VARCHAR},
@@ -442,8 +442,8 @@
       description = #{description,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.pojo.model.Question">
-    update question
+  <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.pojo.model.Article">
+    update article
     set title = #{title,jdbcType=VARCHAR},
       creator = #{creator,jdbcType=BIGINT},
       tag = #{tag,jdbcType=VARCHAR},

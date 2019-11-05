@@ -1,25 +1,25 @@
-let question_like_count;
-let question_follow_count;
-let question_comment_count;
-let question_view_count;
+let article_like_count;
+let article_follow_count;
+let article_comment_count;
+let article_view_count;
 
 $(function () {
 
 
     // 加载问题详情
     //TODO 非法访问限制
-    $("#question_detail").empty();
-    const url = "/loadQuestionDetail";
+    $("#article_detail").empty();
+    const url = "/loadArticleDetail";
     ajax_get(
         url,
-        {"id": getQuestionId()},
+        {"id": getArticleId()},
         function (data) {
-            document.title = data.extend.question.title;
-            load_question_info(data.extend.question);
-            if(data.extend.question.commentCount > 0) {
+            document.title = data.extend.article.title;
+            load_article_info(data.extend.article);
+            if(data.extend.article.commentCount > 0) {
                 show_more_comment();
             }
-            load_question_detail_right(data.extend);
+            load_article_detail_right(data.extend);
             editormd.markdownToHTML("markdown-text", {
                 htmlDecode      : "style,script,iframe",
                 emoji           : true,
@@ -41,7 +41,7 @@ function click_options() {
     $(document).on('click',"#send-reply",function () {
         let content = $("#reply-text").val();
         ajax_post("/commitComment",{
-            questionId:getQuestionId(),
+            articleId:getArticleId(),
             pid:$("#reply-to-id").val(),
             sendToUser:$("#reply-to-user").val(),
             content:content},
@@ -52,18 +52,18 @@ function click_options() {
             })
     });
     $(document).on('click', "#"+thumb_up_icon, function () {
-        like_or_follow_question("/thumbUpQuestion",thumb_up_icon,"点赞",question_like_count);
+        like_or_follow_article("/thumbUpArticle",thumb_up_icon,"点赞",article_like_count);
     });
     $(document).on('click',"#icon-bianji",function () {
-        location.href = "/publish?id=" + getQuestionId();
+        location.href = "/publish?id=" + getArticleId();
     });
     $(document).on('click',"#"+follow_icon,function () {
-        like_or_follow_question("/followQuestion",follow_icon,"收藏",question_follow_count);
+        like_or_follow_article("/followArticle",follow_icon,"收藏",article_follow_count);
     });
     $(document).on('click',"#"+comment_icon, function(){
         let val = "#comment_input";
         if($(val).length === 0){
-            $("#question_detail").append(
+            $("#article_detail").append(
                 '<div id="comment_input" class="col-lg-12 col-md-12 col-xs-12 col-sm-12 collapse" style="padding-right: 0;padding-bottom: 50px">' +
                 '<textarea class="form-control" rows="5"></textarea>' +
                 '<button class="btn btn-info right" id="commit_comment" style="' +
@@ -76,7 +76,7 @@ function click_options() {
     });
     $(document).on('click',"#commit_comment",function () {
         let jsonData = {
-            "questionId":getQuestionId(),
+            "articleId":getArticleId(),
             "content":$("#commit_comment").prev().val(),
         };
         ajax_post("/commitComment",jsonData,
@@ -137,7 +137,7 @@ function reply_comment(kid,creator,parent) {
 
 }
 function thumb_up_comment(id,isActive,count,e) {
-    ajax_post("/thumbUpQuestion",
+    ajax_post("/thumbUpArticle",
         {
             "id":id,
             "isActive": isActive,
@@ -152,12 +152,12 @@ function thumb_up_comment(id,isActive,count,e) {
             e.replaceWith(html);
         });
 }
-function like_or_follow_question(url,icon,show,count) {
+function like_or_follow_article(url,icon,show,count) {
     ajax_post(url,
         {
-            "id":getQuestionId(),
+            "id":getArticleId(),
             "isActive":$("#"+icon).hasClass("on"),
-            "type":"QUESTION"
+            "type":"ARTICLE"
         },
         function(data){
             let info = data.extend;
@@ -202,18 +202,18 @@ function add_option(count,show,icon,isActive,show_count) {
 /**
  * 加载可交互选项信息(编辑/点赞/收藏等)
  * @param creator
- * @param questionId
+ * @param articleId
  */
-function load_question_option(creator, {commentCount:questionComment,followCount: questionFollow, id: questionId, likeCount: questionThumb}) {
-    const url = "/loadQuestionOption";
+function load_article_option(creator, {commentCount:articleComment,followCount: articleFollow, id: articleId, likeCount: articleThumb}) {
+    const url = "/loadArticleOption";
     const jsonData = {
-        "questionId": questionId,
+        "articleId": articleId,
         "userId": creator,
     };
     ajax_get(url,jsonData,function (data) {
         let options = data.extend.options;
-        add_option(questionThumb,"点赞",thumb_up_icon,options.isThumbUpQuestion,true);
-        add_option(questionFollow,"收藏",follow_icon,options.isFollowQuestion,true);
+        add_option(articleThumb,"点赞",thumb_up_icon,options.isThumbUpArticle,true);
+        add_option(articleFollow,"收藏",follow_icon,options.isFollowArticle,true);
         add_option(null,"评论",comment_icon,false,false);
         add_option(null,"编辑问题","icon-bianji",options.isCreator,false);
         click_options();
@@ -224,19 +224,19 @@ function load_question_option(creator, {commentCount:questionComment,followCount
 function show_more_comment() {
     let show_more = $("<div class='col-lg-12 col-md-12 col-xs-12 col-sm-12' style='text-align: center'></div>");
     show_more.append($("<span href='#' style='cursor: pointer;color: #155faa;font-size: 14px;' id='show_more_comment'>" +
-        "查看评论( " + question_comment_count +" ) </span>"));
+        "查看评论( " + article_comment_count +" ) </span>"));
     show_more.click(function () {
         load_comment_info();
     });
-    $("#question_detail").append(show_more);
+    $("#article_detail").append(show_more);
 }
 
 
 /**
  * 构建页面右栏
- * @param data question详情
+ * @param data article详情
  */
-function load_question_detail_right(data) {
+function load_article_detail_right(data) {
 
     const userInfo = data.user;
     let userSimpleInfo = '\n' +
@@ -273,23 +273,23 @@ function load_question_detail_right(data) {
         '                <hr class="col-lg-11 col-md-11 col-sm-11 col-xs-11">\n' +
         '                <h4>相关问题</h4>\n' +
         '            </div>\n';
-        $("#question_detail_right").append(userSimpleInfo);
+        $("#article_detail_right").append(userSimpleInfo);
 }
 
 
-function load_question_info(questionInfo) {
-    question_view_count = questionInfo.viewCount;
-    question_like_count = questionInfo.likeCount;
-    question_follow_count = questionInfo.followCount;
-    question_comment_count = questionInfo.commentCount;
-    const tags = questionInfo.tag.split(' ');
-    let questionDetail = '<h3>' +
-        '                   <span>' + questionInfo.title + '</span></h3>\n' +
-        '                      <span class="aw-question-content">\n' +
-        '                      <span>' + question_view_count + ' 次浏览 • </span>\n' +
-        '                      <span>' + question_like_count + ' 人点赞 • </span>\n' +
-        '                      <span>' + question_comment_count + ' 人评论 • </span>\n' +
-        '                      <span> 发表于' + formatTimestamp(questionInfo.gmtCreate) + '</span>\n' +
+function load_article_info(articleInfo) {
+    article_view_count = articleInfo.viewCount;
+    article_like_count = articleInfo.likeCount;
+    article_follow_count = articleInfo.followCount;
+    article_comment_count = articleInfo.commentCount;
+    const tags = articleInfo.tag.split(' ');
+    let articleDetail = '<h3>' +
+        '                   <span>' + articleInfo.title + '</span></h3>\n' +
+        '                      <span class="aw-article-content">\n' +
+        '                      <span>' + article_view_count + ' 次浏览 • </span>\n' +
+        '                      <span>' + article_like_count + ' 人点赞 • </span>\n' +
+        '                      <span>' + article_comment_count + ' 人评论 • </span>\n' +
+        '                      <span> 发表于' + formatTimestamp(articleInfo.gmtCreate) + '</span>\n' +
         '                   </span><br>\n';
 
     $.each(tags,function (index, item) {
@@ -300,41 +300,41 @@ function load_question_info(questionInfo) {
             '      <span>' + item + '</span>\n' +
             '  </a>\n' +
             '</span>\n';
-        questionDetail += tagInfo;
+        articleDetail += tagInfo;
     });
-    questionDetail +=
+    articleDetail +=
         '<hr class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
         '<div id="markdown-text" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 markdown-body editormd-html-preview">' +
-        '<textarea style="display: none">' + questionInfo.description +'</textarea>' +
+        '<textarea style="display: none">' + articleInfo.description +'</textarea>' +
         '</div>'+
         '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="option_item"></div>' +
         '    <hr class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
         '</div>';
-    $("#question_detail").append(questionDetail);
-    load_question_option(questionInfo.creator,questionInfo);
+    $("#article_detail").append(articleDetail);
+    load_article_option(articleInfo.creator,articleInfo);
 }
 /**
  * 根据请求的url返回id值
  * @returns {string} id
  */
-function getQuestionId() {
-    return document.location.pathname.replace("/question/", "");
+function getArticleId() {
+    return document.location.pathname.replace("/article/", "");
 }
 function load_comment_info(){
     const url = "/loadComment";
-    ajax_get(url,{"id":getQuestionId()},function (data){
-        let question = $("#question_comment");
+    ajax_get(url,{"id":getArticleId()},function (data){
+        let article = $("#article_comment");
         $("#show_more_comment").parent("div").hide();
-        question.empty();
+        article.empty();
         let comments = data.extend.comments;
-        let question_creator = data.extend.creator;
+        let article_creator = data.extend.creator;
         let view = '<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
             '    <ul id="comments-list" class="comments-list fadein-0_5s">\n' +
             '    </ul>\n' +
             '</div>';
-        question.append(view);
+        article.append(view);
         $.each(comments,function (index,item) {
-            load_comment_html(item,question_creator);
+            load_comment_html(item,article_creator);
         })
     });
 }

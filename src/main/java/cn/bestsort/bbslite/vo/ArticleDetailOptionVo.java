@@ -3,7 +3,7 @@ package cn.bestsort.bbslite.vo;
 import lombok.Data;
 
 /**
- * @ClassName QuestionDetailOptionVo
+ * @ClassName ArticleDetailOptionVo
  * @Description TODO
  * @Author bestsort
  * @Date 2019/10/13 上午9:23
@@ -11,9 +11,9 @@ import lombok.Data;
  */
 
 @Data
-public class QuestionDetailOptionVo {
-    private Boolean isThumbUpQuestion;
-    private Boolean isFollowQuestion;
+public class ArticleDetailOptionVo {
+    private Boolean isThumbUpArticle;
+    private Boolean isFollowArticle;
     private Boolean isFollowUser;
     private Boolean isCreator;
 }

@@ -27,8 +27,8 @@
                                 <img th:src="${topic.avatarUrl}" class=" media-topic">
                             </div>
                                 <h3 class="name" th:text="${topic.name}" style="color: #465765"></h3>
-                            <div class="aw-question-content" >
-                                <span th:text="${topic.questionCount}"></span>个问题
+                            <div class="aw-article-content" >
+                                <span th:text="${topic.articleCount}"></span>个问题
                                 <br>
                                 <span th:text="${topic.followCount}"></span>个收藏
                             </div>
@@ -53,7 +53,7 @@
             </div>
         </span>
             <hr>
-        <div th:insert="common/questionlist :: question"></div>
+        <div th:insert="common/articlelist :: article"></div>
     </div>
 </div>
 <div th:insert="common/foot"></div>

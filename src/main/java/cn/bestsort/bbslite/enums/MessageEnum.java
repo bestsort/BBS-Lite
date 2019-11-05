@@ -10,12 +10,12 @@ public enum MessageEnum{
      * COMMENT: 评论
      * TOPIC: 话题
      * USER: 用户
-     * QUESTION: 问题
+     * ARTICLE: 问题
      */
     ALL,
     THUMB_UP,
     FOLLOW_USER,
-    FOLLOW_QUESTION,
+    FOLLOW_ARTICLE,
     COMMENT;
     public static MessageEnum getItem(String str){
         for(MessageEnum i:MessageEnum.values()){

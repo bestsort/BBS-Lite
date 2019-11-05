@@ -3,14 +3,14 @@ package cn.bestsort.bbslite.pojo.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionExample {
+public class ArticleExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public QuestionExample() {
+    public ArticleExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

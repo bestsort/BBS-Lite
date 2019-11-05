@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.Getter;
 
 /**
- * @ClassName QuestionQueryDto
+ * @ClassName ArticleQueryDto
  * @Description
  * @Author bestsort
  * @Date 2019/10/7 下午12:03
@@ -14,7 +14,7 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public class QuestionQueryDto {
+public class ArticleQueryDto {
     private String search;
     private String sortBy;
     private Integer topic;

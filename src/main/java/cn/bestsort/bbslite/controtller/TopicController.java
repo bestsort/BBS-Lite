@@ -4,7 +4,7 @@ import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.pojo.model.Topic;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.QuestionService;
+import cn.bestsort.bbslite.service.ArticleService;
 import cn.bestsort.bbslite.service.TopicService;
 import cn.bestsort.bbslite.vo.PublishVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class TopicController {
     @Autowired
     private TopicService topicService;
     @Autowired
-    private QuestionService questionService;
+    private ArticleService articleService;
 
     @GetMapping("/topic")
     public String topic(Model model){

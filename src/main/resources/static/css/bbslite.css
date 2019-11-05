@@ -146,7 +146,7 @@ body, html {
     font-size: 18px;
     font-weight: 700;
 }
-.question-descrption{
+.article-descrption{
     margin: 0;
 }
 .search{
@@ -205,7 +205,7 @@ body, html {
     margin-top: 1px;
 }
 /* 问题页面的小字(回复数,浏览数等) */
-.aw-question-content{
+.aw-article-content{
     font-size: 12px;
     font-weight: normal;
     color: #7b7b7b;
@@ -280,7 +280,7 @@ body, html {
 }
 
 /* 评论中的分割线 */
-.comment-question-sp{
+.comment-article-sp{
     margin-top: 0;
 }
 
@@ -369,7 +369,7 @@ body, html {
 }
 
 /* 首页问题列表边框 */
-.bbs-question-list-item{
+.bbs-article-list-item{
     padding: 15px;
     border-bottom: 1px solid #eee;
 }

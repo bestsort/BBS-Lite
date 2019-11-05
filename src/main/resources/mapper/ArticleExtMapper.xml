@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.bestsort.bbslite.mapper.QuestionExtMapper">
-    <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Question">
+<mapper namespace="cn.bestsort.bbslite.mapper.ArticleExtMapper">
+    <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Article">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="title" jdbcType="VARCHAR" property="title" />
         <result column="creator" jdbcType="BIGINT" property="creator" />
@@ -19,9 +19,9 @@
         <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     </resultMap>
 
-    <select id="listBySearch" resultType="cn.bestsort.bbslite.pojo.model.Question">
+    <select id="listBySearch" resultType="cn.bestsort.bbslite.pojo.model.Article">
         select *
-        from question
+        from article
         <where>
             status = 1
             <if test="userId!=null">
@@ -42,37 +42,37 @@
             order by gmt_create DESC
         </where>
     </select>
-    <update id="incQuestionLike">
-        update question
+    <update id="incArticleLike">
+        update article
         set
             like_count = like_count + #{val,jdbcType=BIGINT}
         where
             id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="incQuestionFollow">
-        update question
+    <update id="incArticleFollow">
+        update article
         set
             follow_count = follow_count + #{val,jdbcType=BIGINT}
         where
             id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="incQuestionComment">
-        update question
+    <update id="incArticleComment">
+        update article
         set
             comment_count = comment_count + #{val,jdbcType=BIGINT}
         where
             id = #{id,jdbcType=BIGINT}
     </update>
 
-    <update id="incQuestionView">
-        update question
+    <update id="incArticleView">
+        update article
         set
         view_count = view_count + #{val,jdbcType=BIGINT}
         where
         id = #{id,jdbcType=BIGINT}
     </update>
-    <insert id="insertQuestionExt" keyProperty="id" useGeneratedKeys="true" parameterType="cn.bestsort.bbslite.pojo.model.Question">
-        insert into question
+    <insert id="insertArticleExt" keyProperty="id" useGeneratedKeys="true" parameterType="cn.bestsort.bbslite.pojo.model.Article">
+        insert into article
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,

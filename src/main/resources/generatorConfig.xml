@@ -38,7 +38,7 @@
         </javaClientGenerator>
 
         <table tableName="user" domainObjectName="User" />
-        <table tableName="question" domainObjectName="Question" />
+        <table tableName="article" domainObjectName="Article" />
         <table tableName="topic" domainObjectName="Topic"/>
         <table tableName="thumb_up" domainObjectName="ThumbUp"/>
         <table tableName="follow" domainObjectName="Follow"/>

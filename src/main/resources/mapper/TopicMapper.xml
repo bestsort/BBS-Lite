@@ -6,7 +6,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
     <result column="follow_count" jdbcType="BIGINT" property="followCount" />
-    <result column="question_count" jdbcType="BIGINT" property="questionCount" />
+    <result column="article_count" jdbcType="BIGINT" property="articleCount" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, avatar_url, follow_count, question_count
+    id, name, avatar_url, follow_count, article_count
   </sql>
   <select id="selectByExample" parameterType="cn.bestsort.bbslite.pojo.model.TopicExample" resultMap="BaseResultMap">
     select
@@ -101,9 +101,9 @@
   </delete>
   <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
     insert into topic (id, name, avatar_url, 
-      follow_count, question_count)
+      follow_count, article_count)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
-      #{followCount,jdbcType=BIGINT}, #{questionCount,jdbcType=BIGINT})
+      #{followCount,jdbcType=BIGINT}, #{articleCount,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
     insert into topic
@@ -120,8 +120,8 @@
       <if test="followCount != null">
         follow_count,
       </if>
-      <if test="questionCount != null">
-        question_count,
+      <if test="articleCount != null">
+        article_count,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -137,8 +137,8 @@
       <if test="followCount != null">
         #{followCount,jdbcType=BIGINT},
       </if>
-      <if test="questionCount != null">
-        #{questionCount,jdbcType=BIGINT},
+      <if test="articleCount != null">
+        #{articleCount,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -163,8 +163,8 @@
       <if test="record.followCount != null">
         follow_count = #{record.followCount,jdbcType=BIGINT},
       </if>
-      <if test="record.questionCount != null">
-        question_count = #{record.questionCount,jdbcType=BIGINT},
+      <if test="record.articleCount != null">
+        article_count = #{record.articleCount,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -177,7 +177,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
       follow_count = #{record.followCount,jdbcType=BIGINT},
-      question_count = #{record.questionCount,jdbcType=BIGINT}
+      article_count = #{record.articleCount,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -194,8 +194,8 @@
       <if test="followCount != null">
         follow_count = #{followCount,jdbcType=BIGINT},
       </if>
-      <if test="questionCount != null">
-        question_count = #{questionCount,jdbcType=BIGINT},
+      <if test="articleCount != null">
+        article_count = #{articleCount,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -205,7 +205,7 @@
     set name = #{name,jdbcType=VARCHAR},
       avatar_url = #{avatarUrl,jdbcType=VARCHAR},
       follow_count = #{followCount,jdbcType=BIGINT},
-      question_count = #{questionCount,jdbcType=BIGINT}
+      article_count = #{articleCount,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

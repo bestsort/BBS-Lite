@@ -27,17 +27,17 @@ function list_option() {
 }
 
 
-let QUESTION = function () {
+let ARTICLE = function () {
     $("#people_list").empty();
-    ajax_get("/loadQuestionList",{
+    ajax_get("/loadArticleList",{
         userId:getParam("user")
     },
     function (data) {
     //清空
         $("#people_list").empty();
-        const questions = data.extend.page.list;
-        $.each(questions, function (index, item) {
-            const question = $('<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 bbs-question-list-item"' +
+        const articles = data.extend.page.list;
+        $.each(articles, function (index, item) {
+            const article = $('<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 bbs-article-list-item"' +
                 '        <div class="media media-margin" >\n' +
     /*                '            <!-- 头像 -->\n' +
                 '            <div class="media-left media-left-margin">\n' +
@@ -46,13 +46,13 @@ let QUESTION = function () {
                 '                </a>\n' +
                 '            </div>\n' +*/
                 '            <!-- 描述 -->\n' +
-                '<a href="/question/' + item.id + '" style="text-decoration:none">'+
+                '<a href="/article/' + item.id + '" style="text-decoration:none">'+
                 '            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
                 '                        <span>\n' +
                 '                            <span class="media-heading-deep font-bigger">' + item.title + '</span>\n' +
                 '                        </span>\n' +
-                '                <p class="media-heading question-descrption">' + item.description.substring(1,50) + '</p>' +
-                '                <span class="aw-question-content">\n' +
+                '                <p class="media-heading article-descrption">' + item.description.substring(1,50) + '</p>' +
+                '                <span class="aw-article-content">\n' +
                 '                            <span>' + item.viewCount + '次浏览 • </span>\n' +
                 '                            <span>' + item.followCount + '人收藏 • </span>\n' +
                 //'                            <span>' + item.commentCount + '个回复 • ></span>\n' +
@@ -62,7 +62,7 @@ let QUESTION = function () {
                 '                        </span>\n' +
                 '            </div></a>\n' +
                 '        </div>');
-            $("#people_list").append(question);
+            $("#people_list").append(article);
         })
     });
 };

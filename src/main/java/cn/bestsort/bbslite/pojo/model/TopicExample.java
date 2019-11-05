@@ -364,63 +364,63 @@ public class TopicExample {
             return (Criteria) this;
         }
 
-        public Criteria andQuestionCountIsNull() {
-            addCriterion("question_count is null");
+        public Criteria andArticleCountIsNull() {
+            addCriterion("article_count is null");
             return (Criteria) this;
         }
 
-        public Criteria andQuestionCountIsNotNull() {
-            addCriterion("question_count is not null");
+        public Criteria andArticleCountIsNotNull() {
+            addCriterion("article_count is not null");
             return (Criteria) this;
         }
 
-        public Criteria andQuestionCountEqualTo(Long value) {
-            addCriterion("question_count =", value, "questionCount");
+        public Criteria andArticleCountEqualTo(Long value) {
+            addCriterion("article_count =", value, "articleCount");
             return (Criteria) this;
         }
 
-        public Criteria andQuestionCountNotEqualTo(Long value) {
-            addCriterion("question_count <>", value, "questionCount");
+        public Criteria andArticleCountNotEqualTo(Long value) {
+            addCriterion("article_count <>", value, "articleCount");
             return (Criteria) this;
         }
 
-        public Criteria andQuestionCountGreaterThan(Long value) {
-            addCriterion("question_count >", value, "questionCount");
+        public Criteria andArticleCountGreaterThan(Long value) {
+            addCriterion("article_count >", value, "articleCount");
             return (Criteria) this;
         }
 
-        public Criteria andQuestionCountGreaterThanOrEqualTo(Long value) {
-            addCriterion("question_count >=", value, "questionCount");
+        public Criteria andArticleCountGreaterThanOrEqualTo(Long value) {
+            addCriterion("article_count >=", value, "articleCount");
             return (Criteria) this;
         }
 
-        public Criteria andQuestionCountLessThan(Long value) {
-            addCriterion("question_count <", value, "questionCount");
+        public Criteria andArticleCountLessThan(Long value) {
+            addCriterion("article_count <", value, "articleCount");
             return (Criteria) this;
         }
 
-        public Criteria andQuestionCountLessThanOrEqualTo(Long value) {
-            addCriterion("question_count <=", value, "questionCount");
+        public Criteria andArticleCountLessThanOrEqualTo(Long value) {
+            addCriterion("article_count <=", value, "articleCount");
             return (Criteria) this;
         }
 
-        public Criteria andQuestionCountIn(List<Long> values) {
-            addCriterion("question_count in", values, "questionCount");
+        public Criteria andArticleCountIn(List<Long> values) {
+            addCriterion("article_count in", values, "articleCount");
             return (Criteria) this;
         }
 
-        public Criteria andQuestionCountNotIn(List<Long> values) {
-            addCriterion("question_count not in", values, "questionCount");
+        public Criteria andArticleCountNotIn(List<Long> values) {
+            addCriterion("article_count not in", values, "articleCount");
             return (Criteria) this;
         }
 
-        public Criteria andQuestionCountBetween(Long value1, Long value2) {
-            addCriterion("question_count between", value1, value2, "questionCount");
+        public Criteria andArticleCountBetween(Long value1, Long value2) {
+            addCriterion("article_count between", value1, value2, "articleCount");
             return (Criteria) this;
         }
 
-        public Criteria andQuestionCountNotBetween(Long value1, Long value2) {
-            addCriterion("question_count not between", value1, value2, "questionCount");
+        public Criteria andArticleCountNotBetween(Long value1, Long value2) {
+            addCriterion("article_count not between", value1, value2, "articleCount");
             return (Criteria) this;
         }
     }

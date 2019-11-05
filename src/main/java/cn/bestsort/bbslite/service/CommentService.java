@@ -30,9 +30,9 @@ public class CommentService {
     @Autowired
     UserMapper userMapper;
     @Autowired
-    QuestionExtMapper questionExtMapper;
+    ArticleExtMapper articleExtMapper;
     @Autowired
-    QuestionMapper questionMapper;
+    ArticleMapper articleMapper;
     @Autowired
     private CommentMapper commentMapper;
     @Autowired
@@ -44,14 +44,14 @@ public class CommentService {
     public void insert(Comment comment,Long pid,boolean isParent,Long userId) {
         if(isParent){
             CommentParent commentParent = (CommentParent) comment;
-            commentParent.setQuestionId(pid);
-            if (questionMapper.selectByPrimaryKey(pid) == null){
-                throw new CustomizeException(CustomizeErrorCodeEnum.QUESTION_NOT_FOUND);
+            commentParent.setArticleId(pid);
+            if (articleMapper.selectByPrimaryKey(pid) == null){
+                throw new CustomizeException(CustomizeErrorCodeEnum.ARTICLE_NOT_FOUND);
             }
             commentParent.setGmtCreate(System.currentTimeMillis());
             commentParent.setGmtModified(commentParent.getGmtCreate());
             commentMapper.insertCommentParent(commentParent);
-            questionExtMapper.incQuestionComment(pid,1L);
+            articleExtMapper.incArticleComment(pid,1L);
         }else{
             if (userMapper.selectByPrimaryKey(userId) == null){
                 throw new CustomizeException(CustomizeErrorCodeEnum.URL_NOT_FOUND);
@@ -68,16 +68,16 @@ public class CommentService {
             kid.setPid(pid);
             kid.setCommentToUserId(userId);
             commentMapper.insertCommentKid(kid);
-            questionExtMapper.incQuestionComment(parent.getQuestionId(),1L);
+            articleExtMapper.incArticleComment(parent.getArticleId(),1L);
         }
     }
 
     @Cacheable(keyGenerator = "myKeyGenerator")
-    public PageInfo<CommentVo> listByQuestionId(Long questionId,Long userId, Integer page, Integer size) {
-        Long creator = questionMapper.selectByPrimaryKey(questionId).getCreator();
+    public PageInfo<CommentVo> listByArticleId(Long articleId,Long userId, Integer page, Integer size) {
+        Long creator = articleMapper.selectByPrimaryKey(articleId).getCreator();
 
         //PageHelper.startPage(page,size);
-        List<CommentParent> comments = commentMapper.listComment(questionId);
+        List<CommentParent> comments = commentMapper.listComment(articleId);
         if (comments.isEmpty()) {
             return new PageInfo<>();
         }

@@ -26,29 +26,29 @@ public class ThumbUpService {
     ThumbUpMapper thumbUpMapper;
     @Autowired
     ThumbUpExtMapper thumbUpExtMapper;
-    public Boolean getQuestionThumbUpByUser(Long userId,Long questionId){
+    public Boolean getArticleThumbUpByUser(Long userId,Long articleId){
         ThumbUpExample example = new ThumbUpExample();
         example.createCriteria()
                 .andThumbUpByEqualTo(userId)
-                .andThumbUpToEqualTo(questionId)
-                .andTypeEqualTo(FunctionItem.getCode(FunctionItem.QUESTION))
+                .andThumbUpToEqualTo(articleId)
+                .andTypeEqualTo(FunctionItem.getCode(FunctionItem.ARTICLE))
                 .andStatusEqualTo((byte) 1);
         List<ThumbUp> thumbUps = thumbUpMapper.selectByExample(example);
 
         return !thumbUps.isEmpty();
     }
 
-    public Boolean setThumbUpCount(Long questionId, Long useId,FunctionItem item,Boolean isActive) {
+    public Boolean setThumbUpCount(Long articleId, Long useId,FunctionItem item,Boolean isActive) {
         isActive = !isActive;
         ThumbUp thumbUp = new ThumbUp();
         thumbUp.setThumbUpBy(useId);
-        thumbUp.setThumbUpTo(questionId);
+        thumbUp.setThumbUpTo(articleId);
         thumbUp.setStatus((byte)(isActive?1:0));
         thumbUp.setGmtModified(System.currentTimeMillis());
         thumbUp.setType(FunctionItem.getCode(item));
         ThumbUpExample example = new ThumbUpExample();
         example.createCriteria().andThumbUpByEqualTo(useId)
-                .andThumbUpToEqualTo(questionId)
+                .andThumbUpToEqualTo(articleId)
                 .andTypeEqualTo(FunctionItem.getCode(item));
         if(thumbUpMapper.countByExample(example) != 0) {
             thumbUpExtMapper.setThumbUpCount(thumbUp);
@@ -60,11 +60,11 @@ public class ThumbUpService {
         return isActive;
     }
 
-    public Boolean getStatusByUser(Long questionId, Long id) {
+    public Boolean getStatusByUser(Long articleId, Long id) {
         ThumbUpExample example = new ThumbUpExample();
         example.createCriteria()
                 .andThumbUpByEqualTo(id)
-                .andThumbUpToEqualTo(questionId)
+                .andThumbUpToEqualTo(articleId)
                 .andStatusEqualTo((byte)1);
         return thumbUpMapper.countByExample(example)!=0;
     }

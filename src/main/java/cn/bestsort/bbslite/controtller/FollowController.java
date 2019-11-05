@@ -6,7 +6,7 @@ import cn.bestsort.bbslite.pojo.model.Follow;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.FollowService;
-import cn.bestsort.bbslite.service.QuestionService;
+import cn.bestsort.bbslite.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -27,9 +27,9 @@ public class FollowController {
     @Autowired
     FollowService followService;
     @Autowired
-    QuestionService questionService;
+    ArticleService articleService;
     @ResponseBody
-    @PostMapping("/followQuestion")
+    @PostMapping("/followArticle")
     public ResultDto follow(
             @RequestParam("id") Long id,
             @RequestParam("isActive") Boolean isActive,
@@ -38,8 +38,8 @@ public class FollowController {
         if (user == null) {
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
-        boolean active = followService.setFollowCount(id, user.getId(), FunctionItem.QUESTION, isActive);
-        questionService.incQuestionFollow(id,isActive?-1L:1L);
+        boolean active = followService.setFollowCount(id, user.getId(), FunctionItem.ARTICLE, isActive);
+        articleService.incArticleFollow(id,isActive?-1L:1L);
         return new ResultDto().okOf()
                 .addMsg("isActive", active);
     }

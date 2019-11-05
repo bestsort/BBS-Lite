@@ -129,7 +129,7 @@ body {
  * Caja del Comentario
  ---------------------------*/
 .comments-list .comment-box {
-    width: 85%;
+    width: 90%;
     margin-top: 10px;
     float: right;
     position: relative;
@@ -158,7 +158,7 @@ body {
 }
 
 .reply-list .comment-box {
-    width: 85%;
+    width: 90%;
     margin-top: 10px;
 }
 .comment-box .comment-head {
@@ -231,10 +231,10 @@ body {
  ========================*/
 @media only screen and (max-width: 766px) {
     .comments-list .comment-box {
-        width: 85%;
+        width: 90%;
     }
 
     .reply-list .comment-box {
-        width: 85%;
+        width: 90%;
     }
 }

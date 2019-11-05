@@ -23,21 +23,21 @@ public class FollowService {
     private FollowMapper followMapper;
     @Autowired
     private FollowExtMapper followExtMapper;
-    public Boolean setFollowCount(Long questionId,Long userId,FunctionItem item,Boolean isActive) {
+    public Boolean setFollowCount(Long articleId,Long userId,FunctionItem item,Boolean isActive) {
         Follow follow = new Follow();
         isActive = !isActive;
         follow.setFollowBy(userId);
         follow.setStatus((byte)(isActive?1:0));
-        follow.setFollowTo(questionId);
-        follow.setType(FunctionItem.getCode(FunctionItem.QUESTION));
+        follow.setFollowTo(articleId);
+        follow.setType(FunctionItem.getCode(FunctionItem.ARTICLE));
         FollowExample followExample = new FollowExample();
         followExample.createCriteria()
                 .andFollowByEqualTo(userId)
-                .andFollowToEqualTo(questionId)
+                .andFollowToEqualTo(articleId)
                 .andTypeEqualTo(follow.getType());
         follow.setGmtModified(System.currentTimeMillis());
 
-        if(item == FunctionItem.QUESTION) {
+        if(item == FunctionItem.ARTICLE) {
             if (followMapper.countByExample(followExample) == 0) {
                 follow.setGmtCreate(follow.getGmtModified());
                 followMapper.insertSelective(follow);

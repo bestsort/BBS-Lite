@@ -7,7 +7,7 @@ import cn.bestsort.bbslite.pojo.model.CommentKid;
 import cn.bestsort.bbslite.pojo.model.CommentParent;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.CommentService;
-import cn.bestsort.bbslite.service.QuestionService;
+import cn.bestsort.bbslite.service.ArticleService;
 import cn.bestsort.bbslite.service.UserService;
 import cn.bestsort.bbslite.vo.CommentVo;
 import com.github.pagehelper.PageInfo;
@@ -36,16 +36,16 @@ public class CommentController {
     @Autowired
     UserService userService;
     @Autowired
-    QuestionService questionService;
+    ArticleService articleService;
     @ResponseBody
     @GetMapping("/loadComment")
-    public ResultDto get(@RequestParam(name = "id") Long questionId,
+    public ResultDto get(@RequestParam(name = "id") Long articleId,
                          HttpSession session){
         try {
             User user = (User)session.getAttribute("user");
             Long userId = user==null?null:user.getId();
-            PageInfo<CommentVo> comments = commentService.listByQuestionId(questionId,userId,1,5);
-            Long creator = questionService.getQuestionDetail(questionId).getCreator();
+            PageInfo<CommentVo> comments = commentService.listByArticleId(articleId,userId,1,5);
+            Long creator = articleService.getArticleDetail(articleId).getCreator();
             List<CommentVo> list = comments.getList();
             return new ResultDto().okOf()
                     .addMsg("comments",list)
@@ -58,7 +58,7 @@ public class CommentController {
 
     @ResponseBody
     @PostMapping("/commitComment")
-    public ResultDto commitComment(@RequestParam(name = "questionId") Long questionId,
+    public ResultDto commitComment(@RequestParam(name = "articleId") Long articleId,
                                    @RequestParam(name = "pid",required = false) Long pid,
                                    @RequestParam(name = "content") String content,
                                    @RequestParam(name = "sendToUser",required = false) Long userId,
@@ -75,7 +75,7 @@ public class CommentController {
         comment.setContent(content);
         comment.setCommentById(user.getId());
         try {
-            commentService.insert(comment,isParent?questionId:pid,isParent,userId);
+            commentService.insert(comment,isParent?articleId:pid,isParent,userId);
             return new ResultDto().okOf();
         }catch (Exception e){
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.SYS_ERROR);

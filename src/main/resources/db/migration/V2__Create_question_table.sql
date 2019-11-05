@@ -1,4 +1,4 @@
-create table question
+create table article
 (
     id BIGINT auto_increment primary key,
     title varchar(50),
