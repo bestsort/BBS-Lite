@@ -25,25 +25,6 @@ body {
     font-family: 'Roboto', Arial, Helvetica, Sans-serif, Verdana;
 }
 
-/** ====================
- * Lista de Comentarios
- =======================*/
-.comments-container {
-    margin: 60px auto 15px;
-    width: 768px;
-}
-
-.comments-container h1 {
-    font-size: 36px;
-    color: #283035;
-    font-weight: 400;
-}
-
-.comments-container h1 a {
-    font-size: 18px;
-    font-weight: 700;
-}
-
 .comments-list {
     position: relative;
 }
@@ -148,7 +129,7 @@ body {
  * Caja del Comentario
  ---------------------------*/
 .comments-list .comment-box {
-    width: 720px;
+    width: 85%;
     margin-top: 10px;
     float: right;
     position: relative;
@@ -177,7 +158,7 @@ body {
 }
 
 .reply-list .comment-box {
-    width: 670px;
+    width: 85%;
     margin-top: 10px;
 }
 .comment-box .comment-head {
@@ -249,15 +230,11 @@ body {
  * Responsive
  ========================*/
 @media only screen and (max-width: 766px) {
-    .comments-container {
-        width: 480px;
-    }
-
     .comments-list .comment-box {
-        width: 390px;
+        width: 85%;
     }
 
     .reply-list .comment-box {
-        width: 320px;
+        width: 85%;
     }
 }

@@ -2,6 +2,9 @@ HELP.md
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
+/log/
+/src/log/
+rum.xml
 
 ### STS ###
 .apt_generated
@@ -34,5 +37,4 @@ build/
 将删除 mvnw.cmd
 将删除 pom.xml
 将删除 src/
-/log/
-/src/log/
+
