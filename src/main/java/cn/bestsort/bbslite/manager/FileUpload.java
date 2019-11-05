@@ -44,7 +44,7 @@ public class FileUpload {
     private String callback;
     public String upload(HttpServletRequest request) {
         if ("".equals(callback)){
-            callback = "http://" + bucketName + "." + endpoint;
+            callback = "https://" + bucketName + "." + endpoint;
         }
         OSS ossClient = new OSSClientBuilder().build(endpoint,accessKeyId,accessKeySecret);
         try {

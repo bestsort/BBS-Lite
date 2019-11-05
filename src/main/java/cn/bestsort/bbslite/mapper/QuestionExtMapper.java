@@ -22,4 +22,5 @@ public interface QuestionExtMapper {
     Boolean incQuestionLike(Long id,Long val);
     Boolean incQuestionFollow(Long id, Long val);
     Boolean incQuestionComment(Long id,Long val);
+    Boolean incQuestionView(Long id,Long val);
 }

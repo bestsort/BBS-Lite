@@ -251,7 +251,7 @@ function load_question_detail_right(data) {
         '                <small style="font-size: 12px;color: #1f1f1f;">\n' +
         '                    昵称:\n' +
         '                    <!-- TODO 跳转到个人主页 -->\n' +
-        '                    <a href="/profile/user?id='+ userInfo.id + '" style="color: #155faa">' + userInfo.name + '</a>\n' +
+        '                    <a href="/people?user='+ userInfo.id + '" style="color: #155faa">' + userInfo.name + '</a>\n' +
         '                    <br>\n';
 
         if (userInfo.htmlUrl !== null) {
@@ -348,7 +348,7 @@ function load_comment_html(comment,creator) {
         '                <div class="comment-box">\n' +
         '                    <div class="comment-head">\n' +
         '                        <h6 class="comment-name ' + (byUser.id==creator?'by-author ':'') + '">\n' +
-        '                            <a href="'+ byUser.htmlUrl + '">'+ byUser.name + '</a>\n' +
+        '                            <a href="/people?user='+ byUser.id + '">'+ byUser.name + '</a>\n' +
         '                        </h6>\n' +
         '                        <span class="comment-post pull-right" style="top: 0;"> \n' +
         '                            <input name="commentId" value="' + comment.id + '" hidden>' +
@@ -372,7 +372,7 @@ function load_comment_html(comment,creator) {
                 '                    <!-- Contenedor del Comentario -->\n' +
                 '                    <div class="comment-box">\n' +
                 '                        <div class="comment-head">\n' +
-                '                            <h6 class="comment-name ' + (bySonUser.id==creator?'by-author':'') + '"><a href="'+ bySonUser.htmlUrl + '">'+ bySonUser.name + '</a></h6>\n' +
+                '                            <h6 class="comment-name ' + (bySonUser.id==creator?'by-author':'') + '"><a href="/people?user='+ bySonUser.id + '">'+ bySonUser.name + '</a></h6>\n' +
                 '                            <span class="comment-post pull-right">\n' +
                 '                            <input name="commentId" value="' + bySonUser.id + '" hidden>' +
                 '                            <input name="creator" value="' + bySonUser.id + '" hidden>' +

@@ -34,30 +34,17 @@ public class PersonalCenterController {
     private QuestionService questionService;
     @Autowired
     private CommentService commentService;
-
-    @RequestMapping("/people")
-    /*public ResultDto profile(@RequestParam(name = "action",required = false) FunctionItem item,
-                             @RequestParam(name = "id",required = false) Long id,
-                             @RequestParam(name="page",defaultValue = "1") Integer page,
-                             @RequestParam(name="size",defaultValue = "5") Integer size,
+    @RequestMapping("/center")
+    public String profile(@RequestParam(name = "id",required = false) Long id,
                              HttpSession session){
-*//*        User user = (User)session.getAttribute("user");
+        User user = (User)session.getAttribute("user");
         if(user == null){
             throw new CustomizeException(CustomizeErrorCodeEnum.NO_WAY);
-        }*//*
-        switch (item){
-            case QUESTION: {
-                return new ResultDto().okOf()
-                        .addMsg("question", questionService.listQuestionByUserId(id));
-            }
-            case COMMENT: {
-                return new ResultDto().okOf()
-                        .addMsg("comment", commentService.listByUserId(id));
-            }
-            default: return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_WAY);
         }
-    }*/
-    public String re(){
-        return  "people";
+        return "redirect:/people?user=" + user.getId();
+    }
+    @GetMapping("/people")
+    public String people(){
+        return "people";
     }
 }
