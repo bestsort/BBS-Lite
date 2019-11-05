@@ -43,7 +43,7 @@ $(function () {
         }
     });
 
-    // 加载问题详情
+    // 加载文章详情
     function load_topic_option() {
         let id = getParam("id");
         let jsondata = {};

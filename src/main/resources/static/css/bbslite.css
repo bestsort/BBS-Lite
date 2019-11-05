@@ -173,7 +173,7 @@ body, html {
     overflow: hidden;
     margin-top: 70px;
 }
-/* 发布问题按钮 */
+/* 发布文章按钮 */
 .btn-publish{
     float: right;
     margin-bottom: 15px;
@@ -204,7 +204,7 @@ body, html {
 .media-body{
     margin-top: 1px;
 }
-/* 问题页面的小字(回复数,浏览数等) */
+/* 文章页面的小字(回复数,浏览数等) */
 .aw-article-content{
     font-size: 12px;
     font-weight: normal;
@@ -216,7 +216,7 @@ body, html {
     margin-top: 30px;
 }
 
-/* 问题详情页面的编辑按钮 */
+/* 文章详情页面的编辑按钮 */
 .bbs-menu{
     margin-right:15px;
     color: #5f8e99;
@@ -368,8 +368,9 @@ body, html {
     bottom: 1px;
 }
 
-/* 首页问题列表边框 */
+/* 首页文章列表边框 */
 .bbs-article-list-item{
     padding: 15px;
+    margin-bottom: 12px;
     border-bottom: 1px solid #eee;
 }

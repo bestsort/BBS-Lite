@@ -3,11 +3,16 @@ package cn.bestsort.bbslite.service;
 import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.mapper.FollowExtMapper;
 import cn.bestsort.bbslite.mapper.FollowMapper;
+import cn.bestsort.bbslite.pojo.model.Article;
 import cn.bestsort.bbslite.pojo.model.Follow;
 import cn.bestsort.bbslite.pojo.model.FollowExample;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * @ClassName FollowService
@@ -56,5 +61,10 @@ public class FollowService {
                 .andTypeEqualTo(FunctionItem.getCode(item))
                 .andStatusEqualTo((byte) 1);
         return followMapper.countByExample(example) != 0;
+    }
+
+    public List<Article> getListByUser(Long id, FunctionItem article,Integer page,Integer size) {
+        PageHelper.startPage(page,size);
+        return followExtMapper.listFollowArticleByUser(id, FunctionItem.getCode(article));
     }
 }

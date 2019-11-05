@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.bestsort.bbslite.mapper.ArticleMapper">
   <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Article">
     <id column="id" jdbcType="BIGINT" property="id" />
@@ -136,7 +136,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Article">
-    insert into article (id, title, creator,
+    insert into article (id, title, creator, 
       tag, top, topic, category, 
       user_avatar_url, user_name, follow_count, 
       view_count, like_count, comment_count, 

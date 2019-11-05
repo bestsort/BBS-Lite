@@ -8,30 +8,26 @@ package cn.bestsort.bbslite.enums;
  * @Version 1.0
  */
 
-public enum FunctionItem{
+public enum PeopleCenterEnum{
     /**
-     * COMMENT: 评论
-     * TOPIC: 话题
-     * USER: 用户
-     * ARTICLE: 文章
-     * REPLY: 回复
+     * 个人中心相关字段
      */
-    COMMENT,
-    TOPIC,
-    USER,
     ARTICLE,
-    REPLY;
-    public static FunctionItem getItem(String str){
-        for(FunctionItem i:FunctionItem.values()){
-            if (FunctionItem.valueOf(str) == i){
+    FANS,
+    FOLLOW,
+    FOLLOW_ARTICLE,
+    SETTING;
+    public static PeopleCenterEnum getItem(String str){
+        for(PeopleCenterEnum i:PeopleCenterEnum.values()){
+            if (PeopleCenterEnum.valueOf(str) == i){
                 return i;
             }
         }
         return null;
     }
-    public static FunctionItem getByCode(Byte code){
+    public static PeopleCenterEnum getByCode(Byte code){
         byte byt = 0;
-        for(FunctionItem i:FunctionItem.values()){
+        for(PeopleCenterEnum i:PeopleCenterEnum.values()){
             if(byt == code) {
                 return i;
             }
@@ -39,9 +35,9 @@ public enum FunctionItem{
         }
         return null;
     }
-    public static Byte getCode(FunctionItem item){
+    public static Byte getCode(PeopleCenterEnum item){
         byte byt = 0;
-        for(FunctionItem i:FunctionItem.values()){
+        for(PeopleCenterEnum i:PeopleCenterEnum.values()){
             if(i == item) {
                 return byt;
             }

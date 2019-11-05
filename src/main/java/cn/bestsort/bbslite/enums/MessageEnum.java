@@ -10,7 +10,7 @@ public enum MessageEnum{
      * COMMENT: 评论
      * TOPIC: 话题
      * USER: 用户
-     * ARTICLE: 问题
+     * ARTICLE: 文章
      */
     ALL,
     THUMB_UP,

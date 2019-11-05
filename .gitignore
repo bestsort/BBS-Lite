@@ -5,6 +5,7 @@ target/
 /log/
 /src/log/
 run.xml
+/config/application.xml
 
 ### STS ###
 .apt_generated

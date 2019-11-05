@@ -29,12 +29,20 @@ public class UserController {
 
     @ResponseBody
     @GetMapping("/getUserInfo")
-    public ResultDto getUserInfo(@RequestParam(name = "id")Long id){
+    public ResultDto getUserInfo(@RequestParam(name = "id")Long id,
+                                 HttpSession session){
         User user = userService.getSimpleInfoById(id);
+        boolean isOwn = false;
+        User sessonUser = (User)session.getAttribute("user");
+        if (sessonUser != null && sessonUser.getId().equals(id)){
+            isOwn = true;
+        }
         if (user == null){
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.USER_NOT_FOUND);
         }
-        return new ResultDto().okOf().addMsg("user",user);
+        return new ResultDto().okOf()
+                .addMsg("user",user)
+                .addMsg("isOwn",isOwn);
     }
 
     @ResponseBody

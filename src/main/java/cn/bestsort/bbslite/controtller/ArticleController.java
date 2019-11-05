@@ -3,10 +3,11 @@ package cn.bestsort.bbslite.controtller;
 import cn.bestsort.bbslite.dto.ArticleQueryDto;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.FunctionItem;
+import cn.bestsort.bbslite.enums.PeopleCenterEnum;
 import cn.bestsort.bbslite.pojo.model.Article;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.FollowService;
 import cn.bestsort.bbslite.service.ArticleService;
+import cn.bestsort.bbslite.service.FollowService;
 import cn.bestsort.bbslite.service.ThumbUpService;
 import cn.bestsort.bbslite.service.UserService;
 import cn.bestsort.bbslite.vo.ArticleDetailOptionVo;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @ClassName ArticleController
- * @Description 问题控制器,用于查询问题列表
+ * @Description 文章控制器,用于查询文章列表
  * @Author bestsort
  * @Date 19-8-31 下午8:35
  * @Version 1.0
@@ -43,15 +44,15 @@ public class ArticleController {
     }
 
     /**
-     * @Description 获取问题列表(可根据搜索内容/话题/分类筛选结果)
+     * @Description 获取文章列表(可根据搜索内容/话题/分类筛选结果)
      * @param sort 排序关键字
      * @param search 搜索关键字(根据正则搜索标题)
      * @param topic 话题
      * @param tag 标签(根据正则搜索标签)
-     * @param size 页面大小(一页所容纳的问题数)
+     * @param size 页面大小(一页所容纳的文章数)
      * @param page 第几页
      * @param categoryVal 话题分类
-     * @return 根据条件筛选并进行分页后的问题列表
+     * @return 根据条件筛选并进行分页后的文章列表
      */
     @ResponseBody
     @GetMapping("/loadArticleList")
@@ -73,13 +74,15 @@ public class ArticleController {
                 .topic(topic)
                 .userId(userId).build();
         PageInfo<Article> pageInfo = articleService.getPageBySearch(queryDto);
-        return new ResultDto().okOf().addMsg("page",pageInfo);
+        return new ResultDto().okOf()
+                .addMsg("page",pageInfo)
+                .addMsg("func", PeopleCenterEnum.ARTICLE);
     }
 
     /**
-     * 加载问题详情
-     * @param id 问题id
-     * @return 问题详情
+     * 加载文章详情
+     * @param id 文章id
+     * @return 文章详情
      */
     @ResponseBody
     @GetMapping("/loadArticleDetail")

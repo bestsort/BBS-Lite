@@ -11,7 +11,7 @@ git pull
 if [ $? -eq 0 ];then
     echo "kill java process success"
     echo "restart bbs-lite"
-    mvn flyway:migrate
+    mvn flyway:migrate -f run.xml
     echo "database merge compelete,begin to restart BBS-Lite"
     nohup mvn -f run.xml spring-boot:run > /dev/null 2>&1 &
     echo -e "[\033[1;32;48mSUCCESS\033[0m] BBS-Lite restart success"

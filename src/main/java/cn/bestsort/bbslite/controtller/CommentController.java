@@ -23,7 +23,7 @@ import java.util.List;
 
 /**
  * @ClassName CommentController
- * @Description 评论控制器,用于处理评论(以及对问题的回复)提交
+ * @Description 评论控制器,用于处理评论(以及对文章的回复)提交
  * @Author bestsort
  * @Date 19-9-13 下午3:51
  * @Version 1.0

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @ClassName PublishController
- * @Description 提问控制器,用于修改问题/发布问题
+ * @Description 提问控制器,用于修改文章/发布文章
  * @Author bestsort
  * @Date 19-8-26 下午7:53
  * @Version 1.0

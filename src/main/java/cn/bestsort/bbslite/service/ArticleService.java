@@ -37,12 +37,6 @@ public class ArticleService {
     @Autowired
     private ArticleExtMapper articleExtMapper;
 
-    public List<Article> listArticleByUserId(Long id){
-        ArticleExample example = new ArticleExample();
-        example.createCriteria().andCreatorEqualTo(id);
-        return articleMapper.selectByExample(example);
-    }
-
     public PageInfo<Article> findArticleListByCategory(int page,int size,int category){
         ArticleExample example = new ArticleExample();
         example.setOrderByClause(SortBy.DEFAULT_ORDER);

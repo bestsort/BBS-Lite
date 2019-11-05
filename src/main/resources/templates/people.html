@@ -16,16 +16,29 @@
         <div class="col-lg-9 col-md-9 col-xs-9 col-sm-12" style="border-right:1px solid #eee">
             <!-- 选项导航栏 -->
             <ul class="nav nav-tabs" id = "people_option"></ul>
-            <!-- 内容列表-->
-            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="people_list">
-
+            <!-- 文章列表-->
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="main_list">
+            </div>
+            <!--文章列表（无内容时）-->
+            <div id="no_anything" class="text-center" style="margin-top: 50px; display: none;">暂无更多</div>
+            <!--分页导航-->
+            <div class="col-lg-9 col-md-9 col-xs-9 col-sm-12" style="font-size:12px ;border-right:1px solid #eee;margin-top: 20px">
+                <nav aria-label="Page navigation" style="font-size: 12px;">
+                    <ul class="pagination"></ul>
+                </nav>
             </div>
         </div>
+
         <!-- 右侧栏 -->
         <div id="article_detail_right" class="col-lg-3 col-md-3 col-sm-3 col-xs-12"></div>
-
     </div>
 </div>
 </body>
 <div th:insert="common/foot"></div>
+<form id="ajaxVal" hidden>
+    <input name="jumpToUrl">
+    <input name="userId">
+    <input name="pageSize">
+    <input name="pageNo">
+</form>
 </html>

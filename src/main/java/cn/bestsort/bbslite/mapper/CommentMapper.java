@@ -11,10 +11,10 @@ public interface CommentMapper {
     List<CommentParent> listComment(long articleId);
     boolean insertCommentParent(CommentParent parent);
     boolean insertCommentKid(CommentKid kid);
-    CommentParent getCommentParent(Long id);
-    CommentKid getCommentKid(Long id);
+    CommentParent getCommentParentById(Long id);
+    CommentKid getCommentKidById(Long id);
 
     long incCommentLike(long id, long val);
 
-    List<Comment> listCommentByUserId(Long id);
+    List<Comment> listCommentParentByUserId(Long id);
 }

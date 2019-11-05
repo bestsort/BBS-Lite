@@ -1,178 +1,30 @@
-
 $(function () {
-    //总记录数
-    var totalpageo;
-    //当前页
-    var currentpage;
-    //到第几页,默认到第一页
-    to_page(1);
-    //加载右边的数据
-    //build_right_list();
-});
-
-/**
- * 构建分页导航
- * @param data
- */
-function build_page_nav(data) {
-    const page = data.extend.page;
-    /**
-     * 设置当前页
-     */
-    currentpage = page.pageNum;
-    /**
-     * 设置末页
-     */
-    totalpageo = page.pages;
-    //$('.page_info-area').empty();
-    $(".pagination").empty();
-    //$('.page_info-area').append("当前第" + page.pageNum + "页,共" + page.pages + "页,共" + page.total + "条记录")
-    //分页导航
-    let nav = $(".pagination");
-    let firstLi = $("<li class='page-item'></li>")
-        .append($("<a class='page-link'>首页</a>")
-            .attr("href", "#"));
-
-    let prli = $("<li class='page-item'></li>")
-        .append($("<a class='page-link' aria-label='Previous'><span aria-hidden='true'>上一页</span></a>")
-            .attr("href", "#"));
-    //首页
-    firstLi.click(function () {
-        to_page(1);
-    });
-    //上一页
-    prli.click(function () {
-        var target = page.pageNum - 1;
-        target = target == 0 ? 1 : target;
-        to_page(target);
-    });
-    let lastLi = $("<li class='page-item'></li>")
-        .append($("<a class='page-link'>尾页</a>").attr("href", "#"));
-    let nextli = $("<li class='page-item'></li>")
-        .append($("<a class='page-link' aria-label='Next'><span aria-hidden='true'>下一页</span></a>").attr("href", "#"));
-    //末页
-    lastLi.click(function () {
-        //alert("转到:"+page.pages)
-        to_page(page.pages);
-    });
-    //下一页
-    nextli.click(function () {
-        var target = page.pageNum + 1;
-        target = target < page.pages ? target : page.pages;
-        to_page(target);
-    });
-
-    if(!page.isFirstPage){
-       nav.append(firstLi);
-    }
-    if (page.hasPreviousPage) {
-        nav.append(prli);
-    }
-
-    $.each(data.extend.page.navigatepageNums, function (index, item) {
-        const li = $("<li class='page-item'></li>");
-        if (data.extend.page.pageNum == item) {
-            li.addClass("active");
-            li.append($("<span class='page-link'>" + item + "</span>").attr("href", "#"));
-        }
-        else {
-            li.append($("<a class='page-link'>" + item + "</a>").attr("href", "#"));
-        }
-        //点击翻页
-        li.click(function () {
-            $(".pagination li").removeClass("active");
-            $(this).addClass("active");
-            to_page(item);
-            return false;
-        });
-        nav.append(li);
-    });
-
-    if(page.hasNextPage){
-        nav.append(nextli);
-    }
-    if(!page.isLastPage){
-        nav.append(lastLi);
-    }
-}
-
-/**
- * @description 到问题页第几页
- * @param pageno
- */
-function to_page(pageno) {
-    $("#no_quetions").css({
+    $("#no_anything").css({
         display:"none",
     });
-    /**
-     * 加载完成之后,发送请求到服务器,拿到json数据,构建列表数据
-     */
-    const url = "/loadArticleList";
-    const sortBy = getParam("sortBy");
-    let jsonData = {
-        "pageNo": pageno,
-    };
+    $("#ajaxVal").children("input[name='jumpToUrl']")
+        .val("/loadArticleList");
+    to_artical_page(1);
+});
 
-    const array = ["search", "tag", "sortBy", "category", "topic"];
-    for (let i in array) {
-        var val = getParam(array[i]);
-        if(typeof(val) != 'undefined'){
-            jsonData[array[i]] = val;
-        }
-    }
+function to_artical_page(to) {
+    $("#ajaxVal").children("input[name='pageNo']").val(to);
+    let jsonData = form_to_dic();
+    let url = jsonData["jumpToUrl"];
+
     ajax_get(url,jsonData,function (data) {
         if(data.extend.page.total>0){
-            //构建问题列表信息
-            build_article_list(data,"#article_wrapper");
+            //构建文章列表信息
+            build_article_list(data.extend,"#main_list");
             //构建分页信息
-            build_page_nav(data);
+            build_page_nav(data,to_artical_page);
         }else{
-            $("#article_wrapper").empty();
+            $("#main_list").empty();
             $('.page_info-area').empty();
             $(".pagination").empty();
-            $("#no_quetions").css({
+            $("#no_anything").css({
                 display:"block",
             });
         }
-        $("html,body").animate({scrollTop: 0}, 0);//回到顶端
     });
-}
-
-
-/**
- * @description 构建问题列表
- * @param data
- * @param build_to
- */
-function build_article_list(data,build_to) {
-    //清空
-    $(build_to).empty();
-    const articles = data.extend.page.list;
-    $.each(articles, function (index, item) {
-        const article = $('<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 bbs-article-list-item"' +
-            '        <div class="media media-margin" >\n' +
-            '            <!-- 头像 -->\n' +
-            '            <div class="media-left media-left-margin">\n' +
-            '                <a href="#">\n' +
-            '                    <img class="media-min img-rounded" src=' + item.userAvatarUrl + '>\n' +
-            '                </a>\n' +
-            '            </div>\n' +
-            '            <!-- 描述 -->\n' +
-            '            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
-            '                        <span>\n' +
-            '                            <a href="/article/' + item.id + '" class="media-heading">' + item.title + '</a>\n' +
-            '                        </span>\n' +
-            '                <br>\n' +
-            '                <span class="aw-article-content">\n' +
-            '                            <span>' + item.userName + ' • </span>\n' +
-            '                            <span>' + item.viewCount + '次浏览 • </span>\n' +
-            //'                            <span>' + item.commentCount + '个回复 • ></span>\n' +
-            '                            <span>' + item.likeCount + '人点赞 • </span>\n' +
-            '                            <span>' + item.commentCount + '人评论</span>\n' +
-            '                            <span style="float:right">发表于 ' + formatTimestamp(item.gmtCreate) + '</span>\n' +
-            '                        </span>\n' +
-            '            </div>\n' +
-            '        </div>');
-        $(build_to).append(article);
-    })
 }

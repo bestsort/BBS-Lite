@@ -38,7 +38,7 @@ public class CommentService {
     @Autowired
     private ThumbUpMapper thumbUpMapper;
     public List<Comment> listByUserId(Long id){
-        return commentMapper.listCommentByUserId(id);
+        return commentMapper.listCommentParentByUserId(id);
     }
     @CachePut(keyGenerator = "myKeyGenerator")
     public void insert(Comment comment,Long pid,boolean isParent,Long userId) {
@@ -57,7 +57,7 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCodeEnum.URL_NOT_FOUND);
             }
             //回复评论
-            CommentParent parent = commentMapper.getCommentParent(pid);
+            CommentParent parent = commentMapper.getCommentParentById(pid);
             if(parent == null)
             {
                 throw new CustomizeException(CustomizeErrorCodeEnum.COMMENT_NOT_FOUND);
@@ -106,7 +106,7 @@ public class CommentService {
     }
 
     /**
-     * 将 CommentParent 转换为 CommentVo,并且校验该用户是否为问题的作者
+     * 将 CommentParent 转换为 CommentVo,并且校验该用户是否为文章的作者
      * @param parent
      * @param userMap
      * @param creator
@@ -127,7 +127,7 @@ public class CommentService {
     }
 
     /**
-     * 将 CommentKid 转换为 CommentVo,并且校验该用户是否为问题的作者
+     * 将 CommentKid 转换为 CommentVo,并且校验该用户是否为文章的作者
      * @param kid
      * @param userMap
      * @param creator

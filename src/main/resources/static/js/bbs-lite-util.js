@@ -83,12 +83,6 @@ $(function () {
  * 构建页面右栏
  * @param data article详情
  */
-function load_right_without_data() {
-    ajax_get("/getUserInfo",{id:getParam("user")},
-        function (data) {
-            load_right_with_data(data.extend);
-        })
-}
 function load_right_with_data(data) {
     const userInfo = data.user;
     let userSimpleInfo = '\n' +
@@ -212,6 +206,154 @@ function getParam(name){
         }
     }
     return items;
+}
+function getUrlVars() {
+    var vars = {}, hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for (var i = 0; i < hashes.length; i++) {
+        hash = hashes[i].split('=');
+        let name = hash[0].replace("#","");
+        if (name == "pageNo")
+            continue;
+        vars[name] = hash[1].replace("#",0);
+    }
+    return vars;
+}
+
+function form_to_dic() {
+    let params = $("#ajaxVal").serializeArray();
+    var values = {};
+    for (x in params) {
+        if (params[x].value !== "")
+            values[params[x].name] = params[x].value;
+    }
+    return values;
+}
+/**
+ * 构建分页导航
+ * @param data
+ * @param url
+ */
+function build_page_nav(data,func) {
+    const page = data.extend.page;
+    /**
+     * 设置当前页
+     */
+    currentpage = page.pageNum;
+    /**
+     * 设置末页
+     */
+    totalpageo = page.pages;
+    //$('.page_info-area').empty();
+    $(".pagination").empty();
+    //$('.page_info-area').append("当前第" + page.pageNum + "页,共" + page.pages + "页,共" + page.total + "条记录")
+    //分页导航
+    if (totalpageo > 1){
+        let nav = $(".pagination");
+        let firstLi = $("<li class='page-item'></li>")
+            .append($("<a class='page-link'>首页</a>")
+                .attr("href", "#"));
+
+        let prli = $("<li class='page-item'></li>")
+            .append($("<a class='page-link' aria-label='Previous'><span aria-hidden='true'>上一页</span></a>")
+                .attr("href", "#"));
+        //首页
+        firstLi.click(function () {
+            func(1);
+        });
+        //上一页
+        prli.click(function () {
+            var target = page.pageNum - 1;
+            target = target == 0 ? 1 : target;
+            func(target);
+        });
+        let lastLi = $("<li class='page-item'></li>")
+            .append($("<a class='page-link'>尾页</a>").attr("href", "#"));
+        let nextli = $("<li class='page-item'></li>")
+            .append($("<a class='page-link' aria-label='Next'><span aria-hidden='true'>下一页</span></a>").attr("href", "#"));
+        //末页
+        lastLi.click(function () {
+            //alert("转到:"+page.pages)
+            func(page.pages);
+        });
+        //下一页
+        nextli.click(function () {
+            var target = page.pageNum + 1;
+            target = target < page.pages ? target : page.pages;
+            func(target);
+        });
+
+        if(!page.isFirstPage){
+            nav.append(firstLi);
+        }
+        if (page.hasPreviousPage) {
+            nav.append(prli);
+        }
+
+        $.each(data.extend.page.navigatepageNums, function (index, item) {
+            const li = $("<li class='page-item'></li>");
+            if (data.extend.page.pageNum == item) {
+                li.addClass("active");
+                li.append($("<span class='page-link'>" + item + "</span>").attr("href", "#"));
+            }
+            else {
+                li.append($("<a class='page-link'>" + item + "</a>").attr("href", "#"));
+            }
+            //点击翻页
+            li.click(function () {
+                $(".pagination li").removeClass("active");
+                $(this).addClass("active");
+                func(item);
+                return false;
+            });
+            nav.append(li);
+        });
+
+        if(page.hasNextPage){
+            nav.append(nextli);
+        }
+        if(!page.isLastPage){
+            nav.append(lastLi);
+        }
+    }
+}
+
+/**
+ * @description 构建文章列表
+ * @param data
+ * @param build_to
+ */
+function build_article_list(data,build_to) {
+    //清空
+    $(build_to).empty();
+    const articles = data.page.list;
+    $.each(articles, function (index, item) {
+        const article = $('<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 bbs-article-list-item"' +
+            '        <div class="media media-margin" >\n' +
+            '            <!-- 头像 -->\n' +
+            '            <div class="media-left media-left-margin">\n' +
+            '                <a href="#">\n' +
+            '                    <img class="media-min img-rounded" src=' + item.userAvatarUrl + '>\n' +
+            '                </a>\n' +
+            '            </div>\n' +
+            '            <!-- 描述 -->\n' +
+            '            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">\n' +
+            '                        <span>\n' +
+            '                            <a href="/article/' + item.id + '" class="media-heading">' + item.title + '</a>\n' +
+            '                        </span>\n' +
+            '                <br>\n' +
+            '                <span class="aw-article-content">\n' +
+            '                            <span>' + item.userName + ' • </span>\n' +
+            '                            <span>' + item.viewCount + '次浏览 • </span>\n' +
+            //'                            <span>' + item.commentCount + '个回复 • ></span>\n' +
+            '                            <span>' + item.likeCount + '人点赞 • </span>\n' +
+            '                            <span>' + item.commentCount + '人评论</span>\n' +
+            '                            <span style="float:right">发表于 ' + formatTimestamp(item.gmtCreate) + '</span>\n' +
+            '                        </span>\n' +
+            '            </div>\n' +
+            '        </div>');
+        $(build_to).append(article);
+    })
 }
 
 /**

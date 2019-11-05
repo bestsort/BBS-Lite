@@ -6,7 +6,7 @@ let article_view_count;
 $(function () {
 
 
-    // 加载问题详情
+    // 加载文章详情
     //TODO 非法访问限制
     $("#article_detail").empty();
     const url = "/loadArticleDetail";
@@ -169,7 +169,7 @@ function like_or_follow_article(url,icon,show,count) {
 }
 
 /**
- * 添加问题下方按钮(点赞/收藏/评论/编辑)
+ * 添加文章下方按钮(点赞/收藏/评论/编辑)
  * @param count 计数信息(点赞/收藏等)
  * @param show  展示的文字
  * @param icon  图标信息(class)
@@ -217,7 +217,7 @@ function load_article_option(creator, {commentCount:articleComment,followCount: 
         add_option(articleThumb,"点赞",thumb_up_icon,options.isThumbUpArticle,true);
         add_option(articleFollow,"收藏",follow_icon,options.isFollowArticle,true);
         add_option(null,"评论",comment_icon,false,false);
-        add_option(null,"编辑问题","icon-bianji",options.isCreator,false);
+        add_option(null,"编辑文章","icon-bianji",options.isCreator,false);
         click_options();
     });
 }

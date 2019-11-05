@@ -28,6 +28,15 @@
         <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
         <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     </resultMap>
+    <resultMap id="comment_kids_list" type="cn.bestsort.bbslite.pojo.model.CommentKid">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="comment_by_id" jdbcType="BIGINT" property="commentById"/>
+        <result column="pid" jdbcType="TINYINT" property="pid"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+        <result column="comment_to_user_id" jdbcType="BIGINT" property="commentToUserId" />
+    </resultMap>
     <sql id="Base_Kid_Column_List">
         id, comment_by_id, pid,content,comment_to_user_id, gmt_modified, content, like_count
     </sql>
@@ -149,7 +158,7 @@
             comment_parent.article_id = #{id,jdbcType=BIGINT}
         order by gmt_create desc,kid_gmt_create
     </select>
-    <select id="getCommentParent" resultType="cn.bestsort.bbslite.pojo.model.CommentParent">
+    <select id="getCommentParentById" resultType="cn.bestsort.bbslite.pojo.model.CommentParent">
         select
         <include refid="Base_Parent_Column_List"/>
         from
@@ -158,7 +167,7 @@
               id=#{id,jdbcType=BIGINT}
     </select>
 
-    <select id="getCommentKid" resultType="cn.bestsort.bbslite.pojo.model.CommentKid">
+    <select id="getCommentKidById" resultType="cn.bestsort.bbslite.pojo.model.CommentKid">
         select
         <include refid="Base_Kid_Column_List"/>
         from
@@ -166,7 +175,7 @@
         where
             id=#{id,jdbcType=BIGINT}
     </select>
-    <select id="listCommentByUserId" resultMap="comment_parent_list">
+    <select id="listCommentParentByUserId" resultMap="comment_parent_list">
         select
             <include refid="Base_Parent_Column_List"/>
         from
