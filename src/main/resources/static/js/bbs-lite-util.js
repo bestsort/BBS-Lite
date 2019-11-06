@@ -2,6 +2,12 @@
  * 提交用户注册/登录表单
  */
 $(function () {
+    let dic = getUrlVars();
+    let form = $("#ajaxVal");
+    for (let i in dic){
+        form.children("input[name='" +i + "']").val(dic[i]);
+    }
+
     $('.auto-expand').each(function () {
         this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
         this.setAttribute('style', 'min-height: 100px;');
@@ -13,6 +19,10 @@ $(function () {
         }
         debugger
         this.style.height = (height+5) + 'px';
+    });
+    $('#search-form').submit(function (e) {
+        e.preventDefault();
+        window.location.href="/?search=" + $("#search-field").val();
     });
 
     $(document).on('click',"#change-login-method",function () {
@@ -208,14 +218,15 @@ function getParam(name){
     return items;
 }
 function getUrlVars() {
-    var vars = {}, hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for (var i = 0; i < hashes.length; i++) {
-        hash = hashes[i].split('=');
-        let name = hash[0].replace("#","");
-        if (name == "pageNo")
-            continue;
-        vars[name] = hash[1].replace("#",0);
+    let vars = {}, hash;
+    let url = window.location.search;
+    if(url.indexOf("?") !== -1){
+    let hashes = url.slice(url.indexOf("?")+1).split('&');
+        for (let i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            let name = hash[0].replace("#","");
+            vars[name] = decodeURI(hash[1].replace("#",0));
+        }
     }
     return vars;
 }

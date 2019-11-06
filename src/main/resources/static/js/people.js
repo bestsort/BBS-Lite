@@ -72,7 +72,7 @@ let ARTICLE = function (data) {
             '                        <span>\n' +
             '                            <span class="media-heading-deep font-bigger">' + item.title + '</span>\n' +
             '                        </span>\n' +
-            '                <p class="media-heading article-descrption">' + item.description.substring(1,300) + '</p>' +
+            '                <p class="media-heading article-descrption">' + item.description.substring(0,300) + '</p>' +
             '                <span class="aw-article-content">\n' +
             '                            <span>' + item.viewCount + '次浏览 • </span>\n' +
             '                            <span>' + item.followCount + '人收藏 • </span>\n' +
@@ -112,7 +112,7 @@ var COMMENT = function (data) {
             '                   <span style="font-size: 16px;">评论了文章</span>' +
             '                   <span class="media-heading-deep" style="font-size:16px;font-weight: 700;">' + item.commentToTitle + ':</span>' +
             '                   <span style="float:right;margin-top: 3px">' + formatTimestamp(item.commentTime) + '</span>' +
-            '                   <p>' +item.commentContent.substring(1,70) + '</p>' +
+            '                   <p>' +item.commentContent.substring(0,70) + '</p>' +
             '               </div>' +
             '           </a>' +
             '       </div>' +
