@@ -101,8 +101,24 @@ let FOLLOW_ARTICLE = function (data) {
     }
 };
 
-var COMMENT = function (str) {
-    alert(un_complete)
+var COMMENT = function (data) {
+    let comments = data.page.list;
+    $.each(comments, function (index, item) {
+        let article =
+            '   <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 media media-margin" style="border-bottom: 1px solid #eee">' +
+            '       <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">' +
+            '           <a href="/article/' + item.commentToId + '" style="text-decoration:none">' +
+            '               <div class="media-heading article-descrption">' +
+            '                   <span style="font-size: 16px;">评论了文章</span>' +
+            '                   <span class="media-heading-deep" style="font-size:16px;font-weight: 700;">' + item.commentToTitle + ':</span>' +
+            '                   <span style="float:right;margin-top: 3px">' + formatTimestamp(item.commentTime) + '</span>' +
+            '                   <p>' +item.commentContent.substring(1,70) + '</p>' +
+            '               </div>' +
+            '           </a>' +
+            '       </div>' +
+            '   </div>';
+        $("#main_list").append(article);
+    });
 };
 
 var FOLLOW = function () {
@@ -113,7 +129,6 @@ var FANS = function () {
 };
 
 function to_people_page(to) {
-    debugger
     $("#ajaxVal").children("input[name='pageNo']").val(to);
     let jsonData = form_to_dic();
     let url = jsonData["jumpToUrl"];

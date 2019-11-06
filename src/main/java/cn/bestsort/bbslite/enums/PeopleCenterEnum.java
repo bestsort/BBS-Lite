@@ -16,6 +16,7 @@ public enum PeopleCenterEnum{
     FANS,
     FOLLOW,
     FOLLOW_ARTICLE,
+    COMMENT,
     SETTING;
     public static PeopleCenterEnum getItem(String str){
         for(PeopleCenterEnum i:PeopleCenterEnum.values()){

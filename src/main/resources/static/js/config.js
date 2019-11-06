@@ -11,13 +11,14 @@ var peopel_center_option = {
     ARTICLE: "文章",
     FOLLOW_ARTICLE: "收藏",
     COMMENT : "评论",
-    FOLLOW  : "关注",
-    FANS    : "粉丝",
+    // FOLLOW  : "关注",
+    // FANS    : "粉丝",
     PRIVATE: {
-        "SETTING" : "设置"
+        //SETTING : "设置"
     }
 };
 var request_url = {
     ARTICLE : "/loadArticleList",
-    FOLLOW_ARTICLE: "/getFollowArticleList"
+    FOLLOW_ARTICLE: "/listFollowArticle",
+    COMMENT : "/listCommentCenter"
 };

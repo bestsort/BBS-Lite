@@ -53,7 +53,7 @@ public class FollowController {
                 .addMsg("isActive", active);
     }
     @ResponseBody
-    @GetMapping("/getFollowArticleList")
+    @GetMapping("/listFollowArticle")
     public ResultDto getFollowList(@RequestParam(name = "userId") Long id,
                                    @RequestParam(name = "pageSize",defaultValue = "10") Integer size,
                                    @RequestParam(name = "pageNo",defaultValue = "1") Integer page){

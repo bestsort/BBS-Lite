@@ -4,6 +4,8 @@ import cn.bestsort.bbslite.mapper.UserMapper;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.pojo.model.UserExample;
 import cn.bestsort.bbslite.service.UserService;
+import cn.bestsort.bbslite.util.IpUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ import java.util.UUID;
  * @Date 19-8-31 下午7:53
  * @Version 1.0
  */
+@Slf4j
 @Service
 public class SessionInterceptor implements HandlerInterceptor {
     @Autowired
@@ -32,7 +35,11 @@ public class SessionInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) {
-
+        log.info("user: {} has been view :{}\n by: {} \n Referer from {}",
+                IpUtil.getIpAddr(request),
+                request.getRequestURI()+(request.getQueryString()==null?"":("?"+request.getQueryString())),
+                request.getHeader("User-Agent"),
+                request.getHeader("Referer"));
         if(request.getSession().getAttribute("user") != null){
             return true;
         }

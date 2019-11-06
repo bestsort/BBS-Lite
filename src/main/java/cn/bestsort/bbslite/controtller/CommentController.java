@@ -2,12 +2,13 @@ package cn.bestsort.bbslite.controtller;
 
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
+import cn.bestsort.bbslite.enums.PeopleCenterEnum;
 import cn.bestsort.bbslite.pojo.model.Comment;
 import cn.bestsort.bbslite.pojo.model.CommentKid;
 import cn.bestsort.bbslite.pojo.model.CommentParent;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.CommentService;
 import cn.bestsort.bbslite.service.ArticleService;
+import cn.bestsort.bbslite.service.CommentService;
 import cn.bestsort.bbslite.service.UserService;
 import cn.bestsort.bbslite.vo.CommentVo;
 import com.github.pagehelper.PageInfo;
@@ -30,7 +31,7 @@ import java.util.List;
  */
 
 @Controller
-public class CommentController {
+public class  CommentController {
     @Autowired
     CommentService commentService;
     @Autowired
@@ -80,5 +81,15 @@ public class CommentController {
         }catch (Exception e){
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.SYS_ERROR);
         }
+    }
+    @ResponseBody
+    @GetMapping("/listCommentCenter")
+    public ResultDto listCommentCenter(@RequestParam(name = "userId") Long id,
+                                       @RequestParam(name = "pageSize",defaultValue = "10") Integer size,
+                                       @RequestParam(name = "pageNo",defaultValue = "1")Integer page){
+        PageInfo pageInfo = commentService.listByUserId(id, page, size);
+        return new ResultDto().okOf()
+                .addMsg("page",pageInfo)
+                .addMsg("func", PeopleCenterEnum.COMMENT);
     }
 }

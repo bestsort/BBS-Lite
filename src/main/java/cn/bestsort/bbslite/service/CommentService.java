@@ -5,7 +5,9 @@ import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.*;
 import cn.bestsort.bbslite.pojo.model.*;
+import cn.bestsort.bbslite.vo.CommentCenterVo;
 import cn.bestsort.bbslite.vo.CommentVo;
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -37,8 +39,12 @@ public class CommentService {
     private CommentMapper commentMapper;
     @Autowired
     private ThumbUpMapper thumbUpMapper;
-    public List<Comment> listByUserId(Long id){
-        return commentMapper.listCommentParentByUserId(id);
+    public PageInfo<CommentCenterVo> listByUserId(Long id,Integer page,Integer size){
+        PageHelper.startPage(page,size);
+        List<CommentCenterVo> list = commentMapper.listCommentParentByUserId(id);
+
+        PageInfo<CommentCenterVo>info = new PageInfo<>(list);
+        return info;
     }
     @CachePut(keyGenerator = "myKeyGenerator")
     public void insert(Comment comment,Long pid,boolean isParent,Long userId) {

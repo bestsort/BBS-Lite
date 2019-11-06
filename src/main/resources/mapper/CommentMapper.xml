@@ -37,6 +37,12 @@
         <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
         <result column="comment_to_user_id" jdbcType="BIGINT" property="commentToUserId" />
     </resultMap>
+    <resultMap id="comment_with_question" type="cn.bestsort.bbslite.vo.CommentCenterVo">
+        <id column="id" jdbcType="BIGINT" property="commentToId"/>
+        <result column="content" jdbcType="VARCHAR" property="commentContent"/>
+        <result column="create_time" jdbcType="BIGINT" property="commentTime"/>
+        <result column="title" jdbcType="BIGINT" property="commentToTitle" />
+    </resultMap>
     <sql id="Base_Kid_Column_List">
         id, comment_by_id, pid,content,comment_to_user_id, gmt_modified, content, like_count
     </sql>
@@ -175,11 +181,14 @@
         where
             id=#{id,jdbcType=BIGINT}
     </select>
-    <select id="listCommentParentByUserId" resultMap="comment_parent_list">
+    <select id="listCommentParentByUserId" resultMap="comment_with_question">
         select
-            <include refid="Base_Parent_Column_List"/>
+            art.id id,
+            com.content content,
+            art.title title,
+            com.gmt_create create_time
         from
-            comment_parent
+            comment_parent com left join article art on com.article_id = art.id
         where
             comment_by_id = #{id,jdbcType=BIGINT}
     </select>
