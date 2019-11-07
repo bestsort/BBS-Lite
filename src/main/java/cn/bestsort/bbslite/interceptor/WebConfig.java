@@ -36,8 +36,9 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry){
         //拦截除静态资源以外的 Url
         //不拦截的列表
-        List<String> exclude = new ArrayList<>(3);
+        List<String> exclude = new ArrayList<>(4);
         exclude.add("/js/**");
+        exclude.add("/css/**");
         exclude.add("/favicon.ico");
         exclude.add("/");
         //未登陆拦截器

@@ -109,8 +109,6 @@ logging:
   level:
     root: info
     cn.bestsort.bbslite.cache: debug
-    cn.bestsort.bbslite.mapper: debug
-    cn.bestsort.bbslite.controller: trace
 mybatis:
   type-aliases-package: cn.bestsort.bbslite.mapper
   configuration.map-underscore-to-camel-case: true

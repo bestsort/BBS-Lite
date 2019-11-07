@@ -4,10 +4,7 @@ let article_comment_count;
 let article_view_count;
 
 $(function () {
-
-
     // 加载文章详情
-    //TODO 非法访问限制
     $("#article_detail").empty();
     const url = "/loadArticleDetail";
     debugger
