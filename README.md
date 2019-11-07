@@ -8,6 +8,12 @@
 <hr>
 
 > 这是一个基于 Spring Boot 搭建的轻论坛
+## Attention!
+目前急需一名熟悉前端的小伙伴和我一起完成这个项目. 凭我一人之力虽然能在较长的时间内完成,但是这个项目我还想一直优化下去,所以不能在一开始就耗费太多时间
+
+如果您熟悉 jQuery, Ajax, Bootstrap4 甚至是 Vue(因为以后可能会想将其改成单页), 并且有时间,有兴趣同我一同维护,改造此项目,欢迎发送邮件至我的<a href="mailto:me@mail.bestsort.cn">邮箱</a>沟通项目细节.
+
+期待您的加入!
 
 ## 项目演示
 [氢论坛](https://bbs.bestsort.cn/)
@@ -29,7 +35,7 @@
 - Bootstrap4(前端框架)
 - Druid(数据库连接池)
 - Maven(包管理)
-- wangEditor3(轻量级web富文本编辑器)
+- Editor.md(Markdown 编辑器)
 - Log4j(日志记录)
 
 ---
@@ -38,7 +44,16 @@
 - MySQL Workbench
 - Git
 - Chrome
-- Lombook(IDEA插件 自动处理@Data注解)
+- Lombook(IDEA插件 自动生成Getter和Setter等)
 - Postman(Chrome插件 向后端提交请求)
 ## 作者
+
 **bestsort**
+
+## 鸣谢
+
+该项目后端大体架构参考自 **码匠社区**
+
+前后端分离部分则是受到了 **章鱼社区** 的启迪
+
+衷心感谢上面两个社区

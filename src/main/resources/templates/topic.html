@@ -29,31 +29,11 @@
                                 <h3 class="name" th:text="${topic.name}" style="color: #465765"></h3>
                             <div class="aw-article-content" >
                                 <span th:text="${topic.articleCount}"></span>个文章
-                                <br>
-                                <span th:text="${topic.followCount}"></span>个收藏
                             </div>
                         </div>
                     </a>
             </div>
-    </div>
-    </div>
-    <div th:if="${topic != null}" class="col-lg-9 col-md-9 col-xs-9 col-sm-12" style="border-right:1px solid #eee">
-        <span>
-            <div style="margin-top: 3%;margin-bottom: 4%">
-                <img th:src="${topic.avatarUrl}" class="media-mid media-circle">
-                <span class="topic-head" th:text="${topic.name}"> </span>
-                <form action="/follow" method="post" name="follow" target="targetIfr2">
-                    <button class="btn btn-success" style="float: right;margin-top: -55px"
-                            th:text="${'关注 | ' + topic.followCount}"
-                            name="type" value="topic" type="submit"></button>
-                    <input type="hidden" name="followBy" th:if="${user != null}" th:value="${user.id}">
-                        <input type="hidden" name="followTo" th:value="${topic.id}">
-                </form>
-                <iframe name="targetIfr2" id="targetIfr2" style="display:none"></iframe>
-            </div>
-        </span>
-            <hr>
-        <div th:insert="common/articlelist :: article"></div>
+        </div>
     </div>
 </div>
 <div th:insert="common/foot"></div>

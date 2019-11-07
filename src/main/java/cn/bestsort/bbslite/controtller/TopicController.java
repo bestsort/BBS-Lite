@@ -34,7 +34,7 @@ public class TopicController {
 
 
     @GetMapping("/topic/{id}")
-    public String comments(@PathVariable(name="id") Long id,
+    public String comments(@PathVariable(name="id") Byte id,
                            @RequestParam(name="page",defaultValue = "1") Integer page,
                            @RequestParam(name="size",defaultValue = "10") Integer size,
                            Model model){

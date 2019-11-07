@@ -11,7 +11,7 @@ public class Article {
 
     private Byte top;
 
-    private String topic;
+    private Byte topic;
 
     private String category;
 
@@ -75,12 +75,12 @@ public class Article {
         this.top = top;
     }
 
-    public String getTopic() {
+    public Byte getTopic() {
         return topic;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic == null ? null : topic.trim();
+    public void setTopic(Byte topic) {
+        this.topic = topic;
     }
 
     public String getCategory() {

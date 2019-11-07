@@ -6,13 +6,13 @@ import cn.bestsort.bbslite.enums.SortBy;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.ArticleExtMapper;
 import cn.bestsort.bbslite.mapper.ArticleMapper;
+import cn.bestsort.bbslite.mapper.TopicExtMapper;
 import cn.bestsort.bbslite.pojo.model.Article;
 import cn.bestsort.bbslite.pojo.model.ArticleExample;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +36,8 @@ public class ArticleService {
     private ArticleMapper articleMapper;
     @Autowired
     private ArticleExtMapper articleExtMapper;
+    @Autowired
+    private TopicExtMapper topicExtMapper;
 
     public PageInfo<Article> findArticleListByCategory(int page,int size,int category){
         ArticleExample example = new ArticleExample();
@@ -46,8 +48,8 @@ public class ArticleService {
         return new PageInfo<>(articles);
     }
 
-    public Boolean incArticleLike(Long articleId,Long val){
-        return articleExtMapper.incArticleLike(articleId,val);
+    public void incArticleLike(Long articleId, Long val){
+        articleExtMapper.incArticleLike(articleId, val);
     }
 
     public Long createOrUpdate(Article article) {
@@ -55,29 +57,15 @@ public class ArticleService {
         Long result = null;
         if(article.getId() == null){
             article.setGmtCreate(article.getGmtModified());
-
+            topicExtMapper.updateCountWithVal(article.getTopic(),1L);
             result = articleExtMapper.insertArticleExt(article);
         }else {
             int updated = articleMapper.updateByPrimaryKeySelective(article);
             if(updated != 1) {
                 throw new CustomizeException(CustomizeErrorCodeEnum.ARTICLE_NOT_FOUND);
             }
-
-            //topicExtMapper.incArticle(topic);
         }
         return result;
-    }
-
-    @Cacheable(keyGenerator = "myKeyGenerator")
-    public long countByType(int type,Object key){
-        ArticleExample example = new ArticleExample();
-        if(type == TOPIC) {
-            example.createCriteria().andTopicEqualTo(key.toString());
-        }
-        else if (type == USER){
-            example.createCriteria().andCreatorEqualTo((long)key);
-        }
-        return articleMapper.countByExample(example);
     }
 
     public PageInfo<Article> getPageBySearch(ArticleQueryDto queryDto) {

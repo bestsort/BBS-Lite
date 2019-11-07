@@ -9,10 +9,8 @@ import cn.bestsort.bbslite.pojo.model.FollowExample;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * @ClassName FollowService
@@ -28,6 +26,16 @@ public class FollowService {
     private FollowMapper followMapper;
     @Autowired
     private FollowExtMapper followExtMapper;
+
+    /**
+     * TODO bug: 打开两个相同页面并且分别点赞会被计数两次
+     * TODO 将 isActive 改为由后端校验
+     * @param articleId
+     * @param userId
+     * @param item
+     * @param isActive
+     * @return
+     */
     public Boolean setFollowCount(Long articleId,Long userId,FunctionItem item,Boolean isActive) {
         Follow follow = new Follow();
         isActive = !isActive;

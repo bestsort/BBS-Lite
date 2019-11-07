@@ -7,7 +7,7 @@
     <result column="creator" jdbcType="BIGINT" property="creator" />
     <result column="tag" jdbcType="VARCHAR" property="tag" />
     <result column="top" jdbcType="TINYINT" property="top" />
-    <result column="topic" jdbcType="VARCHAR" property="topic" />
+    <result column="topic" jdbcType="TINYINT" property="topic" />
     <result column="category" jdbcType="VARCHAR" property="category" />
     <result column="user_avatar_url" jdbcType="VARCHAR" property="userAvatarUrl" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
@@ -143,7 +143,7 @@
       status, gmt_create, gmt_modified, 
       description)
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{creator,jdbcType=BIGINT}, 
-      #{tag,jdbcType=VARCHAR}, #{top,jdbcType=TINYINT}, #{topic,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, 
+      #{tag,jdbcType=VARCHAR}, #{top,jdbcType=TINYINT}, #{topic,jdbcType=TINYINT}, #{category,jdbcType=VARCHAR}, 
       #{userAvatarUrl,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{followCount,jdbcType=BIGINT}, 
       #{viewCount,jdbcType=BIGINT}, #{likeCount,jdbcType=BIGINT}, #{commentCount,jdbcType=BIGINT}, 
       #{status,jdbcType=TINYINT}, #{gmtCreate,jdbcType=BIGINT}, #{gmtModified,jdbcType=BIGINT}, 
@@ -221,7 +221,7 @@
         #{top,jdbcType=TINYINT},
       </if>
       <if test="topic != null">
-        #{topic,jdbcType=VARCHAR},
+        #{topic,jdbcType=TINYINT},
       </if>
       <if test="category != null">
         #{category,jdbcType=VARCHAR},
@@ -283,7 +283,7 @@
         top = #{record.top,jdbcType=TINYINT},
       </if>
       <if test="record.topic != null">
-        topic = #{record.topic,jdbcType=VARCHAR},
+        topic = #{record.topic,jdbcType=TINYINT},
       </if>
       <if test="record.category != null">
         category = #{record.category,jdbcType=VARCHAR},
@@ -330,7 +330,7 @@
       creator = #{record.creator,jdbcType=BIGINT},
       tag = #{record.tag,jdbcType=VARCHAR},
       top = #{record.top,jdbcType=TINYINT},
-      topic = #{record.topic,jdbcType=VARCHAR},
+      topic = #{record.topic,jdbcType=TINYINT},
       category = #{record.category,jdbcType=VARCHAR},
       user_avatar_url = #{record.userAvatarUrl,jdbcType=VARCHAR},
       user_name = #{record.userName,jdbcType=VARCHAR},
@@ -353,7 +353,7 @@
       creator = #{record.creator,jdbcType=BIGINT},
       tag = #{record.tag,jdbcType=VARCHAR},
       top = #{record.top,jdbcType=TINYINT},
-      topic = #{record.topic,jdbcType=VARCHAR},
+      topic = #{record.topic,jdbcType=TINYINT},
       category = #{record.category,jdbcType=VARCHAR},
       user_avatar_url = #{record.userAvatarUrl,jdbcType=VARCHAR},
       user_name = #{record.userName,jdbcType=VARCHAR},
@@ -384,7 +384,7 @@
         top = #{top,jdbcType=TINYINT},
       </if>
       <if test="topic != null">
-        topic = #{topic,jdbcType=VARCHAR},
+        topic = #{topic,jdbcType=TINYINT},
       </if>
       <if test="category != null">
         category = #{category,jdbcType=VARCHAR},
@@ -428,7 +428,7 @@
       creator = #{creator,jdbcType=BIGINT},
       tag = #{tag,jdbcType=VARCHAR},
       top = #{top,jdbcType=TINYINT},
-      topic = #{topic,jdbcType=VARCHAR},
+      topic = #{topic,jdbcType=TINYINT},
       category = #{category,jdbcType=VARCHAR},
       user_avatar_url = #{userAvatarUrl,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
@@ -448,7 +448,7 @@
       creator = #{creator,jdbcType=BIGINT},
       tag = #{tag,jdbcType=VARCHAR},
       top = #{top,jdbcType=TINYINT},
-      topic = #{topic,jdbcType=VARCHAR},
+      topic = #{topic,jdbcType=TINYINT},
       category = #{category,jdbcType=VARCHAR},
       user_avatar_url = #{userAvatarUrl,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},

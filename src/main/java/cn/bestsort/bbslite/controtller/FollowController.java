@@ -5,7 +5,6 @@ import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.enums.PeopleCenterEnum;
 import cn.bestsort.bbslite.pojo.model.Article;
-import cn.bestsort.bbslite.pojo.model.Follow;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.ArticleService;
 import cn.bestsort.bbslite.service.FollowService;
@@ -18,10 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * @ClassName FollowController

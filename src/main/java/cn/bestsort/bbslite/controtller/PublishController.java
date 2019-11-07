@@ -66,7 +66,7 @@ public class PublishController {
             @RequestParam("description") String description,
             @RequestParam("tag") String tag,
             @RequestParam(value = "id",required = false) Long id,
-            @RequestParam("topic") String topic,
+            @RequestParam("topic") Byte topic,
             HttpSession session){
         User user = (User)session.getAttribute("user");
         if(user == null){

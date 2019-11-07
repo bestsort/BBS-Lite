@@ -1,7 +1,7 @@
 package cn.bestsort.bbslite.pojo.model;
 
 public class Topic {
-    private Long id;
+    private Byte id;
 
     private String name;
 
@@ -11,11 +11,11 @@ public class Topic {
 
     private Long articleCount;
 
-    public Long getId() {
+    public Byte getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Byte id) {
         this.id = id;
     }
 

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.bestsort.bbslite.mapper.TopicMapper">
   <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Topic">
-    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="id" jdbcType="TINYINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
     <result column="follow_count" jdbcType="BIGINT" property="followCount" />
@@ -83,15 +83,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Byte" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from topic
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=TINYINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte">
     delete from topic
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=TINYINT}
   </delete>
   <delete id="deleteByExample" parameterType="cn.bestsort.bbslite.pojo.model.TopicExample">
     delete from topic
@@ -102,7 +102,7 @@
   <insert id="insert" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
     insert into topic (id, name, avatar_url, 
       follow_count, article_count)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR}, 
       #{followCount,jdbcType=BIGINT}, #{articleCount,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
@@ -126,7 +126,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=BIGINT},
+        #{id,jdbcType=TINYINT},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -152,7 +152,7 @@
     update topic
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
+        id = #{record.id,jdbcType=TINYINT},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -173,7 +173,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update topic
-    set id = #{record.id,jdbcType=BIGINT},
+    set id = #{record.id,jdbcType=TINYINT},
       name = #{record.name,jdbcType=VARCHAR},
       avatar_url = #{record.avatarUrl,jdbcType=VARCHAR},
       follow_count = #{record.followCount,jdbcType=BIGINT},
@@ -198,7 +198,7 @@
         article_count = #{articleCount,jdbcType=BIGINT},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=TINYINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
     update topic
@@ -206,6 +206,6 @@
       avatar_url = #{avatarUrl,jdbcType=VARCHAR},
       follow_count = #{followCount,jdbcType=BIGINT},
       article_count = #{articleCount,jdbcType=BIGINT}
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=TINYINT}
   </update>
 </mapper>

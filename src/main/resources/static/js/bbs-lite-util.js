@@ -100,7 +100,7 @@ function load_right_with_data(data) {
         '                <small style="color: #333">用户信息</small>\n' +
         '                <hr>\n' +
         '                <div class="media media-left" style="width: 120%">\n' +
-        '                <img class="media-min img-circle" src="' + userInfo.avatarUrl + '">\n' +
+        '                <img class="media-min img-circle" style="border-radius: 30%" src="' + userInfo.avatarUrl + '">\n' +
         '                </div>\n' +
         '\n' +
         '                <hr>\n' +

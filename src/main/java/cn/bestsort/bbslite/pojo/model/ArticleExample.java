@@ -434,62 +434,52 @@ public class ArticleExample {
             return (Criteria) this;
         }
 
-        public Criteria andTopicEqualTo(String value) {
+        public Criteria andTopicEqualTo(Byte value) {
             addCriterion("topic =", value, "topic");
             return (Criteria) this;
         }
 
-        public Criteria andTopicNotEqualTo(String value) {
+        public Criteria andTopicNotEqualTo(Byte value) {
             addCriterion("topic <>", value, "topic");
             return (Criteria) this;
         }
 
-        public Criteria andTopicGreaterThan(String value) {
+        public Criteria andTopicGreaterThan(Byte value) {
             addCriterion("topic >", value, "topic");
             return (Criteria) this;
         }
 
-        public Criteria andTopicGreaterThanOrEqualTo(String value) {
+        public Criteria andTopicGreaterThanOrEqualTo(Byte value) {
             addCriterion("topic >=", value, "topic");
             return (Criteria) this;
         }
 
-        public Criteria andTopicLessThan(String value) {
+        public Criteria andTopicLessThan(Byte value) {
             addCriterion("topic <", value, "topic");
             return (Criteria) this;
         }
 
-        public Criteria andTopicLessThanOrEqualTo(String value) {
+        public Criteria andTopicLessThanOrEqualTo(Byte value) {
             addCriterion("topic <=", value, "topic");
             return (Criteria) this;
         }
 
-        public Criteria andTopicLike(String value) {
-            addCriterion("topic like", value, "topic");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopicNotLike(String value) {
-            addCriterion("topic not like", value, "topic");
-            return (Criteria) this;
-        }
-
-        public Criteria andTopicIn(List<String> values) {
+        public Criteria andTopicIn(List<Byte> values) {
             addCriterion("topic in", values, "topic");
             return (Criteria) this;
         }
 
-        public Criteria andTopicNotIn(List<String> values) {
+        public Criteria andTopicNotIn(List<Byte> values) {
             addCriterion("topic not in", values, "topic");
             return (Criteria) this;
         }
 
-        public Criteria andTopicBetween(String value1, String value2) {
+        public Criteria andTopicBetween(Byte value1, Byte value2) {
             addCriterion("topic between", value1, value2, "topic");
             return (Criteria) this;
         }
 
-        public Criteria andTopicNotBetween(String value1, String value2) {
+        public Criteria andTopicNotBetween(Byte value1, Byte value2) {
             addCriterion("topic not between", value1, value2, "topic");
             return (Criteria) this;
         }

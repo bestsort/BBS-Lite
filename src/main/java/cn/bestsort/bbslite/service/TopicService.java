@@ -40,7 +40,7 @@ public class TopicService {
     }
 
     @Cacheable(keyGenerator = "myKeyGenerator")
-    public Topic getById(long id){
+    public Topic getById(Byte id){
         return topicMapper.selectByPrimaryKey(id);
     }
 

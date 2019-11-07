@@ -9,17 +9,19 @@
         <result column="follow_count" jdbcType="BIGINT" property="followCount" />
     </resultMap>
 
-    <update id="incArticle" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
+    <update id="updateCountWithVal" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
         update topic
         set
-            article_count = article_count + 1
-        where name = #{name}
+            article_count = article_count + #{val,jdbcType=BIGINT}
+        where id = #{id,jdbcType=TINYINT}
     </update>
 
     <insert id="updateFollowCount" parameterType="cn.bestsort.bbslite.pojo.model.Topic">
         insert into topic (id,follow_count)
-        values (#{id,jdbcType=BIGINT}, 1)
-        on duplicate key update follow_count = follow_count+#{followCount,jdbcType=BIGINT};
+        values
+            (#{id,jdbcType=TINYINT}, 1)
+        on duplicate key update
+            follow_count = follow_count+#{val,jdbcType=BIGINT};
     </insert>
 
 </mapper>

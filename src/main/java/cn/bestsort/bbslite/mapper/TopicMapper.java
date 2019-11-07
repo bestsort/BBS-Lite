@@ -10,7 +10,7 @@ public interface TopicMapper {
 
     int deleteByExample(TopicExample example);
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Byte id);
 
     int insert(Topic record);
 
@@ -18,7 +18,7 @@ public interface TopicMapper {
 
     List<Topic> selectByExample(TopicExample example);
 
-    Topic selectByPrimaryKey(Long id);
+    Topic selectByPrimaryKey(Byte id);
 
     int updateByExampleSelective(@Param("record") Topic record, @Param("example") TopicExample example);
 
