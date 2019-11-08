@@ -3,9 +3,9 @@ package cn.bestsort.bbslite.controtller;
 import cn.bestsort.bbslite.dto.AccessTokenDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
+import cn.bestsort.bbslite.manager.GithubProvider;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.UserService;
-import cn.bestsort.bbslite.manager.GithubProvider;
 import cn.bestsort.bbslite.vo.GithubUserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -15,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.UUID;
 

@@ -186,11 +186,16 @@ $(function(){
 function formatTimestamp( timestamp ) {
     let dateObj = new Date( timestamp );
     let year = dateObj.getYear() + 1900;
-    let month = dateObj.getMonth() + 1;
+    let month = (dateObj.getMonth() + 1);
+    month = (month<10?"0":"") + month;
     let theDate = dateObj.getDate();
+    theDate = (theDate<10?"0":"") + theDate;
     let hour = dateObj.getHours();
+    hour = (hour<10?"0":"") + hour;
     let minute = dateObj.getMinutes();
+    minute = (minute<10?"0":"") + minute;
     let second = dateObj.getSeconds();
+    second = (second<10?"0":"") + second;
     return year +"-"+ month +"-" + theDate + " "+ hour +":"+ minute +":"+ second;
 }
 
@@ -344,7 +349,7 @@ function build_article_list(data,build_to) {
             '            <!-- 头像 -->\n' +
             '            <div class="media-left media-left-margin">\n' +
             '                <a href="#">\n' +
-            '                    <img class="media-min img-rounded" src=' + item.userAvatarUrl + '>\n' +
+            '                    <img class="media-min img-rounded" style="border-radius: 30%" src=' + item.userAvatarUrl + '>\n' +
             '                </a>\n' +
             '            </div>\n' +
             '            <!-- 描述 -->\n' +
