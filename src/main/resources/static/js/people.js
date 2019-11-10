@@ -129,9 +129,13 @@ var FANS = function () {
 };
 
 function to_people_page(to) {
+    if (to === undefined)
+        to = 1;
     $("#ajaxVal").children("input[name='pageNo']").val(to);
     let jsonData = form_to_dic();
     let url = jsonData["jumpToUrl"];
+    if (jsonData["pageSize"] === undefined)
+        jsonData["pageSize"] = 10;
     ajax_get(url,jsonData,function (data) {
         $("#main_list").empty();
         if(data.extend.page.total>0){

@@ -51,8 +51,6 @@ public class ArticleController {
     @ResponseBody
     @GetMapping("/loadArticleList")
     public ResultDto getArticleList(ArticleQueryDto queryDto){
-        queryDto.setPageSize(queryDto.getPageSize()==null?10:queryDto.getPageSize());
-        queryDto.setPageSize(queryDto.getPageNo()==null?1:queryDto.getPageNo());
         PageInfo<Article> pageInfo = articleService.getPageBySearch(queryDto);
         return new ResultDto().okOf()
                 .addMsg("page",pageInfo)

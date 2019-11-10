@@ -8,10 +8,6 @@ bbs:
   mail:
     # 邮件标题
     title: 氢论坛---邮件通知
-
-  github:
-    id: 08b076ae3cf904cf324c
-    secret: 09c5129c5e0ff8b3284adbc7ae8031fe3ea04af3
   user:
     # 默认用户信息
     default:
