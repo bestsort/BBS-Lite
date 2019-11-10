@@ -39,7 +39,7 @@
               id = #{id,jdbcType=BIGINT}
     </select>
 
-    <insert id="insertSelectiveGetId" keyProperty="id" useGeneratedKeys="true" parameterType="cn.bestsort.bbslite.pojo.model.User">
+    <insert id="insertUserExt" useGeneratedKeys="true" keyProperty="id" parameterType="cn.bestsort.bbslite.pojo.model.User">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">

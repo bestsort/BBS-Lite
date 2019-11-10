@@ -57,7 +57,8 @@ public class ArticleService {
         if(article.getId() == null){
             article.setGmtCreate(article.getGmtModified());
             topicExtMapper.updateCountWithVal(article.getTopic(),1L);
-            result = articleExtMapper.insertArticleExt(article);
+            articleExtMapper.insertArticleExt(article);
+            result = article.getId();
         }else {
             int updated = articleMapper.updateByPrimaryKeySelective(article);
             if(updated != 1) {

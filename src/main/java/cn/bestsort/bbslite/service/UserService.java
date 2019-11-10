@@ -147,7 +147,7 @@ public class UserService {
         auth2User.setGmtModified(auth2User.getGmtCreated());
         CopyAuth2User copyAuth2User = new CopyAuth2User();
         User user = copyAuth2User.copy2User(auth2User);
-        user.setId(userExtMapper.insertSelectiveGetId(user));
+        userExtMapper.insertUserExt(user);
         user.setToken(UUID.randomUUID().toString());
         auth2User.setUserId(user.getId());
         oAuth2UserMapper.insertSelective(auth2User);

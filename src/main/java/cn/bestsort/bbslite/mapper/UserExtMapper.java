@@ -6,5 +6,5 @@ import cn.bestsort.bbslite.pojo.model.User;
 public interface UserExtMapper {
 
     User selectSimpleInfoById(Long id);
-    Long insertSelectiveGetId(User user);
+    Long insertUserExt(User user);
 }

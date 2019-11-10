@@ -67,10 +67,10 @@ $(function () {
     load_topic_option();
 });
 function push_article(json_data){
-    ajax_post("/publish",json_data,function () {
+    ajax_post("/publish",json_data,function (data) {
         success_prompt("发布成功");
         setTimeout(function () {
-            location.href = "/";
+            location.href = "/article/"+data.extend.id;
         },1500)
     });
 }

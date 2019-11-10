@@ -18,7 +18,7 @@ import java.util.List;
 
 public interface ArticleExtMapper {
     List<Article> listBySearch(ArticleQueryDto articleQueryDto);
-    Long insertArticleExt(Article article);
+    void insertArticleExt(Article article);
     Boolean incArticleLike(Long id,Long val);
     Boolean incArticleFollow(Long id, Long val);
     Boolean incArticleComment(Long id,Long val);
