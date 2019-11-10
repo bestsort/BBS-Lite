@@ -12,6 +12,7 @@ import cn.bestsort.bbslite.service.CommentService;
 import cn.bestsort.bbslite.service.UserService;
 import cn.bestsort.bbslite.vo.CommentVo;
 import com.github.pagehelper.PageInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,7 @@ import java.util.List;
  * @Date 19-9-13 下午3:51
  * @Version 1.0
  */
-
+@Slf4j
 @Controller
 public class  CommentController {
     @Autowired
@@ -52,6 +53,7 @@ public class  CommentController {
                     .addMsg("comments",list)
                     .addMsg("creator",creator);
         }catch (Exception e){
+            log.error("Cause by LoadComment:\n{},\n{}",e.getMessage(),e.getCause());
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.SYS_ERROR);
         }
     }
@@ -68,6 +70,11 @@ public class  CommentController {
         if (user == null){
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
+        int maxSize = 255;
+        if (content.length() > maxSize){
+            return new ResultDto().errorOf(403
+                    ,"你的字数是" + content.length() + ",超过最大限制（255）了哟");
+        }
         boolean isParent = (pid==null);
         Comment comment = isParent?
                 new CommentParent():
@@ -79,6 +86,7 @@ public class  CommentController {
             commentService.insert(comment,isParent?articleId:pid,isParent,userId);
             return new ResultDto().okOf();
         }catch (Exception e){
+            log.error("Cause by CommitComment:\n{},\n{}",e.getMessage(),e.getCause());
             return new ResultDto().errorOf(CustomizeErrorCodeEnum.SYS_ERROR);
         }
     }

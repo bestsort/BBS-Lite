@@ -22,16 +22,16 @@ $(function () {
             let isOwn = data.extend.isOwn;
             load_right_with_data(data.extend);
             if(isOwn){
-                let item = peopel_center_option["PRIVATE"]
+                let item = peopel_center_option["PRIVATE"];
                 debugger
                 $.each(item,function (index,item) {
-                    add_to_option(index,item,isOwn);
+                    add_to_option(index,item);
                 })
             }
     });
 });
 
-function add_to_option(index,item,isOwn){
+function add_to_option(index,item){
     let li_optopn;
     if (default_option === undefined){
         default_option = index;

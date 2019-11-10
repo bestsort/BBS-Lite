@@ -16,6 +16,7 @@ public enum CustomizeErrorCodeEnum  implements MessageInterface {
     ACCOUNT_OR_PASSWORD_ERROR(403,"账号或密码有误, 请检查"),
     NO_LOGIN(401,"你还没有登录呢"),
     USER_ERROR(400,"你请求姿势有文章,换一个试试?"),
+    TOO_LONG(403,"字数太多了,少一点点吧！记得不要超过255哟～"),
 
     SYS_ERROR(502,"出 BUG 啦,要不杀个程序员祭天吧?")
     ;

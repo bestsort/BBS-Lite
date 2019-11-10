@@ -1,7 +1,7 @@
 ######################################################################
 #####                  以下配置为论坛所用到服务的一些配置,可不填.        #####
-#####                     但是为了您的用户的体验,推荐将其完善           #####
-######################################################################
+#####                但是为了您的用户的体验,推荐参考注释及示例将其完善    #####
+#####################################################################
 bbs:
   # 论坛链接
   url: http://localhost:60030
@@ -39,7 +39,15 @@ bbs:
     objectName: bbs
     #回源链接前半部分.需要在阿里云OSS指定域名,否则直接访问链接会变成下载资源
     callbackUrl: http://bbscdn.bestsort.cn
-
+justauth:
+  enabled: true
+  type:
+    github:
+      client-id: 663f51f3750b4c5cddc7
+      client-secret: 1551db741db2ded086e834a3df2e507ad3a607f7
+      redirect-uri: http://localhost:60030/oauth/github/callback
+  cache:
+    type: default
 spring:
   # 邮件,用于通知/用户注册,默认使用SSL加密
   mail:

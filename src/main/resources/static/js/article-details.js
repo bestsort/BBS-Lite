@@ -84,7 +84,7 @@ function click_options() {
                 setTimeout(function () {
                     load_comment_info();
                 },1200);}
-        );
+        )
     });
     $(document).on('click',".comment-post>span",function () {
         /**

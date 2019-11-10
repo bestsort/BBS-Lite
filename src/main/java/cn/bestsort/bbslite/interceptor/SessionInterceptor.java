@@ -35,29 +35,29 @@ public class SessionInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) {
-        log.info("user: {} has been view :{}\n by: {} \n Referer from {}",
-                IpUtil.getIpAddr(request),
-                request.getRequestURI()+(request.getQueryString()==null?"":("?"+request.getQueryString())),
-                request.getHeader("User-Agent"),
-                request.getHeader("Referer"));
-        if(request.getSession().getAttribute("user") != null){
-            return true;
-        }
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null && cookies.length != 0) {
-            for (Cookie cookie : cookies) {
-                if ("token".equals(cookie.getName())) {
-                    String token = cookie.getValue();
-                    User user = userService.getByToken(token);
-                     if (user != null) {
-                         request.setAttribute("user", user);
-                         //写入Session便于持久化登录
-                         request.getSession().setAttribute("user", user);
-                     }
-                    break;
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null && cookies.length != 0) {
+                for (Cookie cookie : cookies) {
+                    if ("token".equals(cookie.getName())) {
+                        String token = cookie.getValue();
+                        user = userService.getByToken(token);
+                        if (user != null) {
+                            //写入Session便于持久化登录
+                            request.getSession().setAttribute("user", user);
+                        }
+                        break;
+                    }
                 }
             }
         }
+        log.info("\naccount:{} \nname: {} \nlogin from: {} \nhas been view :{} \nby: {}  \nReferer from {}",
+                user==null?"Customer":user.getAccountId(),
+                user==null?"Customer":user.getName(),IpUtil.getIpAddr(request),
+                request.getRequestURI()+(request.getQueryString()==null?"":("?"+request.getQueryString())),
+                request.getHeader("User-Agent"),
+                request.getHeader("Referer"));
         return true;
     }
 

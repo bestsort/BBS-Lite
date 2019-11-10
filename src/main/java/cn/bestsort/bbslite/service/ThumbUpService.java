@@ -5,6 +5,7 @@ import cn.bestsort.bbslite.mapper.ThumbUpExtMapper;
 import cn.bestsort.bbslite.mapper.ThumbUpMapper;
 import cn.bestsort.bbslite.pojo.model.ThumbUp;
 import cn.bestsort.bbslite.pojo.model.ThumbUpExample;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,11 @@ import java.util.List;
 
 @CacheConfig(cacheNames = {"like"})
 @Service
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
+
 public class ThumbUpService {
-    @Autowired
-    ThumbUpMapper thumbUpMapper;
-    @Autowired
-    ThumbUpExtMapper thumbUpExtMapper;
+    private final ThumbUpMapper thumbUpMapper;
+    private final ThumbUpExtMapper thumbUpExtMapper;
     public Boolean getArticleThumbUpByUser(Long userId,Long articleId){
         ThumbUpExample example = new ThumbUpExample();
         example.createCriteria()

@@ -9,6 +9,7 @@ import cn.bestsort.bbslite.vo.CommentCenterVo;
 import cn.bestsort.bbslite.vo.CommentVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CachePut;
@@ -28,17 +29,13 @@ import java.util.stream.Collectors;
  */
 @CacheConfig(cacheNames = {"commentCache"})
 @Service
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CommentService {
-    @Autowired
-    UserMapper userMapper;
-    @Autowired
-    ArticleExtMapper articleExtMapper;
-    @Autowired
-    ArticleMapper articleMapper;
-    @Autowired
-    private CommentMapper commentMapper;
-    @Autowired
-    private ThumbUpMapper thumbUpMapper;
+    private final UserMapper userMapper;
+    private final ArticleExtMapper articleExtMapper;
+    private final ArticleMapper articleMapper;
+    private final CommentMapper commentMapper;
+    private final ThumbUpMapper thumbUpMapper;
     public PageInfo<CommentCenterVo> listByUserId(Long id,Integer page,Integer size){
         PageHelper.startPage(page,size);
         List<CommentCenterVo> list = commentMapper.listCommentParentByUserId(id);

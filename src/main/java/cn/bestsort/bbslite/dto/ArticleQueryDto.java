@@ -11,9 +11,7 @@ import lombok.Getter;
  * @Date 2019/10/7 下午12:03
  * @Version 1.0
  */
-
-@Builder
-@Getter
+@Data
 public class ArticleQueryDto {
     private String search;
     private String sortBy;

@@ -4,6 +4,7 @@ import cn.bestsort.bbslite.pojo.model.User;
 
 
 public interface UserExtMapper {
-    int updateFollowCount(User record);
+
     User selectSimpleInfoById(Long id);
+    Long insertSelectiveGetId(User user);
 }

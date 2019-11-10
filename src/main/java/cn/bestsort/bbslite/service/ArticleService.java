@@ -11,6 +11,7 @@ import cn.bestsort.bbslite.pojo.model.Article;
 import cn.bestsort.bbslite.pojo.model.ArticleExample;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
@@ -26,18 +27,16 @@ import java.util.List;
  */
 @CacheConfig(cacheNames = "articleCache")
 @Service
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+
 public class ArticleService {
     public static int SEARCH = 1;
     public static int TOPIC = 2;
     public static int USER = 3;
     public static int ALL = 4;
-
-    @Autowired
-    private ArticleMapper articleMapper;
-    @Autowired
-    private ArticleExtMapper articleExtMapper;
-    @Autowired
-    private TopicExtMapper topicExtMapper;
+    private final ArticleMapper articleMapper;
+    private final ArticleExtMapper articleExtMapper;
+    private final TopicExtMapper topicExtMapper;
 
     public PageInfo<Article> findArticleListByCategory(int page,int size,int category){
         ArticleExample example = new ArticleExample();

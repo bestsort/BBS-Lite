@@ -56,7 +56,7 @@ $(function () {
            })
     });
     $(document).on('click', "button[name='github-login']", function () {
-        location.href="/github-login";
+        location.href="/oauth/login/github";
     });
 
     $(document).on('click', "#login-link", function () {

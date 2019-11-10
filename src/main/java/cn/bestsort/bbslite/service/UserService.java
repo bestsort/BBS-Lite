@@ -2,14 +2,14 @@ package cn.bestsort.bbslite.service;
 
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
+import cn.bestsort.bbslite.mapper.OAuth2UserMapper;
 import cn.bestsort.bbslite.mapper.UserBufferMapper;
 import cn.bestsort.bbslite.mapper.UserExtMapper;
 import cn.bestsort.bbslite.mapper.UserMapper;
-import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.pojo.model.UserBuffer;
-import cn.bestsort.bbslite.pojo.model.UserBufferExample;
-import cn.bestsort.bbslite.pojo.model.UserExample;
+import cn.bestsort.bbslite.pojo.model.*;
+import cn.bestsort.bbslite.util.CopyAuth2User;
 import cn.bestsort.bbslite.util.MurmursHash;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +18,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @ClassName UserService
@@ -28,6 +29,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 @CacheConfig(cacheNames = "userCache")
 public class UserService {
     @Value("${bbs.user.default.avatar-url:}")
@@ -36,13 +38,10 @@ public class UserService {
     String defaultBio;
     @Value("${bbs.user.default.nickname:无名氏}")
     String defaultNickname;
-
-    @Autowired
-    private UserExtMapper userExtMapper;
-    @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private UserBufferMapper userBufferMapper;
+    private final OAuth2UserMapper oAuth2UserMapper;
+    private final UserExtMapper userExtMapper;
+    private final UserMapper userMapper;
+    private final UserBufferMapper userBufferMapper;
 
     @Cacheable(keyGenerator = "myKeyGenerator")
     public User getById(long id){
@@ -142,5 +141,32 @@ public class UserService {
     }
     public User getSimpleInfoById(Long id) {
         return userExtMapper.selectSimpleInfoById(id);
+    }
+    public User createOrUpdateAuth(OAuth2User auth2User) {
+        auth2User.setGmtCreated(System.currentTimeMillis());
+        auth2User.setGmtModified(auth2User.getGmtCreated());
+        CopyAuth2User copyAuth2User = new CopyAuth2User();
+        User user = copyAuth2User.copy2User(auth2User);
+        user.setId(userExtMapper.insertSelectiveGetId(user));
+        user.setToken(UUID.randomUUID().toString());
+        auth2User.setUserId(user.getId());
+        oAuth2UserMapper.insertSelective(auth2User);
+        return user;
+    }
+
+    public User queryOauthUser(OAuth2User oauth2User) {
+        OAuth2UserExample example = new OAuth2UserExample();
+        example.createCriteria()
+                .andUuidEqualTo(oauth2User.getUuid())
+                .andSourceEqualTo(oauth2User.getSource());
+        List<OAuth2User> list = oAuth2UserMapper.selectByExample(example);
+        OAuth2User user = null;
+        if (!list.isEmpty()) {
+            user = list.get(0);
+        }
+        if (user != null){
+            return userMapper.selectByPrimaryKey(user.getUserId());
+        }
+        return null;
     }
 }

@@ -38,4 +38,84 @@
         where
               id = #{id,jdbcType=BIGINT}
     </select>
+
+    <insert id="insertSelectiveGetId" keyProperty="id" useGeneratedKeys="true" parameterType="cn.bestsort.bbslite.pojo.model.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="accountId != null">
+                account_id,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="token != null">
+                token,
+            </if>
+            <if test="bio != null">
+                bio,
+            </if>
+            <if test="fansCount != null">
+                fans_count,
+            </if>
+            <if test="avatarUrl != null">
+                avatar_url,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="htmlUrl != null">
+                html_url,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="accountId != null">
+                #{accountId,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="token != null">
+                #{token,jdbcType=VARCHAR},
+            </if>
+            <if test="bio != null">
+                #{bio,jdbcType=VARCHAR},
+            </if>
+            <if test="fansCount != null">
+                #{fansCount,jdbcType=BIGINT},
+            </if>
+            <if test="avatarUrl != null">
+                #{avatarUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="htmlUrl != null">
+                #{htmlUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=BIGINT},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
 </mapper>

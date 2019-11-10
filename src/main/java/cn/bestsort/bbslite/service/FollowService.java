@@ -7,6 +7,7 @@ import cn.bestsort.bbslite.pojo.model.Article;
 import cn.bestsort.bbslite.pojo.model.Follow;
 import cn.bestsort.bbslite.pojo.model.FollowExample;
 import com.github.pagehelper.PageHelper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,10 @@ import java.util.List;
  */
 
 @Service
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class FollowService {
-    @Autowired
-    private FollowMapper followMapper;
-    @Autowired
-    private FollowExtMapper followExtMapper;
+    private final FollowMapper followMapper;
+    private final FollowExtMapper followExtMapper;
 
     /**
      * TODO bug: 打开两个相同页面并且分别点赞会被计数两次

@@ -4,10 +4,10 @@ $(function () {
     });
     $("#ajaxVal").children("input[name='jumpToUrl']")
         .val("/loadArticleList");
-    to_artical_page(1);
+    to_article_page(1);
 });
 
-function to_artical_page(to) {
+function to_article_page(to) {
     $("#ajaxVal").children("input[name='pageNo']").val(to);
     let jsonData = form_to_dic();
     let url = jsonData["jumpToUrl"];
@@ -17,7 +17,7 @@ function to_artical_page(to) {
             //构建文章列表信息
             build_article_list(data.extend,"#main_list");
             //构建分页信息
-            build_page_nav(data,to_artical_page);
+            build_page_nav(data,to_article_page);
         }else{
             $("#main_list").empty();
             $('.page_info-area').empty();

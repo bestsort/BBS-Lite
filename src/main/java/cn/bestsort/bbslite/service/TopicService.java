@@ -5,6 +5,7 @@ import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.TopicMapper;
 import cn.bestsort.bbslite.pojo.model.Topic;
 import cn.bestsort.bbslite.pojo.model.TopicExample;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -21,9 +22,9 @@ import java.util.List;
  */
 @Service
 @CacheConfig(cacheNames = "topicCache")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class TopicService {
-    @Autowired
-    private TopicMapper topicMapper;
+    private final TopicMapper topicMapper;
     public static int FOLLOW = 0;
     public static int ARTICLE = 1;
 

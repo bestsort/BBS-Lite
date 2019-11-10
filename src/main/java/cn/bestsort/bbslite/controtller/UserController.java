@@ -9,10 +9,7 @@ import cn.bestsort.bbslite.service.UserService;
 import cn.bestsort.bbslite.util.MurmursHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -61,7 +58,7 @@ public class UserController {
         response.addCookie(new Cookie("token",user.getToken()));
         return new ResultDto().okOf();
     }
-    @PostMapping("/logout")
+    @RequestMapping("/logout")
     public String logout(HttpSession session,
                          HttpServletResponse response){
         session.removeAttribute("user");
