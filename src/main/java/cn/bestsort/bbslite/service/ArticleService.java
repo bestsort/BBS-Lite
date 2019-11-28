@@ -14,6 +14,7 @@ import com.github.pagehelper.PageInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +29,6 @@ import java.util.List;
 @CacheConfig(cacheNames = "articleCache")
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-
 public class ArticleService {
     public static int SEARCH = 1;
     public static int TOPIC = 2;
@@ -67,14 +67,14 @@ public class ArticleService {
         }
         return result;
     }
-
+    @Cacheable(keyGenerator = "myKeyGenerator")
     public PageInfo<Article> getPageBySearch(ArticleQueryDto queryDto) {
         List<Article> articles;
         PageHelper.startPage(queryDto.getPageNo(),queryDto.getPageSize());
         articles = articleExtMapper.listBySearch(queryDto);
         return new PageInfo<>(articles);
     }
-
+    @Cacheable(keyGenerator = "myKeyGenerator")
     public Article getArticleDetail(Long id) {
         return articleMapper.selectByPrimaryKey(id);
     }
