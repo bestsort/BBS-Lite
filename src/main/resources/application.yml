@@ -50,9 +50,16 @@ spring:
     host: smtp.exmail.qq.com
     port: 465
     username: no-reply@mail.bestsort.cn
-    password: nfNHVYBwXYWNHUsd
+    password: kdVF8HH2DByZVEaU
 
-######################################################################
+  application:
+    name: "bbs-lite"
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
+
+    ######################################################################
 #####                 以下为默认配置,如非必要不用修改                  #####
 ######################################################################
     default-encoding: UTF-8
@@ -109,7 +116,9 @@ spring:
         # 从连接池中获取连接最大等待时间（默认为-1，单位为毫秒，负数表示无限）
         max-wait: -1
 logging:
-  file: log/bbs-lite.log
+  file:
+    max-size: 20MB
+    max-history: 15
   level:
     root: info
     cn.bestsort.bbslite.cache: debug
@@ -121,5 +130,13 @@ server:
   servlet:
     session:
       timeout: 15552000
-  address: 0.0.0.0
+  address: localhost
   port: 60030
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    defaults:
+      enabled: false

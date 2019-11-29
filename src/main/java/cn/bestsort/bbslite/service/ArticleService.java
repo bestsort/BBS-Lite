@@ -29,7 +29,7 @@ import java.util.List;
 @CacheConfig(cacheNames = "articleCache")
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class ArticleService {
+public class ArticleService implements BBSService{
     public static int SEARCH = 1;
     public static int TOPIC = 2;
     public static int USER = 3;

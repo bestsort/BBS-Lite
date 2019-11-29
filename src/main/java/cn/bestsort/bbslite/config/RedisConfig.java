@@ -15,45 +15,22 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.util.StringUtils;
 
-import java.lang.reflect.Method;
 import java.time.Duration;
 
 /**
  * 不要导入com.alibaba.fastjson.support.spring.FastJsonRedisSerializer,自己实现反序列化工具
  * <p>千年大坑,切忌切忌</p>
+ * @author bestsort
  */
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
 
     @Bean
     public KeyGenerator myKeyGenerator() {
-        return new KeyGenerator() {
-            @Override
-            public Object generate(Object target, Method method, Object... params) {
-                String buffer = target.getClass().getSimpleName();
-                int index = buffer.indexOf("$$");
-                if(index != -1) {
-                    buffer = buffer.substring(0,index);
-                }
-                return buffer + "_" + method.getName() + "_"
-                  + StringUtils.arrayToDelimitedString(params, "_");
-                /*StringBuilder sb = new StringBuilder();
-                String buffer = target.getClass().getSimpleName();
-                int index = buffer.indexOf("$$");
-                if(index != -1) {
-                    sb.append(buffer.substring(0,index));
-                }
-                else {
-                    sb.append(buffer);
-                }
-                sb.append("--");
-                sb.append(method.getName()).append("--");
-                //sb.append(UUID.randomUUID());
-                for (Object obj : objects) {
-                    sb.append(obj.toString());
-                }
-                return sb.toString();*/
-            }
+        return (target, method, params) -> {
+            String buffer = target.getClass().getSimpleName();
+            return buffer + "_" + method.getName() + "_"
+              + StringUtils.arrayToDelimitedString(params, "_");
         };
     }
 

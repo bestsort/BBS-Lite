@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 @CacheConfig(cacheNames = {"commentCache"})
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class CommentService {
+public class CommentService implements BBSService{
     private final UserMapper userMapper;
     private final ArticleExtMapper articleExtMapper;
     private final ArticleMapper articleMapper;

@@ -1,5 +1,6 @@
 package cn.bestsort.bbslite.controtller;
 
+import cn.bestsort.bbslite.aop.annotation.NeedLogin;
 import cn.bestsort.bbslite.dto.ArticleQueryDto;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.FunctionItem;

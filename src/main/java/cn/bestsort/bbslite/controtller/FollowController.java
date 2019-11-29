@@ -1,7 +1,7 @@
 package cn.bestsort.bbslite.controtller;
 
+import cn.bestsort.bbslite.aop.annotation.NeedLogin;
 import cn.bestsort.bbslite.dto.ResultDto;
-import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.enums.PeopleCenterEnum;
 import cn.bestsort.bbslite.pojo.model.Article;
@@ -33,15 +33,14 @@ public class FollowController {
     FollowService followService;
     @Autowired
     ArticleService articleService;
+
+    @NeedLogin
     @ResponseBody
     @PostMapping("/followArticle")
     public ResultDto follow(@RequestParam("id") Long id,
                             @RequestParam("isActive") Boolean isActive,
                             HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if (user == null) {
-            return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
-        }
         boolean active = followService.setFollowCount(id, user.getId(), FunctionItem.ARTICLE, isActive);
         articleService.incArticleFollow(id,isActive?-1L:1L);
         return new ResultDto().okOf()

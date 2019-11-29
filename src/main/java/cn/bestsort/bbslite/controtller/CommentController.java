@@ -1,5 +1,6 @@
 package cn.bestsort.bbslite.controtller;
 
+import cn.bestsort.bbslite.aop.annotation.NeedLogin;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.enums.PeopleCenterEnum;
@@ -58,7 +59,7 @@ public class  CommentController {
         }
     }
 
-
+    @NeedLogin
     @ResponseBody
     @PostMapping("/commitComment")
     public ResultDto commitComment(@RequestParam(name = "articleId") Long articleId,
@@ -67,9 +68,6 @@ public class  CommentController {
                                    @RequestParam(name = "sendToUser",required = false) Long userId,
                                    HttpSession session){
         User user = (User)session.getAttribute("user");
-        if (user == null){
-            return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
-        }
         int maxSize = 255;
         if (content.length() > maxSize){
             return new ResultDto().errorOf(403
