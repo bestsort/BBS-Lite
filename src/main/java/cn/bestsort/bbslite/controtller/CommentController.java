@@ -13,6 +13,7 @@ import cn.bestsort.bbslite.service.CommentService;
 import cn.bestsort.bbslite.service.UserService;
 import cn.bestsort.bbslite.vo.CommentVo;
 import com.github.pagehelper.PageInfo;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,13 +34,12 @@ import java.util.List;
  */
 @Slf4j
 @Controller
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+
 public class  CommentController {
-    @Autowired
-    CommentService commentService;
-    @Autowired
-    UserService userService;
-    @Autowired
-    ArticleService articleService;
+    private final CommentService commentService;
+    private final UserService userService;
+    private final ArticleService articleService;
     @ResponseBody
     @GetMapping("/loadComment")
     public ResultDto get(@RequestParam(name = "id") Long articleId,

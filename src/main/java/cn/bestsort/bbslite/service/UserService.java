@@ -30,7 +30,6 @@ import java.util.UUID;
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-@CacheConfig(cacheNames = "userCache")
 public class UserService {
     @Value("${bbs.user.default.avatar-url:}")
     String defaultAvatarUrl;
@@ -43,12 +42,10 @@ public class UserService {
     private final UserMapper userMapper;
     private final UserBufferMapper userBufferMapper;
 
-    @Cacheable(keyGenerator = "myKeyGenerator")
     public User getById(long id){
         return userMapper.selectByPrimaryKey(id);
     }
 
-    @Cacheable(keyGenerator = "myKeyGenerator")
     public User getByToken(String token){
         UserExample userExample = new UserExample();
         userExample.createCriteria().andTokenEqualTo(token);

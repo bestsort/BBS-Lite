@@ -21,7 +21,6 @@ import java.util.List;
  * @Version 1.0
  */
 @Service
-@CacheConfig(cacheNames = "topicCache")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class TopicService {
     private final TopicMapper topicMapper;
@@ -29,18 +28,15 @@ public class TopicService {
     public static int ARTICLE = 1;
 
 
-    @Cacheable(keyGenerator = "myKeyGenerator")
     public List<Topic> getAll(){
         return topicMapper.selectByExample(new TopicExample());
     }
-    @Cacheable(keyGenerator = "myKeyGenerator")
     public List<Topic> getAllWithoutDefault(){
         List<Topic>topics = topicMapper.selectByExample(new TopicExample());
         topics.remove(0);
         return topics;
     }
 
-    @Cacheable(keyGenerator = "myKeyGenerator")
     public Topic getById(Byte id){
         return topicMapper.selectByPrimaryKey(id);
     }

@@ -30,7 +30,6 @@
     - spring-boot-starter-thymeleaf(HTML 模板引擎)
 - Fastjson(JSON 文本处理)
 - Redis(缓存)
-- OkHttp3(处理网络请求)
 - Flyway(数据库版本控制)
 - Bootstrap4(前端框架)
 - Druid(数据库连接池)
@@ -44,16 +43,8 @@
 - MySQL Workbench
 - Git
 - Chrome
-- Lombook(IDEA插件 自动生成Getter和Setter等)
+- Lombook(配合IDEA插件自动生成Getter和Setter等)
 - Postman(Chrome插件 向后端提交请求)
 ## 作者
 
 **bestsort**
-
-## 鸣谢
-
-该项目后端大体架构参考自 **码匠社区**
-
-前后端分离部分则是受到了 **章鱼社区** 的启迪
-
-衷心感谢上面两个社区

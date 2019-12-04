@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 public class NeedLogInAspect {
-    @Pointcut("@annotation(NeedLogin)")
+    @Pointcut("@annotation(cn.bestsort.bbslite.aop.annotation.NeedLogin)")
     public void needLogIn(){}
 
     @Around("needLogIn()")

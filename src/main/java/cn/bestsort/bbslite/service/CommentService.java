@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
  * @Version 1.0
  * TODO BUG:当comment输入内容长度 >1000 的时候会报错.
  */
-@CacheConfig(cacheNames = {"commentCache"})
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CommentService implements BBSService{
@@ -43,7 +42,6 @@ public class CommentService implements BBSService{
         PageInfo<CommentCenterVo>info = new PageInfo<>(list);
         return info;
     }
-    @CachePut(keyGenerator = "myKeyGenerator")
     public void insert(Comment comment,Long pid,boolean isParent,Long userId) {
         if(isParent){
             CommentParent commentParent = (CommentParent) comment;
@@ -75,7 +73,6 @@ public class CommentService implements BBSService{
         }
     }
 
-    @Cacheable(keyGenerator = "myKeyGenerator")
     public PageInfo<CommentVo> listByArticleId(Long articleId,Long userId, Integer page, Integer size) {
         Long creator = articleMapper.selectByPrimaryKey(articleId).getCreator();
 

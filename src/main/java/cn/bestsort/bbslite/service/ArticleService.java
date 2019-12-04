@@ -26,7 +26,6 @@ import java.util.List;
  * @Date 19-10-3 下午12:33
  * @Version 1.0
  */
-@CacheConfig(cacheNames = "articleCache")
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ArticleService implements BBSService{
@@ -67,14 +66,12 @@ public class ArticleService implements BBSService{
         }
         return result;
     }
-    @Cacheable(keyGenerator = "myKeyGenerator")
     public PageInfo<Article> getPageBySearch(ArticleQueryDto queryDto) {
         List<Article> articles;
         PageHelper.startPage(queryDto.getPageNo(),queryDto.getPageSize());
         articles = articleExtMapper.listBySearch(queryDto);
         return new PageInfo<>(articles);
     }
-    @Cacheable(keyGenerator = "myKeyGenerator")
     public Article getArticleDetail(Long id) {
         return articleMapper.selectByPrimaryKey(id);
     }

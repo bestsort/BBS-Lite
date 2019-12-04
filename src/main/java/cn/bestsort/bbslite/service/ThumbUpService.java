@@ -20,7 +20,6 @@ import java.util.List;
  * @Version 1.0
  */
 
-@CacheConfig(cacheNames = {"like"})
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 
