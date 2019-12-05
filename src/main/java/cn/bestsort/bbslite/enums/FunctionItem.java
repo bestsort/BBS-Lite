@@ -1,11 +1,11 @@
 package cn.bestsort.bbslite.enums;
 
 /**
- * @ClassName FollowEnum
- * @Description
- * @Author bestsort
- * @Date 19-9-29 下午2:52
- * @Version 1.0
+ * @classname FollowEnum
+ * TODO
+ * @author bestsort
+ * @date 19-9-29 下午2:52
+ * @version 1.0
  */
 
 public enum FunctionItem{

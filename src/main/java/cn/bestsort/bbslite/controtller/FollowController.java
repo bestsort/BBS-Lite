@@ -19,11 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
 /**
- * @ClassName FollowController
- * @Description 获取关于用户/文章/话题的收藏请求
- * @Author bestsort
- * @Date 19-9-29 下午4:43
- * @Version 1.0
+ * 获取关于用户/文章/话题的收藏请求
+ * @author bestsort
+ * @date 19-9-29 下午4:43
+ * @version 1.0
  */
 
 

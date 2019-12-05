@@ -7,6 +7,7 @@ import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.ArticleService;
 import cn.bestsort.bbslite.service.TopicService;
 import cn.bestsort.bbslite.vo.PublishVo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +20,10 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TopicController {
-    @Autowired
-    private TopicService topicService;
-    @Autowired
-    private ArticleService articleService;
+    private final TopicService topicService;
+    private final ArticleService articleService;
 
     @GetMapping("/topic")
     public String topic(Model model){

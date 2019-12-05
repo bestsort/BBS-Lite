@@ -12,11 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @ClassName CustomizeErrorController
- * @Description 根据错误信息返回相关的错误提示页面
- * @Author bestsort
- * @Date 19-9-13 上午10:02
- * @Version 1.0
+ * 根据错误信息返回相关的错误提示页面
+ * @author bestsort
+ * @date 19-9-13 上午10:02
+ * @version 1.0
  */
 @Controller
 @RequestMapping("${server.error.path:${error.path:/error}}")

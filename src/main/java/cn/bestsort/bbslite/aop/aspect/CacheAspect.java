@@ -19,11 +19,10 @@ import java.util.Objects;
 import java.util.Random;
 
 /**
- * @ClassName CacheAspect
- * @Description TODO
- * @Author bestsort
- * @Date 2019/12/4 下午7:25
- * @Version 1.0
+ * TODO
+ * @author bestsort
+ * @date 2019/12/4 下午7:25
+ * @version 1.0
  */
 @Component
 @Aspect

@@ -26,11 +26,10 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * @ClassName CommentController
- * @Description 评论控制器,用于处理评论(以及对文章的回复)提交
- * @Author bestsort
- * @Date 19-9-13 下午3:51
- * @Version 1.0
+ * 评论控制器,用于处理评论(以及对文章的回复)提交
+ * @author bestsort
+ * @date 19-9-13 下午3:51
+ * @version 1.0
  */
 @Slf4j
 @Controller

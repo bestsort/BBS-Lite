@@ -7,11 +7,10 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * @ClassName PublishVo
- * @Description TODO
- * @Author bestsort
- * @Date 2019/10/12 上午10:08
- * @Version 1.0
+ * TODO
+ * @author bestsort
+ * @date 2019/10/12 上午10:08
+ * @version 1.0
  */
 
 @Data

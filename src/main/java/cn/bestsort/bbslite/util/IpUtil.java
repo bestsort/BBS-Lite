@@ -6,29 +6,34 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+/**
+ * @author bestsort
+ */
 @Slf4j
 public class IpUtil {
     public static String getIpAddr(HttpServletRequest request) {
         String ipAddress = null;
+        String unknown = "unknown";
+        String localhost = "127.0.0.1";
         try {
             ipAddress = request.getHeader("x-forwarded-for");
-            if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            if (ipAddress == null || ipAddress.length() == 0 || unknown.equalsIgnoreCase(ipAddress)) {
                 ipAddress = request.getHeader("Proxy-Client-IP");
             }
-            if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            if (ipAddress == null || ipAddress.length() == 0 || unknown.equalsIgnoreCase(ipAddress)) {
                 ipAddress = request.getHeader("WL-Proxy-Client-IP");
             }
-            if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+            if (ipAddress == null || ipAddress.length() == 0 || unknown.equalsIgnoreCase(ipAddress)) {
                 ipAddress = request.getRemoteAddr();
-                if (ipAddress.equals("127.0.0.1")) {
+                if (ipAddress.equals(localhost)) {
                     // 根据网卡取本机配置的IP
-                    InetAddress inet = null;
+                    InetAddress address = null;
                     try {
-                        inet = InetAddress.getLocalHost();
+                        address = InetAddress.getLocalHost();
                     } catch (UnknownHostException e) {
                         log.error("Un known host: --> {}",e.getMessage());
                     }
-                    ipAddress = inet != null ? inet.getHostAddress() : null;
+                    ipAddress = address != null ? address.getHostAddress() : null;
                 }
             }
             // 对于通过多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割

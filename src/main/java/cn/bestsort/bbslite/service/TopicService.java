@@ -14,11 +14,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @ClassName TopicServices
- * @Description TODO topic
- * @Author bestsort
- * @Date 2019/10/4 下午2:32
- * @Version 1.0
+ * TODO topic
+ * @author bestsort
+ * @date 2019/10/4 下午2:32
+ * @version 1.0
  */
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)

@@ -8,6 +8,7 @@ import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.ArticleService;
 import cn.bestsort.bbslite.service.TopicService;
 import cn.bestsort.bbslite.vo.PublishVo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,20 +16,16 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
 /**
- * @ClassName PublishController
- * @Description 提问控制器,用于修改文章/发布文章
- * @Author bestsort
- * @Date 19-8-26 下午7:53
- * @Version 1.0
+ * 提问控制器,用于修改文章/发布文章
+ * @author bestsort
+ * @date 19-8-26 下午7:53
+ * @version 1.0
  */
 @Controller
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PublishController {
-    @Autowired
-    private TopicMapper topicMapper;
-    @Autowired
-    private ArticleService articleService;
-    @Autowired
-    private TopicService topicService;
+    private final ArticleService articleService;
+    private final TopicService topicService;
     @GetMapping("/publish")
     public String publish(){
         return "publish";

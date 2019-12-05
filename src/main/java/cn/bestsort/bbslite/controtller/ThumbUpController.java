@@ -9,6 +9,7 @@ import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.ArticleService;
 import cn.bestsort.bbslite.service.CommentService;
 import cn.bestsort.bbslite.service.ThumbUpService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,21 +19,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
 /**
- * @ClassName ThumbArticle
- * @Description
- * @Author bestsort
- * @Date 2019/10/14 下午2:17
- * @Version 1.0
+ *
+ * @author bestsort
+ * @date 2019/10/14 下午2:17
+ * @version 1.0
  */
 
 @Controller
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ThumbUpController {
-    @Autowired
-    private ArticleService articleService;
-    @Autowired
-    private ThumbUpService thumbUpService;
-    @Autowired
-    private CommentService commentService;
+    private final ArticleService articleService;
+    private final ThumbUpService thumbUpService;
+    private final CommentService commentService;
     @ResponseBody
     @NeedLogin
     @PostMapping("/thumbUpArticle")

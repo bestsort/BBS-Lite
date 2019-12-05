@@ -12,11 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @ClassName WebConfig
- * @Description Web 本地配置(SpringBoot 的坑点,需要自己指定资源文件位置)
- * @Author bestsort
- * @Date 19-8-31 下午7:25
- * @Version 1.0
+ * Web 本地配置(SpringBoot 的坑点,需要自己指定资源文件位置)
+ * @author bestsort
+ * @date 19-8-31 下午7:25
+ * @version 1.0
  */
 
 @Configuration

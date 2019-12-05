@@ -3,11 +3,10 @@ package cn.bestsort.bbslite.exception;
 import cn.bestsort.bbslite.enums.MessageInterface;
 
 /**
- * @ClassName CustomizeException
- * @Description
- * @Author bestsort
- * @Date 19-9-10 下午3:30
- * @Version 1.0
+ * TODO
+ * @author bestsort
+ * @date 19-9-10 下午3:30
+ * @version 1.0
  */
 
 public class CustomizeException extends RuntimeException{

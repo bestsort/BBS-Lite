@@ -19,11 +19,10 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * @ClassName SessionInterceptor
- * @Description 拦截器,验证用户在进入某一页面是否已经登录
- * @Author bestsort
- * @Date 19-8-31 下午7:53
- * @Version 1.0
+ * 拦截器,验证用户在进入某一页面是否已经登录
+ * @author bestsort
+ * @date 19-8-31 下午7:53
+ * @version 1.0
  */
 @Slf4j
 @Service

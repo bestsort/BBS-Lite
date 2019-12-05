@@ -13,11 +13,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @ClassName ThumbUpService
- * @Description
- * @Author bestsort
- * @Date 19-9-28 下午6:57
- * @Version 1.0
+ * TODO
+ * @author bestsort
+ * @date 19-9-28 下午6:57
+ * @version 1.0
  */
 
 @Service

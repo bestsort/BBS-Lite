@@ -15,11 +15,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * @ClassName CustomizeExceptionHandler
- * @Description 根据传入的异常返回不同的错误提示并决定是否跳转到错误页面
- * @Author bestsort
- * @Date 19-9-10 下午2:40
- * @Version 1.0
+ * 根据传入的异常返回不同的错误提示并决定是否跳转到错误页面
+ * @author bestsort
+ * @date 19-9-10 下午2:40
+ * @version 1.0
  */
 @ControllerAdvice
 public class CustomizeExceptionHandler {

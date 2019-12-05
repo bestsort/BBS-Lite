@@ -5,10 +5,13 @@ import org.springframework.beans.factory.annotation.Value;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
+/**
+ * @author bestsort
+ */
 public class MurmursHash {
     @Value("bbs.encryption.seed:0x3f2a3c7e")
     private static int seed;
-    @Value("bbs.encryption.salt:xzcawx")
+    @Value("bbs.encryption.salt:asdxcz")
     private static String salt;
     public static String hashUnsignedWithSalt(String key){return hash((key+salt).getBytes());}
     public static String hashUnsigned(String key) {

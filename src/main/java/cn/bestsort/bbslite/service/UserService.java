@@ -21,11 +21,10 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * @ClassName UserService
- * @Description User 的更新/新增
- * @Author bestsort
- * @Date 19-9-1 上午6:48
- * @Version 1.0
+ * User 的更新/新增
+ * @author bestsort
+ * @date 19-9-1 上午6:48
+ * @version 1.0
  */
 @Slf4j
 @Service

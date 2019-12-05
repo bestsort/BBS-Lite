@@ -9,6 +9,7 @@ import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.service.CommentService;
 import cn.bestsort.bbslite.service.ArticleService;
 import cn.bestsort.bbslite.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,21 +20,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @ClassName ProfileController
- * @Description 个人资料控制器
- * @Author bestsort
- * @Date 19-8-30 下午6:21
- * @Version 1.0
+ * 个人资料控制器
+ * @author bestsort
+ * @date 19-8-30 下午6:21
+ * @version 1.0
  */
 
 @Controller
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonalCenterController {
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private ArticleService articleService;
-    @Autowired
-    private CommentService commentService;
+    private final UserService userService;
+    private final ArticleService articleService;
+    private final CommentService commentService;
     @RequestMapping("/center")
     public String profile(@RequestParam(name = "id",required = false) Long id,
                              HttpSession session){

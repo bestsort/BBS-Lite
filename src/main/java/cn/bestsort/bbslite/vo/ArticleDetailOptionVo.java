@@ -3,11 +3,10 @@ package cn.bestsort.bbslite.vo;
 import lombok.Data;
 
 /**
- * @ClassName ArticleDetailOptionVo
- * @Description TODO
- * @Author bestsort
- * @Date 2019/10/13 上午9:23
- * @Version 1.0
+ * TODO
+ * @author bestsort
+ * @date 2019/10/13 上午9:23
+ * @version 1.0
  */
 
 @Data

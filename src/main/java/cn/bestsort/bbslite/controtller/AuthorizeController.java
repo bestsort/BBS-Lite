@@ -25,11 +25,10 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * @ClassName
- * @Description 获取 Gitub 用户登录信息并插入/更新其数据库内内容
- * @Author bestsort
- * @Date 19-8-22 下午7:36
- * @Version 1.0
+ * 获取 Gitub 用户登录信息并插入/更新其数据库内内容
+ * @author bestsort
+ * @date 19-8-22 下午7:36
+ * @version 1.0
  */
 
 @Slf4j

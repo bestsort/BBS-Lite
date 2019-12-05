@@ -11,14 +11,15 @@ import org.springframework.stereotype.Component;
 import java.util.Objects;
 
 /**
- * @ClassName DeleteRegularly
- * @Description TODO
- * @Author bestsort
- * @Date 2019/10/24 下午3:17
- * @Version 1.0
+ * @classname DeleteRegularly
+ * TODO
+ * @author bestsort
+ * @date 2019/10/24 下午3:17
+ * @version 1.0
  */
 @Slf4j
 @Component
+
 public class RegularlyWork {
     /**
      * 每天凌晨三点清除未激活用户

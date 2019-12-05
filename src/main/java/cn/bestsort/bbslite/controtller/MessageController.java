@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * @author bestsort
+ */
 @RestController
 public class MessageController {
     @Autowired

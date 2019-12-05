@@ -11,11 +11,10 @@ import redis.clients.jedis.JedisPool;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @ClassName CacheServiceImpl
- * @Description Cache data
- * @Author bestsort
- * @Date 2019/12/4 下午7:03
- * @Version 1.0
+ * Cache data
+ * @author bestsort
+ * @date 2019/12/4 下午7:03
+ * @version 1.0
  */
 @Slf4j
 @Service

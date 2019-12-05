@@ -20,11 +20,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @ClassName ArticleService
- * @Description
- * @Author bestsort
- * @Date 19-10-3 下午12:33
- * @Version 1.0
+ * TODO
+ * @author bestsort
+ * @date 19-10-3 下午12:33
+ * @version 1.0
  */
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))

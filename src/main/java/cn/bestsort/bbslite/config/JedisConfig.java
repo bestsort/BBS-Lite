@@ -11,11 +11,10 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 /**
- * @ClassName JedisConfig
- * @Description TODO
- * @Author bestsort
- * @Date 2019/12/4 下午7:46
- * @Version 1.0
+ * TODO
+ * @author bestsort
+ * @date 2019/12/4 下午7:46
+ * @version 1.0
  */
 @Slf4j
 @Configuration

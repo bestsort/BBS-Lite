@@ -7,11 +7,10 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * @ClassName CommentDto
- * @Description 评论数据传输类
- * @Author bestsort
- * @Date 19-9-16 下午8:08
- * @Version 1.0
+ * 评论数据传输类
+ * @author bestsort
+ * @date 19-9-16 下午8:08
+ * @version 1.0
  */
 
 @Data

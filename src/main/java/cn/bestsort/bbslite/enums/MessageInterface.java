@@ -1,11 +1,11 @@
 package cn.bestsort.bbslite.enums;
 
 /**
- * @ClassName MessageInterface
- * @Description
- * @Author bestsort
- * @Date 19-9-29 下午2:53
- * @Version 1.0
+ * @classname MessageInterface
+ * TODO
+ * @author bestsort
+ * @date 19-9-29 下午2:53
+ * @version 1.0
  */
 
 public interface MessageInterface {

@@ -25,11 +25,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
 /**
- * @ClassName ArticleController
- * @Description 文章控制器,用于查询文章列表
- * @Author bestsort
- * @Date 19-8-31 下午8:35
- * @Version 1.0
+ * 文章控制器,用于查询文章列表
+ * @author bestsort
+ * @date 19-8-31 下午8:35
+ * @version 1.0
  */
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -44,7 +43,7 @@ public class ArticleController {
     }
 
     /**
-     * @Description 获取文章列表(可根据搜索内容/话题/分类筛选结果)
+     * 获取文章列表(可根据搜索内容/话题/分类筛选结果)
      * @param queryDto 封装查询类
      * @return 根据条件筛选并进行分页后的文章列表
      */

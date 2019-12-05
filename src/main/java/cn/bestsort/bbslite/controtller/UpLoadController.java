@@ -1,6 +1,5 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.dto.UploadResultDto;
 import cn.bestsort.bbslite.manager.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;

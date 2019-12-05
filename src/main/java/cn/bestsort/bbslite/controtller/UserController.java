@@ -7,6 +7,7 @@ import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.pojo.model.UserBuffer;
 import cn.bestsort.bbslite.service.UserService;
 import cn.bestsort.bbslite.util.MurmursHash;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +18,10 @@ import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 @Controller
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    private MailService mail;
+    private final UserService userService;
+    private final MailService mail;
 
     @ResponseBody
     @GetMapping("/getUserInfo")

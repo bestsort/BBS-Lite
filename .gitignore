@@ -5,8 +5,8 @@ target/
 /log/
 /src/log/
 run.xml
-/config/application.xml
-
+/LOG_PATH_IS_UNDEFINED
+/config/
 ### STS ###
 .apt_generated
 .classpath

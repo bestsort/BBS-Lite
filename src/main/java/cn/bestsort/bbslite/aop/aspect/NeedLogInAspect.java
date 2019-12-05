@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 /**
  * @author bestsort
  * @date 2019/11/28 下午8:46
- * @description 校验用户是否登录
+ * 校验用户是否登录
  */
 @Slf4j
 @Aspect

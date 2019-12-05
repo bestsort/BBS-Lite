@@ -335,7 +335,7 @@ function build_page_nav(data,func) {
 }
 
 /**
- * @description 构建文章列表
+ * 构建文章列表
  * @param data
  * @param build_to
  */

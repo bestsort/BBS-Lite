@@ -20,11 +20,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * @ClassName CommentService
- * @Description 评论处理Service层.
- * @Author bestsort
- * @Date 19-9-13 下午4:57
- * @Version 1.0
+ * @classname CommentService
+ * 评论处理Service层.
+ * @author bestsort
+ * @date 19-9-13 下午4:57
+ * @version 1.0
  * TODO BUG:当comment输入内容长度 >1000 的时候会报错.
  */
 @Service

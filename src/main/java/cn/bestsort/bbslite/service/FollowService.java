@@ -14,11 +14,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @ClassName FollowService
- * @Description
- * @Author bestsort
- * @Date 19-9-28 下午7:19
- * @Version 1.0
+ * TODO
+ * @author bestsort
+ * @date 19-9-28 下午7:19
+ * @version 1.0
  */
 
 @Service

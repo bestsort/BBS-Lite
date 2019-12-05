@@ -1,7 +1,8 @@
 package cn.bestsort.bbslite.mapper;
 
-import cn.bestsort.bbslite.pojo.model.Topic;
-
+/**
+ * @author bestsort
+ */
 public interface TopicExtMapper {
     int updateCountWithVal(Byte id,Long val);
     int updateFollowCount(Byte id,Long val);

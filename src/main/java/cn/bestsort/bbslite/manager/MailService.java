@@ -17,11 +17,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * @ClassName Mail
- * @Description
- * @Author bestsort
- * @Date 2019/10/23 下午8:10
- * @Version 1.0
+ * TODO
+ * @author bestsort
+ * @date 2019/10/23 下午8:10
+ * @version 1.0
  */
 @Slf4j
 @Service

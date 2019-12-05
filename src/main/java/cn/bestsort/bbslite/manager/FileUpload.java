@@ -26,7 +26,11 @@ public class FileUpload {
      * */
     @Value("${bbs.oss.endpoint:}")
     private String endpoint;
-    // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
+    /**
+     * 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。
+     * 强烈建议您创建并使用RAM账号进行API访问或日常运维
+     * 请登录<a href="https://ram.console.aliyun.com">阿里云</a> 创建RAM账号。
+     */
     @Value("${bbs.oss.accessKeyId:}")
     private String accessKeyId;
 
@@ -35,7 +39,9 @@ public class FileUpload {
 
     @Value("${bbs.oss.bucketName:}")
     private String bucketName;
-    // <yourObjectName>上传文件到OSS时需要指定包含文件后缀在内的完整路径，例如abc/efg/123.jpg。
+    /**
+     * <yourObjectName>上传文件到OSS时需要指定包含文件后缀在内的完整路径，例如abc/efg/123.jpg。
+     */
 
     @Value("${bbs.oss.objectName:}")
     private String objectName;
