@@ -5,7 +5,7 @@ target/
 /log/
 /src/log/
 run.xml
-/LOG_PATH_IS_UNDEFINED
+/LOG_PATH_IS_UNDEFINED/
 /config/
 ### STS ###
 .apt_generated

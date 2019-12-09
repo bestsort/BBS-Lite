@@ -4,7 +4,7 @@
 #####################################################################
 bbs:
   # 论坛链接
-  url: http://localhost:60030
+  url: https://bbs.bestsort.cn
   mail:
     # 邮件标题
     title: 氢论坛---邮件通知
@@ -50,16 +50,16 @@ spring:
     host: smtp.exmail.qq.com
     port: 465
     username: no-reply@mail.bestsort.cn
-    password: kdVF8HH2DByZVEaU
+    password: nfNHVYBwXYWNHUsd
 
   application:
     name: "bbs-lite"
   boot:
     admin:
       client:
-        url: http://localhost:8080
+        url: http://tencent.bestsort.cn:60027
 
-    ######################################################################
+######################################################################
 #####                 以下为默认配置,如非必要不用修改                  #####
 ######################################################################
     default-encoding: UTF-8
@@ -125,7 +125,7 @@ server:
   servlet:
     session:
       timeout: 15552000
-  address: localhost
+  address: bbs.bestsort.cn
   port: 60030
 management:
   endpoints:
