@@ -1,11 +1,12 @@
 package cn.bestsort.bbslite.service.serviceimpl;
 
+import cn.bestsort.bbslite.cache.aop.annotation.Cache;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.OAuth2UserMapper;
 import cn.bestsort.bbslite.mapper.UserBufferMapper;
-import cn.bestsort.bbslite.mapper.ext.UserExtMapper;
 import cn.bestsort.bbslite.mapper.UserMapper;
+import cn.bestsort.bbslite.mapper.ext.UserExtMapper;
 import cn.bestsort.bbslite.pojo.model.*;
 import cn.bestsort.bbslite.util.CopyAuth2User;
 import cn.bestsort.bbslite.util.MurmursHash;
@@ -133,6 +134,8 @@ public class UserServiceImpl {
     public int clearUnActivateUser(){
         return userBufferMapper.deleteByExample(new UserBufferExample());
     }
+
+    @Cache
     public User getSimpleInfoById(Long id) {
         return userExtMapper.selectSimpleInfoById(id);
     }

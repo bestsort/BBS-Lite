@@ -1,7 +1,9 @@
 package cn.bestsort.bbslite.cache.aop.aspect;
 
+import cn.bestsort.bbslite.cache.KeyGeneratorInterface;
 import cn.bestsort.bbslite.cache.aop.annotation.Cache;
 import cn.bestsort.bbslite.cache.service.CacheService;
+import cn.bestsort.bbslite.util.SpringContextUtil;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -37,12 +39,25 @@ public class DefaultCacheAspect {
                 .getSignature())
                 .getMethod()
                 .getAnnotation(Cache.class);
+        KeyGeneratorInterface keyGenerator = getKeyGenerator(cacheAop.keyGenerator());
 
-        //存储接口返回值
-        String key = cacheService.getKeyForAop(joinPoint);
-        Object object = null;
-        if (cacheService.containKey(key)){
-            String obj = cacheService.get(key);
+        /**
+         * 将可能引起线程安全的变量使用 ThreadLocal 解决
+         */
+        ThreadLocal<String> key = new ThreadLocal<>();
+        ThreadLocal<Object> result = new ThreadLocal<>();
+
+        if (!"".equals(cacheAop.key())){
+            key.set(keyGenerator.generate(cacheAop.key(),joinPoint.getArgs()));
+        }else {
+            key.set(keyGenerator.generate(
+                    joinPoint.getTarget(),
+                    ((MethodSignature) joinPoint.getSignature()).getMethod(),
+                    joinPoint.getArgs()));
+        }
+
+        if (cacheService.containKey(key.get())){
+            String obj = cacheService.get(key.get());
             String fail = "fail";
             if(fail.endsWith(obj)){
                 try {
@@ -54,25 +69,31 @@ public class DefaultCacheAspect {
                 log.info("cache hit : {} --> {}",request.getRequestURI(),request.getQueryString());
                 Signature signature =  joinPoint.getSignature();
                 Class returnType = ((MethodSignature) signature).getReturnType();
-                object = JSON.parseObject(obj,returnType);
+                result.set(JSON.parseObject(obj,returnType));
             }
         }else {
             try {
-                object = joinPoint.proceed();
-                String save2Cache = JSON.toJSONString(object);
-                cacheService.set(key,save2Cache,getTime(cacheAop),getStrategy(cacheAop));
+                result.set(joinPoint.proceed());
+                String save2Cache = JSON.toJSONString(result.get());
+
+                cacheService.set(key.get(),save2Cache,getTime(cacheAop),getStrategy(cacheAop));
             }catch (Throwable throwable){
                 throwable.printStackTrace();
             }
         }
-        return object;
+        return result.get();
     }
+
+    private KeyGeneratorInterface getKeyGenerator(String clazz){
+        return (KeyGeneratorInterface) SpringContextUtil.getBean(clazz);
+    }
+
 
     private long getTime(Cache cacheAop){
         long min = cacheAop.min();
         long max = cacheAop.max()<min?min+3:cacheAop.max();
         long time = min + (int)(Math.random() * (max-min+1));
-        switch (cacheAop.cacheType()){
+        switch (cacheAop.timeType()){
             case "D": time *= 24L;
             case "H": time *= 60L;
             case "M": time *= 60L;

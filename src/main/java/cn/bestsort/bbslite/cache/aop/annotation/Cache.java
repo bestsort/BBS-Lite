@@ -2,14 +2,15 @@ package cn.bestsort.bbslite.cache.aop.annotation;
 
 import java.lang.annotation.*;
 
-import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.TYPE;
 /**
  * @author bestsort
  */
 @Target({METHOD,TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-
+@Inherited
 public @interface Cache {
     /**
      * 自定义 key前缀
@@ -21,7 +22,7 @@ public @interface Cache {
      * key 生成器
      * @return keyGenerator class
      */
-    String keyGenerator() default "KeyGeneratorInterface";
+    String keyGenerator() default "keyGeneratorImpl";
     /**
      * 缓存类型 default/inc/flush/delete -> 默认/自增/刷新/删除
      * default --> 如果不存在则查询数据库,将查询结果加入redis中
@@ -31,6 +32,8 @@ public @interface Cache {
      * delete --> 删除当前缓存
      * @return default
      */
+
+
     String cacheType() default "default";
     /**
      * 默认 秒/分/时/天 --> S/M/H/D

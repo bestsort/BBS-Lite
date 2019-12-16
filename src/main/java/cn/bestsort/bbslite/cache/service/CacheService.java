@@ -53,10 +53,4 @@ public interface CacheService {
      * @param jedis jedis instance
      */
     void returnResource(Jedis jedis);
-    /**
-     * generate key
-     * @param joinPoint aop join point
-     * @return key
-     */
-    String getKeyForAop(JoinPoint joinPoint);
 }

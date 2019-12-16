@@ -1,5 +1,8 @@
 package cn.bestsort.bbslite.cache;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
 import java.lang.reflect.Method;
 
 /**
@@ -9,7 +12,6 @@ import java.lang.reflect.Method;
  * @version 1.0
  * @date 12/16/19 8:44 AM
  */
-
 public interface KeyGeneratorInterface {
     /**
      * @param target 要生成key的对象
@@ -17,12 +19,14 @@ public interface KeyGeneratorInterface {
      * @param params 方法内参数
      * @return key
      */
-    Object generate(Object target, Method method, Object... params);
+
+    String generate(Object target, Method method, Object[] params);
 
     /**
      * @param prefix 前缀
      * @param params 参数
      * @return key
      */
-    Object generate(String prefix,Object... params);
+    @Bean("KeyGeneratorWithPrefix")
+    String generate(String prefix,Object[] params);
 }

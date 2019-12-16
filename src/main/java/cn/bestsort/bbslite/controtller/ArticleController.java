@@ -61,10 +61,10 @@ public class ArticleController {
      * @param id 文章id
      * @return 文章详情
      */
-    @Cache
     @ResponseBody
     @GetMapping("/loadArticleDetail")
     public ResultDto getArticleDetail(@RequestParam(name = "id") Long id){
+
         articleService.incArticleView(id);
         Article article = articleService.getArticleDetail(id);
         User user = userService.getSimpleInfoById(article.getCreator());
