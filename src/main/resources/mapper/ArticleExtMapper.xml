@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.bestsort.bbslite.mapper.ArticleExtMapper">
+<mapper namespace="cn.bestsort.bbslite.mapper.ext.ArticleExtMapper">
     <resultMap id="BaseResultMap" type="cn.bestsort.bbslite.pojo.model.Article">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="title" jdbcType="VARCHAR" property="title" />
@@ -20,7 +20,8 @@
     </resultMap>
 
     <select id="listBySearch" resultType="cn.bestsort.bbslite.pojo.model.Article">
-        select *
+        select
+            *
         from article
         <where>
             status = 1
@@ -42,13 +43,6 @@
             order by gmt_create DESC
         </where>
     </select>
-    <update id="incArticleLike">
-        update article
-        set
-            like_count = like_count + #{val,jdbcType=BIGINT}
-        where
-            id = #{id,jdbcType=BIGINT}
-    </update>
     <update id="incArticleFollow">
         update article
         set
@@ -71,6 +65,17 @@
         where
         id = #{id,jdbcType=BIGINT}
     </update>
+    <update id="incArticleLike">
+        update article
+        set
+        like_count = like_count + #{val,jdbcType=BIGINT}
+        where
+        id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="getArticleView" resultType="java.lang.Long">
+        select view_count from article where is id = #{id,jdbcType=BIGINT}
+    </select>
+
     <insert id="insertArticleExt" keyProperty="id" useGeneratedKeys="true" parameterType="cn.bestsort.bbslite.pojo.model.Article">
         insert into article
         <trim prefix="(" suffix=")" suffixOverrides=",">

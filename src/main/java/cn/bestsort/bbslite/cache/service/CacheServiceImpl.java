@@ -1,4 +1,4 @@
-package cn.bestsort.bbslite.service;
+package cn.bestsort.bbslite.cache.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Cache data
@@ -33,8 +31,20 @@ public class CacheServiceImpl implements CacheService {
             jedis = getResource();
             jedis.set(key,val,strategy,"ex",time);
         }catch (Exception e){
-            log.error("Redis set error:{}-{},value:{}",
-                    e.getMessage(), key, val);
+            log.error("Redis set error:{}-{},value:{}", e.getMessage(), key, val);
+        }finally {
+            returnResource(jedis);
+        }
+    }
+
+    @Override
+    public void inc(String key, Long step) {
+        Jedis jedis = null;
+        try{
+            jedis = getResource();
+            jedis.incrBy(key, step);
+        }catch (Exception e){
+            log.error("Redis inc error:{}-{},value:{}", e.getMessage(), key, step);
         }finally {
             returnResource(jedis);
         }
@@ -77,8 +87,8 @@ public class CacheServiceImpl implements CacheService {
     }
 
     @Override
-    public String getKeyForAop(JoinPoint joinPoint, HttpServletRequest request) {
+    public String getKeyForAop(JoinPoint joinPoint) {
         Object[] objects = joinPoint.getArgs();
-        return objects[0].toString();
+        return joinPoint.getSignature().getName() + ":" + objects[0].toString();
     }
 }

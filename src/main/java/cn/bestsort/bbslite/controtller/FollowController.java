@@ -6,8 +6,8 @@ import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.enums.PeopleCenterEnum;
 import cn.bestsort.bbslite.pojo.model.Article;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.ArticleService;
-import cn.bestsort.bbslite.service.FollowService;
+import cn.bestsort.bbslite.service.serviceimpl.ArticleServiceImpl;
+import cn.bestsort.bbslite.service.serviceimpl.FollowServiceImpl;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,9 +29,9 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class FollowController {
     @Autowired
-    FollowService followService;
+    FollowServiceImpl followService;
     @Autowired
-    ArticleService articleService;
+    ArticleServiceImpl articleService;
 
     @NeedLogin
     @ResponseBody
@@ -41,8 +41,8 @@ public class FollowController {
                             HttpSession session) {
         User user = (User) session.getAttribute("user");
         boolean active = followService.setFollowCount(id, user.getId(), FunctionItem.ARTICLE, isActive);
-        articleService.incArticleFollow(id,isActive?-1L:1L);
-        return new ResultDto().okOf()
+       // articleService.incArticleFollow(id,isActive?-1L:1L);
+        return ResultDto.okOf()
                 .addMsg("isActive", active);
     }
     @ResponseBody
@@ -54,7 +54,7 @@ public class FollowController {
             followService.getListByUser(id,FunctionItem.ARTICLE,page,size)
         );
 
-        return new ResultDto().okOf().addMsg("page",articles)
+        return ResultDto.okOf().addMsg("page",articles)
                 .addMsg("func", PeopleCenterEnum.FOLLOW_ARTICLE);
     }
 }

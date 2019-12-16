@@ -6,9 +6,9 @@ import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.ArticleService;
-import cn.bestsort.bbslite.service.CommentService;
-import cn.bestsort.bbslite.service.ThumbUpService;
+import cn.bestsort.bbslite.service.serviceimpl.ArticleServiceImpl;
+import cn.bestsort.bbslite.service.serviceimpl.CommentServiceImpl;
+import cn.bestsort.bbslite.service.serviceimpl.ThumbUpServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,9 +28,9 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ThumbUpController {
-    private final ArticleService articleService;
-    private final ThumbUpService thumbUpService;
-    private final CommentService commentService;
+    private final ArticleServiceImpl articleService;
+    private final ThumbUpServiceImpl thumbUpService;
+    private final CommentServiceImpl commentService;
     @ResponseBody
     @NeedLogin
     @PostMapping("/thumbUpArticle")
@@ -46,7 +46,7 @@ public class ThumbUpController {
             case COMMENT:commentService.incCommentLike(id,isActive?-1L:1L);break;
             default:throw new CustomizeException(CustomizeErrorCodeEnum.USER_ERROR);
         }
-        return new ResultDto().okOf()
+        return ResultDto.okOf()
                 .addMsg("isActive",active);
     }
 }

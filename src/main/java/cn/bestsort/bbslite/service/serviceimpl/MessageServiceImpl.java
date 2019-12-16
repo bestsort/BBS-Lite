@@ -1,4 +1,4 @@
-package cn.bestsort.bbslite.service;
+package cn.bestsort.bbslite.service.serviceimpl;
 
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.enums.FunctionItem;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  * @author bestsort
  */
 @Service
-public class MessageService {
+public class MessageServiceImpl {
     @Autowired
     private MessageMapper messageMapper;
     @Autowired

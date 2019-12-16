@@ -2,7 +2,7 @@ package cn.bestsort.bbslite.controtller;
 
 import cn.bestsort.bbslite.pojo.model.OAuth2User;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.UserService;
+import cn.bestsort.bbslite.service.serviceimpl.UserServiceImpl;
 import cn.hutool.json.JSONUtil;
 import com.xkcoding.justauth.AuthRequestFactory;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ import java.util.List;
 @RequestMapping("/oauth")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AuthorizeController {
-    private final UserService userService;
+    private final UserServiceImpl userService;
     private final AuthRequestFactory factory;
     @GetMapping
     public List<String> list() {

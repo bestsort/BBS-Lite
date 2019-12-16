@@ -1,7 +1,7 @@
 package cn.bestsort.bbslite.util;
 
 import cn.bestsort.bbslite.manager.MailService;
-import cn.bestsort.bbslite.service.UserService;
+import cn.bestsort.bbslite.service.serviceimpl.UserServiceImpl;
 import cn.bestsort.bbslite.vo.MailVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class RegularlyWork {
      * 每天凌晨三点清除未激活用户
      */
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
     @Autowired
     MailService mailService;
 

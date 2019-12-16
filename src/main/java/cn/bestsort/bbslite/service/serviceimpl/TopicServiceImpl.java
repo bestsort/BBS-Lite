@@ -1,4 +1,4 @@
-package cn.bestsort.bbslite.service;
+package cn.bestsort.bbslite.service.serviceimpl;
 
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class TopicService {
+public class TopicServiceImpl {
     private final TopicMapper topicMapper;
     public static int FOLLOW = 0;
     public static int ARTICLE = 1;

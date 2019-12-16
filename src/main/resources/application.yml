@@ -58,8 +58,9 @@ spring:
     admin:
       client:
         url: http://tencent.bestsort.cn:60027
+        enabled: false
 
-######################################################################
+    ######################################################################
 #####                 以下为默认配置,如非必要不用修改                  #####
 ######################################################################
     default-encoding: UTF-8
@@ -125,7 +126,7 @@ server:
   servlet:
     session:
       timeout: 15552000
-  address: bbs.bestsort.cn
+  address: 0.0.0.0
   port: 60030
 management:
   endpoints:

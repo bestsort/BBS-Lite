@@ -1,12 +1,9 @@
 package cn.bestsort.bbslite.interceptor;
 
-import cn.bestsort.bbslite.mapper.UserMapper;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.pojo.model.UserExample;
-import cn.bestsort.bbslite.service.UserService;
+import cn.bestsort.bbslite.service.serviceimpl.UserServiceImpl;
 import cn.bestsort.bbslite.util.IpUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -15,8 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.UUID;
 
 /**
  * 拦截器,验证用户在进入某一页面是否已经登录
@@ -28,7 +23,7 @@ import java.util.UUID;
 @Service
 public class SessionInterceptor implements HandlerInterceptor {
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
 
     @Override
     public boolean preHandle(HttpServletRequest request,

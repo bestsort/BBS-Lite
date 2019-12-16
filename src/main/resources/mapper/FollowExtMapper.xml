@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.bestsort.bbslite.mapper.FollowExtMapper">
+<mapper namespace="cn.bestsort.bbslite.mapper.ext.FollowExtMapper">
     <resultMap id="FollowResultMap" type="cn.bestsort.bbslite.pojo.model.Follow">
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="follow_by" jdbcType="BIGINT" property="followBy" />

@@ -18,23 +18,23 @@ public class ResultDto {
     private Integer code;
     private String message;
     private Map<String,Object> extend=new HashMap<>(2);
-    public ResultDto errorOf(Integer code, String message){
+    public static ResultDto errorOf(Integer code, String message){
         ResultDto resultDTO = new ResultDto();
         resultDTO.setCode(code);
         resultDTO.setMessage(message);
         return resultDTO;
     }
 
-    public ResultDto errorOf(CustomizeErrorCodeEnum errorCode) {
+    public static ResultDto errorOf(CustomizeErrorCodeEnum errorCode) {
         return errorOf(errorCode.getCode(),errorCode.getName());
     }
-    public ResultDto okOf(){
+    public static ResultDto okOf(){
         ResultDto resultDTO = new ResultDto();
         resultDTO.setMessage("成功");
         resultDTO.setCode(200);
         return resultDTO;
     }
-    public ResultDto okOf(Integer code,String message){
+    public static ResultDto okOf(Integer code,String message){
         ResultDto resultDTO = new ResultDto();
         resultDTO.setMessage(message);
         resultDTO.setCode(code);
@@ -51,7 +51,7 @@ public class ResultDto {
                 ",message='" + message + '\''+
                 ",extend=" + extend + '}';
     }
-    public ResultDto errorOf(CustomizeException e) {
-        return new ResultDto().errorOf(e.getCode(),e.getMessage());
+    public static ResultDto errorOf(CustomizeException e) {
+        return ResultDto.errorOf(e.getCode(),e.getMessage());
     }
 }

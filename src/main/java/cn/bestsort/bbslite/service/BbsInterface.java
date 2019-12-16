@@ -5,4 +5,4 @@ package cn.bestsort.bbslite.service;
  * 而通过接口实现是通过jdk代理
  * @author bestsort
  */
-public interface BBSService {}
+public interface BbsInterface {}

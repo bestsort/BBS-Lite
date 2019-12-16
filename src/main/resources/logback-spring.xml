@@ -48,7 +48,7 @@
             <!-- 文件名称 -->
             <fileNamePattern>${LOG_PATH}/debug/debug-%d{yyyy-MM-dd}.log</fileNamePattern>
             <!-- 文件最大保存历史数量 -->
-            <MaxHistory>30</MaxHistory>
+            <MaxHistory>10</MaxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>

@@ -1,17 +1,16 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.aop.annotation.Cache;
-import cn.bestsort.bbslite.aop.annotation.NeedLogin;
+import cn.bestsort.bbslite.cache.aop.annotation.Cache;
 import cn.bestsort.bbslite.dto.ArticleQueryDto;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.enums.PeopleCenterEnum;
 import cn.bestsort.bbslite.pojo.model.Article;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.ArticleService;
-import cn.bestsort.bbslite.service.FollowService;
-import cn.bestsort.bbslite.service.ThumbUpService;
-import cn.bestsort.bbslite.service.UserService;
+import cn.bestsort.bbslite.service.serviceimpl.ArticleServiceImpl;
+import cn.bestsort.bbslite.service.serviceimpl.FollowServiceImpl;
+import cn.bestsort.bbslite.service.serviceimpl.ThumbUpServiceImpl;
+import cn.bestsort.bbslite.service.serviceimpl.UserServiceImpl;
 import cn.bestsort.bbslite.vo.ArticleDetailOptionVo;
 import com.github.pagehelper.PageInfo;
 import lombok.RequiredArgsConstructor;
@@ -33,10 +32,10 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ArticleController {
-    private final ArticleService articleService;
-    private final UserService userService;
-    private final ThumbUpService thumbUpService;
-    private final FollowService followService;
+    private final ArticleServiceImpl articleService;
+    private final UserServiceImpl userService;
+    private final ThumbUpServiceImpl thumbUpService;
+    private final FollowServiceImpl followService;
     @GetMapping("/article/{id}")
     public String article(@PathVariable("id") Long id){
         return "article";
@@ -47,12 +46,12 @@ public class ArticleController {
      * @param queryDto 封装查询类
      * @return 根据条件筛选并进行分页后的文章列表
      */
-    @Cache(min = 5,max = 10)
+
     @ResponseBody
     @GetMapping("/loadArticleList")
-    public Object getArticleList(ArticleQueryDto queryDto){
+    public ResultDto getArticleList(ArticleQueryDto queryDto){
         PageInfo<Article> pageInfo = articleService.getPageBySearch(queryDto);
-        return new ResultDto().okOf()
+        return ResultDto.okOf()
                 .addMsg("page",pageInfo)
                 .addMsg("func", PeopleCenterEnum.ARTICLE);
     }
@@ -62,18 +61,18 @@ public class ArticleController {
      * @param id 文章id
      * @return 文章详情
      */
-    @Cache(max = 20,min = 10)
+    @Cache
     @ResponseBody
     @GetMapping("/loadArticleDetail")
-    public Object getArticleDetail(@RequestParam(name = "id") Long id){
+    public ResultDto getArticleDetail(@RequestParam(name = "id") Long id){
+        articleService.incArticleView(id);
         Article article = articleService.getArticleDetail(id);
-        articleService.incArticleView(id,1L);
         User user = userService.getSimpleInfoById(article.getCreator());
-        return new ResultDto().okOf()
+        return ResultDto.okOf()
                 .addMsg("article",article)
                 .addMsg("user",user);
     }
-
+    @Cache
     @ResponseBody
     @GetMapping("/loadArticleOption")
     public Object getArticleOption(@RequestParam(name = "articleId") Long articleId,
@@ -96,6 +95,6 @@ public class ArticleController {
             articleDetailOptionVo.setIsThumbUpArticle(false);
             articleDetailOptionVo.setIsFollowArticle(false);
         }
-        return new ResultDto().okOf().addMsg("options",articleDetailOptionVo);
+        return ResultDto.okOf().addMsg("options",articleDetailOptionVo);
     }
 }

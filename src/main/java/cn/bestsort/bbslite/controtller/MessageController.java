@@ -4,7 +4,7 @@ import cn.bestsort.bbslite.aop.annotation.NeedLogin;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.MessageEnum;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.MessageService;
+import cn.bestsort.bbslite.service.serviceimpl.MessageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,13 +19,13 @@ import java.util.List;
 @RestController
 public class MessageController {
     @Autowired
-    private MessageService messageService;
+    private MessageServiceImpl messageService;
     @GetMapping("/message")
     @NeedLogin
     public ResultDto getMessage(@RequestParam("type") MessageEnum type,
                                 HttpSession session){
         User user = (User)session.getAttribute("user");
         List message = messageService.getListByUser(user.getId(),type);
-        return new ResultDto().okOf().addMsg("messges",message);
+        return ResultDto.okOf().addMsg("messges",message);
     }
 }

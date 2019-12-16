@@ -1,6 +1,7 @@
-package cn.bestsort.bbslite.service;
+package cn.bestsort.bbslite.cache.service;
 
 import org.aspectj.lang.JoinPoint;
+import org.springframework.scheduling.annotation.Async;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,17 @@ public interface CacheService {
      * @param time 具体时间(秒)
      * @param strategy 过期策略 (nx/xx)
      */
+
+    @Async
     void set(String key,String val,long time,String strategy);
+
+    /**
+     * redis  key 自增
+     * @param key key
+     * @param step 步长
+     */
+    @Async
+    void inc(String key,Long step);
     /**
      * get value by key
      * @param key key
@@ -45,8 +56,7 @@ public interface CacheService {
     /**
      * generate key
      * @param joinPoint aop join point
-     * @param request http request
      * @return key
      */
-    String getKeyForAop(JoinPoint joinPoint, HttpServletRequest request);
+    String getKeyForAop(JoinPoint joinPoint);
 }

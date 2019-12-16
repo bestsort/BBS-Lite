@@ -1,4 +1,4 @@
-package cn.bestsort.bbslite.mapper;
+package cn.bestsort.bbslite.mapper.ext;
 
 import cn.bestsort.bbslite.pojo.model.ThumbUp;
 

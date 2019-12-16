@@ -1,8 +1,7 @@
-package cn.bestsort.bbslite.mapper;
+package cn.bestsort.bbslite.mapper.ext;
 
 import cn.bestsort.bbslite.dto.ArticleQueryDto;
 import cn.bestsort.bbslite.pojo.model.Article;
-import cn.bestsort.bbslite.pojo.model.ArticleExample;
 
 import java.util.List;
 
@@ -18,8 +17,9 @@ import java.util.List;
 public interface ArticleExtMapper {
     List<Article> listBySearch(ArticleQueryDto articleQueryDto);
     void insertArticleExt(Article article);
-    Boolean incArticleLike(Long id,Long val);
-    Boolean incArticleFollow(Long id, Long val);
-    Boolean incArticleComment(Long id,Long val);
-    Boolean incArticleView(Long id,Long val);
+    Long getArticleView(Long id);
+    Boolean incArticleFollow(Long val, Long id);
+    Boolean incArticleComment(Long val,Long id);
+    Boolean incArticleView(Long val,Long id);
+    Boolean incArticleLike(Long val,Long id);
 }

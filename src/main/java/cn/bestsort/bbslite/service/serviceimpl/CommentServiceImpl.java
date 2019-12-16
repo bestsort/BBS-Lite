@@ -1,19 +1,18 @@
-package cn.bestsort.bbslite.service;
+package cn.bestsort.bbslite.service.serviceimpl;
 
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.*;
+import cn.bestsort.bbslite.mapper.ext.ArticleExtMapper;
 import cn.bestsort.bbslite.pojo.model.*;
+import cn.bestsort.bbslite.service.BbsInterface;
 import cn.bestsort.bbslite.vo.CommentCenterVo;
 import cn.bestsort.bbslite.vo.CommentVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -29,7 +28,7 @@ import java.util.stream.Collectors;
  */
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class CommentService implements BBSService{
+public class CommentServiceImpl implements BbsInterface {
     private final UserMapper userMapper;
     private final ArticleExtMapper articleExtMapper;
     private final ArticleMapper articleMapper;

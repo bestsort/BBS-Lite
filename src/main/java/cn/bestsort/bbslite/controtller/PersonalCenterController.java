@@ -1,23 +1,19 @@
 package cn.bestsort.bbslite.controtller;
 
-import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
-import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.exception.CustomizeException;
-import cn.bestsort.bbslite.pojo.model.Comment;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.CommentService;
-import cn.bestsort.bbslite.service.ArticleService;
-import cn.bestsort.bbslite.service.UserService;
+import cn.bestsort.bbslite.service.serviceimpl.ArticleServiceImpl;
+import cn.bestsort.bbslite.service.serviceimpl.CommentServiceImpl;
+import cn.bestsort.bbslite.service.serviceimpl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 个人资料控制器
@@ -29,9 +25,9 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonalCenterController {
-    private final UserService userService;
-    private final ArticleService articleService;
-    private final CommentService commentService;
+    private final UserServiceImpl userService;
+    private final ArticleServiceImpl articleService;
+    private final CommentServiceImpl commentService;
     @RequestMapping("/center")
     public String profile(@RequestParam(name = "id",required = false) Long id,
                              HttpSession session){

@@ -1,7 +1,7 @@
-package cn.bestsort.bbslite.service;
+package cn.bestsort.bbslite.service.serviceimpl;
 
 import cn.bestsort.bbslite.enums.FunctionItem;
-import cn.bestsort.bbslite.mapper.FollowExtMapper;
+import cn.bestsort.bbslite.mapper.ext.FollowExtMapper;
 import cn.bestsort.bbslite.mapper.FollowMapper;
 import cn.bestsort.bbslite.pojo.model.Article;
 import cn.bestsort.bbslite.pojo.model.Follow;
@@ -22,7 +22,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class FollowService {
+public class FollowServiceImpl {
     private final FollowMapper followMapper;
     private final FollowExtMapper followExtMapper;
 

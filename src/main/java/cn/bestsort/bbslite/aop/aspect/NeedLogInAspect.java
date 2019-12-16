@@ -2,6 +2,8 @@ package cn.bestsort.bbslite.aop.aspect;
 
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
+import cn.bestsort.bbslite.exception.CustomizeException;
+import cn.bestsort.bbslite.pojo.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.session.StandardSessionFacade;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -10,8 +12,12 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 /**
  * @author bestsort
@@ -27,17 +33,14 @@ public class NeedLogInAspect {
 
     @Around("needLogIn()")
     public Object interceptor(ProceedingJoinPoint point) throws Throwable {
-        MethodSignature signature = (MethodSignature) point.getSignature();
-        //获取被拦截的方法
-        Method method = signature.getMethod();
-        //获取被拦截的方法名
-        String methodName = method.getName();
-        Object[] arg = point.getArgs();
-        for (Object o : arg) {
-            if (o instanceof StandardSessionFacade && ((StandardSessionFacade)o).getAttribute("user") != null)  {
-                return point.proceed();
-            }
+        //获取请求
+        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder
+                .getRequestAttributes())).getRequest();
+        User user = (User)(request.getSession().getAttribute("user"));
+        if (user != null){
+            return point.proceed();
+        }else {
+            return ResultDto.errorOf(new CustomizeException(CustomizeErrorCodeEnum.NO_LOGIN));
         }
-        return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
     }
 }

@@ -5,7 +5,7 @@ import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.manager.MailService;
 import cn.bestsort.bbslite.pojo.model.User;
 import cn.bestsort.bbslite.pojo.model.UserBuffer;
-import cn.bestsort.bbslite.service.UserService;
+import cn.bestsort.bbslite.service.serviceimpl.UserServiceImpl;
 import cn.bestsort.bbslite.util.MurmursHash;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.UUID;
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
-    private final UserService userService;
+    private final UserServiceImpl userService;
     private final MailService mail;
 
     @ResponseBody
@@ -34,9 +34,9 @@ public class UserController {
             isOwn = true;
         }
         if (user == null){
-            return new ResultDto().errorOf(CustomizeErrorCodeEnum.USER_NOT_FOUND);
+            return ResultDto.errorOf(CustomizeErrorCodeEnum.USER_NOT_FOUND);
         }
-        return new ResultDto().okOf()
+        return ResultDto.okOf()
                 .addMsg("user",user)
                 .addMsg("isOwn",isOwn);
     }
@@ -51,11 +51,11 @@ public class UserController {
 
         User user = userService.loginByAccount(account,password,type);
         if (user == null){
-            return new ResultDto().errorOf(CustomizeErrorCodeEnum.ACCOUNT_OR_PASSWORD_ERROR);
+            return ResultDto.errorOf(CustomizeErrorCodeEnum.ACCOUNT_OR_PASSWORD_ERROR);
         }
         session.setAttribute("user",user);
         response.addCookie(new Cookie("token",user.getToken()));
-        return new ResultDto().okOf();
+        return ResultDto.okOf();
     }
     @RequestMapping("/logout")
     public String logout(HttpSession session,
@@ -79,7 +79,7 @@ public class UserController {
         user.setEmail(email);
         user.setPassword(password);
         if (userService.hasCreateUser(user)){
-            return new ResultDto().errorOf(CustomizeErrorCodeEnum.USER_EXITED);
+            return ResultDto.errorOf(CustomizeErrorCodeEnum.USER_EXITED);
         }
         String token = UUID.randomUUID().toString();
         user.setToken(token);
@@ -87,7 +87,7 @@ public class UserController {
         user.setToken(token);
         userService.signUpUser(user);
         mail.sendMail(user.getToken(),user.getAccountId(),user.getEmail());
-        return new ResultDto().okOf();
+        return ResultDto.okOf();
     }
 
     @GetMapping("/activate")
@@ -105,8 +105,8 @@ public class UserController {
             session.setAttribute("user",user);
             response.addCookie(new Cookie("token",token));
         }catch (Exception ignore){
-            return new ResultDto().errorOf(CustomizeErrorCodeEnum.USER_ERROR);
+            return ResultDto.errorOf(CustomizeErrorCodeEnum.USER_ERROR);
         }
-        return new ResultDto().okOf();
+        return ResultDto.okOf();
     }
 }

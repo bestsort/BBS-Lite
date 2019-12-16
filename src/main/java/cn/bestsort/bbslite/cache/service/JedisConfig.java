@@ -1,4 +1,4 @@
-package cn.bestsort.bbslite.config;
+package cn.bestsort.bbslite.cache.service;
 
 import lombok.Getter;
 import lombok.Setter;

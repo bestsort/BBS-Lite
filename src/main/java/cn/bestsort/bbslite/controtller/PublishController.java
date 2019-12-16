@@ -2,11 +2,10 @@ package cn.bestsort.bbslite.controtller;
 
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
-import cn.bestsort.bbslite.mapper.TopicMapper;
 import cn.bestsort.bbslite.pojo.model.Article;
 import cn.bestsort.bbslite.pojo.model.User;
-import cn.bestsort.bbslite.service.ArticleService;
-import cn.bestsort.bbslite.service.TopicService;
+import cn.bestsort.bbslite.service.serviceimpl.ArticleServiceImpl;
+import cn.bestsort.bbslite.service.serviceimpl.TopicServiceImpl;
 import cn.bestsort.bbslite.vo.PublishVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +23,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PublishController {
-    private final ArticleService articleService;
-    private final TopicService topicService;
+    private final ArticleServiceImpl articleService;
+    private final TopicServiceImpl topicService;
     @GetMapping("/publish")
     public String publish(){
         return "publish";
@@ -38,12 +37,12 @@ public class PublishController {
         User user = (User) session.getAttribute("user");
         ResultDto resultDto;
         if(user == null){
-            resultDto = new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
+            resultDto = ResultDto.errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
         else if (id != null && !articleService.getArticleDetail(id).getCreator().equals(user.getId())) {
-            resultDto = new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_WAY);
+            resultDto = ResultDto.errorOf(CustomizeErrorCodeEnum.NO_WAY);
         } else {
-            resultDto = new ResultDto().okOf();
+            resultDto = ResultDto.okOf();
             PublishVo publishVo = new PublishVo();
             publishVo.setTopics(topicService.getAll());
             if (id != null) {
@@ -67,7 +66,7 @@ public class PublishController {
             HttpSession session){
         User user = (User)session.getAttribute("user");
         if(user == null){
-            return new ResultDto().errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
+            return ResultDto.errorOf(CustomizeErrorCodeEnum.NO_LOGIN);
         }
 
         Article article = new Article();
@@ -86,6 +85,6 @@ public class PublishController {
         if(newId == null){
             newId = id;
         }
-        return new ResultDto().okOf().addMsg("id",newId);
+        return ResultDto.okOf().addMsg("id",newId);
     }
 }

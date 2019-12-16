@@ -34,10 +34,10 @@ public class CustomizeExceptionHandler {
         if(type.equals(contentType)){
             ResultDto result;
             if(e instanceof CustomizeException){
-                result =  new ResultDto().errorOf((CustomizeException) e);
+                result =  ResultDto.errorOf((CustomizeException) e);
             }
             else{
-                result =  new ResultDto().errorOf(CustomizeErrorCodeEnum.SYS_ERROR);
+                result =  ResultDto.errorOf(CustomizeErrorCodeEnum.SYS_ERROR);
             }
             try {
                 response.setContentType(type);

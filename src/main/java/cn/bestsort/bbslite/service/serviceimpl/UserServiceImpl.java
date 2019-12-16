@@ -1,10 +1,10 @@
-package cn.bestsort.bbslite.service;
+package cn.bestsort.bbslite.service.serviceimpl;
 
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.exception.CustomizeException;
 import cn.bestsort.bbslite.mapper.OAuth2UserMapper;
 import cn.bestsort.bbslite.mapper.UserBufferMapper;
-import cn.bestsort.bbslite.mapper.UserExtMapper;
+import cn.bestsort.bbslite.mapper.ext.UserExtMapper;
 import cn.bestsort.bbslite.mapper.UserMapper;
 import cn.bestsort.bbslite.pojo.model.*;
 import cn.bestsort.bbslite.util.CopyAuth2User;
@@ -13,8 +13,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +27,7 @@ import java.util.UUID;
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class UserService {
+public class UserServiceImpl {
     @Value("${bbs.user.default.avatar-url:}")
     String defaultAvatarUrl;
     @Value("${bbs.user.default.bio:这人太懒了,没有留下简介}")
