@@ -51,14 +51,8 @@ spring:
     port: 465
     username: no-reply@mail.bestsort.cn
     password: nfNHVYBwXYWNHUsd
-
   application:
     name: "bbs-lite"
-  boot:
-    admin:
-      client:
-        url: http://tencent.bestsort.cn:60027
-        enabled: false
 
     ######################################################################
 #####                 以下为默认配置,如非必要不用修改                  #####
@@ -128,11 +122,3 @@ server:
       timeout: 15552000
   address: 0.0.0.0
   port: 60030
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  health:
-    defaults:
-      enabled: false

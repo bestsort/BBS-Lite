@@ -1,7 +1,10 @@
 package cn.bestsort.bbslite.cache.aop.annotation;
 
-import java.lang.annotation.*;
 
+import cn.bestsort.bbslite.cache.enums.CacheType;
+import cn.bestsort.bbslite.cache.enums.Time;
+
+import java.lang.annotation.*;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
 /**
@@ -16,7 +19,7 @@ public @interface Cache {
      * 自定义 key前缀
      * @return key
      */
-    String key() default "";
+    String prefix() default "";
 
     /**
      * key 生成器
@@ -33,13 +36,12 @@ public @interface Cache {
      * @return default
      */
 
-
-    String cacheType() default "default";
+    CacheType cacheType() default CacheType.DEFAULT;
     /**
-     * 默认 秒/分/时/天 --> S/M/H/D
+     * seconds / minutes / hour / day
      * @return 时间类型
      */
-    String timeType() default "M";
+    Time timeType() default Time.MINUTES;
     /**
      * nx: key不存在时再进行缓存 k-v
      * xx: key存在时再缓存 k-v

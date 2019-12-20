@@ -12,7 +12,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -24,12 +23,12 @@ import java.util.Objects;
  * @date 2019/12/4 下午7:25
  * @version 1.0
  */
-@Component
 @Aspect
 @Slf4j
 public class DefaultCacheAspect {
     @Autowired
     private CacheService cacheService;
+
     @Around("@annotation(cn.bestsort.bbslite.cache.aop.annotation.Cache)")
     public Object doCache(ProceedingJoinPoint joinPoint) {
         HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder
@@ -41,27 +40,24 @@ public class DefaultCacheAspect {
                 .getAnnotation(Cache.class);
         KeyGeneratorInterface keyGenerator = getKeyGenerator(cacheAop.keyGenerator());
 
-        /**
-         * 将可能引起线程安全的变量使用 ThreadLocal 解决
-         */
-        ThreadLocal<String> key = new ThreadLocal<>();
-        ThreadLocal<Object> result = new ThreadLocal<>();
+        String key;
+        Object result = null;
 
-        if (!"".equals(cacheAop.key())){
-            key.set(keyGenerator.generate(cacheAop.key(),joinPoint.getArgs()));
+        if (!"".equals(cacheAop.prefix())){
+            key = keyGenerator.generate(cacheAop.prefix(),joinPoint.getArgs());
         }else {
-            key.set(keyGenerator.generate(
+            key = keyGenerator.generate(
                     joinPoint.getTarget(),
                     ((MethodSignature) joinPoint.getSignature()).getMethod(),
-                    joinPoint.getArgs()));
+                    joinPoint.getArgs());
         }
 
-        if (cacheService.containKey(key.get())){
-            String obj = cacheService.get(key.get());
+        if (cacheService.containKey(key)){
+            String obj = cacheService.get(key);
             String fail = "fail";
             if(fail.endsWith(obj)){
                 try {
-                    joinPoint.proceed();
+                    result = joinPoint.proceed();
                 }catch (Throwable throwable){
                     throwable.printStackTrace();
                 }
@@ -69,19 +65,18 @@ public class DefaultCacheAspect {
                 log.info("cache hit : {} --> {}",request.getRequestURI(),request.getQueryString());
                 Signature signature =  joinPoint.getSignature();
                 Class returnType = ((MethodSignature) signature).getReturnType();
-                result.set(JSON.parseObject(obj,returnType));
+                result = JSON.parseObject(obj,returnType);
             }
         }else {
             try {
-                result.set(joinPoint.proceed());
-                String save2Cache = JSON.toJSONString(result.get());
-
-                cacheService.set(key.get(),save2Cache,getTime(cacheAop),getStrategy(cacheAop));
+                result = joinPoint.proceed();
+                String save2Cache = JSON.toJSONString(result);
+                cacheService.set(key,save2Cache,getTime(cacheAop),getStrategy(cacheAop));
             }catch (Throwable throwable){
                 throwable.printStackTrace();
             }
         }
-        return result.get();
+        return result;
     }
 
     private KeyGeneratorInterface getKeyGenerator(String clazz){
@@ -94,9 +89,9 @@ public class DefaultCacheAspect {
         long max = cacheAop.max()<min?min+3:cacheAop.max();
         long time = min + (int)(Math.random() * (max-min+1));
         switch (cacheAop.timeType()){
-            case "D": time *= 24L;
-            case "H": time *= 60L;
-            case "M": time *= 60L;
+            case DAY: time *= 24L;
+            case HOUR: time *= 60L;
+            case MINUTES: time *= 60L;
             default: break;
         }
         return time;
