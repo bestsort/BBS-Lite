@@ -1,7 +1,7 @@
 package cn.bestsort.bbslite.service.serviceimpl;
 
 import cn.bestsort.bbslite.cache.aop.annotation.Cache;
-import cn.bestsort.bbslite.cache.enums.CacheType;
+import cn.bestsort.bbslite.cache.aop.annotation.IncCache;
 import cn.bestsort.bbslite.dto.ArticleQueryDto;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.enums.SortBy;
@@ -86,12 +86,12 @@ public class ArticleServiceImpl implements ArticleInterface {
         return getFollow(id) + 1L;
     }
 
-    @Cache(prefix = "article:view_count:")
+    @Cache(key = "article:view_count:")
     public Long getArticleView(Long id){
         return articleMapper.selectByPrimaryKey(id).getViewCount();
     }
 
-    @Cache(cacheType = CacheType.INC, prefix = "article:view_count:")
+    @IncCache
     public Long incArticleView(Long id) {
         return getArticleView(id);
     }

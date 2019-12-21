@@ -18,7 +18,7 @@ import redis.clients.jedis.JedisPool;
 @Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class CacheServiceImpl implements CacheService {
+public class DefaultCacheService implements CacheService {
     private final JedisPool jedisPool;
     @Override
     public Jedis getResource() throws Exception {

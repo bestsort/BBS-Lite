@@ -5,27 +5,28 @@ import cn.bestsort.bbslite.cache.enums.CacheType;
 import cn.bestsort.bbslite.cache.enums.Time;
 
 import java.lang.annotation.*;
+
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.TYPE;
 /**
  * @author bestsort
  */
-@Target({METHOD,TYPE})
+@Target({METHOD,ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
 public @interface Cache {
     /**
-     * 自定义 key前缀
+     * 自定义 key, 支持SpEL表达式
      * @return key
      */
-    String prefix() default "";
+    String key() default "";
 
     /**
      * key 生成器
      * @return keyGenerator class
      */
-    String keyGenerator() default "keyGeneratorImpl";
+    String keyGenerator() default "defaultKeyGenerator";
     /**
      * 缓存类型 default/inc/flush/delete -> 默认/自增/刷新/删除
      * default --> 如果不存在则查询数据库,将查询结果加入redis中

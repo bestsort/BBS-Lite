@@ -1,21 +1,23 @@
 package cn.bestsort.bbslite.cache.aop.aspect;
 
-import cn.bestsort.bbslite.cache.KeyGeneratorInterface;
 import cn.bestsort.bbslite.cache.aop.annotation.Cache;
 import cn.bestsort.bbslite.cache.service.CacheService;
-import cn.bestsort.bbslite.util.SpringContextUtil;
+import cn.bestsort.bbslite.util.SpelUtil;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
 import java.util.Objects;
 /**
  * 简单的缓存实现
@@ -25,28 +27,34 @@ import java.util.Objects;
  */
 @Aspect
 @Slf4j
-public class DefaultCacheAspect {
+public class DefaultCacheAspect implements CacheAspect{
     @Autowired
     private CacheService cacheService;
+    @Pointcut("@annotation(cn.bestsort.bbslite.cache.aop.annotation.IncCache)")
+    private void doAround(){}
 
-    @Around("@annotation(cn.bestsort.bbslite.cache.aop.annotation.Cache)")
+    @Around("doAround()")
     public Object doCache(ProceedingJoinPoint joinPoint) {
         HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder
                 .getRequestAttributes())).getRequest();
-        //获取注解自身
-        Cache cacheAop = ((MethodSignature) joinPoint
-                .getSignature())
-                .getMethod()
-                .getAnnotation(Cache.class);
-        KeyGeneratorInterface keyGenerator = getKeyGenerator(cacheAop.keyGenerator());
+        // 通过AnnotatedElementUtils将@IncCache等相关注解合并为@Cache
+        Method method= ((MethodSignature) joinPoint.getSignature()).getMethod();
+
+        // 获取合并参数后的注解
+        Cache cacheAop = AnnotatedElementUtils.getMergedAnnotation(method,Cache.class);
+        assert cacheAop != null;
 
         String key;
         Object result = null;
 
-        if (!"".equals(cacheAop.prefix())){
-            key = keyGenerator.generate(cacheAop.prefix(),joinPoint.getArgs());
-        }else {
-            key = keyGenerator.generate(
+        // 如果key不为默认值则以解析SpEL表达式后的 key 为准
+
+        if (!"".equals(cacheAop.key())){
+            key = SpelUtil.parse(cacheAop.key(), method,joinPoint.getArgs());
+        }
+        // 否则根据定义的 key generator 生成 key
+        else {
+            key = getKeyGenerator(cacheAop.keyGenerator()).generate(
                     joinPoint.getTarget(),
                     ((MethodSignature) joinPoint.getSignature()).getMethod(),
                     joinPoint.getArgs());
@@ -77,26 +85,5 @@ public class DefaultCacheAspect {
             }
         }
         return result;
-    }
-
-    private KeyGeneratorInterface getKeyGenerator(String clazz){
-        return (KeyGeneratorInterface) SpringContextUtil.getBean(clazz);
-    }
-
-
-    private long getTime(Cache cacheAop){
-        long min = cacheAop.min();
-        long max = cacheAop.max()<min?min+3:cacheAop.max();
-        long time = min + (int)(Math.random() * (max-min+1));
-        switch (cacheAop.timeType()){
-            case DAY: time *= 24L;
-            case HOUR: time *= 60L;
-            case MINUTES: time *= 60L;
-            default: break;
-        }
-        return time;
-    }
-    private String getStrategy(Cache cacheAop){
-        return cacheAop.strategy();
     }
 }

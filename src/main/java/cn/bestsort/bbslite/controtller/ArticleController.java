@@ -1,6 +1,8 @@
 package cn.bestsort.bbslite.controtller;
 
 import cn.bestsort.bbslite.cache.aop.annotation.Cache;
+import cn.bestsort.bbslite.cache.aop.annotation.IncCache;
+import cn.bestsort.bbslite.cache.enums.Time;
 import cn.bestsort.bbslite.dto.ArticleQueryDto;
 import cn.bestsort.bbslite.dto.ResultDto;
 import cn.bestsort.bbslite.enums.FunctionItem;
@@ -16,10 +18,7 @@ import com.github.pagehelper.PageInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,6 +28,7 @@ import javax.servlet.http.HttpSession;
  * @date 19-8-31 下午8:35
  * @version 1.0
  */
+@RestController
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ArticleController {
@@ -61,10 +61,11 @@ public class ArticleController {
      * @param id 文章id
      * @return 文章详情
      */
+
+
     @ResponseBody
     @GetMapping("/loadArticleDetail")
     public ResultDto getArticleDetail(@RequestParam(name = "id") Long id){
-
         articleService.incArticleView(id);
         Article article = articleService.getArticleDetail(id);
         User user = userService.getSimpleInfoById(article.getCreator());

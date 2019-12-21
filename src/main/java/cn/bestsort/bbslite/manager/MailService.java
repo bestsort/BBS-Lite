@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * TODO
@@ -33,10 +32,16 @@ public class MailService {
     private String title;
     @Autowired
     private JavaMailSenderImpl mailSender;
-    private TemplateEngine templateEngine;
-    public static Queue<MailVo> failMail = new LinkedList<>();
+    /**
+     * 成员变量使用 ThreadLocal 保证线程安全
+     */
+    private ThreadLocal<TemplateEngine> templateEngine = new ThreadLocal<>();
 
-    @Async
+    /**
+     * 采用线程安全的队列
+     */
+    public static ConcurrentLinkedQueue<MailVo> failMail = new ConcurrentLinkedQueue<>();
+
     public void sendMail(String token , String account, String mailAddress){
         MailVo mailVo = new MailVo();
         mailVo.setSendText(generatorSignUpMail(token,account));
@@ -63,7 +68,7 @@ public class MailService {
     }
     @Autowired
     public MailService(TemplateEngine templateEngine) {
-        this.templateEngine = templateEngine;
+        this.templateEngine.set(templateEngine);
     }
     public String generatorSignUpMail(String token,String account) {
         Context context = new Context();
@@ -74,6 +79,6 @@ public class MailService {
         context.setVariable("homeUrl", homeUrl);
         context.setVariable("activeUrl", activeUrl);
         context.setVariable("userAccount", account);
-        return templateEngine.process("mail-template", context);
+        return templateEngine.get().process("mail-template", context);
     }
 }

@@ -1,4 +1,4 @@
-package cn.bestsort.bbslite.cache.aop.annotation;
+package cn.bestsort.bbslite.cache.aop;
 
 import cn.bestsort.bbslite.cache.RedisCacheConfig;
 import org.springframework.context.annotation.Import;

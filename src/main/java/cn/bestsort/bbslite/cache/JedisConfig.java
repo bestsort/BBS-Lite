@@ -1,4 +1,4 @@
-package cn.bestsort.bbslite.cache.service;
+package cn.bestsort.bbslite.cache;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+
+import java.lang.reflect.Method;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * TODO

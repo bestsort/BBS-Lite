@@ -124,7 +124,7 @@
     <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="infoAppender"/>
-        <!--<appender-ref ref="debugAppender"/>-->
+        <appender-ref ref="debugAppender"/>
         <appender-ref ref="warnAppender"/>
         <appender-ref ref="errorAppender"/>
     </root>
