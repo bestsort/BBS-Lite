@@ -1,6 +1,7 @@
 package cn.bestsort.bbslite.cache.aop.aspect;
 
 import cn.bestsort.bbslite.cache.aop.annotation.Cache;
+import cn.bestsort.bbslite.cache.enums.CacheType;
 import cn.bestsort.bbslite.cache.service.CacheService;
 import cn.bestsort.bbslite.util.SpelUtil;
 import com.alibaba.fastjson.JSON;
@@ -30,10 +31,12 @@ import java.util.Objects;
 public class DefaultCacheAspect implements CacheAspect{
     @Autowired
     private CacheService cacheService;
+    @Pointcut("@annotation(cn.bestsort.bbslite.cache.aop.annotation.Cache)")
+    private void defaultCacheAround(){}
     @Pointcut("@annotation(cn.bestsort.bbslite.cache.aop.annotation.IncCache)")
-    private void doAround(){}
+    private void incCacheAround(){}
 
-    @Around("doAround()")
+    @Around("defaultCacheAround() || incCacheAround()")
     public Object doCache(ProceedingJoinPoint joinPoint) {
         HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder
                 .getRequestAttributes())).getRequest();
@@ -61,6 +64,11 @@ public class DefaultCacheAspect implements CacheAspect{
         }
 
         if (cacheService.containKey(key)){
+            cacheService.inc(CACHE_HIT_COUNT,1L);
+            //INC
+            if (cacheAop.cacheType().equals(CacheType.INC) && cacheService.containKey(key)){
+                cacheService.inc(key,cacheAop.step());
+            }
             String obj = cacheService.get(key);
             String fail = "fail";
             if(fail.endsWith(obj)){
@@ -70,12 +78,14 @@ public class DefaultCacheAspect implements CacheAspect{
                     throwable.printStackTrace();
                 }
             }else {
-                log.info("cache hit : {} --> {}",request.getRequestURI(),request.getQueryString());
-                Signature signature =  joinPoint.getSignature();
+                //default
+                log.info("cache hit : {} --> {}", request.getRequestURI(), request.getQueryString());
+                Signature signature = joinPoint.getSignature();
                 Class returnType = ((MethodSignature) signature).getReturnType();
                 result = JSON.parseObject(obj,returnType);
             }
         }else {
+            cacheService.inc(CACHE_MISS_COUNT,1L);
             try {
                 result = joinPoint.proceed();
                 String save2Cache = JSON.toJSONString(result);

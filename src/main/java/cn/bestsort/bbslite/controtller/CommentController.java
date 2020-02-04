@@ -37,7 +37,7 @@ public class  CommentController {
     private final CommentServiceImpl commentService;
     private final UserServiceImpl userService;
     private final ArticleServiceImpl articleService;
-    @Cache
+
     @ResponseBody
     @GetMapping("/loadComment")
     public ResultDto get(@RequestParam(name = "id") Long articleId,

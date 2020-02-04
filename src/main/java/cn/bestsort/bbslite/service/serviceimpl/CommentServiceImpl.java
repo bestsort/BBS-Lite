@@ -1,5 +1,6 @@
 package cn.bestsort.bbslite.service.serviceimpl;
 
+import cn.bestsort.bbslite.cache.aop.annotation.Cache;
 import cn.bestsort.bbslite.enums.CustomizeErrorCodeEnum;
 import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.exception.CustomizeException;
@@ -71,7 +72,7 @@ public class CommentServiceImpl implements BbsInterface {
             articleExtMapper.incArticleComment(parent.getArticleId(),1L);
         }
     }
-
+    @Cache(key = "'comment:'+#articleId+#page+#size")
     public PageInfo<CommentVo> listByArticleId(Long articleId,Long userId, Integer page, Integer size) {
         Long creator = articleMapper.selectByPrimaryKey(articleId).getCreator();
 

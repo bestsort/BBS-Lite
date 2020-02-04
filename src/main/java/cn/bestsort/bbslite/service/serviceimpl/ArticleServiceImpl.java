@@ -86,14 +86,14 @@ public class ArticleServiceImpl implements ArticleInterface {
         return getFollow(id) + 1L;
     }
 
-    @Cache(key = "article:view_count:")
+    @Cache(key = "'article:view_count:'+#id")
     public Long getArticleView(Long id){
         return articleMapper.selectByPrimaryKey(id).getViewCount();
     }
 
-    @IncCache
+    @IncCache(key = "'article:view_count:'+#id")
     public Long incArticleView(Long id) {
-        return getArticleView(id);
+        return articleMapper.selectByPrimaryKey(id).getViewCount();
     }
 
     public Long decArticleView(Long id) {

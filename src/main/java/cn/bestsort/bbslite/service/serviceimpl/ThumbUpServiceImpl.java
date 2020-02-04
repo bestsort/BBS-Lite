@@ -1,5 +1,6 @@
 package cn.bestsort.bbslite.service.serviceimpl;
 
+import cn.bestsort.bbslite.cache.aop.annotation.Cache;
 import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.mapper.ext.ThumbUpExtMapper;
 import cn.bestsort.bbslite.mapper.ThumbUpMapper;
@@ -58,6 +59,7 @@ public class ThumbUpServiceImpl {
         return isActive;
     }
 
+    @Cache
     public Boolean getStatusByUser(Long articleId, Long id) {
         ThumbUpExample example = new ThumbUpExample();
         example.createCriteria()

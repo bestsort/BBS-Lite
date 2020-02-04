@@ -28,7 +28,7 @@ import javax.servlet.http.HttpSession;
  * @date 19-8-31 下午8:35
  * @version 1.0
  */
-@RestController
+
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ArticleController {
@@ -66,8 +66,8 @@ public class ArticleController {
     @ResponseBody
     @GetMapping("/loadArticleDetail")
     public ResultDto getArticleDetail(@RequestParam(name = "id") Long id){
-        articleService.incArticleView(id);
         Article article = articleService.getArticleDetail(id);
+        article.setViewCount(articleService.incArticleView(id));
         User user = userService.getSimpleInfoById(article.getCreator());
         return ResultDto.okOf()
                 .addMsg("article",article)
@@ -77,8 +77,8 @@ public class ArticleController {
     @ResponseBody
     @GetMapping("/loadArticleOption")
     public Object getArticleOption(@RequestParam(name = "articleId") Long articleId,
-                                       @RequestParam(name = "userId") Long userId,
-                                       HttpSession session){
+                                   @RequestParam(name = "userId") Long userId,
+                                   HttpSession session){
         ArticleDetailOptionVo articleDetailOptionVo = new ArticleDetailOptionVo();
         User user = (User)session.getAttribute("user");
         if(user != null && user.getId().equals(userId)){

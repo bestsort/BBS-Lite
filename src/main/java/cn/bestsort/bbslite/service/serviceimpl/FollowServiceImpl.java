@@ -1,5 +1,6 @@
 package cn.bestsort.bbslite.service.serviceimpl;
 
+import cn.bestsort.bbslite.cache.aop.annotation.Cache;
 import cn.bestsort.bbslite.enums.FunctionItem;
 import cn.bestsort.bbslite.mapper.ext.FollowExtMapper;
 import cn.bestsort.bbslite.mapper.FollowMapper;
@@ -60,6 +61,8 @@ public class FollowServiceImpl {
         }
         return !isActive;
     }
+
+    @Cache
     public  Boolean getStatusByUser(Long to, Long by, FunctionItem item){
         FollowExample example = new FollowExample();
         example.createCriteria()

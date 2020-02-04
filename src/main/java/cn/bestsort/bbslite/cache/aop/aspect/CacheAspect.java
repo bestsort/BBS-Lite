@@ -12,7 +12,8 @@ import cn.bestsort.bbslite.util.SpringContextUtil;
  * @date 12/21/19 9:25 AM
  */
 public interface CacheAspect {
-
+    String CACHE_HIT_COUNT = "cache_hit_count";
+    String CACHE_MISS_COUNT = "cache_miss_count";
     default Cache init(){
 
         return null;

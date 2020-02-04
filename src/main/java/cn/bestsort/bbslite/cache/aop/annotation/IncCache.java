@@ -25,6 +25,8 @@ public @interface IncCache {
     @AliasFor("value")
     long step() default 1;
 
+    String keyGenerator() default "noKeyGenerator";
+
     /**
      * seconds / minutes / hour / day
      * @return 时间类型
