@@ -11,12 +11,12 @@
 ## Attention!
 目前急需一名熟悉前端的小伙伴和我一起完成这个项目. 凭我一人之力虽然能在较长的时间内完成,但是这个项目我还想一直优化下去.而且我想把更多的精力放在后端优化上,所以不想在前端投入太多时间
 
-如果您熟悉 jQuery、 Ajax、 Bootstrap4 , 并且有时间、有兴趣、有精力同我一起长期维护此项目,欢迎发送邮件至我的<a href="mailto:me@mail.bestsort.cn">邮箱</a>沟通项目细节.
+如果您熟悉 jQuery、 Ajax、 Bootstrap4 , 并且有时间、有兴趣、有精力同我一起长期维护此项目,欢迎发送邮件至我的<a href="mailto:me@bestsort.show">邮箱</a>沟通项目细节.
 
 期待您的加入!
 
 ## 项目演示
-~~[氢论坛](https://bbs.bestsort.cn/)~~本站点暂时关闭～
+暂无～需自行部署
 
 ## 项目部署
 [关于氢论坛](https://bestsort.github.io/BBS-Lite/)
