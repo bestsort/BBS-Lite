@@ -2,6 +2,9 @@ package cn.bestsort.bbslite.util;
 
 import cn.bestsort.bbslite.pojo.model.OAuth2User;
 import cn.bestsort.bbslite.pojo.model.User;
+import org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator;
+import org.springframework.aop.config.AopNamespaceHandler;
+import org.springframework.aop.config.AopNamespaceUtils;
 
 /**
  * @author bestsort

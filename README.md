@@ -16,10 +16,10 @@
 期待您的加入!
 
 ## 项目演示
-[氢论坛](https://bbs.bestsort.cn/)
+~~[氢论坛](https://bbs.bestsort.cn/)~~本站点暂时关闭～
 
 ## 项目部署
-[关于氢论坛](https://bbs.bestsort.cn/article/1)
+[关于氢论坛](https://bestsort.github.io/BBS-Lite/)
 
 ## 采用技术及工具
 
